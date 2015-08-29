@@ -1,8 +1,8 @@
 {
-    "name": "unialteri/statesLifeCycle",
+    "name": "unialteri/states-life-cycle",
     "type": "library",
-    "description": "Component to extend the behavior of unialteri/states and provide a service to manage lifes cycles of stated class instance, notify states changes and profile changes",
-    "keywords": ["states","class","state pattern","pattern","behavioral software design pattern", "life cycle", "event"],
+    "description": "Component to extend the behavior of unialteri/states and provide a service to manage lifes cycles of stated class instance",
+    "keywords": ["states","class","state pattern","pattern","behavioral software design pattern", "life cycle"],
     "homepage": "http://teknoo.it/states",
     "license": ["MIT","GPL-3.0+"],
     "authors": [
@@ -37,9 +37,7 @@
     "archive": {
         "exclude": ["demo", "vendor", ".idea"]
     },
-    "bin": ["bin/states"],
     "scripts": {
-      "test":"phpunit",
-      "states":"bin/states"
+      "test":"phpunit"
     }
 }
