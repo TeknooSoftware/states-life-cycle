@@ -3,7 +3,7 @@
 namespace UniAlteri\States\LifeCycle\Event;
 
 use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
-use UniAlteri\States\Proxy\ProxyInterface;
+use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**
  * Interface EventInterface
@@ -25,9 +25,9 @@ interface EventInterface
     public function getObserved(): ObservedInterface;
 
     /**
-     * @return ProxyInterface
+     * @return LifeCyclableInterface
      */
-    public function getObject(): ProxyInterface;
+    public function getObject(): LifeCyclableInterface;
 
     /**
      * @return string[]

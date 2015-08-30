@@ -3,7 +3,7 @@
 namespace UniAlteri\States\LifeCycle\Observing;
 
 use UniAlteri\States\LifeCycle\Event\DispatcherInterface;
-use UniAlteri\States\Proxy\ProxyInterface;
+use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**
  * Interface ObserverInterface
@@ -23,10 +23,10 @@ interface ObserverInterface
     public function getEventDispatcher(): DispatcherInterface;
 
     /**
-     * @param ProxyInterface $object
+     * @param LifeCyclableInterface $object
      * @return ObservedInterface
      */
-    public function attachObject(ProxyInterface $object): ObservedInterface;
+    public function attachObject(LifeCyclableInterface $object): ObservedInterface;
 
     /**
      * @param ObservedInterface $observed
@@ -35,13 +35,13 @@ interface ObserverInterface
     public function closeObserving(ObservedInterface $observed): ObserverInterface;
 
     /**
-     * @param ProxyInterface $object
+     * @param LifeCyclableInterface $object
      * @return ObserverInterface
      */
-    public function detachObject(ProxyInterface $object): ObserverInterface;
+    public function detachObject(LifeCyclableInterface $object): ObserverInterface;
 
     /**
-     * @param ProxyInterface|ObservedInterface $observedObject
+     * @param LifeCyclableInterface|ObservedInterface $observedObject
      * @return ObserverInterface
      */
     public function notifyObject($observedObject): ObserverInterface;

@@ -2,7 +2,7 @@
 
 namespace UniAlteri\States\LifeCycle\Tokenization;
 
-use UniAlteri\States\Proxy\ProxyInterface;
+use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**
  * Interface TokenizerInterface
@@ -11,8 +11,8 @@ use UniAlteri\States\Proxy\ProxyInterface;
 interface TokenizerInterface
 {
     /**
-     * @param ProxyInterface $object
+     * @param LifeCyclableInterface $object
      * @return string
      */
-    public function getStatedClassToken(ProxyInterface $object): \string;
+    public function getStatedClassToken(LifeCyclableInterface $object): \string;
 }

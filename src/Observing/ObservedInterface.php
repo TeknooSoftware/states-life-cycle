@@ -2,8 +2,8 @@
 
 namespace UniAlteri\States\LifeCycle\Observing;
 
+use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use UniAlteri\States\LifeCycle\Trace\TraceInterface;
-use UniAlteri\States\Proxy\ProxyInterface;
 
 /**
  * Interface ObservedInterface
@@ -12,9 +12,9 @@ use UniAlteri\States\Proxy\ProxyInterface;
 interface ObservedInterface
 {
     /**
-     * @param ProxyInterface $proxyInterface
+     * @param LifeCyclableInterface $object
      */
-    public function __construct(ProxyInterface $proxyInterface);
+    public function __construct(LifeCyclableInterface $object);
 
     /**
      * @return string
@@ -22,9 +22,9 @@ interface ObservedInterface
     public function getId(): \string;
 
     /**
-     * @return ProxyInterface
+     * @return LifeCyclableInterface
      */
-    public function getObject(): ProxyInterface;
+    public function getObject(): LifeCyclableInterface;
 
     /**
      * @return string
