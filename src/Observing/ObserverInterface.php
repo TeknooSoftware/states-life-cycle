@@ -29,16 +29,10 @@ interface ObserverInterface
     public function attachObject(LifeCyclableInterface $object): ObservedInterface;
 
     /**
-     * @param ObservedInterface $observed
-     * @return ObserverInterface
-     */
-    public function closeObserving(ObservedInterface $observed): ObserverInterface;
-
-    /**
      * @param LifeCyclableInterface $object
      * @return ObserverInterface
      */
-    public function detachObject(LifeCyclableInterface $object): ObserverInterface;
+    public function detachObject(LifeCyclableInterface $object);
 
     /**
      * @param LifeCyclableInterface|ObservedInterface $observedObject

@@ -1,37 +1,31 @@
 <?php
 
 namespace UniAlteri\States\LifeCycle\LifeCycle;
+
 use UniAlteri\States\LifeCycle\Event\EventInterface;
+use UniAlteri\States\LifeCycle\Listening\ListenerInterface;
 
 /***
  * Interface ScenarioInterface
  * @package UniAlteri\States\LifeCycle\LifeCycle
  */
-interface ScenarioInterface
+interface ScenarioInterface extends ListenerInterface
 {
     /**
-     * @param string $eventName
-     * @return ScenarioInterface
+     * @return string
      */
-    public function when(\string $eventName): ScenarioInterface;
+    public function getToward(): \string;
 
     /**
-     * @param string $stateName
-     * @return ScenarioInterface
+     * @return string[]
      */
-    public function incoming(\string $stateName): ScenarioInterface;
+    public function getEventsNamesList(): array;
 
     /**
-     * @param string $stateName
-     * @return ScenarioInterface
+     * @param EventInterface $event
+     * @return bool
      */
-    public function outgoing(\string $stateName): ScenarioInterface;
-
-    /**
-     * @param callable $callable
-     * @return ScenarioInterface
-     */
-    public function run(callable $callable): ScenarioInterface;
+    public function isAccepted(EventInterface $event): \bool;
 
     /**
      * @param EventInterface $event
