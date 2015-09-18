@@ -1,6 +1,7 @@
 <?php
 
 namespace UniAlteri\States\LifeCycle\Event;
+
 use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
 
 /**

@@ -1,6 +1,7 @@
 <?php
 
-namespace UniAlteri\States\LifeCycle\LifeCycle;
+namespace UniAlteri\States\LifeCycle\Scenario;
+
 use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 
 /***
