@@ -3,18 +3,18 @@
 namespace UniAlteri\States\LifeCycle\LifeCycle;
 
 use UniAlteri\States\LifeCycle\Event\EventInterface;
-use UniAlteri\States\LifeCycle\Listening\ListenerInterface;
+use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 
 /***
  * Interface ScenarioInterface
  * @package UniAlteri\States\LifeCycle\LifeCycle
  */
-interface ScenarioInterface extends ListenerInterface
+interface ScenarioInterface
 {
     /**
-     * @return string
+     * @return ObservedInterface
      */
-    public function getToward(): \string;
+    public function getObserved(): ObservedInterface;
 
     /**
      * @return string[]
@@ -25,7 +25,7 @@ interface ScenarioInterface extends ListenerInterface
      * @param EventInterface $event
      * @return bool
      */
-    public function isAccepted(EventInterface $event): \bool;
+    public function isAllowedToRun(EventInterface $event): \bool;
 
     /**
      * @param EventInterface $event

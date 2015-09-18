@@ -15,12 +15,18 @@ interface ObserverInterface
      * @param DispatcherInterface $dispatcher
      * @return ObserverInterface
      */
-    public function setEventDispatcher(DispatcherInterface $dispatcher): ObserverInterface;
+    public function addEventDispatcher(DispatcherInterface $dispatcher): ObserverInterface;
 
     /**
-     * @return DispatcherInterface
+     * @param DispatcherInterface $dispatcher
+     * @return ObserverInterface
      */
-    public function getEventDispatcher(): DispatcherInterface;
+    public function removeEventDispatcher(DispatcherInterface $dispatcher): ObserverInterface;
+
+    /**
+     * @return DispatcherInterface[]
+     */
+    public function listEventDispatcher(): array;
 
     /**
      * @param LifeCyclableInterface $object
@@ -32,11 +38,16 @@ interface ObserverInterface
      * @param LifeCyclableInterface $object
      * @return ObserverInterface
      */
-    public function detachObject(LifeCyclableInterface $object);
+    public function detachObject(LifeCyclableInterface $object): ObserverInterface;
 
     /**
-     * @param LifeCyclableInterface|ObservedInterface $observedObject
+     * @return ObservedInterface[]
+     */
+    public function listObserved(): array;
+
+    /**
+     * @param ObservedInterface $observed
      * @return ObserverInterface
      */
-    public function notifyObject($observedObject): ObserverInterface;
+    public function dispatchNotification(ObservedInterface $observed): ObserverInterface;
 }

@@ -1,20 +1,25 @@
 <?php
 
 namespace UniAlteri\States\LifeCycle\LifeCycle;
-
-use UniAlteri\States\LifeCycle\Listening\ListenerInterface;
+use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 
 /***
  * Interface ScenarioBuilderInterface
  * @package UniAlteri\States\LifeCycle\LifeCycle
  */
-interface ScenarioBuilderInterface extends ListenerInterface
+interface ScenarioBuilderInterface
 {
     /**
      * @param string $statedClassName
      * @return ScenarioBuilderInterface
      */
-    public function toward(\string $statedClassName): ScenarioBuilderInterface;
+    public function towardStatedClass(\string $statedClassName): ScenarioBuilderInterface;
+
+    /**
+     * @param ObservedInterface $observed
+     * @return ScenarioBuilderInterface
+     */
+    public function towardObserved(ObservedInterface $observed): ScenarioBuilderInterface;
 
     /**
      * @return ScenarioBuilderInterface
@@ -45,13 +50,19 @@ interface ScenarioBuilderInterface extends ListenerInterface
      * @param string $stateName
      * @return ScenarioBuilderInterface
      */
-    public function incoming(\string $stateName): ScenarioBuilderInterface;
+    public function ifInState(\string $stateName): ScenarioBuilderInterface;
 
     /**
      * @param string $stateName
      * @return ScenarioBuilderInterface
      */
-    public function outgoing(\string $stateName): ScenarioBuilderInterface;
+    public function onIncomingState(\string $stateName): ScenarioBuilderInterface;
+
+    /**
+     * @param string $stateName
+     * @return ScenarioBuilderInterface
+     */
+    public function onOutgoingState(\string $stateName): ScenarioBuilderInterface;
 
     /**
      * @param callable $callable

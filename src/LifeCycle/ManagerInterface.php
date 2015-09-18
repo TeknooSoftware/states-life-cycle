@@ -32,4 +32,9 @@ interface ManagerInterface
      * @return ManagerInterface
      */
     public function unregisterScenario(ScenarioInterface $scenario): ManagerInterface;
+
+    /**
+     * @return ScenarioInterface[]
+     */
+    public function listScenarii(): array;
 }

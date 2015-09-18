@@ -19,7 +19,7 @@ interface ObservedInterface
     /**
      * @return string
      */
-    public function getId(): \string;
+    public function getHash(): \string;
 
     /**
      * @return LifeCyclableInterface
@@ -30,6 +30,11 @@ interface ObservedInterface
      * @return string
      */
     public function getStatedClassName(): \string;
+
+    /**
+     * @return ObservedInterface
+     */
+    public function observeUpdate();
 
     /**
      * @return TraceInterface
