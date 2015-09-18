@@ -17,11 +17,6 @@ interface ObservedInterface
     public function __construct(LifeCyclableInterface $object);
 
     /**
-     * @return string
-     */
-    public function getHash(): \string;
-
-    /**
      * @return LifeCyclableInterface
      */
     public function getObject(): LifeCyclableInterface;

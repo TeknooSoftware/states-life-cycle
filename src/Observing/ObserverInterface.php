@@ -4,6 +4,7 @@ namespace UniAlteri\States\LifeCycle\Observing;
 
 use UniAlteri\States\LifeCycle\Event\DispatcherInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
+use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
 
 /**
  * Interface ObserverInterface
@@ -11,6 +12,17 @@ use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
  */
 interface ObserverInterface
 {
+    /**
+     * @param TokenizerInterface $tokenizer
+     * @return DispatcherInterface
+     */
+    public function setTokenizer(TokenizerInterface $tokenizer): DispatcherInterface;
+
+    /**
+     * @return TokenizerInterface
+     */
+    public function getTokenizer(): TokenizerInterface;
+
     /**
      * @param DispatcherInterface $dispatcher
      * @return ObserverInterface
