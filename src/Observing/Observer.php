@@ -5,6 +5,7 @@ namespace UniAlteri\States\LifeCycle\Observing;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
+use UniAlteri\States\LifeCycle\Trace\Trace;
 
 /**
  * Class Observer
@@ -91,7 +92,10 @@ class Observer implements ObserverInterface
     public function attachObject(LifeCyclableInterface $object): ObservedInterface
     {
         $objectHash = spl_object_hash($object);
-        $this->observedList[$objectHash] = $object;
+        $observed = new Observed($object, $this);
+        $object->registerObserver($observed);
+
+        $this->observedList[$objectHash] = $observed;
 
         return $this;
     }
@@ -103,6 +107,8 @@ class Observer implements ObserverInterface
     {
         $objectHash = spl_object_hash($object);
         if (isset($this->observedList[$objectHash])) {
+            $observed = $this->observedList[$objectHash];
+            $object->unregisterObserver($observed);
             unset($this->observedList[$objectHash]);
         }
 
@@ -123,10 +129,10 @@ class Observer implements ObserverInterface
     public function dispatchNotification(ObservedInterface $observed): ObserverInterface
     {
         $event = $observed->getLastEvent();
-        $eventsNamesList = $this->getTokenizer()->getStatedClassToken($observed->getObject());
+        $eventsNamesList = $this->getTokenizer()->getToken($event);
 
-        foreach ($this->dispatchersList as $dispatcher) {
-            foreach ($eventsNamesList as $eventName) {
+        foreach ($eventsNamesList as $eventName) {
+            foreach ($this->dispatchersList as $dispatcher) {
                 $dispatcher->dispatch($eventName, $event);
             }
         }

@@ -6,6 +6,7 @@ use UniAlteri\States\LifeCycle\Event\Event;
 use UniAlteri\States\LifeCycle\Event\EventInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use UniAlteri\States\LifeCycle\Trace\Entry;
+use UniAlteri\States\LifeCycle\Trace\Trace;
 use UniAlteri\States\LifeCycle\Trace\TraceInterface;
 
 /**
@@ -37,11 +38,11 @@ class Observed implements ObservedInterface
     /**
      * {@inheritdoc}
      */
-    public function __construct(LifeCyclableInterface $object, ObserverInterface $observer, TraceInterface $trace)
+    public function __construct(LifeCyclableInterface $object, ObserverInterface $observer)
     {
         $this->object = $object;
         $this->observer = $observer;
-        $this->trace = $trace;
+        $this->trace = new Trace($this);
     }
 
     /**

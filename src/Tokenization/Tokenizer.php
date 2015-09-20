@@ -2,6 +2,7 @@
 
 namespace UniAlteri\States\LifeCycle\Tokenization;
 
+use UniAlteri\States\LifeCycle\Event\EventInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**
@@ -14,34 +15,35 @@ class Tokenizer implements TokenizerInterface
      * @param LifeCyclableInterface $object
      * @return string
      */
-    protected function getStatedClassName(LifeCyclableInterface $object): \string
+    protected function getStatedClassNameToken(LifeCyclableInterface $object): \string
     {
         $statedClassName = get_class($object);
         $statedClassNamePart = explode('\\', $statedClassName);
         array_pop($statedClassNamePart);
 
-        return implode('\\', $statedClassName);
-    }
-
-    /**
-     * @param LifeCyclableInterface $object
-     * @return string[]
-     */
-    protected function getEnabledStates(LifeCyclableInterface $object): array
-    {
-        return $object->listEnabledStates();
+        return implode('_', $statedClassName);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getStatedClassToken(LifeCyclableInterface $object): array
+    public function getToken(EventInterface $event): array
     {
-        $tokenList = [];
-        $statedClassName = $this->getStatedClassName($object);
+        $object = $event->getObject();
 
-        foreach ($this->getEnabledStates($object) as $stateName) {
+        $statedClassName = $this->getStatedClassNameToken($object);
+        $tokenList = [$statedClassName];
+
+        foreach ($event->getEnabledStates() as $stateName) {
             $tokenList[] = $statedClassName.':'.$stateName;
+        }
+
+        foreach ($event->incomingStates() as $stateName) {
+            $tokenList[] = $statedClassName.':+'.$stateName;
+        }
+
+        foreach ($event->outgoingStates() as $stateName) {
+            $tokenList[] = $statedClassName.':-'.$stateName;
         }
 
         return $tokenList;

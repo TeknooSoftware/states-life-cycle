@@ -2,6 +2,8 @@
 
 namespace UniAlteri\States\LifeCycle\Tokenization;
 
+use UniAlteri\States\LifeCycle\Event\Event;
+use UniAlteri\States\LifeCycle\Event\EventInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**
@@ -11,8 +13,8 @@ use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 interface TokenizerInterface
 {
     /**
-     * @param LifeCyclableInterface $object
+     * @param EventInterface $event
      * @return string[]
      */
-    public function getStatedClassToken(LifeCyclableInterface $object): array;
+    public function getToken(EventInterface $event): array;
 }
