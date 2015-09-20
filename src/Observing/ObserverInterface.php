@@ -2,7 +2,7 @@
 
 namespace UniAlteri\States\LifeCycle\Observing;
 
-use UniAlteri\States\LifeCycle\Event\DispatcherInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
 
@@ -14,9 +14,9 @@ interface ObserverInterface
 {
     /**
      * @param TokenizerInterface $tokenizer
-     * @return DispatcherInterface
+     * @return EventDispatcherInterface
      */
-    public function setTokenizer(TokenizerInterface $tokenizer): DispatcherInterface;
+    public function setTokenizer(TokenizerInterface $tokenizer): EventDispatcherInterface;
 
     /**
      * @return TokenizerInterface
@@ -24,19 +24,19 @@ interface ObserverInterface
     public function getTokenizer(): TokenizerInterface;
 
     /**
-     * @param DispatcherInterface $dispatcher
+     * @param EventDispatcherInterface $dispatcher
      * @return ObserverInterface
      */
-    public function addEventDispatcher(DispatcherInterface $dispatcher): ObserverInterface;
+    public function addEventDispatcher(EventDispatcherInterface $dispatcher): ObserverInterface;
 
     /**
-     * @param DispatcherInterface $dispatcher
+     * @param EventDispatcherInterface $dispatcher
      * @return ObserverInterface
      */
-    public function removeEventDispatcher(DispatcherInterface $dispatcher): ObserverInterface;
+    public function removeEventDispatcher(EventDispatcherInterface $dispatcher): ObserverInterface;
 
     /**
-     * @return DispatcherInterface[]
+     * @return EventDispatcherInterface[]
      */
     public function listEventDispatcher(): array;
 

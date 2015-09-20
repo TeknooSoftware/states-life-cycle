@@ -3,7 +3,6 @@
 namespace UniAlteri\States\LifeCycle\StatedClass;
 
 use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
-use UniAlteri\States\LifeCycle\Observing\ObserverInterface;
 use UniAlteri\States\Proxy\ProxyInterface;
 
 /**
@@ -13,10 +12,10 @@ use UniAlteri\States\Proxy\ProxyInterface;
 interface LifeCyclableInterface extends ProxyInterface
 {
     /**
-     * @param ObserverInterface $observer
+     * @param ObservedInterface $observed
      * @return LifeCyclableInterface
      */
-    public function registerObserver(ObserverInterface $observer): LifeCyclableInterface;
+    public function registerObserver(ObservedInterface $observed): LifeCyclableInterface;
 
     /**
      * @param ObservedInterface $observed

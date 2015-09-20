@@ -3,7 +3,6 @@
 namespace UniAlteri\States\LifeCycle\Trace;
 
 use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
-use UniAlteri\States\LifeCycle\Observing\ObserverInterface;
 
 /**
  * Interface TraceInterface
@@ -22,17 +21,23 @@ interface TraceInterface
     public function getObserved(): ObservedInterface;
 
     /**
-     * @return \SplStack|EntityInterface[]
+     * @return \SplStack|EntryInterface[]
      */
     public function getTrace(): \SplStack;
 
     /**
-     * @return EntityInterface
+     * @return EntryInterface
      */
-    public function getFirstEntry(): EntityInterface;
+    public function getFirstEntry(): EntryInterface;
 
     /**
-     * @return EntityInterface
+     * @return EntryInterface
      */
-    public function getLastEntry(): EntityInterface;
+    public function getLastEntry(): EntryInterface;
+
+    /**
+     * @param EntryInterface $entry
+     * @return TraceInterface
+     */
+    public function addEntry(EntryInterface $entry): TraceInterface;
 }

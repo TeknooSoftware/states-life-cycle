@@ -13,13 +13,20 @@ interface ObservedInterface
 {
     /**
      * @param LifeCyclableInterface $object
+     * @param ObserverInterface $observer
+     * @param TraceInterface $trace
      */
-    public function __construct(LifeCyclableInterface $object);
+    public function __construct(LifeCyclableInterface $object, ObserverInterface $observer, TraceInterface $trace);
 
     /**
      * @return LifeCyclableInterface
      */
     public function getObject(): LifeCyclableInterface;
+
+    /**
+     * @return ObserverInterface
+     */
+    public function getObserver(): ObserverInterface;
 
     /**
      * @return string

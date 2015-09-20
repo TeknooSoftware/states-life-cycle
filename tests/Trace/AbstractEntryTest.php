@@ -2,7 +2,7 @@
 
 namespace UniAlteri\Tests\States\LifeCycle\Trace;
 
-use UniAlteri\States\LifeCycle\Trace\EntityInterface;
+use UniAlteri\States\LifeCycle\Trace\EntryInterface;
 
 /**
  * Class AbstractEntityTest
@@ -13,7 +13,7 @@ abstract class AbstractEntityTest extends \PHPUnit_Framework_TestCase
     /**
      * @param $observedInterface
      * @param $enabledStatesList
-     * @return EntityInterface
+     * @return EntryInterface
      */
     abstract public function build($observedInterface, $enabledStatesList);
 
@@ -56,7 +56,7 @@ abstract class AbstractEntityTest extends \PHPUnit_Framework_TestCase
     public function testGetPrevious()
     {
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Trace\EntityInterface',
+            'UniAlteri\States\LifeCycle\Trace\EntryInterface',
             $this->build()->getPrevious()
         );
     }
@@ -64,7 +64,7 @@ abstract class AbstractEntityTest extends \PHPUnit_Framework_TestCase
     public function testGetNext()
     {
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Trace\EntityInterface',
+            'UniAlteri\States\LifeCycle\Trace\EntryInterface',
             $this->build()->getNext()
         );
     }

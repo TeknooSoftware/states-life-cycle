@@ -12,24 +12,40 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @param mixed $instance
+     * @param mixed $observer
      * @return ObservedInterface
      */
-    abstract public function build($instance);
+    abstract public function build($instance, $observer);
 
     /**
      * @expectedException \TypeError
      */
-    public function testConstructorBadArgument()
+    public function testConstructorBadInstance()
     {
-        $this->build(new \stdClass());
+        $this->build(
+            new \stdClass(),
+            $this->getMock('UniAlteri\Tests\States\LifeCycle\Observing\ObserverInterface')
+        );
+    }
+
+    /**
+     * @expectedException \TypeError
+     */
+    public function testConstructorBadObserver()
+    {
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $this->build(
+            $instance,
+            new \stdClass()
+        );
     }
 
     public function testConstructor()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface', [], [], '', false);
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
-            $this->build($instance)
+            $this->build($instance, $this->getMock('UniAlteri\Tests\States\LifeCycle\Observing\ObserverInterface'))
         );
     }
 

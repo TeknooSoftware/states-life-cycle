@@ -5,16 +5,21 @@ namespace UniAlteri\States\LifeCycle\Trace;
 use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 
 /**
- * Interface EntityInterface
+ * Interface EntryInterface
  * @package UniAlteri\States\LifeCycle\Trace
  */
-interface EntityInterface
+interface EntryInterface
 {
     /**
-     * @param ObservedInterface $observedInterface
+     * @param ObservedInterface $observed
      * @param string[] $enabledStatesList
+     * @param EntryInterface|null $previous
      */
-    public function __construct(ObservedInterface $observedInterface, array $enabledStatesList);
+    public function __construct(
+        ObservedInterface $observed,
+        array $enabledStatesList,
+        EntryInterface $previous=null
+    );
 
     /**
      * @return ObservedInterface
@@ -27,12 +32,18 @@ interface EntityInterface
     public function getEnabledState(): array;
 
     /**
-     * @return EntityInterface
+     * @return EntryInterface
      */
-    public function getPrevious(): EntityInterface;
+    public function getPrevious(): EntryInterface;
 
     /**
-     * @return EntityInterface
+     * @param EntryInterface $next
+     * @return EntryInterface
      */
-    public function getNext(): EntityInterface;
+    public function setNext(EntryInterface $next): EntryInterface;
+
+    /**
+     * @return EntryInterface
+     */
+    public function getNext(): EntryInterface;
 }

@@ -12,7 +12,7 @@ interface TokenizerInterface
 {
     /**
      * @param LifeCyclableInterface $object
-     * @return string
+     * @return string[]
      */
-    public function getStatedClassToken(LifeCyclableInterface $object): \string;
+    public function getStatedClassToken(LifeCyclableInterface $object): array;
 }

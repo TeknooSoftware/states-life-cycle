@@ -3,7 +3,7 @@
 namespace UniAlteri\States\LifeCycle\Scenario;
 
 use UniAlteri\States\LifeCycle\Event\EventInterface;
-use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
+use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /***
  * Interface ScenarioInterface
@@ -12,14 +12,34 @@ use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 interface ScenarioInterface
 {
     /**
-     * @return ObservedInterface
+     * @return string[]
      */
-    public function getObserved(): ObservedInterface;
+    public function getEventsNamesList(): array;
 
     /**
      * @return string[]
      */
-    public function getEventsNamesList(): array;
+    public function listNeededIncomingStates(): array;
+
+    /**
+     * @return string[]
+     */
+    public function listNeededOutgoingStates(): array;
+
+    /**
+     * @return string[]
+     */
+    public function listNeededStates(): array;
+
+    /**
+     * @return string
+     */
+    public function getNeededStatedClass(): \string;
+
+    /**
+     * @return LifeCyclableInterface
+     */
+    public function getNeededStatedObject(): LifeCyclableInterface;
 
     /**
      * @param EventInterface $event
