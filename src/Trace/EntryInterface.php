@@ -3,7 +3,6 @@
 namespace UniAlteri\States\LifeCycle\Trace;
 
 use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
-use UniAlteri\States\LifeCycle\Observing\ObserverInterface;
 
 /**
  * Interface EntityInterface
@@ -16,11 +15,6 @@ interface EntityInterface
      * @param string[] $enabledStatesList
      */
     public function __construct(ObservedInterface $observedInterface, array $enabledStatesList);
-
-    /**
-     * @return ObserverInterface
-     */
-    public function getObserver(): ObserverInterface;
 
     /**
      * @return ObservedInterface

@@ -17,11 +17,6 @@ interface TraceInterface
     public function __construct(ObservedInterface $observedInterface);
 
     /**
-     * @return ObserverInterface
-     */
-    public function getObserver(): ObserverInterface;
-
-    /**
      * @return ObservedInterface
      */
     public function getObserved(): ObservedInterface;

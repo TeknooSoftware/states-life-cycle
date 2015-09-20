@@ -13,15 +13,10 @@ use UniAlteri\States\Proxy\ProxyInterface;
 interface LifeCyclableInterface extends ProxyInterface
 {
     /**
+     * @param ObserverInterface $observer
      * @return LifeCyclableInterface
      */
-    public function updateState(): LifeCyclableInterface;
-
-    /**
-     * @param ObserverInterface $observer
-     * @return ObservedInterface
-     */
-    public function registerObserver(ObserverInterface $observer): ObservedInterface;
+    public function registerObserver(ObserverInterface $observer): LifeCyclableInterface;
 
     /**
      * @param ObservedInterface $observed

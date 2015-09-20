@@ -5,20 +5,17 @@ namespace UniAlteri\Tests\States\LifeCycle\Event;
 use UniAlteri\States\LifeCycle\Event\DispatcherInterface;
 
 /**
- * Class DispatcherTest
+ * Class AbstractDispatcherTest
  * @package UniAlteri\Tests\States\LifeCycle\Event
  *
  * @covers UniAlteri\States\LifeCycle\Event\DispatcherInterface
  */
-class DispatcherTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractDispatcherTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @return DispatcherInterface
      */
-    public function build()
-    {
-
-    }
+    abstract public function build();
 
     /**
      * @expectedException \TypeError

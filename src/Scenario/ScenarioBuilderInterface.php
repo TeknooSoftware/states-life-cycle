@@ -11,6 +11,12 @@ use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 interface ScenarioBuilderInterface
 {
     /**
+     * @param string $eventName
+     * @return ScenarioBuilderInterface
+     */
+    public function when(\string $eventName): ScenarioBuilderInterface;
+
+    /**
      * @param string $statedClassName
      * @return ScenarioBuilderInterface
      */
@@ -26,26 +32,6 @@ interface ScenarioBuilderInterface
      * @return ScenarioBuilderInterface
      */
     public function onNew(): ScenarioBuilderInterface;
-
-    /**
-     * @return ScenarioBuilderInterface
-     */
-    public function onClone(): ScenarioBuilderInterface;
-
-    /**
-     * @return ScenarioBuilderInterface
-     */
-    public function onDelete(): ScenarioBuilderInterface;
-
-    /**
-     * @return ScenarioBuilderInterface
-     */
-    public function onSleep(): ScenarioBuilderInterface;
-
-    /**
-     * @return ScenarioBuilderInterface
-     */
-    public function onWakeUp(): ScenarioBuilderInterface;
 
     /**
      * @param string $stateName

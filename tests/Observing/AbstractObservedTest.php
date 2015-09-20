@@ -5,19 +5,16 @@ namespace UniAlteri\Tests\States\LifeCycle\Observing;
 use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 
 /**
- * Class ObservedTest
+ * Class AbstractObservedTest
  * @package UniAlteri\States\LifeCycle\Observing
  */
-class ObservedTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @param mixed $instance
      * @return ObservedInterface
      */
-    public function build($instance)
-    {
-
-    }
+    abstract public function build($instance);
 
     /**
      * @expectedException \TypeError
