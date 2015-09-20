@@ -29,11 +29,6 @@ interface ScenarioBuilderInterface
     public function towardObserved(ObservedInterface $observed): ScenarioBuilderInterface;
 
     /**
-     * @return ScenarioBuilderInterface
-     */
-    public function onNew(): ScenarioBuilderInterface;
-
-    /**
      * @param string $stateName
      * @return ScenarioBuilderInterface
      */

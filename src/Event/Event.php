@@ -4,36 +4,76 @@ namespace UniAlteri\States\LifeCycle\Event;
 
 use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
+use Symfony\Component\EventDispatcher\Event as SymfonyEvent;
 
-class Event implements EventInterface
+/**
+ * Class Event
+ * @package UniAlteri\States\LifeCycle\Event
+ */
+class Event extends SymfonyEvent implements EventInterface
 {
+    /**
+     * @var ObservedInterface
+     */
+    private $observed;
+
+    /**
+     * @var string[]
+     */
+    private $incomingStates;
+
+    /**
+     * @var string[]
+     */
+    private $outgoingStates;
+
+    /**
+     * {@inheritdoc}
+     */
     public function __construct(ObservedInterface $observer, array $incomingStates, array $outgoingStates)
     {
-        // TODO: Implement __construct() method.
+        $this->observed = $observer;
+        $this->incomingStates = $incomingStates;
+        $this->outgoingStates = $outgoingStates;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getObserved(): ObservedInterface
     {
-        // TODO: Implement getObserved() method.
+        return $this->observed;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getObject(): LifeCyclableInterface
     {
-        // TODO: Implement getObject() method.
+        return $this->getObserved()->getObject();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getEnabledStates(): array
     {
-        // TODO: Implement getEnabledStates() method.
+        return $this->getObject()->listEnabledStates();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function incomingStates(): array
     {
-        // TODO: Implement incomingStates() method.
+        return $this->incomingStates;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function outgoingStates(): array
     {
-        // TODO: Implement outgoingStates() method.
+        return $this->outgoingStates;
     }
 }

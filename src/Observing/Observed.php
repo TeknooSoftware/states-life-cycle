@@ -2,7 +2,10 @@
 
 namespace UniAlteri\States\LifeCycle\Observing;
 
+use UniAlteri\States\LifeCycle\Event\Event;
+use UniAlteri\States\LifeCycle\Event\EventInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
+use UniAlteri\States\LifeCycle\Trace\Entry;
 use UniAlteri\States\LifeCycle\Trace\TraceInterface;
 
 /**
@@ -25,6 +28,11 @@ class Observed implements ObservedInterface
      * @var TraceInterface
      */
     private $trace;
+
+    /**
+     * @var EventInterface
+     */
+    private $lastEvent;
 
     /**
      * {@inheritdoc}
@@ -61,10 +69,59 @@ class Observed implements ObservedInterface
     }
 
     /**
+     * @return string[]
+     */
+    protected function getLastEnabledStates()
+    {
+        $lastEnabledStates = [];
+        $lastEntry = $this->getStateTrace()->getLastEntry();
+        if ($lastEntry instanceof Entry) {
+            $lastEnabledStates = $lastEntry->getEnabledState();
+        }
+
+        return $lastEnabledStates;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function buildEvent()
+    {
+        $currentEnabledStates = $this->getObject()->listEnabledStates();
+        $lastEnabledStates = $this->getLastEnabledStates();
+
+        $incomingStates = array_diff($currentEnabledStates, $lastEnabledStates);
+        $outgoingStates = array_diff($lastEnabledStates, $currentEnabledStates);
+
+        $this->lastEvent = new Event($this, $incomingStates, $outgoingStates);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function updateTrace()
+    {
+        $trace = $this->getStateTrace();
+        $trace->addEntry(
+                new Entry(
+                    $this,
+                    $this->getObject()->listAvailableStates(),
+                    $trace->getLastEntry()
+                )
+            );
+        return $this;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function observeUpdate()
     {
+        $this->buildEvent()
+            ->updateTrace();
+
         $this->getObserver()->dispatchNotification($this);
 
         return $this;
@@ -76,5 +133,13 @@ class Observed implements ObservedInterface
     public function getStateTrace()
     {
         return $this->trace;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLastEvent()
+    {
+        return $this->lastEvent;
     }
 }

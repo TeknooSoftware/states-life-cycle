@@ -2,6 +2,7 @@
 
 namespace UniAlteri\States\LifeCycle\Observing;
 
+use UniAlteri\States\LifeCycle\Event\EventInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use UniAlteri\States\LifeCycle\Trace\TraceInterface;
 
@@ -42,4 +43,9 @@ interface ObservedInterface
      * @return TraceInterface
      */
     public function getStateTrace();
+
+    /**
+     * @return EventInterface
+     */
+    public function getLastEvent();
 }

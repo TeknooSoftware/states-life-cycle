@@ -122,10 +122,13 @@ class Observer implements ObserverInterface
      */
     public function dispatchNotification(ObservedInterface $observed): ObserverInterface
     {
-        $event = $observed->getEvent();
+        $event = $observed->getLastEvent();
+        $eventsNamesList = $this->getTokenizer()->getStatedClassToken($observed->getObject());
 
         foreach ($this->dispatchersList as $dispatcher) {
-            $dispatcher->notify($event);
+            foreach ($eventsNamesList as $eventName) {
+                $dispatcher->dispatch($eventName, $event);
+            }
         }
 
         return $this;

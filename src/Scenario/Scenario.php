@@ -3,8 +3,13 @@
 namespace UniAlteri\States\LifeCycle\Scenario;
 
 use UniAlteri\States\LifeCycle\Event\EventInterface;
+use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
+/**
+ * Class Scenario
+ * @package UniAlteri\States\LifeCycle\Scenario
+ */
 class Scenario implements ScenarioInterface
 {
     /**
@@ -43,6 +48,23 @@ class Scenario implements ScenarioInterface
     private $neededStatedObject;
 
     /**
+     * @param ScenarioBuilder $scenarioBuilder
+     */
+    public function __construct(ScenarioBuilder $scenarioBuilder)
+    {
+        $this->eventsNamesList = $scenarioBuilder->getEventNamesList();
+        $this->neededIncomingStatesList = $scenarioBuilder->getNeededIncomingStatesList();
+        $this->neededOutgoingStatesList = $scenarioBuilder->getNeededOutgoingStatesList();
+        $this->neededStatesList = $scenarioBuilder->getNeededStatesList();
+        $this->neededStatedClassName = $scenarioBuilder->getStatedClassName();
+        $observed = $scenarioBuilder->getObserved();
+        if ($observed instanceof ObservedInterface) {
+            $this->neededStatedObject = $observed->getObject();
+        }
+        $this->callback = $scenarioBuilder->getCallable();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getEventsNamesList(): array
@@ -59,11 +81,41 @@ class Scenario implements ScenarioInterface
     }
 
     /**
+     * @param EventInterface $event
+     * @return bool
+     */
+    protected function checkNeededIncomingStates(EventInterface $event): \bool
+    {
+        $neededIncomingStatesList = $this->listNeededIncomingStates();
+        if (empty($neededIncomingStatesList)) {
+            return true;
+        }
+
+        $incomingStateList = $event->incomingStates();
+        return empty(array_diff($neededIncomingStatesList, $incomingStateList));
+    }
+
+    /**
      * @return string[]
      */
     public function listNeededOutgoingStates(): array
     {
         return $this->neededOutgoingStatesList;
+    }
+
+    /**
+     * @param EventInterface $event
+     * @return bool
+     */
+    protected function checkNeededOutgoingStates(EventInterface $event): \bool
+    {
+        $neededOutgoingStatesList = $this->listNeededOutgoingStates();
+        if (empty($neededOutgoingStatesList)) {
+            return true;
+        }
+
+        $outgoingStatesList = $event->outgoingStates();
+        return empty(array_diff($neededOutgoingStatesList, $outgoingStatesList));
     }
 
     /**
@@ -75,11 +127,40 @@ class Scenario implements ScenarioInterface
     }
 
     /**
+     * @param EventInterface $event
+     * @return bool
+     */
+    protected function checkNeededStates(EventInterface $event): \bool
+    {
+        $neededStatesList = $this->listNeededStates();
+        if (empty($neededStatesList)) {
+            return true;
+        }
+
+        $enabledStatesList = $event->getObject()->listEnabledStates();
+        return empty(array_diff($neededStatesList, $enabledStatesList));
+    }
+
+    /**
      * @return string
      */
     public function getNeededStatedClass(): \string
     {
         return $this->neededStatedClassName;
+    }
+
+    /**
+     * @param EventInterface $event
+     * @return bool
+     */
+    protected function checkNeededStatedClass(EventInterface $event): \bool
+    {
+        $neededStatedClassName = $this->getNeededStatedClass();
+        if (empty($neededStatedClassName)) {
+            return true;
+        }
+
+        return $neededStatedClassName = $event->getObserved()->getStatedClassName();
     }
 
     /**
@@ -91,11 +172,28 @@ class Scenario implements ScenarioInterface
     }
 
     /**
+     * @param EventInterface $event
+     * @return bool
+     */
+    protected function checkNeededStatedObject(EventInterface $event): \bool
+    {
+        $neededStatedObject = $this->getNeededStatedObject();
+        if (!$neededStatedObject instanceof LifeCyclableInterface) {
+            return true;
+        }
+
+        return $neededStatedObject === $event->getObject();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function isAllowedToRun(EventInterface $event): \bool
     {
-
+        return $this->checkNeededIncomingStates($event)
+            && $this->checkNeededOutgoingStates($event)
+            && $this->checkNeededStatedClass($event)
+            && $this->checkNeededStatedObject($event);
     }
 
     /**
