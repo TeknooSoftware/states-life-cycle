@@ -26,8 +26,8 @@
     },
     "autoload": {
         "psr-4": {
-            "UniAlteri\\States\\LifeCycle": ["src/"],
-            "UniAlteri\\Tests\\States\\LifeCycle": ["tests/"]
+            "UniAlteri\\States\\LifeCycle\\": ["src/"],
+            "UniAlteri\\Tests\\States\\LifeCycle\\": ["tests/"]
         }
     },
     "minimum-stability": "dev",
