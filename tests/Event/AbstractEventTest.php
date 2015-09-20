@@ -85,21 +85,21 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testIncomingStates()
+    public function testGetIncomingStates()
     {
         $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\Observed', [], [], '', false);
         $this->assertEquals(
             ['foo', 'bar'],
-            $this->build($observed, ['foo', 'bar'], [])->incomingStates()
+            $this->build($observed, ['foo', 'bar'], [])->getIncomingStates()
         );
     }
 
-    public function testOutgoingStates()
+    public function testGetOutgoingStates()
     {
         $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\Observed', [], [], '', false);
         $this->assertEquals(
             ['foo', 'bar'],
-            $this->build($observed, [], ['foo', 'bar'])->outgoingStates()
+            $this->build($observed, [], ['foo', 'bar'])->getOutgoingStates()
         );
     }
 }

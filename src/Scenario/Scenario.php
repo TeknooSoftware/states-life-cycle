@@ -91,7 +91,7 @@ class Scenario implements ScenarioInterface
             return true;
         }
 
-        $incomingStateList = $event->incomingStates();
+        $incomingStateList = $event->getIncomingStates();
         return empty(array_diff($neededIncomingStatesList, $incomingStateList));
     }
 
@@ -114,7 +114,7 @@ class Scenario implements ScenarioInterface
             return true;
         }
 
-        $outgoingStatesList = $event->outgoingStates();
+        $outgoingStatesList = $event->getOutgoingStates();
         return empty(array_diff($neededOutgoingStatesList, $outgoingStatesList));
     }
 

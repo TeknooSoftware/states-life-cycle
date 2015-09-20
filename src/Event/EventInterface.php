@@ -37,10 +37,10 @@ interface EventInterface
     /**
      * @return string[]
      */
-    public function incomingStates(): array;
+    public function getIncomingStates(): array;
 
     /**
      * @return string[]
      */
-    public function outgoingStates(): array;
+    public function getOutgoingStates(): array;
 }

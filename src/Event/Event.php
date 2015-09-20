@@ -64,7 +64,7 @@ class Event extends SymfonyEvent implements EventInterface
     /**
      * {@inheritdoc}
      */
-    public function incomingStates(): array
+    public function getIncomingStates(): array
     {
         return $this->incomingStates;
     }
@@ -72,7 +72,7 @@ class Event extends SymfonyEvent implements EventInterface
     /**
      * {@inheritdoc}
      */
-    public function outgoingStates(): array
+    public function getOutgoingStates(): array
     {
         return $this->outgoingStates;
     }

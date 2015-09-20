@@ -38,11 +38,11 @@ class Tokenizer implements TokenizerInterface
             $tokenList[] = $statedClassName.':'.$stateName;
         }
 
-        foreach ($event->incomingStates() as $stateName) {
+        foreach ($event->getIncomingStates() as $stateName) {
             $tokenList[] = $statedClassName.':+'.$stateName;
         }
 
-        foreach ($event->outgoingStates() as $stateName) {
+        foreach ($event->getOutgoingStates() as $stateName) {
             $tokenList[] = $statedClassName.':-'.$stateName;
         }
 
