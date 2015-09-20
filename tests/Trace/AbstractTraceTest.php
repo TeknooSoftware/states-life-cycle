@@ -1,6 +1,7 @@
 <?php
 
 namespace UniAlteri\Tests\States\LifeCycle\Trace;
+
 use UniAlteri\States\LifeCycle\Trace\TraceInterface;
 
 /**

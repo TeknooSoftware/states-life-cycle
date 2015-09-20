@@ -1,6 +1,7 @@
 <?php
 
 namespace UniAlteri\Tests\States\LifeCycle\Scenario;
+
 use UniAlteri\States\LifeCycle\Scenario\ScenarioInterface;
 
 /**
