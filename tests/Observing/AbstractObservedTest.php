@@ -51,7 +51,7 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
 
     public function testGetObject()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface', [], [], '', false);
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->assertEquals(
             $instance,
             $this->build($instance)->getObject()
@@ -60,7 +60,7 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
 
     public function testGetStatedClassName()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface', [], [], '', false);
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->assertEquals(
             get_class($instance),
             $this->build($instance)->getStatedClassName()
@@ -69,7 +69,7 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
 
     public function testObserveUpdate()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface', [], [], '', false);
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
             $this->build($instance)->observeUpdate()
@@ -78,10 +78,19 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
 
     public function testGetStateTrace()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface', [], [], '', false);
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Trace\TraceInterface',
             $this->build($instance)->getStateTrace()
+        );
+    }
+
+    public function testGetLastEvent()
+    {
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $this->assertInstanceOf(
+            'UniAlteri\States\LifeCycle\Event\EventInterface',
+            $this->build($instance)->getLastEvent()
         );
     }
 }

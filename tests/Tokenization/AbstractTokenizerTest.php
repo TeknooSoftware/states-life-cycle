@@ -18,14 +18,14 @@ abstract class AbstractTokenizerTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \TypeError
      */
-    public function testGetStatedClassTokenBadArg()
+    public function testGetTokenBadArgument()
     {
-        $this->build()->getStatedClassToken(new \stdClass());
+        $this->build()->getToken(new \stdClass());
     }
 
-    public function testGetStatedClassToken()
+    public function testGetToken()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface');
-        $this->assertTrue(is_string($this->build()->getStatedClassToken($instance)));
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\Event\EventInterface');
+        $this->assertTrue(is_string($this->build()->getToken($instance)));
     }
 }

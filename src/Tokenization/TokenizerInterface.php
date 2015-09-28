@@ -2,9 +2,7 @@
 
 namespace UniAlteri\States\LifeCycle\Tokenization;
 
-use UniAlteri\States\LifeCycle\Event\Event;
 use UniAlteri\States\LifeCycle\Event\EventInterface;
-use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**
  * Interface TokenizerInterface

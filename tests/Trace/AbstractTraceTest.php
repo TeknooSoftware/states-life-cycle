@@ -60,4 +60,14 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
             $this->build()->getLastEntry()
         );
     }
+
+    public function testAddEntry()
+    {
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\Trace\EntryInterface');
+        $service = $this->build();
+        $this->assertEquals(
+            $service,
+            $service->addEntry($instance)
+        );
+    }
 }

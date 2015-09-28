@@ -3,6 +3,7 @@
 namespace UniAlteri\Tests\States\LifeCycle\Trace;
 
 use UniAlteri\States\LifeCycle\Trace\Entry;
+use UniAlteri\States\LifeCycle\Trace\EntryInterface;
 
 /**
  * Class EntityTest
@@ -14,11 +15,10 @@ class EntityTest extends AbstractEntityTest
     /**
      * @param $observedInterface
      * @param $enabledStatesList
-     * @param $previous
-     * @return Entry
+     * @return EntryInterface
      */
-    public function build($observedInterface, $enabledStatesList, $previous)
+    public function build($observedInterface, $enabledStatesList)
     {
-        return new Entry($observedInterface, $enabledStatesList, $previous)
+        return new Entry($observedInterface, $enabledStatesList);
     }
 }

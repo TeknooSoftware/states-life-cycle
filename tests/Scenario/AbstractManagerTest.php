@@ -18,22 +18,6 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \TypeError
      */
-    public function testSetDispatcherBadArg()
-    {
-        $this->build()->setDispatcher(new \stdClass());
-    }
-
-    public function testGetSetDispatcher()
-    {
-        $dispatcherMock = $this->getMock('UniAlteri\States\LifeCycle\Event\DispatcherInterface', [], [], '', false);
-        $service = $this->build();
-        $this->assertEquals($service, $service->setDispatcher($dispatcherMock));
-        $this->assertEquals($dispatcherMock, $service->getDispatcher());
-    }
-
-    /**
-     * @expectedException \TypeError
-     */
     public function testRegisterScenarioBadArg()
     {
         $this->build()->registerScenario(new \stdClass());
@@ -41,7 +25,7 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testRegisterScenario()
     {
-        $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface', [], [], '', false);
+        $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->registerScenario($scenario));
     }
@@ -56,7 +40,7 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testUnregisterScenario()
     {
-        $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface', [], [], '', false);
+        $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->unregisterScenario($scenario));
     }

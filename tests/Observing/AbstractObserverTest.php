@@ -25,7 +25,7 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
 
     public function testGetSetTokenizer()
     {
-        $tokenizer = $this->getMock('UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface', [], [], '', false);
+        $tokenizer = $this->getMock('UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->setTokenizer($tokenizer));
         $this->assertEquals($tokenizer, $service->getTokenizer());
@@ -41,7 +41,7 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
 
     public function testGetAddEventDispatcher()
     {
-        $dispatcher = $this->getMock('UniAlteri\States\LifeCycle\Event\DispatcherInterface', [], [], '', false);
+        $dispatcher = $this->getMock('UniAlteri\States\LifeCycle\Event\DispatcherInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->addEventDispatcher($dispatcher));
     }
@@ -56,7 +56,7 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
 
     public function testRemoveEventDispatcher()
     {
-        $dispatcher = $this->getMock('UniAlteri\States\LifeCycle\Event\DispatcherInterface', [], [], '', false);
+        $dispatcher = $this->getMock('UniAlteri\States\LifeCycle\Event\DispatcherInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->removeEventDispatcher($dispatcher));
     }
@@ -77,7 +77,7 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
 
     public function testGetAttachObject()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface', [], [], '', false);
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->attachObject($instance));
     }
@@ -92,7 +92,7 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
 
     public function testDetachObject()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface', [], [], '', false);
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->detachObject($instance));
     }
@@ -101,5 +101,12 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
     {
         $service = $this->build();
         $this->assertTrue(is_array($service->listObserved()));
+    }
+
+    public function testDispatchNotification()
+    {
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
+        $service = $this->build();
+        $this->assertEquals($service, $service->dispatchNotification($instance));
     }
 }

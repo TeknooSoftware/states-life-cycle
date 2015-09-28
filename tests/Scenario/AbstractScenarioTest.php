@@ -28,6 +28,34 @@ abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($this->build()->getEventsNamesList()));
     }
 
+    public function testListNeededIncomingStates()
+    {
+        $this->assertTrue(is_array($this->build()->listNeededIncomingStates()));
+    }
+
+    public function testListNeededOutgoingStates()
+    {
+        $this->assertTrue(is_array($this->build()->listNeededOutgoingStates()));
+    }
+
+    public function testListNeededStates()
+    {
+        $this->assertTrue(is_array($this->build()->listNeededStates()));
+    }
+
+    public function testGetNeededStatedClass()
+    {
+        $this->assertTrue(is_string($this->build()->getNeededStatedClass()));
+    }
+
+    public function testGetNeededStatedObject()
+    {
+        $this->assertInstanceOf(
+            'UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface',
+            $this->build()->getNeededStatedObject()
+        );
+    }
+
     /**
      * @expectedException \TypeError
      */
