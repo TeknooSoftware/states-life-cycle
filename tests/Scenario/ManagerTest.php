@@ -16,6 +16,7 @@ class ManagerTest extends AbstractManagerTest
      */
     public function build()
     {
-        return new Manager();
+        $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        return new Manager($dispatcher);
     }
 }

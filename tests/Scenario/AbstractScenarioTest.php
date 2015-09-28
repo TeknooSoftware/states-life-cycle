@@ -15,14 +15,6 @@ abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
      */
     abstract public function build();
 
-    public function testGetObserved()
-    {
-        $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
-            $this->build()->getObserved()
-        );
-    }
-
     public function testGetEventsNamesList()
     {
         $this->assertTrue(is_array($this->build()->getEventsNamesList()));
@@ -51,7 +43,7 @@ abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
     public function testGetNeededStatedObject()
     {
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface',
+            'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
             $this->build()->getNeededStatedObject()
         );
     }

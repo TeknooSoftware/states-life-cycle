@@ -3,6 +3,7 @@
 namespace UniAlteri\Tests\States\LifeCycle\Scenario;
 
 use UniAlteri\States\LifeCycle\Scenario\ManagerInterface;
+use UniAlteri\States\LifeCycle\Scenario\ScenarioInterface;
 
 /**
  * Class AbstractManagerTest
@@ -25,6 +26,9 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testRegisterScenario()
     {
+        /**
+         * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject $scenario
+         */
         $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->registerScenario($scenario));
@@ -40,6 +44,9 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testUnregisterScenario()
     {
+        /**
+         * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject $scenario
+         */
         $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->unregisterScenario($scenario));

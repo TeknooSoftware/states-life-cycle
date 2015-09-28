@@ -75,9 +75,13 @@ class Observed implements ObservedInterface
     protected function getLastEnabledStates()
     {
         $lastEnabledStates = [];
-        $lastEntry = $this->getStateTrace()->getLastEntry();
-        if ($lastEntry instanceof Entry) {
-            $lastEnabledStates = $lastEntry->getEnabledState();
+        $trace = $this->getStateTrace();
+
+        if (false === $trace->isEmpty()) {
+            $lastEntry = $trace->getLastEntry();
+            if ($lastEntry instanceof Entry) {
+                $lastEnabledStates = $lastEntry->getEnabledState();
+            }
         }
 
         return $lastEnabledStates;
@@ -105,20 +109,26 @@ class Observed implements ObservedInterface
     protected function updateTrace()
     {
         $trace = $this->getStateTrace();
+        $lastEntry = null;
+        if (false === $trace->isEmpty()) {
+            $lastEntry = $trace->getLastEntry();
+        }
+
         $trace->addEntry(
                 new Entry(
                     $this,
                     $this->getObject()->listAvailableStates(),
-                    $trace->getLastEntry()
+                    $lastEntry
                 )
             );
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function observeUpdate()
+    public function observeUpdate(): ObservedInterface
     {
         $this->buildEvent()
             ->updateTrace();
@@ -131,7 +141,7 @@ class Observed implements ObservedInterface
     /**
      * {@inheritdoc}
      */
-    public function getStateTrace()
+    public function getStateTrace(): TraceInterface
     {
         return $this->trace;
     }
@@ -139,8 +149,12 @@ class Observed implements ObservedInterface
     /**
      * {@inheritdoc}
      */
-    public function getLastEvent()
+    public function getLastEvent(): EventInterface
     {
+        if (!$this->lastEvent instanceof EventInterface) {
+            throw new \RuntimeException('No event');
+        }
+
         return $this->lastEvent;
     }
 }

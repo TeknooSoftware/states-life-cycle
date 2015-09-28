@@ -16,6 +16,15 @@ class ScenarioTest extends AbstractScenarioTest
      */
     public function build()
     {
-        return new Scenario();
+        $builder = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioBuilder');
+        $builder->expects($this->any())->method('getEventNamesList')->willReturn(['fooBar']);
+        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn(['foo', 'bar']);
+        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn(['outstate']);
+        $builder->expects($this->any())->method('getNeededStatesList')->willReturn(['foo', 'bar', 'state']);
+        $builder->expects($this->any())->method('getStatedClassName')->willReturn('fooBarName');
+        $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
+        $builder->expects($this->any())->method('getObserved')->willReturn($observed);
+        $builder->expects($this->any())->method('getCallable')->willReturn(function() {});
+        return new Scenario($builder);
     }
 }

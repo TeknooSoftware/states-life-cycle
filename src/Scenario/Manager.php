@@ -40,7 +40,7 @@ class Manager implements ManagerInterface
      * @param EventDispatcherInterface $dispatcher
      * @return EventDispatcherInterface
      */
-    public function setDispatcher($dispatcher): EventDispatcherInterface
+    public function setDispatcher($dispatcher): ManagerInterface
     {
         $this->dispatcher = $dispatcher;
 

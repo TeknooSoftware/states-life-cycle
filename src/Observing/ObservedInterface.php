@@ -36,15 +36,15 @@ interface ObservedInterface
     /**
      * @return ObservedInterface
      */
-    public function observeUpdate();
+    public function observeUpdate(): ObservedInterface;
 
     /**
      * @return TraceInterface
      */
-    public function getStateTrace();
+    public function getStateTrace(): TraceInterface;
 
     /**
      * @return EventInterface
      */
-    public function getLastEvent();
+    public function getLastEvent(): EventInterface;
 }

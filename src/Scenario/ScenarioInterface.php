@@ -3,7 +3,7 @@
 namespace UniAlteri\States\LifeCycle\Scenario;
 
 use UniAlteri\States\LifeCycle\Event\EventInterface;
-use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
+use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 
 /***
  * Interface ScenarioInterface
@@ -37,9 +37,9 @@ interface ScenarioInterface
     public function getNeededStatedClass(): \string;
 
     /**
-     * @return LifeCyclableInterface
+     * @return ObservedInterface
      */
-    public function getNeededStatedObject(): LifeCyclableInterface;
+    public function getNeededStatedObject(): ObservedInterface;
 
     /**
      * @param EventInterface $event

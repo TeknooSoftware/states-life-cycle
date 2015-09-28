@@ -40,7 +40,7 @@ class Observer implements ObserverInterface
     /**
      * {@inheritdoc}
      */
-    public function setTokenizer(TokenizerInterface $tokenizer): EventDispatcherInterface
+    public function setTokenizer(TokenizerInterface $tokenizer): ObserverInterface
     {
         $this->tokenizer = $tokenizer;
 
@@ -83,7 +83,7 @@ class Observer implements ObserverInterface
      */
     public function listEventDispatcher(): array
     {
-        return array_values($this->dispatchersList);
+        return $this->dispatchersList->getArrayCopy();
     }
 
     /**
@@ -97,7 +97,7 @@ class Observer implements ObserverInterface
 
         $this->observedList[$objectHash] = $observed;
 
-        return $this;
+        return $observed;
     }
 
     /**
@@ -120,7 +120,7 @@ class Observer implements ObserverInterface
      */
     public function listObserved(): array
     {
-        return array_values($this->observedList);
+        return $this->observedList->getArrayCopy();
     }
 
     /**

@@ -2,7 +2,12 @@
 
 namespace UniAlteri\Tests\States\LifeCycle\Observing;
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use UniAlteri\States\LifeCycle\Event\EventInterface;
+use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 use UniAlteri\States\LifeCycle\Observing\ObserverInterface;
+use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
+use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
 
 /**
  * Class AbstractObserverTest
@@ -25,6 +30,9 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
 
     public function testGetSetTokenizer()
     {
+        /**
+         * @var TokenizerInterface|\PHPUnit_Framework_MockObject_MockObject $tokenizer
+         */
         $tokenizer = $this->getMock('UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->setTokenizer($tokenizer));
@@ -41,7 +49,10 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
 
     public function testGetAddEventDispatcher()
     {
-        $dispatcher = $this->getMock('UniAlteri\States\LifeCycle\Event\DispatcherInterface');
+        /**
+         * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject $dispatcher
+         */
+        $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->addEventDispatcher($dispatcher));
     }
@@ -56,7 +67,10 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
 
     public function testRemoveEventDispatcher()
     {
-        $dispatcher = $this->getMock('UniAlteri\States\LifeCycle\Event\DispatcherInterface');
+        /**
+         * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject $dispatcher
+         */
+        $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->removeEventDispatcher($dispatcher));
     }
@@ -77,9 +91,15 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
 
     public function testGetAttachObject()
     {
+        /**
+         * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject $instance
+         */
         $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $service = $this->build();
-        $this->assertEquals($service, $service->attachObject($instance));
+        $this->assertInstanceOf(
+            'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
+            $service->attachObject($instance)
+        );
     }
 
     /**
@@ -92,6 +112,9 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
 
     public function testDetachObject()
     {
+        /**
+         * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject $instance
+         */
         $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->detachObject($instance));
@@ -105,8 +128,21 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
 
     public function testDispatchNotification()
     {
+        /**
+         * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject $instance
+         */
+        $event = $this->getMock('UniAlteri\States\LifeCycle\Event\EventInterface');
+        /**
+         * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject $instance
+         */
         $instance = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
+        $instance->expects($this->any())->method('getLastEvent')->willReturn($event);
         $service = $this->build();
+        /**
+         * @var TokenizerInterface|\PHPUnit_Framework_MockObject_MockObject $tokenizer
+         */
+        $tokenizer = $this->getMock('UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface');
+        $service->setTokenizer($tokenizer);
         $this->assertEquals($service, $service->dispatchNotification($instance));
     }
 }

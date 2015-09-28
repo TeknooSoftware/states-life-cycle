@@ -46,10 +46,22 @@ class Trace implements TraceInterface
     }
 
     /**
+     * @return bool
+     */
+    public function isEmpty(): \bool
+    {
+        return 0 === $this->stack->count();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getFirstEntry(): EntryInterface
     {
+        if (0 === $this->stack->count()) {
+            throw new \RuntimeException('Trace empty');
+        }
+
         return $this->stack->bottom();
     }
 
@@ -58,16 +70,20 @@ class Trace implements TraceInterface
      */
     public function getLastEntry(): EntryInterface
     {
+        if (0 === $this->stack->count()) {
+            throw new \RuntimeException('Trace empty');
+        }
+
         return $this->stack->top();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function addEntry(EntryInterface $entry)
+    public function addEntry(EntryInterface $entry): TraceInterface
     {
-        $lastEntry = $this->getLastEntry();
-        if ($lastEntry instanceof EntryInterface) {
+        if (false === $this->isEmpty()) {
+            $lastEntry = $this->getLastEntry();
             $lastEntry->setNext($entry);
         }
 

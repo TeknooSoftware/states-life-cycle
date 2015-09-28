@@ -26,6 +26,11 @@ interface TraceInterface
     public function getTrace(): \SplStack;
 
     /**
+     * @return bool
+     */
+    public function isEmpty(): \bool;
+
+    /**
      * @return EntryInterface
      */
     public function getFirstEntry(): EntryInterface;

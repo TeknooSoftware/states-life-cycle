@@ -2,6 +2,7 @@
 
 namespace UniAlteri\Tests\States\LifeCycle\StatedClass;
 
+use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**
@@ -25,11 +26,14 @@ abstract class AbstractLifeCyclableTest extends \PHPUnit_Framework_TestCase
 
     public function testRegisterObserver()
     {
-        $observer = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface');
+        /**
+         * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject $observed
+         */
+        $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
         $instance = $this->build();
         $this->assertEquals(
             $instance,
-            $instance->registerObserver($observer)
+            $instance->registerObserver($observed)
         );
     }
 
@@ -43,11 +47,14 @@ abstract class AbstractLifeCyclableTest extends \PHPUnit_Framework_TestCase
 
     public function testUnregisterObserver()
     {
-        $observer = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface');
+        /**
+         * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject $observed
+         */
+        $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
         $instance = $this->build();
         $this->assertEquals(
             $instance,
-            $instance->unregisterObserver($observer)
+            $instance->unregisterObserver($observed)
         );
     }
 

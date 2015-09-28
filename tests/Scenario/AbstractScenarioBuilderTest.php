@@ -2,6 +2,7 @@
 
 namespace UniAlteri\Tests\States\LifeCycle\Scenario;
 
+use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 use UniAlteri\States\LifeCycle\Scenario\ScenarioBuilderInterface;
 
 /**
@@ -53,15 +54,12 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testTowardObserved()
     {
+        /**
+         * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject $observed
+         */
         $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->towardObserved($observed));
-    }
-
-    public function testOnNew()
-    {
-        $service = $this->build();
-        $this->assertEquals($service, $service->onNew());
     }
 
     /**
@@ -122,9 +120,12 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testBuild()
     {
+        /**
+         * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject $observed
+         */
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Scenario\ScenarioInterface',
-            $this->build()->build('stateName')
+            $this->build()->build()
         );
     }
 }

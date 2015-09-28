@@ -2,6 +2,7 @@
 
 namespace UniAlteri\Tests\States\LifeCycle\Tokenization;
 
+use UniAlteri\States\LifeCycle\Event\EventInterface;
 use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
 
 /**
@@ -25,6 +26,9 @@ abstract class AbstractTokenizerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetToken()
     {
+        /**
+         * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject $instance
+         */
         $instance = $this->getMock('UniAlteri\States\LifeCycle\Event\EventInterface');
         $this->assertTrue(is_string($this->build()->getToken($instance)));
     }

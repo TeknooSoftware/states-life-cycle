@@ -3,6 +3,8 @@
 namespace UniAlteri\Tests\States\LifeCycle\StatedClass;
 
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableTrait;
+use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
+use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Factory;
 
 /**
  * Class LifeCycableTest
@@ -16,6 +18,6 @@ class LifeCycableTest extends AbstractLifeCyclableTest
      */
     public function build()
     {
-        // TODO: Implement build() method.
+        return new Acme();
     }
 }

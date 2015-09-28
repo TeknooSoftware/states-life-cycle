@@ -45,7 +45,7 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
         $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
-            $this->build($instance, $this->getMock('UniAlteri\Tests\States\LifeCycle\Observing\ObserverInterface'))
+            $this->build($instance, $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'))
         );
     }
 
@@ -54,7 +54,7 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
         $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->assertEquals(
             $instance,
-            $this->build($instance)->getObject()
+            $this->build($instance, $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'))->getObject()
         );
     }
 
@@ -63,16 +63,18 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
         $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->assertEquals(
             get_class($instance),
-            $this->build($instance)->getStatedClassName()
+            $this->build($instance, $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'))->getStatedClassName()
         );
     }
 
     public function testObserveUpdate()
     {
         $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance->expects($this->any())->method('listEnabledStates')->willReturn([]);
+        $instance->expects($this->any())->method('listAvailableStates')->willReturn([]);
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
-            $this->build($instance)->observeUpdate()
+            $this->build($instance, $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'))->observeUpdate()
         );
     }
 
@@ -81,16 +83,29 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
         $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Trace\TraceInterface',
-            $this->build($instance)->getStateTrace()
+            $this->build($instance, $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'))->getStateTrace()
         );
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     */
+    public function testGetLastEventException()
+    {
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $this->build($instance, $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'))->getLastEvent();
     }
 
     public function testGetLastEvent()
     {
         $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance->expects($this->any())->method('listEnabledStates')->willReturn([]);
+        $instance->expects($this->any())->method('listAvailableStates')->willReturn([]);
+        $observed = $this->build($instance, $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'));
+        $observed->observeUpdate();
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Event\EventInterface',
-            $this->build($instance)->getLastEvent()
+            $observed->getLastEvent()
         );
     }
 }

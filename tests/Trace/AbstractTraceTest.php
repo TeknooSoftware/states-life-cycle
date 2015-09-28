@@ -33,7 +33,7 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
-            $this->build()->getObserved()
+            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'))->getObserved()
         );
     }
 
@@ -41,7 +41,7 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf(
             '\SplStack',
-            $this->build()->getTrace()
+            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'))->getTrace()
         );
     }
 
@@ -49,7 +49,7 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Trace\EntryInterface',
-            $this->build()->getFirstEntry()
+            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'))->getFirstEntry()
         );
     }
 
@@ -57,14 +57,14 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Trace\EntryInterface',
-            $this->build()->getLastEntry()
+            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'))->getLastEntry()
         );
     }
 
     public function testAddEntry()
     {
         $instance = $this->getMock('UniAlteri\States\LifeCycle\Trace\EntryInterface');
-        $service = $this->build();
+        $service = $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'));
         $this->assertEquals(
             $service,
             $service->addEntry($instance)

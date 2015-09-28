@@ -14,9 +14,9 @@ interface ObserverInterface
 {
     /**
      * @param TokenizerInterface $tokenizer
-     * @return EventDispatcherInterface
+     * @return ObserverInterface
      */
-    public function setTokenizer(TokenizerInterface $tokenizer): EventDispatcherInterface;
+    public function setTokenizer(TokenizerInterface $tokenizer): ObserverInterface;
 
     /**
      * @return TokenizerInterface

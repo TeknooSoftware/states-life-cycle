@@ -43,7 +43,7 @@ class Scenario implements ScenarioInterface
     private $neededStatedClassName;
 
     /**
-     * @var LifeCyclableInterface
+     * @var ObservedInterface
      */
     private $neededStatedObject;
 
@@ -57,10 +57,7 @@ class Scenario implements ScenarioInterface
         $this->neededOutgoingStatesList = $scenarioBuilder->getNeededOutgoingStatesList();
         $this->neededStatesList = $scenarioBuilder->getNeededStatesList();
         $this->neededStatedClassName = $scenarioBuilder->getStatedClassName();
-        $observed = $scenarioBuilder->getObserved();
-        if ($observed instanceof ObservedInterface) {
-            $this->neededStatedObject = $observed->getObject();
-        }
+        $this->neededStatedObject = $scenarioBuilder->getObserved();
         $this->callback = $scenarioBuilder->getCallable();
     }
 
@@ -164,9 +161,9 @@ class Scenario implements ScenarioInterface
     }
 
     /**
-     * @return LifeCyclableInterface
+     * @return ObservedInterface
      */
-    public function getNeededStatedObject(): LifeCyclableInterface
+    public function getNeededStatedObject(): ObservedInterface
     {
         return $this->neededStatedObject;
     }

@@ -42,14 +42,14 @@ abstract class AbstractEntityTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
-            $this->build()->getObserved()
+            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->getObserved()
         );
     }
 
     public function testGetEnabledState()
     {
         $this->assertTrue(
-            is_array($this->build()->getObserved())
+            is_array($this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->getObserved())
         );
     }
 
@@ -57,7 +57,7 @@ abstract class AbstractEntityTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Trace\EntryInterface',
-            $this->build()->getPrevious()
+            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->getPrevious()
         );
     }
 
@@ -65,7 +65,7 @@ abstract class AbstractEntityTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Trace\EntryInterface',
-            $this->build()->getNext()
+            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->getNext()
         );
     }
 }
