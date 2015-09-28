@@ -63,7 +63,7 @@ class Entry implements EntryInterface
     /**
      * {@inheritdoc}
      */
-    public function getPrevious(): EntryInterface
+    public function getPrevious()
     {
         return $this->previous;
     }
@@ -81,7 +81,7 @@ class Entry implements EntryInterface
     /**
      * {@inheritdoc}
      */
-    public function getNext(): EntryInterface
+    public function getNext()
     {
         return $this->next;
     }

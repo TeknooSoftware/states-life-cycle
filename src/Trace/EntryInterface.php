@@ -32,9 +32,9 @@ interface EntryInterface
     public function getEnabledState(): array;
 
     /**
-     * @return EntryInterface
+     * @return EntryInterface|null
      */
-    public function getPrevious(): EntryInterface;
+    public function getPrevious();
 
     /**
      * @param EntryInterface $next
@@ -43,7 +43,7 @@ interface EntryInterface
     public function setNext(EntryInterface $next): EntryInterface;
 
     /**
-     * @return EntryInterface
+     * @return EntryInterface|null
      */
-    public function getNext(): EntryInterface;
+    public function getNext();
 }

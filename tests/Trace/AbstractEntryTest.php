@@ -13,9 +13,10 @@ abstract class AbstractEntityTest extends \PHPUnit_Framework_TestCase
     /**
      * @param $observedInterface
      * @param $enabledStatesList
+     * @param $previous
      * @return EntryInterface
      */
-    abstract public function build($observedInterface, $enabledStatesList);
+    abstract public function build($observedInterface, $enabledStatesList, $previous=null);
 
     /**
      * @expectedException \TypeError
@@ -49,23 +50,49 @@ abstract class AbstractEntityTest extends \PHPUnit_Framework_TestCase
     public function testGetEnabledState()
     {
         $this->assertTrue(
-            is_array($this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->getObserved())
+            is_array($this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->getEnabledState())
+        );
+    }
+
+    public function testGetPreviousNull()
+    {
+        $this->assertNull(
+            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->getPrevious()
+        );
+    }
+
+    public function testGetNextNull()
+    {
+        $this->assertNull(
+            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->getNext()
         );
     }
 
     public function testGetPrevious()
     {
+        $previous = $this->getMock('UniAlteri\States\LifeCycle\Trace\EntryInterface');
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Trace\EntryInterface',
-            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->getPrevious()
+            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [], $previous)->getPrevious()
+        );
+    }
+
+    public function testSetNext()
+    {
+        $next = $this->getMock('UniAlteri\States\LifeCycle\Trace\EntryInterface');
+        $service = $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), []);
+        $this->assertEquals(
+            $service,
+            $service->setNext($next)
         );
     }
 
     public function testGetNext()
     {
+        $next = $this->getMock('UniAlteri\States\LifeCycle\Trace\EntryInterface');
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Trace\EntryInterface',
-            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->getNext()
+            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->setNext($next)->getNext()
         );
     }
 }

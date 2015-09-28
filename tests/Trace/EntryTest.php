@@ -15,10 +15,11 @@ class EntityTest extends AbstractEntityTest
     /**
      * @param $observedInterface
      * @param $enabledStatesList
+     * @param $previous
      * @return EntryInterface
      */
-    public function build($observedInterface, $enabledStatesList)
+    public function build($observedInterface, $enabledStatesList, $previous=null)
     {
-        return new Entry($observedInterface, $enabledStatesList);
+        return new Entry($observedInterface, $enabledStatesList, $previous);
     }
 }
