@@ -21,7 +21,7 @@ class Tokenizer implements TokenizerInterface
         $statedClassNamePart = explode('\\', $statedClassName);
         array_pop($statedClassNamePart);
 
-        return implode('_', $statedClassName);
+        return implode('_', $statedClassNamePart);
     }
 
     /**
