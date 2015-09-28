@@ -58,6 +58,16 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testGetObserver()
+    {
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $observer = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface');
+        $this->assertEquals(
+            $observer,
+            $this->build($instance, $observer)->getObserver()
+        );
+    }
+
     public function testGetStatedClassName()
     {
         $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');

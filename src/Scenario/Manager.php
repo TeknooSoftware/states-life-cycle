@@ -29,7 +29,7 @@ class Manager implements ManagerInterface
     }
 
     /**
-     * @return EventDispatcherInterface
+     * {@inheritdoc}
      */
     public function getDispatcher()
     {
@@ -37,10 +37,9 @@ class Manager implements ManagerInterface
     }
 
     /**
-     * @param EventDispatcherInterface $dispatcher
-     * @return EventDispatcherInterface
+     * {@inheritdoc}
      */
-    public function setDispatcher($dispatcher): ManagerInterface
+    public function setDispatcher(EventDispatcherInterface $dispatcher): ManagerInterface
     {
         $this->dispatcher = $dispatcher;
 
