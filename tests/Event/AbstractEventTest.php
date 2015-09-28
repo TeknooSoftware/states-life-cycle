@@ -5,8 +5,7 @@ namespace UniAlteri\Tests\States\LifeCycle\Event;
 use UniAlteri\States\LifeCycle\Event\EventInterface;
 
 /**
- * Class AbstractEventTest
- * @package UniAlteri\Tests\States\LifeCycle\Event
+ * Class AbstractEventTest.
  */
 abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
 {
@@ -14,6 +13,7 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
      * @param $observed
      * @param $incomingState
      * @param $outGoingState
+     *
      * @return EventInterface
      */
     abstract public function build($observed, $incomingState, $outGoingState);

@@ -5,8 +5,7 @@ namespace UniAlteri\Tests\States\LifeCycle\Scenario;
 use UniAlteri\States\LifeCycle\Scenario\ScenarioInterface;
 
 /**
- * Class AbstractScenarioTest
- * @package UniAlteri\Tests\States\LifeCycle\Scenario
+ * Class AbstractScenarioTest.
  */
 abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
 {

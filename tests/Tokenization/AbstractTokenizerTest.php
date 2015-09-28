@@ -7,8 +7,7 @@ use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
 use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 
 /**
- * Class AbstractTokenizerTest
- * @package UniAlteri\Tests\States\LifeCycle\Tokenization
+ * Class AbstractTokenizerTest.
  */
 abstract class AbstractTokenizerTest extends \PHPUnit_Framework_TestCase
 {
@@ -28,7 +27,7 @@ abstract class AbstractTokenizerTest extends \PHPUnit_Framework_TestCase
     public function testGetToken()
     {
         /**
-         * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject $instance
+         * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $instance = $this->getMock('UniAlteri\States\LifeCycle\Event\EventInterface');
         $instance->expects($this->any())->method('getObject')->willReturn(new Acme());

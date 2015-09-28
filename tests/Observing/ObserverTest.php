@@ -5,7 +5,7 @@ namespace UniAlteri\Tests\States\LifeCycle\Observing;
 use UniAlteri\States\LifeCycle\Observing\Observer;
 
 /**
- * Class ObserverTest
+ * Class ObserverTest.
  *
  * @covers UniAlteri\States\LifeCycle\Observing\Observer
  */

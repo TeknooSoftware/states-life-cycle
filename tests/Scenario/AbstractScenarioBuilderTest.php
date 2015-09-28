@@ -6,8 +6,7 @@ use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 use UniAlteri\States\LifeCycle\Scenario\ScenarioBuilderInterface;
 
 /**
- * Class AbstractScenarioBuilderTest
- * @package UniAlteri\Tests\States\LifeCycle\Scenario
+ * Class AbstractScenarioBuilderTest.
  */
 abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
 {
@@ -55,7 +54,7 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
     public function testTowardObserved()
     {
         /**
-         * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject $observed
+         * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
         $service = $this->build();
@@ -115,12 +114,12 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
     public function testRun()
     {
         $service = $this->build();
-        $this->assertEquals($service, $service->run(function(){}));
+        $this->assertEquals($service, $service->run(function () {}));
     }
 
     public function testBuild()
     {
-        /**
+        /*
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject $observed
          */
         $this->assertInstanceOf(

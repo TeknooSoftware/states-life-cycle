@@ -6,5 +6,4 @@ use UniAlteri\States\State\AbstractState;
 
 class State1 extends AbstractState
 {
-
 }

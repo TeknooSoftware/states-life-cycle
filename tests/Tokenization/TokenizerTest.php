@@ -5,7 +5,7 @@ namespace UniAlteri\Tests\States\LifeCycle\Tokenization;
 use UniAlteri\States\LifeCycle\Tokenization\Tokenizer;
 
 /**
- * Class TokenizerTest
+ * Class TokenizerTest.
  *
  * @covers UniAlteri\States\LifeCycle\Tokenization\Tokenizer
  */

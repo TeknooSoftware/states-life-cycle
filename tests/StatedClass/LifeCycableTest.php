@@ -4,10 +4,9 @@ namespace UniAlteri\Tests\States\LifeCycle\StatedClass;
 
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableTrait;
 use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
-use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Factory;
 
 /**
- * Class LifeCycableTest
+ * Class LifeCycableTest.
  *
  * @covers UniAlteri\States\LifeCycle\StatedClass\LifeCyclableTrait
  */

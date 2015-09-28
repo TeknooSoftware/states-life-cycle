@@ -6,19 +6,20 @@ use UniAlteri\States\LifeCycle\Trace\Entry;
 use UniAlteri\States\LifeCycle\Trace\EntryInterface;
 
 /**
- * Class EntityTest
+ * Class EntityTest.
  *
  * @covers UniAlteri\States\LifeCycle\Trace\Entry
  */
-class EntityTest extends AbstractEntityTest
+class EntryTest extends AbstractEntryTest
 {
     /**
      * @param $observedInterface
      * @param $enabledStatesList
      * @param $previous
+     *
      * @return EntryInterface
      */
-    public function build($observedInterface, $enabledStatesList, $previous=null)
+    public function build($observedInterface, $enabledStatesList, $previous = null)
     {
         return new Entry($observedInterface, $enabledStatesList, $previous);
     }

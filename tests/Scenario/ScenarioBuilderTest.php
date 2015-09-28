@@ -5,7 +5,7 @@ namespace UniAlteri\Tests\States\LifeCycle\Scenario;
 use UniAlteri\States\LifeCycle\Scenario\ScenarioBuilder;
 
 /**
- * Class ScenarioBuilderTest
+ * Class ScenarioBuilderTest.
  *
  * @covers UniAlteri\States\LifeCycle\Scenario\ScenarioBuilder
  */

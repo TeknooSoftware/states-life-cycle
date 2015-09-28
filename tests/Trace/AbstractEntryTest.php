@@ -5,18 +5,18 @@ namespace UniAlteri\Tests\States\LifeCycle\Trace;
 use UniAlteri\States\LifeCycle\Trace\EntryInterface;
 
 /**
- * Class AbstractEntityTest
- * @package UniAlteri\Tests\States\LifeCycle\Trace
+ * Class AbstractEntityTest.
  */
-abstract class AbstractEntityTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractEntryTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @param $observedInterface
      * @param $enabledStatesList
      * @param $previous
+     *
      * @return EntryInterface
      */
-    abstract public function build($observedInterface, $enabledStatesList, $previous=null);
+    abstract public function build($observedInterface, $enabledStatesList, $previous = null);
 
     /**
      * @expectedException \TypeError

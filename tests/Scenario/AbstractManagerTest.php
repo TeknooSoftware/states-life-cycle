@@ -7,8 +7,7 @@ use UniAlteri\States\LifeCycle\Scenario\ManagerInterface;
 use UniAlteri\States\LifeCycle\Scenario\ScenarioInterface;
 
 /**
- * Class AbstractManagerTest
- * @package UniAlteri\Tests\States\LifeCycle\Scenario
+ * Class AbstractManagerTest.
  */
 abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -28,7 +27,7 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
     public function testGetSetDispatcher()
     {
         /**
-         * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject $instance
+         * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $instance = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $service = $this->build();
@@ -47,7 +46,7 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
     public function testRegisterScenario()
     {
         /**
-         * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject $scenario
+         * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');
         $service = $this->build();
@@ -65,7 +64,7 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
     public function testUnregisterScenario()
     {
         /**
-         * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject $scenario
+         * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');
         $service = $this->build();

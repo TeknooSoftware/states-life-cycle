@@ -5,13 +5,13 @@ namespace UniAlteri\Tests\States\LifeCycle\Trace;
 use UniAlteri\States\LifeCycle\Trace\TraceInterface;
 
 /**
- * Class AbstractTraceTest
- * @package UniAlteri\Tests\States\LifeCycle\Trace
+ * Class AbstractTraceTest.
  */
 abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @param $observedInterface
+     *
      * @return TraceInterface
      */
     abstract public function build($observedInterface);
