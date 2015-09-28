@@ -57,14 +57,19 @@ interface ScenarioInterface
     public function listNeededStates(): array;
 
     /**
+     * @return string[]
+     */
+    public function listForbiddenStates(): array;
+
+    /**
      * @return string
      */
     public function getNeededStatedClass(): \string;
 
     /**
-     * @return ObservedInterface
+     * @return ObservedInterface|null
      */
-    public function getNeededStatedObject(): ObservedInterface;
+    public function getNeededStatedObject();
 
     /**
      * @param EventInterface $event

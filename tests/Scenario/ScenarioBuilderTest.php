@@ -42,6 +42,8 @@ class ScenarioBuilderTest extends AbstractScenarioBuilderTest
      */
     public function build()
     {
-        return new ScenarioBuilder();
+        return new ScenarioBuilder(
+            $this->getMock('UniAlteri\States\LifeCycle\Tokenization\Tokenizer')
+        );
     }
 }

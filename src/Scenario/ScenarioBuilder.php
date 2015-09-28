@@ -22,6 +22,8 @@
 namespace UniAlteri\States\LifeCycle\Scenario;
 
 use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
+use UniAlteri\States\LifeCycle\Tokenization\Tokenizer;
+use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
 
 /**
  * Class ScenarioBuilder
@@ -35,6 +37,11 @@ use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
  */
 class ScenarioBuilder implements ScenarioBuilderInterface
 {
+    /**
+     * @var Tokenizer
+     */
+    private $tokenizer;
+
     /**
      * @var string[]
      */
@@ -58,6 +65,11 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     /**
      * @var string[]
      */
+    private $forbiddenStatesList = [];
+
+    /**
+     * @var string[]
+     */
     private $neededIncomingStatesList = [];
 
     /**
@@ -69,6 +81,14 @@ class ScenarioBuilder implements ScenarioBuilderInterface
      * @var callable
      */
     private $callable;
+
+    /**
+     * @param Tokenizer $tokenizer
+     */
+    public function __construct(Tokenizer $tokenizer)
+    {
+        $this->tokenizer = $tokenizer;
+    }
 
     /**
      * {@inheritdoc}
@@ -86,6 +106,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     public function towardStatedClass(\string $statedClassName): ScenarioBuilderInterface
     {
         $this->statedClassName = $statedClassName;
+        $this->when($this->tokenizer->getStatedClassNameToken($statedClassName));
 
         return $this;
     }
@@ -96,6 +117,17 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     public function towardObserved(ObservedInterface $observed): ScenarioBuilderInterface
     {
         $this->observed = $observed;
+        $this->when($this->tokenizer->getStatedClassInstanceToken($observed->getObject()));
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function ifNotInState(\string $stateName): ScenarioBuilderInterface
+    {
+        $this->forbiddenStatesList[$stateName] = $stateName;
 
         return $this;
     }
@@ -162,6 +194,14 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     public function getObserved()
     {
         return $this->observed;
+    }
+
+    /**
+     * @return \string[]
+     */
+    public function getForbiddenStatesList()
+    {
+        return $this->forbiddenStatesList;
     }
 
     /**

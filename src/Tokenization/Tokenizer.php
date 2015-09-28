@@ -37,16 +37,29 @@ use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 class Tokenizer implements TokenizerInterface
 {
     /**
+     * @param string $statedClassName
+     * @param bool $removeProxyName
+     * @return string
+     */
+    public function getStatedClassNameToken(\string $statedClassName, $removeProxyName=false): \string
+    {
+        $statedClassNamePart = explode('\\', $statedClassName);
+        if (true === $removeProxyName) {
+            array_pop($statedClassNamePart);
+        }
+
+        return implode('_', $statedClassNamePart);
+    }
+
+    /**
      * @param LifeCyclableInterface $object
      * @return string
      */
-    protected function getStatedClassNameToken(LifeCyclableInterface $object): \string
+    public function getStatedClassInstanceToken(LifeCyclableInterface $object): \string
     {
         $statedClassName = get_class($object);
-        $statedClassNamePart = explode('\\', $statedClassName);
-        array_pop($statedClassNamePart);
 
-        return implode('_', $statedClassNamePart);
+        return $this->getStatedClassNameToken($statedClassName, true);
     }
 
     /**
@@ -56,7 +69,7 @@ class Tokenizer implements TokenizerInterface
     {
         $object = $event->getObject();
 
-        $statedClassName = $this->getStatedClassNameToken($object);
+        $statedClassName = $this->getStatedClassInstanceToken($object);
         $tokenList = [$statedClassName];
 
         foreach ($event->getEnabledStates() as $stateName) {

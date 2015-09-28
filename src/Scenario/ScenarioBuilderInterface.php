@@ -57,6 +57,12 @@ interface ScenarioBuilderInterface
      * @param string $stateName
      * @return ScenarioBuilderInterface
      */
+    public function ifNotInState(\string $stateName): ScenarioBuilderInterface;
+
+    /**
+     * @param string $stateName
+     * @return ScenarioBuilderInterface
+     */
     public function ifInState(\string $stateName): ScenarioBuilderInterface;
 
     /**

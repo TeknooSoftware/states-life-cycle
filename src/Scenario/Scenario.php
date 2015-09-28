@@ -63,6 +63,11 @@ class Scenario implements ScenarioInterface
     private $neededStatesList;
 
     /**
+     * @var string[]
+     */
+    private $forbiddenStatesList;
+
+    /**
      * @var string
      */
     private $neededStatedClassName;
@@ -81,6 +86,7 @@ class Scenario implements ScenarioInterface
         $this->neededIncomingStatesList = $scenarioBuilder->getNeededIncomingStatesList();
         $this->neededOutgoingStatesList = $scenarioBuilder->getNeededOutgoingStatesList();
         $this->neededStatesList = $scenarioBuilder->getNeededStatesList();
+        $this->forbiddenStatesList = $scenarioBuilder->getForbiddenStatesList();
         $this->neededStatedClassName = $scenarioBuilder->getStatedClassName();
         $this->neededStatedObject = $scenarioBuilder->getObserved();
         $this->callback = $scenarioBuilder->getCallable();
@@ -164,6 +170,29 @@ class Scenario implements ScenarioInterface
     }
 
     /**
+     * @return string[]
+     */
+    public function listForbiddenStates(): array
+    {
+        return $this->forbiddenStatesList;
+    }
+
+    /**
+     * @param EventInterface $event
+     * @return bool
+     */
+    protected function checkForbiddenStates(EventInterface $event): \bool
+    {
+        $forbiddenStatesList = $this->listForbiddenStates();
+        if (empty($forbiddenStatesList)) {
+            return true;
+        }
+
+        $enabledStatesList = $event->getObject()->listEnabledStates();
+        return empty(array_intersect($forbiddenStatesList, $enabledStatesList));
+    }
+
+    /**
      * @return string
      */
     public function getNeededStatedClass(): \string
@@ -186,9 +215,9 @@ class Scenario implements ScenarioInterface
     }
 
     /**
-     * @return ObservedInterface
+     * {@inheritdoc}
      */
-    public function getNeededStatedObject(): ObservedInterface
+    public function getNeededStatedObject()
     {
         return $this->neededStatedObject;
     }
@@ -212,10 +241,31 @@ class Scenario implements ScenarioInterface
      */
     public function isAllowedToRun(EventInterface $event): \bool
     {
-        return $this->checkNeededIncomingStates($event)
-            && $this->checkNeededOutgoingStates($event)
-            && $this->checkNeededStatedClass($event)
-            && $this->checkNeededStatedObject($event);
+        if (!$this->checkNeededIncomingStates($event)) {
+            return false;
+        }
+
+        if (!$this->checkNeededOutgoingStates($event)) {
+            return false;
+        }
+
+        if (!$this->checkNeededStates($event)) {
+            return false;
+        }
+
+        if (!$this->checkForbiddenStates($event)) {
+            return false;
+        }
+
+        if (!$this->checkNeededStatedClass($event)) {
+            return false;
+        }
+
+        if (!$this->checkNeededStatedObject($event)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
