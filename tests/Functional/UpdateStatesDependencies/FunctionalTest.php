@@ -156,20 +156,6 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     /**
      * @return $this
      */
-    protected function reset()
-    {
-        $this->instanceB = null;
-        $this->instanceA = null;
-        $this->manager = null;
-        $this->observer = null;
-        $this->dispatcher = null;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
     protected function prepareScenarioA()
     {
         $scenarioBuilder = $this->createNewScenarioBuilder()

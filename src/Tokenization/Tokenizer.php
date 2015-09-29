@@ -48,7 +48,7 @@ class Tokenizer implements TokenizerInterface
             array_pop($statedClassNamePart);
         }
 
-        return implode('_', $statedClassNamePart);
+        return strtolower(implode('_', $statedClassNamePart));
     }
 
     /**
@@ -73,15 +73,15 @@ class Tokenizer implements TokenizerInterface
         $tokenList = [$statedClassName];
 
         foreach ($event->getEnabledStates() as $stateName) {
-            $tokenList[] = $statedClassName.':'.$stateName;
+            $tokenList[] = $statedClassName.':'.strtolower($stateName);
         }
 
         foreach ($event->getIncomingStates() as $stateName) {
-            $tokenList[] = $statedClassName.':+'.$stateName;
+            $tokenList[] = $statedClassName.':+'.strtolower($stateName);
         }
 
         foreach ($event->getOutgoingStates() as $stateName) {
-            $tokenList[] = $statedClassName.':-'.$stateName;
+            $tokenList[] = $statedClassName.':-'.strtolower($stateName);
         }
 
         return $tokenList;
