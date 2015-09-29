@@ -21,7 +21,11 @@
 
 namespace UniAlteri\Tests\States\LifeCycle\Observing;
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use UniAlteri\States\LifeCycle\Event\EventInterface;
+use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 use UniAlteri\States\LifeCycle\Observing\Observer;
+use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
 
 /**
  * Class ObserverTest.
@@ -43,5 +47,44 @@ class ObserverTest extends AbstractObserverTest
     public function build()
     {
         return new Observer();
+    }
+
+    public function testDispatchNotification()
+    {
+        /***
+         * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject $instance
+         */
+        $event = $this->getMock('UniAlteri\States\LifeCycle\Event\Event', [], [], '', false);
+        /**
+         * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
+         */
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
+        $instance->expects($this->any())->method('getLastEvent')->willReturn($event);
+        $service = $this->build();
+        /**
+         * @var TokenizerInterface|\PHPUnit_Framework_MockObject_MockObject
+         */
+        $tokenizer = $this->getMock('UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface');
+        $tokenizer->expects($this->once())
+            ->method('getToken')
+            ->with($event)
+            ->willReturn(['event_name1', 'event_name1:state1', 'event_name1:state2', 'event_name1:+state1', 'event_name1:-state3']);
+
+        /**
+         * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
+         */
+        $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $this->assertEquals($service, $service->addEventDispatcher($dispatcher));
+        $dispatcher->expects($this->exactly(5))
+            ->method('dispatch')
+            ->withConsecutive(
+                ['event_name1', $event],
+                ['event_name1:state1', $event],
+                ['event_name1:state2', $event],
+                ['event_name1:+state1', $event],
+                ['event_name1:-state3', $event]);
+
+        $service->setTokenizer($tokenizer);
+        $this->assertEquals($service, $service->dispatchNotification($instance));
     }
 }

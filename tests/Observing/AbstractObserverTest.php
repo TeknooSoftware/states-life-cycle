@@ -103,6 +103,21 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
     {
         $service = $this->build();
         $this->assertTrue(is_array($service->listEventDispatcher()));
+        $this->assertEmpty($service->listEventDispatcher());
+
+        /**
+         * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
+         */
+        $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $service->addEventDispatcher($dispatcher)->addEventDispatcher($dispatcher);
+        $this->assertEquals(1, count($service->listEventDispatcher()));
+
+        /**
+         * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
+         */
+        $dispatcher2 = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $service->addEventDispatcher($dispatcher2);
+        $this->assertEquals(2, count($service->listEventDispatcher()));
     }
 
     /**
@@ -148,11 +163,26 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
     {
         $service = $this->build();
         $this->assertTrue(is_array($service->listObserved()));
+        $this->assertEmpty($service->listObserved());
+
+        /**
+         * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject
+         */
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $service->attachObject($instance);
+        $service->attachObject($instance);
+        $this->assertEquals(1, count($service->listObserved()));
+        /**
+         * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject
+         */
+        $instance2 = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $service->attachObject($instance2);
+        $this->assertEquals(2, count($service->listObserved()));
     }
 
     public function testDispatchNotification()
     {
-        /*
+        /***
          * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject $instance
          */
         $event = $this->getMock('UniAlteri\States\LifeCycle\Event\EventInterface');

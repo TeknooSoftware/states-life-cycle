@@ -38,6 +38,7 @@ use UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\
  *
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ * @coversNothing
  */
 class FunctionalTest extends \PHPUnit_Framework_TestCase
 {

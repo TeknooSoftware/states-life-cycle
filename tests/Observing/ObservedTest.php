@@ -47,4 +47,90 @@ class ObservedTest extends AbstractObservedTest
     {
         return new Observed($instance, $observer);
     }
+
+    public function testObserveUpdateFirstEvent()
+    {
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance->expects($this->any())->method('listEnabledStates')->willReturn(['state1', 'state3']);
+        $instance->expects($this->any())->method('listAvailableStates')->willReturn(['state1', 'state2', 'state3']);
+
+        $observer = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface');
+
+        $observed = $this->build($instance, $observer);
+
+        $observer->expects($this->once())->method('dispatchNotification')->with($observed)->willReturnSelf();
+
+        $trace = $observed->getStateTrace();
+        $this->assertTrue($trace->isEmpty());
+
+        $observed->observeUpdate();
+
+        $this->assertFalse($trace->isEmpty());
+
+        $entry = $trace->getFirstEntry();
+        $this->assertEquals($observed, $entry->getObserved());
+        $this->assertEquals(['state1', 'state3'], $entry->getEnabledState());
+        $this->assertNull($entry->getNext());
+        $this->assertNull($entry->getPrevious());
+    }
+
+    public function testObserveUpdateNewEvent()
+    {
+        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance->expects($this->any())->method('listEnabledStates')->willReturnOnConsecutiveCalls(['state1', 'state3'], ['state1', 'state3'], ['state1'], ['state1'], ['state2'], ['state2']);
+        $instance->expects($this->any())->method('listAvailableStates')->willReturn(['state1', 'state2', 'state3']);
+
+        $observer = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface');
+
+        $observed = $this->build($instance, $observer);
+
+        $observer->expects($this->exactly(3))->method('dispatchNotification')->with($observed)->willReturnSelf();
+
+        $trace = $observed->getStateTrace();
+        $this->assertTrue($trace->isEmpty());
+
+        $observed->observeUpdate();
+
+        $this->assertFalse($trace->isEmpty());
+
+        $entry = $trace->getFirstEntry();
+        $this->assertEquals($observed, $entry->getObserved());
+        $this->assertEquals(['state1', 'state3'], $entry->getEnabledState());
+        $this->assertNull($entry->getNext());
+        $this->assertNull($entry->getPrevious());
+
+        $observed->observeUpdate();
+
+        $entry = $trace->getFirstEntry();
+        $this->assertEquals($observed, $entry->getObserved());
+        $this->assertEquals(['state1', 'state3'], $entry->getEnabledState());
+        $this->assertNotEmpty($entry->getNext());
+        $this->assertNull($entry->getPrevious());
+
+        $nextEntry = $entry->getNext();
+        $this->assertEquals($observed, $nextEntry->getObserved());
+        $this->assertEquals(['state1'], $nextEntry->getEnabledState());
+        $this->assertEquals($entry, $nextEntry->getPrevious());
+        $this->assertNull($nextEntry->getNext());
+
+        $observed->observeUpdate();
+
+        $entry = $trace->getFirstEntry();
+        $this->assertEquals($observed, $entry->getObserved());
+        $this->assertEquals(['state1', 'state3'], $entry->getEnabledState());
+        $this->assertNotEmpty($entry->getNext());
+        $this->assertNull($entry->getPrevious());
+
+        $nextEntry = $entry->getNext();
+        $this->assertEquals($observed, $nextEntry->getObserved());
+        $this->assertEquals(['state1'], $nextEntry->getEnabledState());
+        $this->assertEquals($entry, $nextEntry->getPrevious());
+        $this->assertNotNull($nextEntry->getNext());
+
+        $nextEntry2 = $nextEntry->getNext();
+        $this->assertEquals($observed, $nextEntry2->getObserved());
+        $this->assertEquals(['state2'], $nextEntry2->getEnabledState());
+        $this->assertEquals($nextEntry, $nextEntry2->getPrevious());
+        $this->assertNull($nextEntry2->getNext());
+    }
 }

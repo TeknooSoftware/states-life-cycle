@@ -115,8 +115,8 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
     {
         $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
         $this->assertEquals(
-            ['foo', 'bar'],
-            $this->build($observed, ['foo', 'bar'], [])->getIncomingStates()
+            ['bar', 'foo'],
+            $this->build($observed, ['bar', 'foo'], [])->getIncomingStates()
         );
     }
 
