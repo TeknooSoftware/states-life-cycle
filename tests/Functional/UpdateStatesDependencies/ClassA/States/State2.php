@@ -28,8 +28,12 @@ use UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\
  * State State2
  * State for the stated class ClassA
  *
- * @package     UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies
- * @subpackage  States
+ * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
+ *
+ * @link        http://teknoo.it/states Project website
+ *
+ * @license     http://teknoo.it/license/mit         MIT License
+ * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class State2 extends AbstractState
 {

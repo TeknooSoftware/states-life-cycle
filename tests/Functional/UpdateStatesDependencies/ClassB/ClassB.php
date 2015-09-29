@@ -29,7 +29,12 @@ use UniAlteri\States\Proxy;
  * Proxy ClassB
  * Proxy class of the stated class ClassB
  *
- * @package     UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies
+ * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
+ *
+ * @link        http://teknoo.it/states Project website
+ *
+ * @license     http://teknoo.it/license/mit         MIT License
+ * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class ClassB extends Proxy\Integrated implements LifeCyclableInterface
 {
