@@ -60,7 +60,7 @@ trait LifeCyclableTrait
         $observedHash = spl_object_hash($observed);
 
         if (isset($this->observedList[$observedHash])) {
-            return $this->observedList[$observedHash];
+            unset($this->observedList[$observedHash]);
         }
 
         return $this;
