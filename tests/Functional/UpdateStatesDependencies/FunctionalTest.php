@@ -200,7 +200,8 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $scenarioBuilder = $this->createNewScenarioBuilder()
             ->towardStatedClass('UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA')
             ->onIncomingState('State3')
-            ->ifNotInState('State2')
+            ->onOutgoingState('State2')
+            ->ifNotInState('StateDefault')
             ->run(function () {
                 $this->getInstanceB()->switchToState3();
             });
