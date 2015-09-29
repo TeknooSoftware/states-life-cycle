@@ -42,7 +42,7 @@ class ScenarioTest extends AbstractScenarioTest
      */
     public function build()
     {
-        $builder = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioBuilder');
+        $builder = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioBuilder', [], [], '', false);
         $builder->expects($this->any())->method('getEventNamesList')->willReturn(['fooBar']);
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn(['foo', 'bar']);
         $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn(['outstate']);
