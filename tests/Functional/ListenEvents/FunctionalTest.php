@@ -23,6 +23,7 @@ namespace UniAlteri\Tests\States\LifeCycle\Functional\ListenEvents;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use UniAlteri\States\LifeCycle\Event\EventInterface;
+use UniAlteri\States\LifeCycle\Observing\ObservedFactory;
 use UniAlteri\States\LifeCycle\Observing\Observer;
 use UniAlteri\States\LifeCycle\Scenario\Manager;
 use UniAlteri\States\LifeCycle\Scenario\ScenarioBuilder;
@@ -109,7 +110,13 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     protected function getObserver()
     {
         if (!$this->observer instanceof Observer) {
-            $this->observer = new Observer();
+            $observerFactory = new ObservedFactory(
+                'UniAlteri\States\LifeCycle\Observing\Observed',
+                'UniAlteri\States\LifeCycle\Event\Event',
+                'UniAlteri\States\LifeCycle\Trace\Trace'
+            );
+
+            $this->observer = new Observer($observerFactory);
             $this->observer->addEventDispatcher($this->getEventDispatcher());
             $this->observer->setTokenizer($this->getTokenizer());
         }

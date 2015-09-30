@@ -78,10 +78,9 @@ class Scenario implements ScenarioInterface
     private $neededStatedObject;
 
     /**
-     * @param ScenarioBuilder $scenarioBuilder
-     * @return $this
+     * {@inheritdoc}
      */
-    public function configure(ScenarioBuilder $scenarioBuilder)
+    public function configure(ScenarioBuilder $scenarioBuilder): ScenarioInterface
     {
         $this->eventsNamesList = $scenarioBuilder->getEventNamesList();
         $this->neededIncomingStatesList = $scenarioBuilder->getNeededIncomingStatesList();

@@ -41,6 +41,14 @@ class Trace implements TraceInterface
     private $stack;
 
     /**
+     * Default constructor
+     */
+    public function __construct()
+    {
+        $this->stack = new \SplStack();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getTrace(): \SplStack

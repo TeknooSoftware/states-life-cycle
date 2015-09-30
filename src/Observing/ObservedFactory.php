@@ -74,7 +74,7 @@ class ObservedFactory implements ObservedFactoryInterface
 
         $interfaceImplementingList = class_implements($observedClassName);
 
-        if (!isset($interfaceImplementingList['UniAlteri\States\LifeCycle\Observing\ObservedFactoryInterface'])) {
+        if (!isset($interfaceImplementingList['UniAlteri\States\LifeCycle\Observing\ObservedInterface'])) {
             throw new \RuntimeException('The observed class does not implement the ObservedFactoryInterface');
         }
 
@@ -114,8 +114,8 @@ class ObservedFactory implements ObservedFactoryInterface
         $traceClassName = $this->traceClassName;
         $observedClassName = $this->observedClassName;
         return new $observedClassName(
-            $observer,
             $lifeCyclableInstance,
+            $observer,
             new $traceClassName,
             $this->eventClassName
         );

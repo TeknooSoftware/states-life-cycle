@@ -241,6 +241,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     public function build(ScenarioInterface $scenario): ScenarioInterface
     {
         $scenario->configure($this);
-        return $this;
+
+        return $scenario;
     }
 }
