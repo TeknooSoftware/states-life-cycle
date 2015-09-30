@@ -23,6 +23,7 @@ namespace UniAlteri\Tests\States\LifeCycle\Observing;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use UniAlteri\States\LifeCycle\Event\EventInterface;
+use UniAlteri\States\LifeCycle\Observing\ObservedFactoryInterface;
 use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 use UniAlteri\States\LifeCycle\Observing\Observer;
 use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
@@ -42,11 +43,28 @@ use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
 class ObserverTest extends AbstractObserverTest
 {
     /**
+     * @var ObservedFactoryInterface
+     */
+    private $observedFactory;
+
+    /**
+     * @return \PHPUnit_Framework_MockObject_MockObject|ObservedFactoryInterface
+     */
+    protected function getObservedFactoryInterfaceMock()
+    {
+        if (!$this->observedFactory instanceof ObservedFactoryInterface) {
+            $this->observedFactory = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedFactoryInterface');
+        }
+
+        return $this->observedFactory;
+    }
+
+    /**
      * @return Observer
      */
     public function build()
     {
-        return new Observer();
+        return new Observer($this->getObservedFactoryInterfaceMock());
     }
 
     public function testDispatchNotification()

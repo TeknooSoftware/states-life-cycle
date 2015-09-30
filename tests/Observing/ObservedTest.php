@@ -22,6 +22,7 @@
 namespace UniAlteri\Tests\States\LifeCycle\Observing;
 
 use UniAlteri\States\LifeCycle\Observing\Observed;
+use UniAlteri\States\LifeCycle\Trace\TraceInterface;
 use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 
 /**
@@ -41,19 +42,26 @@ class ObservedTest extends AbstractObservedTest
     /**
      * @param mixed $instance
      * @param mixed $observer
+     * @param mixed $trace
+     * @param mixed $eventClassName
      *
      * @return Observed
      */
-    public function build($instance, $observer)
+    public function build($instance, $observer, $trace, $eventClassName)
     {
-        return new Observed($instance, $observer);
+        return new Observed($instance, $observer, $trace, $eventClassName);
     }
 
     public function testGetStatedClassName()
     {
         $this->assertEquals(
             'UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme',
-            $this->build(new Acme(), $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'))->getStatedClassName()
+            $this->build(
+                new Acme(),
+                $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'),
+                $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
+                'UniAlteri\States\LifeCycle\Event\Event'
+            )->getStatedClassName()
         );
     }
 
@@ -65,7 +73,12 @@ class ObservedTest extends AbstractObservedTest
 
         $observer = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface');
 
-        $observed = $this->build($instance, $observer);
+        $observed = $this->build(
+            $instance,
+            $observer,
+            $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
+            'UniAlteri\States\LifeCycle\Event\Event'
+        );
 
         $observer->expects($this->once())->method('dispatchNotification')->with($observed)->willReturnSelf();
 
@@ -91,7 +104,12 @@ class ObservedTest extends AbstractObservedTest
 
         $observer = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface');
 
-        $observed = $this->build($instance, $observer);
+        $observed = $this->build(
+            $instance,
+            $observer,
+            $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
+            'UniAlteri\States\LifeCycle\Event\Event'
+        );
 
         $observer->expects($this->exactly(3))->method('dispatchNotification')->with($observed)->willReturnSelf();
 

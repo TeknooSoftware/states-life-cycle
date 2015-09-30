@@ -93,7 +93,9 @@ class ScenarioTest extends AbstractScenarioTest
             });
         }
 
-        return new Scenario($builder);
+        $scenario = new Scenario($builder);
+        $builder->build($scenario);
+        return $scenario;
     }
 
     public function testGetEventsNamesListValue()

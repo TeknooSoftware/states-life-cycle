@@ -42,25 +42,9 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
      */
     abstract public function build($observedInterface);
 
-    /**
-     * @expectedException \TypeError
-     */
-    public function testConstructBadObserver()
-    {
-        $this->build(new \stdClass());
-    }
-
     public function testConstruct()
     {
         $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'));
-    }
-
-    public function testGetObserved()
-    {
-        $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
-            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'))->getObserved()
-        );
     }
 
     public function testGetTrace()
