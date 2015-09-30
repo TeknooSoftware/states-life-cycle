@@ -208,6 +208,25 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         return $this;
     }
 
+    /**
+     * @return $this
+     */
+    protected function prepareScenarioD()
+    {
+        $scenarioBuilder = $this->createNewScenarioBuilder()
+            ->towardStatedClass('UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassE')
+            ->onIncomingState('State3')
+            ->onOutgoingState('State2')
+            ->ifNotInState('StateDefault')
+            ->run(function () {
+                $this->getInstanceB()->switchToState1();
+            });
+
+        $this->getManager()->registerScenario($scenarioBuilder->build());
+
+        return $this;
+    }
+
     public function testCaseWithoutRegisteredScenario()
     {
         $instanceA = $this->getInstanceA();
@@ -248,6 +267,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $this->prepareScenarioA();
         $this->prepareScenarioB();
         $this->prepareScenarioC();
+        $this->prepareScenarioD();
 
         $this->assertEquals(['StateDefault'], $instanceA->listEnabledStates());
         $this->assertEquals(['StateDefault'], $instanceB->listEnabledStates());
@@ -281,6 +301,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $this->prepareScenarioA();
         $this->prepareScenarioB();
         $this->prepareScenarioC();
+        $this->prepareScenarioD();
 
         $this->assertEquals(['StateDefault'], $instanceA->listEnabledStates());
         $this->assertEquals(['StateDefault'], $instanceB->listEnabledStates());
@@ -315,6 +336,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $this->prepareScenarioA();
         $this->prepareScenarioB();
         $this->prepareScenarioC();
+        $this->prepareScenarioD();
 
         $this->assertEquals(['StateDefault'], $instanceA->listEnabledStates());
         $this->assertEquals(['StateDefault'], $instanceB->listEnabledStates());

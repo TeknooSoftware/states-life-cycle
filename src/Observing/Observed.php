@@ -91,7 +91,12 @@ class Observed implements ObservedInterface
      */
     public function getStatedClassName(): \string
     {
-        return get_class($this->object);
+        $classNameParts = explode('\\', get_class($this->object));
+        if (count($classNameParts) > 1) {
+            array_pop($classNameParts);
+        }
+
+        return implode('\\', $classNameParts);
     }
 
     /**

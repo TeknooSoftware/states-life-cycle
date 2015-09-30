@@ -211,7 +211,7 @@ class Scenario implements ScenarioInterface
             return true;
         }
 
-        return $neededStatedClassName = $event->getObserved()->getStatedClassName();
+        return $neededStatedClassName === $event->getObserved()->getStatedClassName();
     }
 
     /**

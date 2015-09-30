@@ -22,6 +22,7 @@
 namespace UniAlteri\Tests\States\LifeCycle\Observing;
 
 use UniAlteri\States\LifeCycle\Observing\Observed;
+use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 
 /**
  * Class ObservedTest.
@@ -46,6 +47,14 @@ class ObservedTest extends AbstractObservedTest
     public function build($instance, $observer)
     {
         return new Observed($instance, $observer);
+    }
+
+    public function testGetStatedClassName()
+    {
+        $this->assertEquals(
+            'UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme',
+            $this->build(new Acme(), $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'))->getStatedClassName()
+        );
     }
 
     public function testObserveUpdateFirstEvent()

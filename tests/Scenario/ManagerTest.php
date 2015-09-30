@@ -21,7 +21,9 @@
 
 namespace UniAlteri\Tests\States\LifeCycle\Scenario;
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use UniAlteri\States\LifeCycle\Scenario\Manager;
+use UniAlteri\States\LifeCycle\Scenario\ScenarioInterface;
 
 /**
  * Class ManagerTest.
@@ -38,12 +40,70 @@ use UniAlteri\States\LifeCycle\Scenario\Manager;
 class ManagerTest extends AbstractManagerTest
 {
     /**
+     * @var EventDispatcherInterface
+     */
+    protected $dispatcher;
+
+    /**
+     * @return \PHPUnit_Framework_MockObject_MockObject|EventDispatcherInterface
+     */
+    public function getEventDispatcherInterfaceMock()
+    {
+        if (!$this->dispatcher instanceof EventDispatcherInterface) {
+            $this->dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        }
+
+        return $this->dispatcher;
+    }
+
+    /**
      * @return Manager
      */
     public function build()
     {
-        $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        return new Manager($this->getEventDispatcherInterfaceMock());
+    }
 
-        return new Manager($dispatcher);
+    public function testRegisterScenarioMultiple()
+    {
+        /**
+         * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
+         */
+        $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario->expects($this->any())->method('getEventsNamesList')->willReturn(['event1', 'event2', 'event3']);
+
+        $this->getEventDispatcherInterfaceMock()
+            ->expects($this->exactly(3))
+            ->method('addListener')
+            ->withConsecutive(
+                ['event1', $scenario],
+                ['event2', $scenario],
+                ['event3', $scenario]
+            );
+
+        $service = $this->build();
+        $this->assertEquals($service, $service->registerScenario($scenario)->registerScenario($scenario));
+    }
+
+    public function testUnregisterScenarioMultiple()
+    {
+        /**
+         * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
+         */
+        $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario->expects($this->any())->method('getEventsNamesList')->willReturn(['event1', 'event2', 'event3']);
+        $service = $this->build();
+
+        $this->getEventDispatcherInterfaceMock()
+            ->expects($this->exactly(3))
+            ->method('removeListener')
+            ->withConsecutive(
+                ['event1', $scenario],
+                ['event2', $scenario],
+                ['event3', $scenario]
+            );
+
+        $service->registerScenario($scenario);
+        $this->assertEquals($service, $service->unregisterScenario($scenario)->unregisterScenario($scenario));
     }
 }
