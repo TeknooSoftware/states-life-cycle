@@ -40,8 +40,15 @@ interface ObservedInterface
     /**
      * @param LifeCyclableInterface $object
      * @param ObserverInterface $observer
+     * @param TraceInterface $trace
+     * @param string $eventClassName
      */
-    public function __construct(LifeCyclableInterface $object, ObserverInterface $observer);
+    public function __construct(
+        LifeCyclableInterface $object,
+        ObserverInterface $observer,
+        TraceInterface $trace,
+        \string $eventClassName
+    );
 
     /**
      * @return LifeCyclableInterface

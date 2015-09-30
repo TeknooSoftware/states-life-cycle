@@ -37,6 +37,12 @@ use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 interface ScenarioInterface
 {
     /**
+     * @param ScenarioBuilder $scenarioBuilder
+     * @return ScenarioInterface
+     */
+    public function configure(ScenarioBuilder $scenarioBuilder): ScenarioInterface ;
+
+    /**
      * @return string[]
      */
     public function getEventsNamesList(): array;

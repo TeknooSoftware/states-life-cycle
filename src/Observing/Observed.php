@@ -21,11 +21,9 @@
 
 namespace UniAlteri\States\LifeCycle\Observing;
 
-use UniAlteri\States\LifeCycle\Event\Event;
 use UniAlteri\States\LifeCycle\Event\EventInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use UniAlteri\States\LifeCycle\Trace\Entry;
-use UniAlteri\States\LifeCycle\Trace\Trace;
 use UniAlteri\States\LifeCycle\Trace\TraceInterface;
 
 /**
@@ -61,13 +59,40 @@ class Observed implements ObservedInterface
     private $lastEvent;
 
     /**
+     * @var string
+     */
+    private $eventClassName;
+
+    /**
      * {@inheritdoc}
      */
-    public function __construct(LifeCyclableInterface $object, ObserverInterface $observer)
-    {
+    public function __construct(
+        LifeCyclableInterface $object,
+        ObserverInterface $observer,
+        TraceInterface $trace,
+        \string $eventClassName
+    ) {
         $this->object = $object;
         $this->observer = $observer;
-        $this->trace = new Trace($this);
+        $this->trace = $trace;
+        $this->checkEventClassName($eventClassName);
+    }
+
+    protected function checkEventClassName(\string $eventClassName)
+    {
+        if (!class_exists($eventClassName)) {
+            throw new \RuntimeException('Missing event class '.$eventClassName);
+        }
+
+        $interfaceImplementingList = class_implements($eventClassName);
+
+        if (!isset($interfaceImplementingList['UniAlteri\States\LifeCycle\Event\EventInterface'])) {
+            throw new \RuntimeException('The event class does not implement the EventInterface');
+        }
+
+        $this->eventClassName = $eventClassName;
+
+        return $this;
     }
 
     /**
@@ -128,7 +153,8 @@ class Observed implements ObservedInterface
         $incomingStates = array_diff($currentEnabledStates, $lastEnabledStates);
         $outgoingStates = array_diff($lastEnabledStates, $currentEnabledStates);
 
-        $this->lastEvent = new Event($this, $incomingStates, $outgoingStates);
+        $eventClassName = $this->eventClassName;
+        $this->lastEvent = new $eventClassName($this, $incomingStates, $outgoingStates);
 
         return $this;
     }
@@ -139,18 +165,11 @@ class Observed implements ObservedInterface
     protected function updateTrace()
     {
         $trace = $this->getStateTrace();
-        $lastEntry = null;
-        if (false === $trace->isEmpty()) {
-            $lastEntry = $trace->getLastEntry();
-        }
 
         $trace->addEntry(
-                new Entry(
-                    $this,
-                    $this->getObject()->listEnabledStates(),
-                    $lastEntry
-                )
-            );
+            $this,
+            $this->getObject()->listEnabledStates()
+        );
 
         return $this;
     }

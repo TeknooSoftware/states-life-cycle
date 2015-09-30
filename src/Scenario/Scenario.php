@@ -79,8 +79,9 @@ class Scenario implements ScenarioInterface
 
     /**
      * @param ScenarioBuilder $scenarioBuilder
+     * @return $this
      */
-    public function __construct(ScenarioBuilder $scenarioBuilder)
+    public function configure(ScenarioBuilder $scenarioBuilder)
     {
         $this->eventsNamesList = $scenarioBuilder->getEventNamesList();
         $this->neededIncomingStatesList = $scenarioBuilder->getNeededIncomingStatesList();
@@ -90,6 +91,8 @@ class Scenario implements ScenarioInterface
         $this->neededStatedClassName = $scenarioBuilder->getStatedClassName();
         $this->neededStatedObject = $scenarioBuilder->getObserved();
         $this->callback = $scenarioBuilder->getCallable();
+
+        return $this;
     }
 
     /**

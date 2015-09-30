@@ -36,31 +36,9 @@ use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 class Trace implements TraceInterface
 {
     /**
-     * @var ObservedInterface;
-     */
-    private $observed;
-
-    /**
      * @var \SplStack
      */
     private $stack;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct(ObservedInterface $observedInterface)
-    {
-        $this->observed = $observedInterface;
-        $this->stack = new \SplStack();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getObserved(): ObservedInterface
-    {
-        return $this->observed;
-    }
 
     /**
      * {@inheritdoc}
@@ -103,12 +81,20 @@ class Trace implements TraceInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param ObservedInterface $observed
+     * @param array $enabledStatesList
+     * @return TraceInterface
      */
-    public function addEntry(EntryInterface $entry): TraceInterface
+    public function addEntry(ObservedInterface $observed, array $enabledStatesList): TraceInterface
     {
+        $lastEntry = null;
         if (false === $this->isEmpty()) {
             $lastEntry = $this->getLastEntry();
+        }
+
+        $entry = new Entry($observed, $enabledStatesList, $lastEntry);
+
+        if ($lastEntry instanceof EntryInterface) {
             $lastEntry->setNext($entry);
         }
 

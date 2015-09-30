@@ -84,7 +84,8 @@ interface ScenarioBuilderInterface
     public function run(callable $callable): ScenarioBuilderInterface;
 
     /**
+     * @param ScenarioInterface $scenario
      * @return ScenarioInterface
      */
-    public function build(): ScenarioInterface;
+    public function build(ScenarioInterface $scenario): ScenarioInterface;
 }

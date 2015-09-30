@@ -23,7 +23,6 @@ namespace UniAlteri\States\LifeCycle\Scenario;
 
 use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 use UniAlteri\States\LifeCycle\Tokenization\Tokenizer;
-use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
 
 /**
  * Class ScenarioBuilder
@@ -239,8 +238,9 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function build(): ScenarioInterface
+    public function build(ScenarioInterface $scenario): ScenarioInterface
     {
-        return new Scenario($this);
+        $scenario->configure($this);
+        return $this;
     }
 }

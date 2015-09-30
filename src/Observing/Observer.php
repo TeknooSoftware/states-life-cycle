@@ -24,7 +24,6 @@ namespace UniAlteri\States\LifeCycle\Observing;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
-use UniAlteri\States\LifeCycle\Trace\Trace;
 
 /**
  * Class Observer
@@ -54,12 +53,18 @@ class Observer implements ObserverInterface
     private $observedList = [];
 
     /**
-     * Default Constructor
+     * @var ObservedFactoryInterface
      */
-    public function __construct()
+    private $observedFactory;
+
+    /**
+     * @param ObservedFactoryInterface $observedFactory
+     */
+    public function __construct(ObservedFactoryInterface $observedFactory)
     {
         $this->dispatchersList = new \ArrayObject();
         $this->observedList = new \ArrayObject();
+        $this->observedFactory = $observedFactory;
     }
 
     /**
@@ -117,7 +122,7 @@ class Observer implements ObserverInterface
     public function attachObject(LifeCyclableInterface $object): ObservedInterface
     {
         $objectHash = spl_object_hash($object);
-        $observed = new Observed($object, $this);
+        $observed = $this->observedFactory->create($this, $object);
         $object->registerObserver($observed);
 
         $this->observedList[$objectHash] = $observed;

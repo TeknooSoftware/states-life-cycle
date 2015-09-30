@@ -19,11 +19,12 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\States\LifeCycle\Trace;
-use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
+namespace UniAlteri\States\LifeCycle\Observing;
+
+use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**
- * Interface TraceInterface
+ * Class ObservedFactoryInterface
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
@@ -32,32 +33,12 @@ use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
  * @license     http://teknoo.it/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
-interface TraceInterface
+interface ObservedFactoryInterface
 {
     /**
-     * @return \SplStack|EntryInterface[]
+     * @param ObserverInterface $observer
+     * @param LifeCyclableInterface $lifeCyclableInstance
+     * @return ObservedInterface
      */
-    public function getTrace(): \SplStack;
-
-    /**
-     * @return bool
-     */
-    public function isEmpty(): \bool;
-
-    /**
-     * @return EntryInterface
-     */
-    public function getFirstEntry(): EntryInterface;
-
-    /**
-     * @return EntryInterface
-     */
-    public function getLastEntry(): EntryInterface;
-
-    /**
-     * @param ObservedInterface $observed
-     * @param array $enabledStatesList
-     * @return TraceInterface
-     */
-    public function addEntry(ObservedInterface $observed, array $enabledStatesList): TraceInterface;
+    public function create(ObserverInterface $observer, LifeCyclableInterface $lifeCyclableInstance): ObservedInterface;
 }
