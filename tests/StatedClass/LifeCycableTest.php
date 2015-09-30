@@ -21,6 +21,7 @@
 
 namespace UniAlteri\Tests\States\LifeCycle\StatedClass;
 
+use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableTrait;
 use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 
@@ -44,5 +45,22 @@ class LifeCycableTest extends AbstractLifeCyclableTest
     public function build()
     {
         return new Acme();
+    }
+
+    public function testNotifyObservedFilled()
+    {
+        /**
+         * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
+         */
+        $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
+        $observed->expects($this->once())->method('observeUpdate');
+
+        $instance = $this->build();
+        $instance->registerObserver($observed);
+
+        $this->assertEquals(
+            $instance,
+            $instance->notifyObserved()
+        );
     }
 }

@@ -104,6 +104,20 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \TypeError
      */
+    public function testIfNotInStateBadArg()
+    {
+        $this->build()->ifNotInState(new \stdClass());
+    }
+
+    public function testIfNotInState()
+    {
+        $service = $this->build();
+        $this->assertEquals($service, $service->ifNotInState('stateName'));
+    }
+
+    /**
+     * @expectedException \TypeError
+     */
     public function testOnIncomingStateBadArg()
     {
         $this->build()->onIncomingState(new \stdClass());

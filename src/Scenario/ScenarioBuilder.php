@@ -177,7 +177,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
      */
     public function getEventNamesList()
     {
-        return $this->eventNamesList;
+        return array_values($this->eventNamesList);
     }
 
     /**
@@ -201,7 +201,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
      */
     public function getForbiddenStatesList()
     {
-        return $this->forbiddenStatesList;
+        return array_values($this->forbiddenStatesList);
     }
 
     /**
@@ -209,7 +209,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
      */
     public function getNeededStatesList()
     {
-        return $this->neededStatesList;
+        return array_values($this->neededStatesList);
     }
 
     /**
@@ -217,7 +217,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
      */
     public function getNeededIncomingStatesList()
     {
-        return $this->neededIncomingStatesList;
+        return array_values($this->neededIncomingStatesList);
     }
 
     /**
@@ -225,7 +225,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
      */
     public function getNeededOutgoingStatesList()
     {
-        return $this->neededOutgoingStatesList;
+        return array_values($this->neededOutgoingStatesList);
     }
 
     /**

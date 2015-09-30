@@ -349,4 +349,50 @@ class ScenarioTest extends AbstractScenarioTest
         $eventMock = $this->getMock('UniAlteri\States\LifeCycle\Event\EventInterface');
         $this->assertTrue($service->isAllowedToRun($eventMock));
     }
+
+    public function testInvokeTrue()
+    {
+        $called = false;
+        $builder = $this->getScenarioBuilderMock();
+        $builder->expects($this->any())->method('getObserved')->willReturn(null);
+        $builder->expects($this->any())->method('getStatedClassName')->willReturn('fooBar');
+        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects($this->any())->method('getCallable')->willReturn(function() use (&$called) {$called=true;});
+
+        $service = $this->build(true);
+        $eventMock = $this->getMock('UniAlteri\States\LifeCycle\Event\EventInterface');
+        $observed = $this->getObservedInterfaceMock();
+        $observed->expects($this->once())->method('getStatedClassName')->willReturn('fooBar');
+        $eventMock->expects($this->once())->method('getObserved')->willReturn($observed);
+
+        $called = false;
+        $service($eventMock);
+        $this->assertTrue($called);
+    }
+
+    public function testInvokeFalse()
+    {
+        $called = false;
+        $builder = $this->getScenarioBuilderMock();
+        $builder->expects($this->any())->method('getObserved')->willReturn(null);
+        $builder->expects($this->any())->method('getStatedClassName')->willReturn('fooBar');
+        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects($this->any())->method('getCallable')->willReturn(function() use (&$called) {$called=true;});
+
+        $service = $this->build(true);
+        $eventMock = $this->getMock('UniAlteri\States\LifeCycle\Event\EventInterface');
+        $observed = $this->getObservedInterfaceMock();
+        $observed->expects($this->once())->method('getStatedClassName')->willReturn('fooBar2');
+        $eventMock->expects($this->once())->method('getObserved')->willReturn($observed);
+
+        $called = false;
+        $service($eventMock);
+        $this->assertFalse($called);
+    }
 }
