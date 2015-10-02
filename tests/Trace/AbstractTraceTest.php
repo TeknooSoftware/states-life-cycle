@@ -73,38 +73,38 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
 
     public function testGetFirstEntry()
     {
-        $entry = $this->getMock('UniAlteri\States\LifeCycle\Trace\EntryInterface');
+        $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Trace\EntryInterface',
-            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'))->addEntry($entry)->getFirstEntry()
+            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'))->addEntry($observed, [])->getFirstEntry()
         );
     }
 
     public function testGetLastEntry()
     {
-        $entry = $this->getMock('UniAlteri\States\LifeCycle\Trace\EntryInterface');
+        $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Trace\EntryInterface',
-            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'))->addEntry($entry)->getLastEntry()
+            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'))->addEntry($observed, [])->getLastEntry()
         );
     }
 
     public function testAddEntry()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\Trace\EntryInterface');
+        $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
         $service = $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'));
         $this->assertEquals(
             $service,
-            $service->addEntry($instance)
+            $service->addEntry($observed, [])
         );
     }
 
     public function testIsEmpty()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\Trace\EntryInterface');
+        $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
         $service = $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'));
         $this->assertTrue($service->isEmpty());
-        $service->addEntry($instance);
+        $service->addEntry($observed, []);
         $this->assertFalse($service->isEmpty());
     }
 }

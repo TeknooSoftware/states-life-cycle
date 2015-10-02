@@ -94,7 +94,7 @@ class ScenarioTest extends AbstractScenarioTest
         }
 
         $scenario = new Scenario($builder);
-        $builder->build($scenario);
+        $scenario->configure($builder);
         return $scenario;
     }
 
