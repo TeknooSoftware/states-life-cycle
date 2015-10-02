@@ -22,6 +22,7 @@
 namespace UniAlteri\Tests\States\LifeCycle\Observing;
 
 use UniAlteri\States\LifeCycle\Observing\Observed;
+use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 use UniAlteri\States\LifeCycle\Trace\TraceInterface;
 use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 
@@ -73,27 +74,23 @@ class ObservedTest extends AbstractObservedTest
 
         $observer = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface');
 
+        $trace = $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface');
+        $trace->expects($this->once())->method('addEntry')
+            ->with(
+                $this->callback(function ($arg) {return $arg instanceof ObservedInterface; }),
+                ['state1', 'state3']
+            );
+
         $observed = $this->build(
             $instance,
             $observer,
-            $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
+            $trace,
             'UniAlteri\States\LifeCycle\Event\Event'
         );
 
         $observer->expects($this->once())->method('dispatchNotification')->with($observed)->willReturnSelf();
 
-        $trace = $observed->getStateTrace();
-        $this->assertTrue($trace->isEmpty());
-
         $observed->observeUpdate();
-
-        $this->assertFalse($trace->isEmpty());
-
-        $entry = $trace->getFirstEntry();
-        $this->assertEquals($observed, $entry->getObserved());
-        $this->assertEquals(['state1', 'state3'], $entry->getEnabledState());
-        $this->assertNull($entry->getNext());
-        $this->assertNull($entry->getPrevious());
     }
 
     public function testObserveUpdateNewEvent()
@@ -104,60 +101,25 @@ class ObservedTest extends AbstractObservedTest
 
         $observer = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface');
 
+        $trace = $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface');
         $observed = $this->build(
             $instance,
             $observer,
-            $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
+            $trace,
             'UniAlteri\States\LifeCycle\Event\Event'
         );
 
+        $trace->expects($this->exactly(3))->method('addEntry')
+            ->withConsecutive(
+                [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }),['state1', 'state3']],
+                [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }),['state1']],
+                [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }),['state2']]
+            );
+
         $observer->expects($this->exactly(3))->method('dispatchNotification')->with($observed)->willReturnSelf();
 
-        $trace = $observed->getStateTrace();
-        $this->assertTrue($trace->isEmpty());
-
         $observed->observeUpdate();
-
-        $this->assertFalse($trace->isEmpty());
-
-        $entry = $trace->getFirstEntry();
-        $this->assertEquals($observed, $entry->getObserved());
-        $this->assertEquals(['state1', 'state3'], $entry->getEnabledState());
-        $this->assertNull($entry->getNext());
-        $this->assertNull($entry->getPrevious());
-
         $observed->observeUpdate();
-
-        $entry = $trace->getFirstEntry();
-        $this->assertEquals($observed, $entry->getObserved());
-        $this->assertEquals(['state1', 'state3'], $entry->getEnabledState());
-        $this->assertNotEmpty($entry->getNext());
-        $this->assertNull($entry->getPrevious());
-
-        $nextEntry = $entry->getNext();
-        $this->assertEquals($observed, $nextEntry->getObserved());
-        $this->assertEquals(['state1'], $nextEntry->getEnabledState());
-        $this->assertEquals($entry, $nextEntry->getPrevious());
-        $this->assertNull($nextEntry->getNext());
-
         $observed->observeUpdate();
-
-        $entry = $trace->getFirstEntry();
-        $this->assertEquals($observed, $entry->getObserved());
-        $this->assertEquals(['state1', 'state3'], $entry->getEnabledState());
-        $this->assertNotEmpty($entry->getNext());
-        $this->assertNull($entry->getPrevious());
-
-        $nextEntry = $entry->getNext();
-        $this->assertEquals($observed, $nextEntry->getObserved());
-        $this->assertEquals(['state1'], $nextEntry->getEnabledState());
-        $this->assertEquals($entry, $nextEntry->getPrevious());
-        $this->assertNotNull($nextEntry->getNext());
-
-        $nextEntry2 = $nextEntry->getNext();
-        $this->assertEquals($observed, $nextEntry2->getObserved());
-        $this->assertEquals(['state2'], $nextEntry2->getEnabledState());
-        $this->assertEquals($nextEntry, $nextEntry2->getPrevious());
-        $this->assertNull($nextEntry2->getNext());
     }
 }
