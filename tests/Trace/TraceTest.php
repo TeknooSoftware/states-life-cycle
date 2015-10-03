@@ -38,12 +38,10 @@ use UniAlteri\States\LifeCycle\Trace\Trace;
 class TraceTest extends AbstractTraceTest
 {
     /**
-     * @param $observedInterface
-     *
      * @return Trace
      */
-    public function build($observedInterface)
+    public function build()
     {
-        return new Trace($observedInterface);
+        return new Trace();
     }
 }

@@ -22,7 +22,6 @@
 namespace UniAlteri\Tests\States\LifeCycle\Observing;
 
 use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
-use UniAlteri\States\LifeCycle\Trace\TraceInterface;
 
 /**
  * Class AbstractObservedTest.
@@ -152,9 +151,9 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
 
     public function testGetStatedClassName()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->getMock('UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme');
         $this->assertEquals(
-            get_class($instance),
+            'UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme',
             $this->build(
                 $instance,
                 $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'),

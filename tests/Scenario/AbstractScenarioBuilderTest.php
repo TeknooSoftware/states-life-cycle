@@ -159,13 +159,14 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testBuild()
     {
-        /*
-         * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject $observed
-         */
+        $builder = $this->build();
+        $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario->expects($this->once())->method('configure')->with($builder)->willReturnSelf();
+
         $this->assertInstanceOf(
             'UniAlteri\States\LifeCycle\Scenario\ScenarioInterface',
-            $this->build()->build(
-                $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface')
+            $builder->build(
+                $scenario
             )
         );
     }
