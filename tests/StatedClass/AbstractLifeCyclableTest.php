@@ -21,7 +21,6 @@
 
 namespace UniAlteri\Tests\States\LifeCycle\StatedClass;
 
-use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**

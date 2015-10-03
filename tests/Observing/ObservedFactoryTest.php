@@ -52,7 +52,7 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
      */
     public function testConstructInvalidObservedClass()
     {
-        $factory = new ObservedFactory(
+        new ObservedFactory(
             new \stdClass(),
             'UniAlteri\States\LifeCycle\Event\Event',
             'UniAlteri\States\LifeCycle\Trace\Trace'
@@ -64,7 +64,7 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
      */
     public function testConstructInvalidEventClass()
     {
-        $factory = new ObservedFactory(
+        new ObservedFactory(
             'UniAlteri\States\LifeCycle\Observing\Observed',
             new \stdClass(),
             'UniAlteri\States\LifeCycle\Trace\Trace'
@@ -76,7 +76,7 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
      */
     public function testConstructInvalidTraceClass()
     {
-        $factory = new ObservedFactory(
+        new ObservedFactory(
             'UniAlteri\States\LifeCycle\Observing\Observed',
             'UniAlteri\States\LifeCycle\Event\Event',
             new \stdClass()
@@ -88,7 +88,7 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
      */
     public function testConstructMissingObservedClass()
     {
-        $factory = new ObservedFactory(
+        new ObservedFactory(
             'NonExist',
             'UniAlteri\States\LifeCycle\Event\Event',
             'UniAlteri\States\LifeCycle\Trace\Trace'
@@ -100,7 +100,7 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
      */
     public function testConstructMissingTraceClass()
     {
-        $factory = new ObservedFactory(
+        new ObservedFactory(
             'UniAlteri\States\LifeCycle\Observing\Observed',
             'UniAlteri\States\LifeCycle\Event\Event',
             'NonExist'
@@ -112,7 +112,7 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
      */
     public function testConstructBadObservedClass()
     {
-        $factory = new ObservedFactory(
+        new ObservedFactory(
             '\DateTime',
             'UniAlteri\States\LifeCycle\Event\Event',
             'UniAlteri\States\LifeCycle\Trace\Trace'
@@ -124,7 +124,7 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
      */
     public function testConstructBadTraceClass()
     {
-        $factory = new ObservedFactory(
+        new ObservedFactory(
             'UniAlteri\States\LifeCycle\Observing\Observed',
             'UniAlteri\States\LifeCycle\Event\Event',
             '\DateTime'

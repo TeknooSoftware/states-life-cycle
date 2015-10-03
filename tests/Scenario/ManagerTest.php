@@ -23,7 +23,6 @@ namespace UniAlteri\Tests\States\LifeCycle\Scenario;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use UniAlteri\States\LifeCycle\Scenario\Manager;
-use UniAlteri\States\LifeCycle\Scenario\ScenarioInterface;
 
 /**
  * Class ManagerTest.

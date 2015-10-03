@@ -21,12 +21,9 @@
 
 namespace UniAlteri\Tests\States\LifeCycle\Observing;
 
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use UniAlteri\States\LifeCycle\Event\EventInterface;
 use UniAlteri\States\LifeCycle\Observing\ObservedFactoryInterface;
-use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
 use UniAlteri\States\LifeCycle\Observing\Observer;
-use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
 
 /**
  * Class ObserverTest.

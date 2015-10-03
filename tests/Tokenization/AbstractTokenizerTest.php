@@ -21,7 +21,6 @@
 
 namespace UniAlteri\Tests\States\LifeCycle\Tokenization;
 
-use UniAlteri\States\LifeCycle\Event\EventInterface;
 use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
 use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 
