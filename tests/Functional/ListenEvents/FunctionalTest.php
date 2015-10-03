@@ -31,7 +31,7 @@ use UniAlteri\States\LifeCycle\Tokenization\Tokenizer;
 use UniAlteri\Tests\States\LifeCycle\Functional\ListenEvents\ClassA\ClassA;
 
 /**
- * Class FunctionalTest
+ * Class FunctionalTest.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
@@ -156,7 +156,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             'unialteri_tests_states_lifecycle_functional_listenevents_classa',
             function (EventInterface $event) use (&$counter, $instanceA) {
                 $this->assertEquals($instanceA, $event->getObject());
-                $counter++;
+                ++$counter;
             }
         );
 
@@ -179,7 +179,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             'unialteri_tests_states_lifecycle_functional_listenevents_classa:state2',
             function (EventInterface $event) use (&$counter, $instanceA) {
                 $this->assertEquals($instanceA, $event->getObject());
-                $counter++;
+                ++$counter;
             }
         );
 
@@ -202,7 +202,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             'unialteri_tests_states_lifecycle_functional_listenevents_classa:+state3',
             function (EventInterface $event) use (&$counter, $instanceA) {
                 $this->assertEquals($instanceA, $event->getObject());
-                $counter++;
+                ++$counter;
             }
         );
 
@@ -225,7 +225,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             'unialteri_tests_states_lifecycle_functional_listenevents_classa:-state2',
             function (EventInterface $event) use (&$counter, $instanceA) {
                 $this->assertEquals($instanceA, $event->getObject());
-                $counter++;
+                ++$counter;
             }
         );
 

@@ -25,7 +25,7 @@ use UniAlteri\States\State\AbstractState;
 
 /**
  * State State3
- * State for the stated class ClassA
+ * State for the stated class ClassA.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

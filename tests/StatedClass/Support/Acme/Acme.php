@@ -26,7 +26,7 @@ use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableTrait;
 use UniAlteri\States\Proxy\Integrated;
 
 /**
- * Class Acme
+ * Class Acme.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

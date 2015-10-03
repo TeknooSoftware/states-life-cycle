@@ -26,7 +26,7 @@ use UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\
 
 /**
  * State State2
- * State for the stated class ClassA
+ * State for the stated class ClassA.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

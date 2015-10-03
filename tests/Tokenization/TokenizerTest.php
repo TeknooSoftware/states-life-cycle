@@ -89,7 +89,7 @@ class TokenizerTest extends AbstractTokenizerTest
 
     public function testGetTokenValue()
     {
-        /**
+        /*
          * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $instance = $this->getMock('UniAlteri\States\LifeCycle\Event\EventInterface');
@@ -106,7 +106,7 @@ class TokenizerTest extends AbstractTokenizerTest
                 'unialteri_tests_states_lifecycle_statedclass_support_acme:state3',
                 'unialteri_tests_states_lifecycle_statedclass_support_acme:+state1',
                 'unialteri_tests_states_lifecycle_statedclass_support_acme:+state2',
-                'unialteri_tests_states_lifecycle_statedclass_support_acme:-state4'
+                'unialteri_tests_states_lifecycle_statedclass_support_acme:-state4',
             ],
             $this->build()->getToken($instance)
         );

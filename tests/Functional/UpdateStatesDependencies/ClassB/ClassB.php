@@ -27,7 +27,7 @@ use UniAlteri\States\Proxy;
 
 /**
  * Proxy ClassB
- * Proxy class of the stated class ClassB
+ * Proxy class of the stated class ClassB.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

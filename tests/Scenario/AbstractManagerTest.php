@@ -52,7 +52,7 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetSetDispatcher()
     {
-        /**
+        /*
          * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $instance = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
@@ -71,7 +71,7 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testRegisterScenario()
     {
-        /**
+        /*
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');
@@ -89,7 +89,7 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testUnregisterScenario()
     {
-        /**
+        /*
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');

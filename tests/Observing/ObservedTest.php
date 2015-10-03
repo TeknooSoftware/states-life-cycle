@@ -23,7 +23,6 @@ namespace UniAlteri\Tests\States\LifeCycle\Observing;
 
 use UniAlteri\States\LifeCycle\Observing\Observed;
 use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
-use UniAlteri\States\LifeCycle\Trace\TraceInterface;
 use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 
 /**
@@ -111,9 +110,9 @@ class ObservedTest extends AbstractObservedTest
 
         $trace->expects($this->exactly(3))->method('addEntry')
             ->withConsecutive(
-                [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }),['state1', 'state3']],
-                [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }),['state1']],
-                [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }),['state2']]
+                [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }), ['state1', 'state3']],
+                [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }), ['state1']],
+                [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }), ['state2']]
             );
 
         $observer->expects($this->exactly(3))->method('dispatchNotification')->with($observed)->willReturnSelf();

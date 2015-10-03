@@ -66,7 +66,7 @@ class ManagerTest extends AbstractManagerTest
 
     public function testRegisterScenarioMultiple()
     {
-        /**
+        /*
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');
@@ -87,7 +87,7 @@ class ManagerTest extends AbstractManagerTest
 
     public function testUnregisterScenarioMultiple()
     {
-        /**
+        /*
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');

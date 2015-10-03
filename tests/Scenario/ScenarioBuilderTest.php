@@ -85,7 +85,7 @@ class ScenarioBuilderTest extends AbstractScenarioBuilderTest
 
     public function testTowardObservedValue()
     {
-        /**
+        /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');

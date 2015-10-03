@@ -73,13 +73,13 @@ class ObserverTest extends AbstractObserverTest
          * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject $instance
          */
         $event = $this->getMock('UniAlteri\States\LifeCycle\Event\Event', [], [], '', false);
-        /**
+        /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $instance = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
         $instance->expects($this->any())->method('getLastEvent')->willReturn($event);
         $service = $this->build();
-        /**
+        /*
          * @var TokenizerInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $tokenizer = $this->getMock('UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface');
@@ -88,7 +88,7 @@ class ObserverTest extends AbstractObserverTest
             ->with($event)
             ->willReturn(['event_name1', 'event_name1:state1', 'event_name1:state2', 'event_name1:+state1', 'event_name1:-state3']);
 
-        /**
+        /*
          * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');

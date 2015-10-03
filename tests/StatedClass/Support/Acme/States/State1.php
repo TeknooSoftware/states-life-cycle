@@ -24,7 +24,7 @@ namespace UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\States;
 use UniAlteri\States\State\AbstractState;
 
 /**
- * Class State1
+ * Class State1.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

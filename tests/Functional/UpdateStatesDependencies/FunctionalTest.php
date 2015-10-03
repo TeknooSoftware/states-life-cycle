@@ -32,7 +32,7 @@ use UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\
 use UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\ClassB;
 
 /**
- * Class FunctionalTest
+ * Class FunctionalTest.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

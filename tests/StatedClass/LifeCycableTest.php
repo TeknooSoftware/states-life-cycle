@@ -49,7 +49,7 @@ class LifeCycableTest extends AbstractLifeCyclableTest
 
     public function testNotifyObservedFilled()
     {
-        /**
+        /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');

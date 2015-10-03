@@ -24,7 +24,7 @@ namespace UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme;
 use UniAlteri\States\Factory\Integrated;
 
 /**
- * Class Factory
+ * Class Factory.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

@@ -20,6 +20,7 @@
  */
 
 namespace UniAlteri\Tests\States\LifeCycle\Observing;
+
 use UniAlteri\States\LifeCycle\Observing\ObservedFactoryInterface;
 
 /**
