@@ -70,6 +70,10 @@ class Assertion extends AbstractAssertion implements AssertionInterface
                     $asserted |= $exceptedValue($this->{$property});
                 }
             }
+
+            if (!$asserted) {
+                break;
+            }
         }
 
         return $asserted;
