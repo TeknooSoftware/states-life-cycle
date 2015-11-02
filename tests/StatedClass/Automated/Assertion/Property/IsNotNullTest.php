@@ -21,6 +21,7 @@
  */
 
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion\Property;
+use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotNull;
 
 /**
  * Class IsNotNullTest.
@@ -37,5 +38,21 @@ namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion\Property
  */
 class IsNotNullTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @return IsNotNull
+     */
+    public function buildInstance()
+    {
+        return new IsNotNull();
+    }
 
+    public function testNotNullProperty()
+    {
+        $this->assertTrue($this->buildInstance()(''));
+    }
+
+    public function testNullProperty()
+    {
+        $this->assertFalse($this->buildInstance()(null));
+    }
 }
