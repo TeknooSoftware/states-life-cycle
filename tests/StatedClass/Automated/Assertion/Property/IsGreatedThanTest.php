@@ -20,12 +20,13 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion;
-
-use Teknoo\States\Proxy\ProxyInterface;
+namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion\Property;
+use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterThan;
 
 /**
- * class Callback
+ * Class IsGreaterThanTest.
+ *
+ * @covers Teknoo\States\LifeCycle\StatedClass\LifeCyclableTrait
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -35,31 +36,28 @@ use Teknoo\States\Proxy\ProxyInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
-class Callback extends AbstractAssertion implements AssertionInterface
+class IsGreaterThanTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var callable
+     * @return IsGreaterThan
      */
-    private $callback;
-
-    /**
-     * @param callable $callback
-     * @return self
-     */
-    public function call(callable $callback): Callback
+    public function buildInstance()
     {
-        $this->callback = $callback;
-
-        return $this;
+        return new IsGreaterThan(10);
     }
 
-    /**
-     * @param ProxyInterface $proxy
-     * @return bool
-     */
-    public function isValid(ProxyInterface $proxy): \bool
+    public function testGreatProperty()
     {
-        $callback = $this->callback;
-        return $callback($proxy);
+        $this->assertTrue($this->buildInstance()(11));
+    }
+
+    public function testEqualProperty()
+    {
+        $this->assertFalse($this->buildInstance()(10));
+    }
+
+    public function testLessProperty()
+    {
+        $this->assertFalse($this->buildInstance()(9));
     }
 }

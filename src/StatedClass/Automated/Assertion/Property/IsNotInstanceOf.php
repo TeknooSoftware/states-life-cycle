@@ -20,12 +20,10 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion;
-
-use Teknoo\States\Proxy\ProxyInterface;
+namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property;
 
 /**
- * class Callback
+ * class IsNotInstanceOf
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -35,31 +33,28 @@ use Teknoo\States\Proxy\ProxyInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
-class Callback extends AbstractAssertion implements AssertionInterface
+class IsNotInstanceOf
 {
     /**
-     * @var callable
+     * @var string
      */
-    private $callback;
+    protected $exceptedClassName;
 
     /**
-     * @param callable $callback
-     * @return self
+     * IsNotInstanceOf constructor.
+     * @param string $exceptedClassName
      */
-    public function call(callable $callback): Callback
+    public function __construct(\string $exceptedClassName)
     {
-        $this->callback = $callback;
-
-        return $this;
+        $this->exceptedClassName = $exceptedClassName;
     }
 
     /**
-     * @param ProxyInterface $proxy
+     * @param mixed &$property
      * @return bool
      */
-    public function isValid(ProxyInterface $proxy): \bool
+    public function __invoke($property): \bool
     {
-        $callback = $this->callback;
-        return $callback($proxy);
+        return !($property instanceof $this->exceptedClassName);
     }
 }

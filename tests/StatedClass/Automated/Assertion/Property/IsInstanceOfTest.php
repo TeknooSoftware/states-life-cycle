@@ -20,12 +20,13 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion;
-
-use Teknoo\States\Proxy\ProxyInterface;
+namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion\Property;
+use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsInstanceOf;
 
 /**
- * class Callback
+ * Class IsInstanceOfTest.
+ *
+ * @covers Teknoo\States\LifeCycle\StatedClass\LifeCyclableTrait
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -35,31 +36,23 @@ use Teknoo\States\Proxy\ProxyInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
-class Callback extends AbstractAssertion implements AssertionInterface
+class IsInstanceOfTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var callable
+     * @return IsInstanceOf
      */
-    private $callback;
-
-    /**
-     * @param callable $callback
-     * @return self
-     */
-    public function call(callable $callback): Callback
+    public function buildInstance()
     {
-        $this->callback = $callback;
-
-        return $this;
+        return new IsInstanceOf('\DateTime');
     }
 
-    /**
-     * @param ProxyInterface $proxy
-     * @return bool
-     */
-    public function isValid(ProxyInterface $proxy): \bool
+    public function testInstanceOfProperty()
     {
-        $callback = $this->callback;
-        return $callback($proxy);
+        $this->assertTrue($this->buildInstance()(new \DateTime()));
+    }
+
+    public function testNotInstanceOfProperty()
+    {
+        $this->assertFalse($this->buildInstance()(new \stdClass()));
     }
 }
