@@ -21,3 +21,53 @@
  */
 
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion;
+
+use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Assertion;
+
+/**
+ * Class AssertionTest
+ *
+ * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Assertion
+ *
+ * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
+ * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
+ *
+ * @link        http://teknoo.software/states Project website
+ *
+ * @license     http://teknoo.software/license/mit         MIT License
+ * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ */
+class AssertionTest extends AbstractAssertionTest
+{
+    /**
+     * @return Assertion
+     */
+    public function buildInstance()
+    {
+        return new Assertion(['state1', 'state2']);
+    }
+
+    public function testWithClosure()
+    {
+        $this->assertInstanceOf(
+            'Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Assertion',
+            $this->buildInstance()->with('fooBar', function () {})
+        );
+    }
+
+    public function testWithValue()
+    {
+        $this->assertInstanceOf(
+            'Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Assertion',
+            $this->buildInstance()->with('fooBar', 42)
+        );
+    }
+
+    /**
+     * @expectedException \TypeError
+     */
+    public function testWithBadPropertyName()
+    {
+        $this->buildInstance()->with(new \stdClass(), 42);
+    }
+}

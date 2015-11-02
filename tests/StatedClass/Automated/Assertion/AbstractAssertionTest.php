@@ -21,3 +21,31 @@
  */
 
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion;
+
+use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion;
+
+/**
+ * Class AbstractAssertionTest
+ *
+ * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion
+ *
+ * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
+ * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
+ *
+ * @link        http://teknoo.software/states Project website
+ *
+ * @license     http://teknoo.software/license/mit         MIT License
+ * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ */
+abstract class AbstractAssertionTest extends \PHPUnit_Framework_TestCase
+{
+    /**
+     * @return AbstractAssertion
+     */
+    abstract public function buildInstance();
+
+    public function testGetStatesList()
+    {
+        $this->assertEquals(['state1', 'state2'], $this->buildInstance()->getStatesList());
+    }
+}

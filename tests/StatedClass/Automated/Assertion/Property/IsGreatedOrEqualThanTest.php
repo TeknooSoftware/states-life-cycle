@@ -27,7 +27,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterOr
 /**
  * Class IsGreaterOrEqualThanTest.
  *
- * @covers Teknoo\States\LifeCycle\StatedClass\LifeCyclableTrait
+ * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterOrEqualThan
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
