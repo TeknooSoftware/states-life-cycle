@@ -14,15 +14,15 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\Trace;
+namespace Teknoo\Tests\States\LifeCycle\Trace;
 
-use UniAlteri\States\LifeCycle\Trace\EntryInterface;
+use Teknoo\States\LifeCycle\Trace\EntryInterface;
 
 /**
  * Class AbstractEntityTest.
@@ -30,9 +30,9 @@ use UniAlteri\States\LifeCycle\Trace\EntryInterface;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 abstract class AbstractEntryTest extends \PHPUnit_Framework_TestCase
@@ -59,56 +59,56 @@ abstract class AbstractEntryTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructBadState()
     {
-        $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), new \stdClass());
+        $this->build($this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface'), new \stdClass());
     }
 
     public function testConstruct()
     {
-        $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), []);
+        $this->build($this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface'), []);
     }
 
     public function testGetObserved()
     {
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
-            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->getObserved()
+            'Teknoo\States\LifeCycle\Observing\ObservedInterface',
+            $this->build($this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface'), [])->getObserved()
         );
     }
 
     public function testGetEnabledState()
     {
         $this->assertTrue(
-            is_array($this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->getEnabledState())
+            is_array($this->build($this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface'), [])->getEnabledState())
         );
     }
 
     public function testGetPreviousNull()
     {
         $this->assertNull(
-            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->getPrevious()
+            $this->build($this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface'), [])->getPrevious()
         );
     }
 
     public function testGetNextNull()
     {
         $this->assertNull(
-            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->getNext()
+            $this->build($this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface'), [])->getNext()
         );
     }
 
     public function testGetPrevious()
     {
-        $previous = $this->getMock('UniAlteri\States\LifeCycle\Trace\EntryInterface');
+        $previous = $this->getMock('Teknoo\States\LifeCycle\Trace\EntryInterface');
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Trace\EntryInterface',
-            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [], $previous)->getPrevious()
+            'Teknoo\States\LifeCycle\Trace\EntryInterface',
+            $this->build($this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface'), [], $previous)->getPrevious()
         );
     }
 
     public function testSetNext()
     {
-        $next = $this->getMock('UniAlteri\States\LifeCycle\Trace\EntryInterface');
-        $service = $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), []);
+        $next = $this->getMock('Teknoo\States\LifeCycle\Trace\EntryInterface');
+        $service = $this->build($this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface'), []);
         $this->assertEquals(
             $service,
             $service->setNext($next)
@@ -117,10 +117,10 @@ abstract class AbstractEntryTest extends \PHPUnit_Framework_TestCase
 
     public function testGetNext()
     {
-        $next = $this->getMock('UniAlteri\States\LifeCycle\Trace\EntryInterface');
+        $next = $this->getMock('Teknoo\States\LifeCycle\Trace\EntryInterface');
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Trace\EntryInterface',
-            $this->build($this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface'), [])->setNext($next)->getNext()
+            'Teknoo\States\LifeCycle\Trace\EntryInterface',
+            $this->build($this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface'), [])->setNext($next)->getNext()
         );
     }
 }

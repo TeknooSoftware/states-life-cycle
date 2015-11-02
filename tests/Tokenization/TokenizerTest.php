@@ -14,28 +14,28 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\Tokenization;
+namespace Teknoo\Tests\States\LifeCycle\Tokenization;
 
-use UniAlteri\States\LifeCycle\Tokenization\Tokenizer;
-use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
+use Teknoo\States\LifeCycle\Tokenization\Tokenizer;
+use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 
 /**
  * Class TokenizerTest.
  *
- * @covers UniAlteri\States\LifeCycle\Tokenization\Tokenizer
+ * @covers Teknoo\States\LifeCycle\Tokenization\Tokenizer
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class TokenizerTest extends AbstractTokenizerTest
@@ -59,16 +59,16 @@ class TokenizerTest extends AbstractTokenizerTest
     public function testGetStatedClassNameToken()
     {
         $this->assertEquals(
-            'unialteri_tests_states_lifecycle_statedclass_support_acme',
-            $this->build()->getStatedClassNameToken('UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme')
+            'teknoo_tests_states_lifecycle_statedclass_support_acme',
+            $this->build()->getStatedClassNameToken('Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme')
         );
     }
 
     public function testGetStatedClassNameTokenFull()
     {
         $this->assertEquals(
-            'unialteri_tests_states_lifecycle_statedclass_support_acme',
-            $this->build()->getStatedClassNameToken('UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme', true)
+            'teknoo_tests_states_lifecycle_statedclass_support_acme',
+            $this->build()->getStatedClassNameToken('Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme', true)
         );
     }
 
@@ -83,7 +83,7 @@ class TokenizerTest extends AbstractTokenizerTest
     public function testGetStatedClassInstanceToken()
     {
         $this->assertEquals(
-            'unialteri_tests_states_lifecycle_statedclass_support_acme',
+            'teknoo_tests_states_lifecycle_statedclass_support_acme',
             $this->build()->getStatedClassInstanceToken(new Acme())
         );
     }
@@ -93,7 +93,7 @@ class TokenizerTest extends AbstractTokenizerTest
         /*
          * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\Event\EventInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\Event\EventInterface');
         $instance->expects($this->any())->method('getObject')->willReturn(new Acme());
         $instance->expects($this->any())->method('getEnabledStates')->willReturn(['state1', 'state2', 'state3']);
         $instance->expects($this->any())->method('getIncomingStates')->willReturn(['state1', 'state2']);
@@ -101,13 +101,13 @@ class TokenizerTest extends AbstractTokenizerTest
 
         $this->assertEquals(
             [
-                'unialteri_tests_states_lifecycle_statedclass_support_acme',
-                'unialteri_tests_states_lifecycle_statedclass_support_acme:state1',
-                'unialteri_tests_states_lifecycle_statedclass_support_acme:state2',
-                'unialteri_tests_states_lifecycle_statedclass_support_acme:state3',
-                'unialteri_tests_states_lifecycle_statedclass_support_acme:+state1',
-                'unialteri_tests_states_lifecycle_statedclass_support_acme:+state2',
-                'unialteri_tests_states_lifecycle_statedclass_support_acme:-state4',
+                'teknoo_tests_states_lifecycle_statedclass_support_acme',
+                'teknoo_tests_states_lifecycle_statedclass_support_acme:state1',
+                'teknoo_tests_states_lifecycle_statedclass_support_acme:state2',
+                'teknoo_tests_states_lifecycle_statedclass_support_acme:state3',
+                'teknoo_tests_states_lifecycle_statedclass_support_acme:+state1',
+                'teknoo_tests_states_lifecycle_statedclass_support_acme:+state2',
+                'teknoo_tests_states_lifecycle_statedclass_support_acme:-state4',
             ],
             $this->build()->getToken($instance)
         );

@@ -14,28 +14,28 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\Scenario;
+namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use UniAlteri\States\LifeCycle\Scenario\Manager;
+use Teknoo\States\LifeCycle\Scenario\Manager;
 
 /**
  * Class ManagerTest.
  *
- * @covers UniAlteri\States\LifeCycle\Scenario\Manager
+ * @covers Teknoo\States\LifeCycle\Scenario\Manager
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class ManagerTest extends AbstractManagerTest
@@ -70,7 +70,7 @@ class ManagerTest extends AbstractManagerTest
         /*
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario = $this->getMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
         $scenario->expects($this->any())->method('getEventsNamesList')->willReturn(['event1', 'event2', 'event3']);
 
         $this->getEventDispatcherInterfaceMock()
@@ -91,7 +91,7 @@ class ManagerTest extends AbstractManagerTest
         /*
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario = $this->getMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
         $scenario->expects($this->any())->method('getEventsNamesList')->willReturn(['event1', 'event2', 'event3']);
         $service = $this->build();
 

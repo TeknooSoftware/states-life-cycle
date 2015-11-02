@@ -14,29 +14,29 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\Observing;
+namespace Teknoo\Tests\States\LifeCycle\Observing;
 
-use UniAlteri\States\LifeCycle\Event\EventInterface;
-use UniAlteri\States\LifeCycle\Observing\ObservedFactoryInterface;
-use UniAlteri\States\LifeCycle\Observing\Observer;
+use Teknoo\States\LifeCycle\Event\EventInterface;
+use Teknoo\States\LifeCycle\Observing\ObservedFactoryInterface;
+use Teknoo\States\LifeCycle\Observing\Observer;
 
 /**
  * Class ObserverTest.
  *
- * @covers UniAlteri\States\LifeCycle\Observing\Observer
+ * @covers Teknoo\States\LifeCycle\Observing\Observer
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class ObserverTest extends AbstractObserverTest
@@ -52,7 +52,7 @@ class ObserverTest extends AbstractObserverTest
     protected function getObservedFactoryInterfaceMock()
     {
         if (!$this->observedFactory instanceof ObservedFactoryInterface) {
-            $this->observedFactory = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedFactoryInterface');
+            $this->observedFactory = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedFactoryInterface');
         }
 
         return $this->observedFactory;
@@ -71,17 +71,17 @@ class ObserverTest extends AbstractObserverTest
         /***
          * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject $instance
          */
-        $event = $this->getMock('UniAlteri\States\LifeCycle\Event\Event', [], [], '', false);
+        $event = $this->getMock('Teknoo\States\LifeCycle\Event\Event', [], [], '', false);
         /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $instance->expects($this->any())->method('getLastEvent')->willReturn($event);
         $service = $this->build();
         /*
          * @var TokenizerInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $tokenizer = $this->getMock('UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface');
+        $tokenizer = $this->getMock('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface');
         $tokenizer->expects($this->once())
             ->method('getToken')
             ->with($event)

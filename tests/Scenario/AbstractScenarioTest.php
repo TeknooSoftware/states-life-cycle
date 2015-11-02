@@ -14,15 +14,15 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\Scenario;
+namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
-use UniAlteri\States\LifeCycle\Scenario\ScenarioInterface;
+use Teknoo\States\LifeCycle\Scenario\ScenarioInterface;
 
 /**
  * Class AbstractScenarioTest.
@@ -30,9 +30,9 @@ use UniAlteri\States\LifeCycle\Scenario\ScenarioInterface;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
@@ -70,7 +70,7 @@ abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
     public function testGetNeededStatedObject()
     {
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
+            'Teknoo\States\LifeCycle\Observing\ObservedInterface',
             $this->build()->getNeededStatedObject()
         );
     }
@@ -85,7 +85,7 @@ abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
 
     public function testIsAllowedToRun()
     {
-        $eventMock = $this->getMock('UniAlteri\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->getMock('Teknoo\States\LifeCycle\Event\EventInterface');
         $this->assertTrue(is_bool($this->build()->isAllowedToRun($eventMock)));
     }
 
@@ -99,7 +99,7 @@ abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
 
     public function testInvoke()
     {
-        $eventMock = $this->getMock('UniAlteri\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->getMock('Teknoo\States\LifeCycle\Event\EventInterface');
         $this->build()->__invoke($eventMock);
     }
 }

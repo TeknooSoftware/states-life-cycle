@@ -14,16 +14,16 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\Tokenization;
+namespace Teknoo\Tests\States\LifeCycle\Tokenization;
 
-use UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface;
-use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
+use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
+use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 
 /**
  * Class AbstractTokenizerTest.
@@ -31,9 +31,9 @@ use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 abstract class AbstractTokenizerTest extends \PHPUnit_Framework_TestCase
@@ -56,7 +56,7 @@ abstract class AbstractTokenizerTest extends \PHPUnit_Framework_TestCase
         /*
          * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\Event\EventInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\Event\EventInterface');
         $instance->expects($this->any())->method('getObject')->willReturn(new Acme());
         $this->assertTrue(is_array($this->build()->getToken($instance)));
     }

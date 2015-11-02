@@ -14,17 +14,17 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme;
+namespace Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme;
 
-use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface;
-use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableTrait;
-use UniAlteri\States\Proxy\Integrated;
+use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
+use Teknoo\States\LifeCycle\StatedClass\LifeCyclableTrait;
+use Teknoo\States\Proxy\Integrated;
 
 /**
  * Class Acme.
@@ -32,9 +32,9 @@ use UniAlteri\States\Proxy\Integrated;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class Acme extends Integrated implements LifeCyclableInterface

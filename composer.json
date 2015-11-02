@@ -1,9 +1,9 @@
 {
-    "name": "unialteri/states-life-cycle",
+    "name": "teknoo/states-life-cycle",
     "type": "library",
-    "description": "Component to extend the behavior of unialteri/states and provide a service to manage lifes cycles of stated class instance",
+    "description": "Component to extend the behavior of teknoo/states and provide a service to manage lifes cycles of stated class instance",
     "keywords": ["states","class","state pattern","pattern","behavioral software design pattern", "life cycle"],
-    "homepage": "http://teknoo.it/states",
+    "homepage": "http://teknoo.software/states",
     "license": ["MIT"],
     "authors": [
         {
@@ -18,7 +18,7 @@
     },
     "require":{
         "php": ">5.6.0",
-        "unialteri/states": "~2.0-beta10",
+        "teknoo/states": "~2.0-beta10",
         "symfony/event-dispatcher":"~2.7",
         "symfony/yaml": "~2.7",
         "knplabs/gaufrette": "~0.1"
@@ -28,8 +28,8 @@
     },
     "autoload": {
         "psr-4": {
-            "UniAlteri\\States\\LifeCycle\\": ["src/"],
-            "UniAlteri\\Tests\\States\\LifeCycle\\": ["tests/"]
+            "Teknoo\\States\\LifeCycle\\": ["src/"],
+            "Teknoo\\Tests\\States\\LifeCycle\\": ["tests/"]
         }
     },
     "minimum-stability": "dev",

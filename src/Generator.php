@@ -14,21 +14,21 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\States\LifeCycle;
+namespace Teknoo\States\LifeCycle;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use UniAlteri\States\LifeCycle\Observing\ObservedFactory;
-use UniAlteri\States\LifeCycle\Observing\Observer;
-use UniAlteri\States\LifeCycle\Observing\ObserverInterface;
-use UniAlteri\States\LifeCycle\Scenario\Manager;
-use UniAlteri\States\LifeCycle\Scenario\ManagerInterface;
+use Teknoo\States\LifeCycle\Observing\ObservedFactory;
+use Teknoo\States\LifeCycle\Observing\Observer;
+use Teknoo\States\LifeCycle\Observing\ObserverInterface;
+use Teknoo\States\LifeCycle\Scenario\Manager;
+use Teknoo\States\LifeCycle\Scenario\ManagerInterface;
 
 /**
  * Class Generator
@@ -36,9 +36,9 @@ use UniAlteri\States\LifeCycle\Scenario\ManagerInterface;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class Generator
@@ -111,9 +111,9 @@ class Generator
     {
         if (!$this->observer instanceof ObserverInterface) {
             $observedFactory = new ObservedFactory(
-                'UniAlteri\States\LifeCycle\Observing\Observed',
-                'UniAlteri\States\LifeCycle\Event\Event',
-                'UniAlteri\States\LifeCycle\Trace\Trace'
+                'Teknoo\States\LifeCycle\Observing\Observed',
+                'Teknoo\States\LifeCycle\Event\Event',
+                'Teknoo\States\LifeCycle\Trace\Trace'
             );
 
             $this->observer = new Observer($observedFactory);

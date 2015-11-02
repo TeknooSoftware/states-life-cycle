@@ -14,28 +14,28 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\Trace;
+namespace Teknoo\Tests\States\LifeCycle\Trace;
 
-use UniAlteri\States\LifeCycle\Trace\Entry;
-use UniAlteri\States\LifeCycle\Trace\EntryInterface;
+use Teknoo\States\LifeCycle\Trace\Entry;
+use Teknoo\States\LifeCycle\Trace\EntryInterface;
 
 /**
  * Class EntityTest.
  *
- * @covers UniAlteri\States\LifeCycle\Trace\Entry
+ * @covers Teknoo\States\LifeCycle\Trace\Entry
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class EntryTest extends AbstractEntryTest

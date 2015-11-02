@@ -14,28 +14,28 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\StatedClass;
+namespace Teknoo\Tests\States\LifeCycle\StatedClass;
 
-use UniAlteri\States\LifeCycle\StatedClass\LifeCyclableTrait;
-use UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
+use Teknoo\States\LifeCycle\StatedClass\LifeCyclableTrait;
+use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 
 /**
  * Class LifeCycableTest.
  *
- * @covers UniAlteri\States\LifeCycle\StatedClass\LifeCyclableTrait
+ * @covers Teknoo\States\LifeCycle\StatedClass\LifeCyclableTrait
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class LifeCycableTest extends AbstractLifeCyclableTest
@@ -53,7 +53,7 @@ class LifeCycableTest extends AbstractLifeCyclableTest
         /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $observed->expects($this->once())->method('observeUpdate');
 
         $instance = $this->build();

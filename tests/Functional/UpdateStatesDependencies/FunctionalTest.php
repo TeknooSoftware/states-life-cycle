@@ -14,23 +14,23 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies;
+namespace Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use UniAlteri\States\LifeCycle\Observing\ObservedFactory;
-use UniAlteri\States\LifeCycle\Observing\Observer;
-use UniAlteri\States\LifeCycle\Scenario\Manager;
-use UniAlteri\States\LifeCycle\Scenario\Scenario;
-use UniAlteri\States\LifeCycle\Scenario\ScenarioBuilder;
-use UniAlteri\States\LifeCycle\Tokenization\Tokenizer;
-use UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\ClassA;
-use UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\ClassB;
+use Teknoo\States\LifeCycle\Observing\ObservedFactory;
+use Teknoo\States\LifeCycle\Observing\Observer;
+use Teknoo\States\LifeCycle\Scenario\Manager;
+use Teknoo\States\LifeCycle\Scenario\Scenario;
+use Teknoo\States\LifeCycle\Scenario\ScenarioBuilder;
+use Teknoo\States\LifeCycle\Tokenization\Tokenizer;
+use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\ClassA;
+use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\ClassB;
 
 /**
  * Class FunctionalTest.
@@ -38,9 +38,9 @@ use UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  * @coversNothing
  */
@@ -119,9 +119,9 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     {
         if (!$this->observer instanceof Observer) {
             $observerFactory = new ObservedFactory(
-                'UniAlteri\States\LifeCycle\Observing\Observed',
-                'UniAlteri\States\LifeCycle\Event\Event',
-                'UniAlteri\States\LifeCycle\Trace\Trace'
+                'Teknoo\States\LifeCycle\Observing\Observed',
+                'Teknoo\States\LifeCycle\Event\Event',
+                'Teknoo\States\LifeCycle\Trace\Trace'
             );
 
             $this->observer = new Observer($observerFactory);
@@ -170,7 +170,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     protected function prepareScenarioA()
     {
         $scenarioBuilder = $this->createNewScenarioBuilder()
-            ->towardStatedClass('UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA')
+            ->towardStatedClass('Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA')
             ->onIncomingState('State2')
             ->run(function () {
                 $this->getInstanceB()->switchToState2();
@@ -187,7 +187,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     protected function prepareScenarioB()
     {
         $scenarioBuilder = $this->createNewScenarioBuilder()
-            ->towardStatedClass('UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA')
+            ->towardStatedClass('Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA')
             ->onIncomingState('State3')
             ->ifInState('State2')
             ->run(function () {
@@ -205,7 +205,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     protected function prepareScenarioC()
     {
         $scenarioBuilder = $this->createNewScenarioBuilder()
-            ->towardStatedClass('UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA')
+            ->towardStatedClass('Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA')
             ->onIncomingState('State3')
             ->onOutgoingState('State2')
             ->ifNotInState('StateDefault')
@@ -224,7 +224,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     protected function prepareScenarioD()
     {
         $scenarioBuilder = $this->createNewScenarioBuilder()
-            ->towardStatedClass('UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassE')
+            ->towardStatedClass('Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassE')
             ->onIncomingState('State3')
             ->onOutgoingState('State2')
             ->ifNotInState('StateDefault')

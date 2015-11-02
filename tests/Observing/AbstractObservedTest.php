@@ -14,15 +14,15 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\Observing;
+namespace Teknoo\Tests\States\LifeCycle\Observing;
 
-use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
+use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 
 /**
  * Class AbstractObservedTest.
@@ -30,9 +30,9 @@ use UniAlteri\States\LifeCycle\Observing\ObservedInterface;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
@@ -54,9 +54,9 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
     {
         $this->build(
             new \stdClass(),
-            $this->getMock('UniAlteri\Tests\States\LifeCycle\Observing\ObserverInterface'),
-            $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
-            'UniAlteri\States\LifeCycle\Event\Event'
+            $this->getMock('Teknoo\Tests\States\LifeCycle\Observing\ObserverInterface'),
+            $this->getMock('Teknoo\States\LifeCycle\Trace\TraceInterface'),
+            'Teknoo\States\LifeCycle\Event\Event'
         );
     }
 
@@ -65,12 +65,12 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructorBadObserver()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->build(
             $instance,
             new \stdClass(),
-            $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
-            'UniAlteri\States\LifeCycle\Event\Event'
+            $this->getMock('Teknoo\States\LifeCycle\Trace\TraceInterface'),
+            'Teknoo\States\LifeCycle\Event\Event'
         );
     }
 
@@ -79,14 +79,14 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructorBadTrace()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
+            'Teknoo\States\LifeCycle\Observing\ObservedInterface',
             $this->build(
                 $instance,
-                $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'),
+                $this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'),
                 new \stdClass(),
-                'UniAlteri\States\LifeCycle\Event\Event'
+                'Teknoo\States\LifeCycle\Event\Event'
             )
         );
     }
@@ -96,101 +96,101 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructorBadEvent()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
+            'Teknoo\States\LifeCycle\Observing\ObservedInterface',
             $this->build(
                 $instance,
-                $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'),
-                $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
-                'UniAlteri\States\LifeCycle\Trace\Entry'
+                $this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'),
+                $this->getMock('Teknoo\States\LifeCycle\Trace\TraceInterface'),
+                'Teknoo\States\LifeCycle\Trace\Entry'
             )
         );
     }
 
     public function testConstructor()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
+            'Teknoo\States\LifeCycle\Observing\ObservedInterface',
             $this->build(
                 $instance,
-                $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'),
-                $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
-                'UniAlteri\States\LifeCycle\Event\Event'
+                $this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'),
+                $this->getMock('Teknoo\States\LifeCycle\Trace\TraceInterface'),
+                'Teknoo\States\LifeCycle\Event\Event'
             )
         );
     }
 
     public function testGetObject()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->assertEquals(
             $instance,
             $this->build(
                 $instance,
-                $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'),
-                $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
-                'UniAlteri\States\LifeCycle\Event\Event'
+                $this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'),
+                $this->getMock('Teknoo\States\LifeCycle\Trace\TraceInterface'),
+                'Teknoo\States\LifeCycle\Event\Event'
             )->getObject()
         );
     }
 
     public function testGetObserver()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
-        $observer = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $observer = $this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface');
         $this->assertEquals(
             $observer,
             $this->build(
                 $instance,
                 $observer,
-                $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
-                'UniAlteri\States\LifeCycle\Event\Event'
+                $this->getMock('Teknoo\States\LifeCycle\Trace\TraceInterface'),
+                'Teknoo\States\LifeCycle\Event\Event'
             )->getObserver()
         );
     }
 
     public function testGetStatedClassName()
     {
-        $instance = $this->getMock('UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme');
+        $instance = $this->getMock('Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme');
         $this->assertEquals(
-            'UniAlteri\Tests\States\LifeCycle\StatedClass\Support\Acme',
+            'Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme',
             $this->build(
                 $instance,
-                $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'),
-                $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
-                'UniAlteri\States\LifeCycle\Event\Event'
+                $this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'),
+                $this->getMock('Teknoo\States\LifeCycle\Trace\TraceInterface'),
+                'Teknoo\States\LifeCycle\Event\Event'
             )->getStatedClassName()
         );
     }
 
     public function testObserveUpdate()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $instance->expects($this->any())->method('listEnabledStates')->willReturn([]);
         $instance->expects($this->any())->method('listAvailableStates')->willReturn([]);
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
+            'Teknoo\States\LifeCycle\Observing\ObservedInterface',
             $this->build(
                 $instance,
-                $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'),
-                $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
-                'UniAlteri\States\LifeCycle\Event\Event'
+                $this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'),
+                $this->getMock('Teknoo\States\LifeCycle\Trace\TraceInterface'),
+                'Teknoo\States\LifeCycle\Event\Event'
             )->observeUpdate()
         );
     }
 
     public function testGetStateTrace()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Trace\TraceInterface',
+            'Teknoo\States\LifeCycle\Trace\TraceInterface',
             $this->build(
                 $instance,
-                $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'),
-                $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
-                'UniAlteri\States\LifeCycle\Event\Event'
+                $this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'),
+                $this->getMock('Teknoo\States\LifeCycle\Trace\TraceInterface'),
+                'Teknoo\States\LifeCycle\Event\Event'
             )->getStateTrace()
         );
     }
@@ -200,29 +200,29 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLastEventException()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $this->build(
             $instance,
-            $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'),
-            $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
-            'UniAlteri\States\LifeCycle\Event\Event'
+            $this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'),
+            $this->getMock('Teknoo\States\LifeCycle\Trace\TraceInterface'),
+            'Teknoo\States\LifeCycle\Event\Event'
         )->getLastEvent();
     }
 
     public function testGetLastEvent()
     {
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $instance->expects($this->any())->method('listEnabledStates')->willReturn([]);
         $instance->expects($this->any())->method('listAvailableStates')->willReturn([]);
         $observed = $this->build(
             $instance,
-            $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'),
-            $this->getMock('UniAlteri\States\LifeCycle\Trace\TraceInterface'),
-            'UniAlteri\States\LifeCycle\Event\Event'
+            $this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'),
+            $this->getMock('Teknoo\States\LifeCycle\Trace\TraceInterface'),
+            'Teknoo\States\LifeCycle\Event\Event'
         );
         $observed->observeUpdate();
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Event\EventInterface',
+            'Teknoo\States\LifeCycle\Event\EventInterface',
             $observed->getLastEvent()
         );
     }

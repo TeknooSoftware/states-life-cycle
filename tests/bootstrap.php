@@ -14,12 +14,12 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle;
+namespace Teknoo\Tests\States\LifeCycle;
 
-require_once __DIR__.'/../vendor/unialteri/states/src/bootstrap.php';
+require_once __DIR__.'/../vendor/teknoo/states/src/bootstrap.php';

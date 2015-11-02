@@ -14,16 +14,16 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\States;
+namespace Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\States;
 
-use UniAlteri\States\State\AbstractState;
-use UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\ClassB;
+use Teknoo\States\State\AbstractState;
+use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\ClassB;
 
 /**
  * State StateDefault
@@ -32,9 +32,9 @@ use UniAlteri\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class StateDefault extends AbstractState

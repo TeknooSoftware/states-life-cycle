@@ -14,15 +14,15 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\Scenario;
+namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
-use UniAlteri\States\LifeCycle\Scenario\ScenarioBuilderInterface;
+use Teknoo\States\LifeCycle\Scenario\ScenarioBuilderInterface;
 
 /**
  * Class AbstractScenarioBuilderTest.
@@ -30,9 +30,9 @@ use UniAlteri\States\LifeCycle\Scenario\ScenarioBuilderInterface;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
@@ -83,7 +83,7 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
         /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $observed = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->towardObserved($observed));
     }
@@ -161,11 +161,11 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
     public function testBuild()
     {
         $builder = $this->build();
-        $scenario = $this->getMock('UniAlteri\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario = $this->getMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
         $scenario->expects($this->once())->method('configure')->with($builder)->willReturnSelf();
 
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Scenario\ScenarioInterface',
+            'Teknoo\States\LifeCycle\Scenario\ScenarioInterface',
             $builder->build(
                 $scenario
             )

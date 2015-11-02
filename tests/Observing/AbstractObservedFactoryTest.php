@@ -14,15 +14,15 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\Observing;
+namespace Teknoo\Tests\States\LifeCycle\Observing;
 
-use UniAlteri\States\LifeCycle\Observing\ObservedFactoryInterface;
+use Teknoo\States\LifeCycle\Observing\ObservedFactoryInterface;
 
 /**
  * Class AbstractObservedFactoryTest.
@@ -30,9 +30,9 @@ use UniAlteri\States\LifeCycle\Observing\ObservedFactoryInterface;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 abstract class AbstractObservedFactoryTest extends \PHPUnit_Framework_TestCase
@@ -47,7 +47,7 @@ abstract class AbstractObservedFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateBadObserver()
     {
-        $this->build()->create(new \stdClass(), $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface'));
+        $this->build()->create(new \stdClass(), $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface'));
     }
 
     /**
@@ -55,7 +55,7 @@ abstract class AbstractObservedFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateBadInstance()
     {
-        $this->build()->create($this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'), new \stdClass());
+        $this->build()->create($this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'), new \stdClass());
     }
 
     public function testCreate()
@@ -63,10 +63,10 @@ abstract class AbstractObservedFactoryTest extends \PHPUnit_Framework_TestCase
         $factory = $this->build();
 
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
+            'Teknoo\States\LifeCycle\Observing\ObservedInterface',
             $factory->create(
-                $this->getMock('UniAlteri\States\LifeCycle\Observing\ObserverInterface'),
-                $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface')
+                $this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'),
+                $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface')
             )
         );
     }

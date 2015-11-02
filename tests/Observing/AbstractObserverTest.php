@@ -14,16 +14,16 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\States\LifeCycle\Observing;
+namespace Teknoo\Tests\States\LifeCycle\Observing;
 
-use UniAlteri\States\LifeCycle\Event\EventInterface;
-use UniAlteri\States\LifeCycle\Observing\ObserverInterface;
+use Teknoo\States\LifeCycle\Event\EventInterface;
+use Teknoo\States\LifeCycle\Observing\ObserverInterface;
 
 /**
  * Class AbstractObserverTest.
@@ -31,9 +31,9 @@ use UniAlteri\States\LifeCycle\Observing\ObserverInterface;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
@@ -56,7 +56,7 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
         /*
          * @var TokenizerInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $tokenizer = $this->getMock('UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface');
+        $tokenizer = $this->getMock('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->setTokenizer($tokenizer));
         $this->assertEquals($tokenizer, $service->getTokenizer());
@@ -132,10 +132,10 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
         /*
          * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $service = $this->build();
         $this->assertInstanceOf(
-            'UniAlteri\States\LifeCycle\Observing\ObservedInterface',
+            'Teknoo\States\LifeCycle\Observing\ObservedInterface',
             $service->attachObject($instance)
         );
     }
@@ -153,7 +153,7 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
         /*
          * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->detachObject($instance));
     }
@@ -167,14 +167,14 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
         /*
          * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $service->attachObject($instance);
         $service->attachObject($instance);
         $this->assertEquals(1, count($service->listObserved()));
         /*
          * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance2 = $this->getMock('UniAlteri\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance2 = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $service->attachObject($instance2);
         $this->assertEquals(2, count($service->listObserved()));
     }
@@ -184,17 +184,17 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
         /***
          * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject $instance
          */
-        $event = $this->getMock('UniAlteri\States\LifeCycle\Event\EventInterface');
+        $event = $this->getMock('Teknoo\States\LifeCycle\Event\EventInterface');
         /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->getMock('UniAlteri\States\LifeCycle\Observing\ObservedInterface');
+        $instance = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $instance->expects($this->any())->method('getLastEvent')->willReturn($event);
         $service = $this->build();
         /*
          * @var TokenizerInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $tokenizer = $this->getMock('UniAlteri\States\LifeCycle\Tokenization\TokenizerInterface');
+        $tokenizer = $this->getMock('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface');
         $service->setTokenizer($tokenizer);
         $this->assertEquals($service, $service->dispatchNotification($instance));
     }
