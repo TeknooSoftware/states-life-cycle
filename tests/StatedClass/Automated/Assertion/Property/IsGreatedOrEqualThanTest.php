@@ -21,6 +21,7 @@
  */
 
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion\Property;
+
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterOrEqualThan;
 
 /**
