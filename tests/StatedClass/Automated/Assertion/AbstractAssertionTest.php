@@ -48,4 +48,12 @@ abstract class AbstractAssertionTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(['state1', 'state2'], $this->buildInstance()->getStatesList());
     }
+
+    /**
+     * @expectedException \TypeError
+     */
+    public function testIsValidBadProxy()
+    {
+        $this->buildInstance()->isValid(new \stdClass());
+    }
 }

@@ -62,13 +62,20 @@ class Assertion extends AbstractAssertion implements AssertionInterface
     {
         $asserted = true;
 
+        $reflectionObject = new \ReflectionObject($proxy);
         foreach ($this->propertiesAssertions as $property=>$exceptedValue) {
-            if (null !== $exceptedValue && property_exists($this, $property)) {
+            if (null !== $exceptedValue && property_exists($proxy, $property)) {
+                $reflectionProperty = $reflectionObject->getProperty($property);
+                $reflectionProperty->setAccessible(true);
+                $propertyValue = $reflectionProperty->getValue($proxy);
+
                 if (!is_callable($exceptedValue)) {
-                    $asserted |= $exceptedValue == $this->{$property};
+                    $asserted &= $exceptedValue == $propertyValue;
                 } else {
-                    $asserted |= $exceptedValue($this->{$property});
+                    $asserted &= $exceptedValue($propertyValue);
                 }
+            } else {
+                $asserted = false;
             }
 
             if (!$asserted) {

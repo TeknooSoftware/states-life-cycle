@@ -40,4 +40,55 @@ use Teknoo\States\Proxy\Integrated;
 class Acme extends Integrated implements LifeCyclableInterface
 {
     use LifeCyclableTrait;
+
+    /**
+     * For AssertionTest
+     * @var mixed
+     */
+    protected $foo;
+
+    /**
+     * For AssertionTest
+     * @var mixed
+     */
+    protected $foo1;
+
+    /**
+     * For AssertionTest
+     * @var mixed
+     */
+    protected $foo2;
+
+    /**
+     * @param mixed $foo
+     * @return self
+     */
+    public function setFoo($foo)
+    {
+        $this->foo = $foo;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $foo1
+     * @return self
+     */
+    public function setFoo1($foo1)
+    {
+        $this->foo1 = $foo1;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $foo2
+     * @return self
+     */
+    public function setFoo2($foo2)
+    {
+        $this->foo2 = $foo2;
+
+        return $this;
+    }
 }
