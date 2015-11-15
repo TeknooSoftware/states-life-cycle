@@ -20,4 +20,21 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\Tests\States\LifeCycle\StatedClass;
+namespace Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedLifeCyclableAcme\States;
+
+use Teknoo\States\State\AbstractState;
+
+/**
+ * Class State1.
+ *
+ * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
+ * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
+ *
+ * @link        http://teknoo.software/states Project website
+ *
+ * @license     http://teknoo.software/license/mit         MIT License
+ * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ */
+class State1 extends AbstractState
+{
+}

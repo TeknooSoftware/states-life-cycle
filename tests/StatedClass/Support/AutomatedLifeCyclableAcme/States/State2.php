@@ -20,13 +20,12 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\States\LifeCycle\StatedClass;
+namespace Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedLifeCyclableAcme\States;
 
-use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedInterface;
-use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedTrait;
+use Teknoo\States\State\AbstractState;
 
 /**
- * Class AutomatedLifeCyclableTrait
+ * Class State2.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -36,21 +35,6 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedTrait;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
-trait AutomatedLifeCyclableTrait
+class State2 extends AbstractState
 {
-    use LifeCyclableTrait,
-        AutomatedTrait {
-        AutomatedTrait::updateStates as automatedUpdateStates;
-    }
-
-    /**
-     * @return AutomatedInterface
-     */
-    public function updateStates(): AutomatedInterface
-    {
-        $this->automatedUpdateStates();
-        $this->notifyObserved();
-
-        return $this;
-    }
 }
