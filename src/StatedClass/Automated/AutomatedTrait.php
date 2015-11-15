@@ -89,6 +89,8 @@ trait AutomatedTrait
         $this->switchToNewStates(
             $this->getNewStateList()
         );
+
+        return $this;
     }
 
     /**

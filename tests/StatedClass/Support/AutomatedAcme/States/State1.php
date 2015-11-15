@@ -20,14 +20,12 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated;
+namespace Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedAcme\States;
 
-use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedInterface;
+use Teknoo\States\State\AbstractState;
 
 /**
- * Class AbstractAutomatedTest
- *
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedTrait
+ * Class State1.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -37,23 +35,6 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
-abstract class AbstractAutomatedTest extends \PHPUnit_Framework_TestCase
+class State1 extends AbstractState
 {
-    /**
-     * @return AutomatedInterface
-     */
-    abstract function buildInstance();
-
-    public function testGetStatesAssertions()
-    {
-        $instance = $this->buildInstance();
-        $this->assertTrue(is_array($instance->getStatesAssertions()));
-
-        foreach($instance->getStatesAssertions() as $assertion) {
-            $this->assertInstanceOf(
-                'Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface',
-                $assertion
-            );
-        }
-    }
 }
