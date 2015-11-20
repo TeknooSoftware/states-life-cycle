@@ -8,7 +8,7 @@
     "authors": [
         {
             "name": "Richard Déloge",
-            "email": "r.deloge@uni-alteri.com",
+            "email": "richarddeloge@gmail.com",
             "role":"Software architect, Lead developer"
         }
     ],
@@ -35,8 +35,5 @@
     "minimum-stability": "dev",
     "archive": {
         "exclude": ["demo", "vendor", ".idea"]
-    },
-    "scripts": {
-      "test":"phpunit"
     }
 }
