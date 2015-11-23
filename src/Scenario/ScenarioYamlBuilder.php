@@ -24,8 +24,6 @@ namespace Teknoo\States\LifeCycle\Scenario;
 
 use Gaufrette\Filesystem;
 use Symfony\Component\Yaml\Parser;
-use Teknoo\States\LifeCycle\Observing\ObservedInterface;
-use Teknoo\States\LifeCycle\Tokenization\Tokenizer;
 
 /**
  * Class ScenarioYamlBuilder

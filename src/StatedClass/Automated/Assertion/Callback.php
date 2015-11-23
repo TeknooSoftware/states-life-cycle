@@ -59,6 +59,7 @@ class Callback extends AbstractAssertion implements AssertionInterface
      */
     public function isValid(ProxyInterface $proxy): \bool
     {
-        return ($this->callback)($proxy);
+        $callback = $this->callback;
+        return $callback($proxy);
     }
 }

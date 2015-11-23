@@ -22,8 +22,6 @@
 
 namespace Teknoo\States\LifeCycle\StatedClass\Automated;
 
-use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface;
-
 /**
  * Class AutomatedTrait
  *
@@ -94,7 +92,7 @@ trait AutomatedTrait
     }
 
     /**
-     * @return AssertionInterface[]
+     * @return \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface[]
      */
     abstract public function getStatesAssertions(): array;
 }

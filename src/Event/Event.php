@@ -73,7 +73,7 @@ class Event extends SymfonyEvent implements EventInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return LifeCyclableInterface
      */
     public function getObject(): LifeCyclableInterface
     {
