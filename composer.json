@@ -1,7 +1,7 @@
 {
     "name": "teknoo/states-life-cycle",
     "type": "library",
-    "description": "Component to extend the behavior of teknoo/states and provide a service to manage lifes cycles of stated class instance",
+    "description": "Component to extend the behavior of teknoo/states and provide a service to manage lifes cycles of stated class instances and automated their beahvior",
     "keywords": ["states","class","state pattern","pattern","behavioral software design pattern", "life cycle"],
     "homepage": "http://teknoo.software/states",
     "license": ["MIT"],
