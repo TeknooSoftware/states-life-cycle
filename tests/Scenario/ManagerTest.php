@@ -30,7 +30,6 @@ use Teknoo\States\LifeCycle\Scenario\Manager;
  *
  * @covers Teknoo\States\LifeCycle\Scenario\Manager
  *
- *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website

@@ -42,25 +42,29 @@ class Acme extends Integrated implements LifeCyclableInterface
     use LifeCyclableTrait;
 
     /**
-     * For AssertionTest
+     * For AssertionTest.
+     *
      * @var mixed
      */
     protected $foo;
 
     /**
-     * For AssertionTest
+     * For AssertionTest.
+     *
      * @var mixed
      */
     protected $foo1;
 
     /**
-     * For AssertionTest
+     * For AssertionTest.
+     *
      * @var mixed
      */
     protected $foo2;
 
     /**
      * @param mixed $foo
+     *
      * @return self
      */
     public function setFoo($foo)
@@ -72,6 +76,7 @@ class Acme extends Integrated implements LifeCyclableInterface
 
     /**
      * @param mixed $foo1
+     *
      * @return self
      */
     public function setFoo1($foo1)
@@ -83,6 +88,7 @@ class Acme extends Integrated implements LifeCyclableInterface
 
     /**
      * @param mixed $foo2
+     *
      * @return self
      */
     public function setFoo2($foo2)

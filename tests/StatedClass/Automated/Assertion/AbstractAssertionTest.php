@@ -25,10 +25,9 @@ namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion;
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion;
 
 /**
- * Class AbstractAssertionTest
+ * Class AbstractAssertionTest.
  *
  * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion
- *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

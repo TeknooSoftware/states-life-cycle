@@ -29,7 +29,6 @@ use Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedLifeCyclableAcme\
  *
  * @covers Teknoo\States\LifeCycle\StatedClass\AutomatedLifeCyclableTrait
  *
- *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
@@ -52,7 +51,7 @@ class AutomatedLifeCyclableTraitTest extends AbstractLifeCyclableTest
         $instance = $this->build();
         $this->assertTrue(is_array($instance->getStatesAssertions()));
 
-        foreach($instance->getStatesAssertions() as $assertion) {
+        foreach ($instance->getStatesAssertions() as $assertion) {
             $this->assertInstanceOf(
                 'Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface',
                 $assertion

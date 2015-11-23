@@ -25,10 +25,9 @@ namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated;
 use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedInterface;
 
 /**
- * Class AbstractAutomatedTest
+ * Class AbstractAutomatedTest.
  *
  * @covers Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedTrait
- *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -42,14 +41,14 @@ abstract class AbstractAutomatedTest extends \PHPUnit_Framework_TestCase
     /**
      * @return AutomatedInterface
      */
-    abstract function buildInstance();
+    abstract public function buildInstance();
 
     public function testGetStatesAssertions()
     {
         $instance = $this->buildInstance();
         $this->assertTrue(is_array($instance->getStatesAssertions()));
 
-        foreach($instance->getStatesAssertions() as $assertion) {
+        foreach ($instance->getStatesAssertions() as $assertion) {
             $this->assertInstanceOf(
                 'Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface',
                 $assertion

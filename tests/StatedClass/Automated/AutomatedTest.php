@@ -25,10 +25,9 @@ namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated;
 use Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedAcme\AutomatedAcme;
 
 /**
- * Class AutomatedTest
+ * Class AutomatedTest.
  *
  * @covers Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedTrait
- *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

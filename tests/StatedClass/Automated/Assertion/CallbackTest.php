@@ -25,10 +25,9 @@ namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion;
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Callback;
 
 /**
- * Class CallbackTest
+ * Class CallbackTest.
  *
  * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Callback
- *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

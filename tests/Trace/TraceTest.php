@@ -29,7 +29,6 @@ use Teknoo\States\LifeCycle\Trace\Trace;
  *
  * @covers Teknoo\States\LifeCycle\Trace\Trace
  *
- *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website

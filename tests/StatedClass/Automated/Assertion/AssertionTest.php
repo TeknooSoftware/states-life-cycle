@@ -27,10 +27,9 @@ use Teknoo\States\Proxy\ProxyInterface;
 use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 
 /**
- * Class AssertionTest
+ * Class AssertionTest.
  *
  * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Assertion
- *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -84,7 +83,7 @@ class AssertionTest extends AbstractAssertionTest
     public function testIsValidPropertyValueBadParameter()
     {
         /**
-         * @var ProxyInterface|\PHPUnit_Framework_MockObject_MockObject $proxyMock
+         * @var ProxyInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $proxyMock = $this->getMock('Teknoo\States\Proxy\ProxyInterface');
 
@@ -98,23 +97,23 @@ class AssertionTest extends AbstractAssertionTest
 
         $this->assertTrue($this->buildInstance()->with('foo', 'bar')->isValid($proxyMock));
     }
-    
+
     public function testIsValidCallbackValueBadValue()
     {
         $proxyMock = new Acme();
         $proxyMock->setFoo('error');
 
-        $this->assertFalse($this->buildInstance()->with('foo', function($value) {return 'bar'===$value;})->isValid($proxyMock));
+        $this->assertFalse($this->buildInstance()->with('foo', function ($value) {return 'bar' === $value;})->isValid($proxyMock));
     }
 
     public function testIsValidCallbackValueBadParameter()
     {
         /**
-         * @var ProxyInterface|\PHPUnit_Framework_MockObject_MockObject $proxyMock
+         * @var ProxyInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $proxyMock = $this->getMock('Teknoo\States\Proxy\ProxyInterface');
 
-        $this->assertFalse($this->buildInstance()->with('foo', function($value) {return 'bar'===$value;})->isValid($proxyMock));
+        $this->assertFalse($this->buildInstance()->with('foo', function ($value) {return 'bar' === $value;})->isValid($proxyMock));
     }
 
     public function testIsValidCallbackValue()
@@ -122,14 +121,14 @@ class AssertionTest extends AbstractAssertionTest
         $proxyMock = new Acme();
         $proxyMock->setFoo('bar');
 
-        $this->assertTrue($this->buildInstance()->with('foo', function($value) {return 'bar'===$value;})->isValid($proxyMock));
+        $this->assertTrue($this->buildInstance()->with('foo', function ($value) {return 'bar' === $value;})->isValid($proxyMock));
     }
 
     public function testIsValidSeveralGood()
     {
         $assertion = $this->buildInstance()
             ->with('foo1', 'bar1')
-            ->with('foo2', function($value) {return 'bar2'===$value;});
+            ->with('foo2', function ($value) {return 'bar2' === $value;});
 
         $proxyMock = new Acme();
         $proxyMock->setFoo1('bar1')->setFoo2('bar2');
@@ -141,7 +140,7 @@ class AssertionTest extends AbstractAssertionTest
     {
         $assertion = $this->buildInstance()
             ->with('foo1', 'bar1')
-            ->with('foo2', function($value) {return 'bar2'===$value;});
+            ->with('foo2', function ($value) {return 'bar2' === $value;});
 
         $proxyMock = new Acme();
         $proxyMock->setFoo1('bar1')->setFoo2('bar');

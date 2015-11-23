@@ -31,7 +31,6 @@ use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
  *
  * @covers Teknoo\States\LifeCycle\Scenario\ScenarioBuilder
  *
- *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
