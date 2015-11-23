@@ -28,6 +28,8 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**
  * Class Scenario
+ * Default implementation of scenario class to allow developper to write interaction with a stated class and its instances
+ * with others components of the application
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)

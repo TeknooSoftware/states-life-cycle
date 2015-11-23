@@ -26,7 +26,7 @@ use Teknoo\States\Proxy\ProxyInterface;
 
 /**
  * Interface AssertionInterface
- *
+ * Interface to build assertion, needed by automated stated class to determine currently active states.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

@@ -27,7 +27,7 @@ use Teknoo\States\Proxy\ProxyInterface;
 
 /**
  * Interface LifeCyclableInterface
- *
+ * Interace to defining lifecyclable and tracable behaviors on your stated class
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -39,18 +39,21 @@ use Teknoo\States\Proxy\ProxyInterface;
 interface LifeCyclableInterface extends ProxyInterface
 {
     /**
+     * To register a new observer
      * @param ObservedInterface $observed
      * @return LifeCyclableInterface
      */
     public function registerObserver(ObservedInterface $observed): LifeCyclableInterface;
 
     /**
+     * To unregister a previous registered observer
      * @param ObservedInterface $observed
      * @return LifeCyclableInterface
      */
     public function unregisterObserver(ObservedInterface $observed): LifeCyclableInterface;
 
     /**
+     * To notify to observers that this instance has been changed
      * @return LifeCyclableInterface
      */
     public function notifyObserved(): LifeCyclableInterface;

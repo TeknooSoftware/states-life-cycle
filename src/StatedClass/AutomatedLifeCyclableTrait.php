@@ -27,7 +27,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedTrait;
 
 /**
  * Class AutomatedLifeCyclableTrait
- *
+ * Trait to use both LifeCyclable and automated behavior in same time
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

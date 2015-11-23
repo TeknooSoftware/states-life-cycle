@@ -27,7 +27,7 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**
  * Interface EventInterface
- *
+ * Interface used to create event to broadcast changes about a stated class instances to the system.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -47,26 +47,31 @@ interface EventInterface
     public function __construct(ObservedInterface $observer, array $incomingStates, array $outgoingStates);
 
     /**
+     * To get the object managing the observation about the observed stated class instaces
      * @return ObservedInterface
      */
     public function getObserved(): ObservedInterface;
 
     /**
+     * Shortcut to get the observed stated class instance
      * @return LifeCyclableInterface
      */
     public function getObject(): LifeCyclableInterface;
 
     /**
+     * To get the list of enabled states of the observed instance when this event has been built
      * @return string[]
      */
     public function getEnabledStates(): array;
 
     /**
+     *To get incoming states of the observed instance when this event has been built
      * @return string[]
      */
     public function getIncomingStates(): array;
 
     /**
+     * To get outgoing states of the observed instance when this event has been built
      * @return string[]
      */
     public function getOutgoingStates(): array;

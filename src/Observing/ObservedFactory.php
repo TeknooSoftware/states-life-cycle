@@ -26,7 +26,8 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**
  * Class ObservedFactory
- *
+ * Default implementation of the factory to build new observed instance used
+ * to manage observation between observed states class and its observer
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

@@ -26,7 +26,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Interface ManagerInterface
- *
+ * Interface to manage to store all enabled scenarii and register them into the event dispatcher
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -38,29 +38,34 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 interface ManagerInterface
 {
     /**
+     * To get the dispatcher used to register scenarii
      * @return EventDispatcherInterface
      */
     public function getDispatcher();
 
     /**
+     * To register the dispatcher to use to register scenarii
      * @param EventDispatcherInterface $dispatcher
      * @return ManagerInterface
      */
     public function setDispatcher(EventDispatcherInterface $dispatcher): ManagerInterface;
 
     /**
+     * To register a scenario into the dispatched
      * @param ScenarioInterface $scenario
      * @return ManagerInterface
      */
     public function registerScenario(ScenarioInterface $scenario): ManagerInterface;
 
     /**
+     * To unregister a scenario from the dispatcher
      * @param ScenarioInterface $scenario
      * @return ManagerInterface
      */
     public function unregisterScenario(ScenarioInterface $scenario): ManagerInterface;
 
     /**
+     * To return all enabled scenarii registered in the dispatcher
      * @return ScenarioInterface[]
      */
     public function listScenarii(): array;

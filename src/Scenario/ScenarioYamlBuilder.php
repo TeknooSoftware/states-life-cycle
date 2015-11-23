@@ -27,7 +27,9 @@ use Symfony\Component\Yaml\Parser;
 
 /**
  * Class ScenarioYamlBuilder
- *
+ * Another implementation of scenario builder to allow developper to create scenarii from YAML files
+ * about stated class instances.
+ * A scenario can accept several conditions : each condition must be validated to execute the scenario. *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -39,11 +41,13 @@ use Symfony\Component\Yaml\Parser;
 class ScenarioYamlBuilder extends ScenarioBuilder
 {
     /**
+     * YAML parser to read the scenario
      * @var Parser
      */
     private $yamlParser;
 
     /**
+     * To read scenario file
      * @var Filesystem
      */
     private $filesystem;

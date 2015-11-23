@@ -26,6 +26,7 @@ use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 
 /**
  * Class LifeCyclableTrait
+ * Trait implementing LifeCyclableInterface to add lifecyclable and tracable behaviors on your stated class
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -38,11 +39,13 @@ use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 trait LifeCyclableTrait
 {
     /**
+     * List of all observing relation manager
      * @var ObservedInterface[]
      */
     private $observedList = [];
 
     /**
+     * To register a new observer
      * @param ObservedInterface $observed
      * @return LifeCyclableInterface
      */
@@ -54,6 +57,7 @@ trait LifeCyclableTrait
     }
 
     /**
+     * To unregister a previous registered observer
      * @param ObservedInterface $observed
      * @return LifeCyclableInterface
      */
@@ -69,6 +73,7 @@ trait LifeCyclableTrait
     }
 
     /**
+     * To notify to observers that this instance has been changed
      * @return LifeCyclableInterface
      */
     public function notifyObserved(): LifeCyclableInterface

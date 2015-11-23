@@ -28,7 +28,8 @@ use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 
 /**
  * Class Observer
- *
+ * Default implementation to manage several observations of stated class instances and distpatch change to the system
+ * via one or several event dispatcher *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -40,21 +41,25 @@ use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 class Observer implements ObserverInterface
 {
     /**
+     * Tokenizer to generate events name to use to distpach changes
      * @var TokenizerInterface
      */
     private $tokenizer;
 
     /**
+     * List of dispatchers to use to dispatch an event from an observed's change
      * @var \ArrayAccess|EventDispatcherInterface[]
      */
-    private $dispatchersList = [];
+    private $dispatchersList;
 
     /**
+     * List of observed stated class instance to dispatch instance's change
      * @var \ArrayAccess|ObservedInterface[]
      */
-    private $observedList = [];
+    private $observedList;
 
     /**
+     * Factory to generate new ObservedFactoryInterface to manage an observation
      * @var ObservedFactoryInterface
      */
     private $observedFactory;
@@ -64,6 +69,7 @@ class Observer implements ObserverInterface
      */
     public function __construct(ObservedFactoryInterface $observedFactory)
     {
+        //Initialize collections
         $this->dispatchersList = new \ArrayObject();
         $this->observedList = new \ArrayObject();
         $this->observedFactory = $observedFactory;
@@ -104,6 +110,7 @@ class Observer implements ObserverInterface
     {
         $dispatcherHash = spl_object_hash($dispatcher);
         if (isset($this->dispatchersList[$dispatcherHash])) {
+            //Dispatcher not found, do nothing "silently"
             unset($this->dispatchersList[$dispatcherHash]);
         }
 
@@ -124,6 +131,7 @@ class Observer implements ObserverInterface
     public function attachObject(LifeCyclableInterface $object): ObservedInterface
     {
         $objectHash = spl_object_hash($object);
+        //Create the observed instance to manage the observation
         $observed = $this->observedFactory->create($this, $object);
         $object->registerObserver($observed);
 
@@ -160,6 +168,7 @@ class Observer implements ObserverInterface
      */
     public function dispatchNotification(ObservedInterface $observed): ObserverInterface
     {
+        //Extract from the observed the event and generate formated events name
         $event = $observed->getLastEvent();
         $eventsNamesList = $this->getTokenizer()->getToken($event);
 

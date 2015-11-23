@@ -27,7 +27,8 @@ use Teknoo\States\LifeCycle\Tokenization\Tokenizer;
 
 /**
  * Class ScenarioBuilder
- *
+ * Default implementation of scenario builder to allow developper to create scenarii about stated class instances.
+ * A scenario can accept several conditions : each condition must be validated to execute the scenario.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -39,46 +40,56 @@ use Teknoo\States\LifeCycle\Tokenization\Tokenizer;
 class ScenarioBuilder implements ScenarioBuilderInterface
 {
     /**
+     * Tokenizer to transform stated class instance to event name to register the scenario as listener in the event
+     * dispatcher
      * @var Tokenizer
      */
     private $tokenizer;
 
     /**
+     * List of events about the scenario
      * @var string[]
      */
     private $eventNamesList = [];
 
     /**
+     * Stated class name about this scenario
      * @var string
      */
     private $statedClassName;
 
     /**
+     * Stated class instance about this scenario
      * @var ObservedInterface
      */
     private $observed;
 
     /**
+     * Required stated to execute the scenario
      * @var string[]
      */
     private $neededStatesList = [];
 
     /**
+     * Forbidden states to execute the scenario
      * @var string[]
      */
     private $forbiddenStatesList = [];
 
     /**
+     * Needed incoming states to execute the scenario
      * @var string[]
      */
     private $neededIncomingStatesList = [];
 
     /**
+     * Needed outgoing states to execute the scenario
      * @var string[]
      */
     private $neededOutgoingStatesList = [];
 
     /**
+     * Callable (callback or closure) to execute if the scenario is valid
      * @var callable
      */
     private $callable;

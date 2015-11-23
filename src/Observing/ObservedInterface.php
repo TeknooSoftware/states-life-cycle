@@ -28,7 +28,8 @@ use Teknoo\States\LifeCycle\Trace\TraceInterface;
 
 /**
  * Interface ObservedInterface
- *
+ * Interface to build observed instance : object to manage the observation between a stated class install
+ * and its observer
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -53,31 +54,38 @@ interface ObservedInterface
     );
 
     /**
+     * To retrieve the observed stated class instance
      * @return LifeCyclableInterface
      */
     public function getObject(): LifeCyclableInterface;
 
     /**
+     * To retrieve the observer used in this relation
      * @return ObserverInterface
      */
     public function getObserver(): ObserverInterface;
 
     /**
+     * To get the canonical stated class name
      * @return string
      */
     public function getStatedClassName(): \string;
 
     /**
+     * Called by the observed stated class instance to notify to the observer that its states are changed
      * @return ObservedInterface
      */
     public function observeUpdate(): ObservedInterface;
 
     /**
+     * To get the states trace of the observed object, to allow browse in and know previous states
+     * and get its states evolution
      * @return TraceInterface
      */
     public function getStateTrace(): TraceInterface;
 
     /**
+     * To get the last change of stated class instance
      * @return EventInterface
      */
     public function getLastEvent(): EventInterface;

@@ -26,7 +26,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class Manager
- *
+ * Interface to manage to store all enabled scenarii and register them into the event dispatcher
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -38,11 +38,13 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class Manager implements ManagerInterface
 {
     /**
+     * Current enabled scenari
      * @var ScenarioInterface[]|\ArrayAccess
      */
     private $scenariiList = [];
 
     /**
+     * Dispatcher used to register scenarii
      * @var EventDispatcherInterface
      */
     private $dispatcher;
