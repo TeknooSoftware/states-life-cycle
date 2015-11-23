@@ -26,7 +26,14 @@ use Teknoo\States\LifeCycle\Event\EventInterface;
 
 /**
  * Interface TokenizerInterface
+ * Interface to build tokenizer to generate tokens from an event.
  *
+ * Generate all tokens from an event, to be used by the event dispatcher, namespace separator are converted
+ * to underscore, and the class is lowerized.
+ * - a base token from the canonical stated class name
+ * - a token by enabled states : "basetoken:<state name>"
+ * - a token by incoming states : "basetoken:+<state name>"
+ * - a token by outgoing states : "basetoken:-<state name>"
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -38,6 +45,12 @@ use Teknoo\States\LifeCycle\Event\EventInterface;
 interface TokenizerInterface
 {
     /**
+     * Generate all tokens from an event, to be used by the event dispatcher, namespace separator are converted
+     * to underscore, and the class is lowerized.
+     * - a base token from the canonical stated class name
+     * - a token by enabled states : "basetoken:<state name>"
+     * - a token by incoming states : "basetoken:+<state name>"
+     * - a token by outgoing states : "basetoken:-<state name>"
      * @param EventInterface $event
      * @return string[]
      */

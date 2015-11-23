@@ -26,7 +26,7 @@ use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 
 /**
  * Interface EntryInterface
- *
+ * Interface to represent entry in the state trace of stated class to know the story of the obect
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -49,27 +49,32 @@ interface EntryInterface
     );
 
     /**
+     * Get the observed relation, at the origin of this event
      * @return ObservedInterface
      */
     public function getObserved(): ObservedInterface;
 
     /**
+     * Get all enabled states of the stated class instance when this entry has been generated
      * @return string[]
      */
     public function getEnabledState(): array;
 
     /**
+     * Get the previous entry from the trace
      * @return EntryInterface|null
      */
     public function getPrevious();
 
     /**
+     * To update the next entry from the trace
      * @param EntryInterface $next
      * @return EntryInterface
      */
     public function setNext(EntryInterface $next): EntryInterface;
 
     /**
+     * Get the next entry from the trace
      * @return EntryInterface|null
      */
     public function getNext();

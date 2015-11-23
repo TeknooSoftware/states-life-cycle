@@ -26,7 +26,7 @@ use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 
 /**
  * Class Trace
- *
+ * Trace about stated class to keep in memory the story of your object
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -91,9 +91,7 @@ class Trace implements TraceInterface
     }
 
     /**
-     * @param ObservedInterface $observed
-     * @param array $enabledStatesList
-     * @return TraceInterface
+     * {@inheritdoc}
      */
     public function addEntry(ObservedInterface $observed, array $enabledStatesList): TraceInterface
     {

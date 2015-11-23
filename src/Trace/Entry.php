@@ -26,7 +26,7 @@ use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 
 /**
  * Class Entry
- *
+ * Default implementation to represent entry in the state trace of stated class to know the story of the obect
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

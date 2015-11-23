@@ -27,7 +27,14 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**
  * Class Tokenizer
+ * Tokenizer to generate tokens from an event.
  *
+ * Generate all tokens from an event, to be used by the event dispatcher, namespace separator are converted
+ * to underscore, and the class is lowerized.
+ * - a base token from the canonical stated class name
+ * - a token by enabled states : "basetoken:<state name>"
+ * - a token by incoming states : "basetoken:+<state name>"
+ * - a token by outgoing states : "basetoken:-<state name>"
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -39,6 +46,7 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 class Tokenizer implements TokenizerInterface
 {
     /**
+     * To get the token from a stated class
      * @param string $statedClassName
      * @param bool $removeProxyName
      * @return string
@@ -54,6 +62,7 @@ class Tokenizer implements TokenizerInterface
     }
 
     /**
+     * To get the token from a stated class instance
      * @param LifeCyclableInterface $object
      * @return string
      */

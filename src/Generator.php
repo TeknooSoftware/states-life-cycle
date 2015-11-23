@@ -32,7 +32,7 @@ use Teknoo\States\LifeCycle\Scenario\ManagerInterface;
 
 /**
  * Class Generator
- *
+ * Class to generate some instance of objects needed to use easily this library *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
