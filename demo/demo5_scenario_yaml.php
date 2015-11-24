@@ -57,8 +57,8 @@ $generator->getManager()
         (new ScenarioYamlBuilder($generator->getTokenizer()))
             ->setYamlParser($parser)
             ->setFilesystem($filesystem)
-            ->loadScenario(__DIR__.'/scenarii/scenario1.yml')
-            ->setParameter('instanceB', $instanceB);
+            ->loadScenario('scenario1.yml')
+            ->setParameter('instanceB', $instanceB)
             ->build(new Scenario())
 );
 
@@ -68,8 +68,8 @@ $generator->getManager()
         (new ScenarioYamlBuilder($generator->getTokenizer()))
             ->setYamlParser($parser)
             ->setFilesystem($filesystem)
-            ->loadScenario(__DIR__.'/scenarii/scenario2.yml')
-            ->setParameter('instanceB', $instanceB);
+            ->loadScenario('scenario2.yml')
+            ->setParameter('instanceB', $instanceB)
             ->build(new Scenario())
 );
 
@@ -79,8 +79,8 @@ $generator->getManager()
         (new ScenarioYamlBuilder($generator->getTokenizer()))
             ->setYamlParser($parser)
             ->setFilesystem($filesystem)
-            ->loadScenario(__DIR__.'/scenarii/scenario3.yml')
-            ->setParameter('instanceB', $instanceB);
+            ->loadScenario('scenario3.yml')
+            ->setParameter('instanceB', $instanceB)
             ->build(new Scenario())
 );
 
@@ -90,8 +90,8 @@ $generator->getManager()
         (new ScenarioYamlBuilder($generator->getTokenizer()))
             ->setYamlParser($parser)
             ->setFilesystem($filesystem)
-            ->loadScenario(__DIR__.'/scenarii/scenario4.yml')
-            ->setParameter('instanceB', $instanceB);
+            ->loadScenario('scenario4.yml')
+            ->setParameter('instanceB', $instanceB)
             ->build(new Scenario())
 );
 
