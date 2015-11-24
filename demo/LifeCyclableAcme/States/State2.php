@@ -20,12 +20,12 @@
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 
-namespace demo\LifeCycableAcme\States;
+namespace demo\LifeCyclableAcme\States;
 
 use Teknoo\States\State\AbstractState;
 
 /**
- * Class State1.
+ * Class State2.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -35,6 +35,6 @@ use Teknoo\States\State\AbstractState;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class State1 extends AbstractState
+class State2 extends AbstractState
 {
 }

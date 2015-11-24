@@ -20,12 +20,14 @@
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 
-namespace demo\LifeCycableAcme\States;
+namespace demo\LifeCyclableAcme;
 
-use Teknoo\States\State\AbstractState;
+use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
+use Teknoo\States\LifeCycle\StatedClass\LifeCyclableTrait;
+use Teknoo\States\Proxy\Integrated;
 
 /**
- * Class State2.
+ * Class LifeCyclableAcme.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -35,6 +37,7 @@ use Teknoo\States\State\AbstractState;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class State2 extends AbstractState
+class LifeCyclableAcme extends Integrated implements LifeCyclableInterface
 {
+    use LifeCyclableTrait;
 }

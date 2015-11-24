@@ -29,6 +29,8 @@ use Teknoo\States\LifeCycle\Observing\Observer;
 use Teknoo\States\LifeCycle\Observing\ObserverInterface;
 use Teknoo\States\LifeCycle\Scenario\Manager;
 use Teknoo\States\LifeCycle\Scenario\ManagerInterface;
+use Teknoo\States\LifeCycle\Tokenization\Tokenizer;
+use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 
 /**
  * Class Generator
@@ -57,6 +59,33 @@ class Generator
      * @var ObserverInterface
      */
     private $observer;
+
+    /**
+     * @var TokenizerInterface
+     */
+    private $tokenizer;
+
+    /**
+     * @return TokenizerInterface
+     */
+    public function getTokenizer(): TokenizerInterface
+    {
+        if (!$this->tokenizer instanceof TokenizerInterface) {
+            $this->tokenizer = new Tokenizer();
+        }
+
+        return $this->tokenizer;
+    }
+
+    /**
+     * @param TokenizerInterface $tokenizer
+     */
+    public function setTokenizer($tokenizer): Generator
+    {
+        $this->tokenizer = $tokenizer;
+
+        return $this;
+    }
 
     /**
      * @return EventDispatcherInterface
@@ -118,6 +147,7 @@ class Generator
 
             $this->observer = new Observer($observedFactory);
             $this->observer->addEventDispatcher($this->getEventDispatcher());
+            $this->observer->setTokenizer($this->getTokenizer());
         }
 
         return $this->observer;

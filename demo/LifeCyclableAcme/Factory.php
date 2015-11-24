@@ -20,7 +20,7 @@
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 
-namespace demo\LifeCycableAcme;
+namespace demo\LifeCyclableAcme;
 
 use Teknoo\States\Factory\Integrated;
 
