@@ -66,7 +66,7 @@ class Generator
     private $tokenizer;
 
     /**
-     * @return TokenizerInterface
+     * @return TokenizerInterface|Tokenizer
      */
     public function getTokenizer(): TokenizerInterface
     {

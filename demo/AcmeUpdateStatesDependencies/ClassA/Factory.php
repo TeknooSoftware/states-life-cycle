@@ -20,12 +20,22 @@
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 
-namespace demo;
+namespace demo\AcmeUpdateStatesDependencies\ClassA;
 
-use Teknoo\States\Loader\LoaderInterface;
+use Teknoo\States\Factory\Integrated;
 
 /**
- * @var LoaderInterface $stateLoader
+ * Class Factory
+ * Factory of the stated class ClassA.
+ *
+ *
+ * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
+ *
+ * @link        http://teknoo.software/states Project website
+ *
+ * @license     http://teknoo.software/license/mit         MIT License
+ * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-$stateLoader = require_once __DIR__.'/../vendor/teknoo/states/src/bootstrap.php';
-$stateLoader->registerNamespace('\\demo', __DIR__);
+class Factory extends Integrated
+{
+}

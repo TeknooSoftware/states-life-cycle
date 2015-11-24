@@ -20,12 +20,25 @@
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 
-namespace demo;
+namespace demo\AcmeUpdateStatesDependencies\ClassB;
 
-use Teknoo\States\Loader\LoaderInterface;
+use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
+use Teknoo\States\LifeCycle\StatedClass\LifeCyclableTrait;
+use Teknoo\States\Proxy;
 
 /**
- * @var LoaderInterface $stateLoader
+ * Proxy ClassB
+ * Proxy class of the stated class ClassB.
+ *
+ *
+ * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
+ *
+ * @link        http://teknoo.software/states Project website
+ *
+ * @license     http://teknoo.software/license/mit         MIT License
+ * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-$stateLoader = require_once __DIR__.'/../vendor/teknoo/states/src/bootstrap.php';
-$stateLoader->registerNamespace('\\demo', __DIR__);
+class ClassB extends Proxy\Integrated implements LifeCyclableInterface
+{
+    use LifeCyclableTrait;
+}
