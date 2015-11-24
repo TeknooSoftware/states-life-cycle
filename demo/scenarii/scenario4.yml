@@ -1,0 +1,6 @@
+scenario4:
+  - class: 'demo\NonExistant\Class'
+  - incoming: ['State3']
+  - outgoing: ['State2']
+  - notIn: ['StateDefault']
+  - run: ['$instanceB', 'switchToStateDefault']

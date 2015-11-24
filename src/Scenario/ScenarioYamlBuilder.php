@@ -53,6 +53,16 @@ class ScenarioYamlBuilder extends ScenarioBuilder
     private $filesystem;
 
     /**
+     * @var string
+     */
+    private $yamlScenario;
+
+    /**
+     * @var array
+     */
+    private $parameters = [];
+
+    /**
      * To list options, in yaml, correspondence with builder's methods
      * @var array
      */
@@ -107,6 +117,25 @@ class ScenarioYamlBuilder extends ScenarioBuilder
     }
 
     /**
+     * To parse options, detect parameters and replace them by parameter
+     * @param $optionValues
+     */
+    protected function parseParameter(&$optionValues)
+    {
+        if (!is_callable($optionValues) && !empty($optionValues)) {
+            if (is_array($optionValues) && '$' === $optionValues[0][0]) {
+                if (isset($this->parameters[$optionValues[0]])) {
+                    $optionValues[0] = $this->parameters[$optionValues[0]];
+                }
+            } elseif (is_string($optionValues) && '$' === $optionValues[0]) {
+                if (isset($this->parameters[$optionValues])) {
+                    $optionValues = $this->parameters[$optionValues];
+                }
+            }
+        }
+    }
+
+    /**
      * @param array $scenario
      * @return ScenarioYamlBuilder
      */
@@ -116,8 +145,16 @@ class ScenarioYamlBuilder extends ScenarioBuilder
             foreach ($options as $optionName=>$optionValues) {
                 if (isset($this->yamlOptionsMap[$optionName])) {
                     $methodName = $this->yamlOptionsMap[$optionName];
-                    foreach ((array) $optionValues as $optionValue) {
-                        $this->{$methodName}($optionValue);
+                    if ('run' != $methodName) {
+                        foreach ((array)$optionValues as $optionValue) {
+                            $this->{$methodName}($optionValue);
+                        }
+                    } else {
+                        if (!is_callable($optionValues)) {
+                            $this->parseParameter($optionValues);
+                        }
+
+                        $this->run($optionValues);
                     }
                 } else {
                     throw new \RuntimeException('Unknow option '.$optionName);
@@ -127,15 +164,42 @@ class ScenarioYamlBuilder extends ScenarioBuilder
     }
 
     /**
+     * To register a parameter to use during yaml parsing
+     * @param string $parameterName
+     * @param $object
+     * @return ScenarioYamlBuilder
+     */
+    public function setParameter(\string $parameterName, $object): ScenarioYamlBuilder
+    {
+        $this->parameters['@'.$parameterName] = $object;
+
+        return $this;
+    }
+
+    /**
+     * To transform a yaml scenario to native scenario
      * @param string $fileName
      * @return ScenarioYamlBuilder
      */
-    public function loadScenario(\string $fileName)
+    public function loadScenario(\string $fileName): ScenarioYamlBuilder
     {
+        $this->yamlScenario = $fileName;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function build(ScenarioInterface $scenario): ScenarioInterface
+    {
+
         return $this->configureBuilder(
             $this->parseYaml(
-                $this->getScenarioContent($fileName)
+                $this->getScenarioContent($this->yamlScenario)
             )
         );
+
+        return parent::build($scenario);
     }
 }

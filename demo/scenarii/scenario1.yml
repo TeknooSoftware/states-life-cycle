@@ -1,0 +1,4 @@
+scenario1:
+  - class: 'demo\AcmeUpdateStatesDependencies\ClassA'
+  - incoming: ['State2']
+  - run: ['$instanceB', 'switchToState2']
