@@ -43,14 +43,14 @@ interface ScenarioBuilderInterface
      * @param string $eventName
      * @return ScenarioBuilderInterface
      */
-    public function when(\string $eventName): ScenarioBuilderInterface;
+    public function when(string $eventName): ScenarioBuilderInterface;
 
     /**
      * To execute the scenario when an instance of this stated class is updated
      * @param string $statedClassName
      * @return ScenarioBuilderInterface
      */
-    public function towardStatedClass(\string $statedClassName): ScenarioBuilderInterface;
+    public function towardStatedClass(string $statedClassName): ScenarioBuilderInterface;
 
     /**
      * To execute the scenario when a stated class instance is updated
@@ -64,28 +64,28 @@ interface ScenarioBuilderInterface
      * @param string $stateName
      * @return ScenarioBuilderInterface
      */
-    public function ifNotInState(\string $stateName): ScenarioBuilderInterface;
+    public function ifNotInState(string $stateName): ScenarioBuilderInterface;
 
     /**
      * To execute the scenario only if the stated class instance is in the this defined state
      * @param string $stateName
      * @return ScenarioBuilderInterface
      */
-    public function ifInState(\string $stateName): ScenarioBuilderInterface;
+    public function ifInState(string $stateName): ScenarioBuilderInterface;
 
     /**
      * To execute the scenario only if the stated class instance is incoming in the this defined state
      * @param string $stateName
      * @return ScenarioBuilderInterface
      */
-    public function onIncomingState(\string $stateName): ScenarioBuilderInterface;
+    public function onIncomingState(string $stateName): ScenarioBuilderInterface;
 
     /**
      * To execute the scenario only if the stated class instance is outgoing in the this defined state
      * @param string $stateName
      * @return ScenarioBuilderInterface
      */
-    public function onOutgoingState(\string $stateName): ScenarioBuilderInterface;
+    public function onOutgoingState(string $stateName): ScenarioBuilderInterface;
 
     /**
      * To execute the callable (function, object callback or closure) if the scenario can be executed

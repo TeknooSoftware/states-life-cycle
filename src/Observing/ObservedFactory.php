@@ -58,7 +58,7 @@ class ObservedFactory implements ObservedFactoryInterface
      * @param string $eventClassName
      * @param string $traceClassName
      */
-    public function __construct(\string $observedClassName, \string $eventClassName, \string $traceClassName)
+    public function __construct(string $observedClassName, string $eventClassName, string $traceClassName)
     {
         $this->checkObservedClassName($observedClassName);
         $this->checkTraceClassName($traceClassName);
@@ -69,7 +69,7 @@ class ObservedFactory implements ObservedFactoryInterface
      * @param string $observedClassName
      * @return $this
      */
-    protected function checkObservedClassName(\string $observedClassName)
+    protected function checkObservedClassName(string $observedClassName)
     {
         if (!class_exists($observedClassName)) {
             throw new \RuntimeException('Missing observed class '.$observedClassName);
@@ -90,7 +90,7 @@ class ObservedFactory implements ObservedFactoryInterface
      * @param string $traceClassName
      * @return $this
      */
-    protected function checkTraceClassName(\string $traceClassName)
+    protected function checkTraceClassName(string $traceClassName)
     {
         if (!class_exists($traceClassName)) {
             throw new \RuntimeException('Missing trace class '.$traceClassName);

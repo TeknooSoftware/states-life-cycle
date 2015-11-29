@@ -78,7 +78,7 @@ class Observed implements ObservedInterface
         LifeCyclableInterface $object,
         ObserverInterface $observer,
         TraceInterface $trace,
-        \string $eventClassName
+        string $eventClassName
     ) {
         $this->object = $object;
         $this->observer = $observer;
@@ -91,7 +91,7 @@ class Observed implements ObservedInterface
      * @param string $eventClassName
      * @return self
      */
-    protected function checkEventClassName(\string $eventClassName): Observed
+    protected function checkEventClassName(string $eventClassName): Observed
     {
         if (!class_exists($eventClassName)) {
             throw new \RuntimeException('Missing event class '.$eventClassName);
@@ -127,7 +127,7 @@ class Observed implements ObservedInterface
     /**
      * {@inheritdoc}
      */
-    public function getStatedClassName(): \string
+    public function getStatedClassName(): string
     {
         $classNameParts = explode('\\', get_class($this->object));
         if (count($classNameParts) > 1) {

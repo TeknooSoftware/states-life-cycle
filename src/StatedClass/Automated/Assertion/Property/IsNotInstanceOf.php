@@ -46,7 +46,7 @@ class IsNotInstanceOf
      * IsNotInstanceOf constructor.
      * @param string $exceptedClassName
      */
-    public function __construct(\string $exceptedClassName)
+    public function __construct(string $exceptedClassName)
     {
         $this->exceptedClassName = $exceptedClassName;
     }
@@ -55,7 +55,7 @@ class IsNotInstanceOf
      * @param mixed &$property
      * @return bool
      */
-    public function __invoke($property): \bool
+    public function __invoke($property): bool
     {
         return !($property instanceof $this->exceptedClassName);
     }

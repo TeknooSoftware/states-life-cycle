@@ -118,7 +118,7 @@ class Scenario implements ScenarioInterface
      * @param EventInterface $event
      * @return bool
      */
-    protected function checkNeededIncomingStates(EventInterface $event): \bool
+    protected function checkNeededIncomingStates(EventInterface $event): bool
     {
         $neededIncomingStatesList = $this->listNeededIncomingStates();
         if (empty($neededIncomingStatesList)) {
@@ -141,7 +141,7 @@ class Scenario implements ScenarioInterface
      * @param EventInterface $event
      * @return bool
      */
-    protected function checkNeededOutgoingStates(EventInterface $event): \bool
+    protected function checkNeededOutgoingStates(EventInterface $event): bool
     {
         $neededOutgoingStatesList = $this->listNeededOutgoingStates();
         if (empty($neededOutgoingStatesList)) {
@@ -164,7 +164,7 @@ class Scenario implements ScenarioInterface
      * @param EventInterface $event
      * @return bool
      */
-    protected function checkNeededStates(EventInterface $event): \bool
+    protected function checkNeededStates(EventInterface $event): bool
     {
         $neededStatesList = $this->listNeededStates();
         if (empty($neededStatesList)) {
@@ -187,7 +187,7 @@ class Scenario implements ScenarioInterface
      * @param EventInterface $event
      * @return bool
      */
-    protected function checkForbiddenStates(EventInterface $event): \bool
+    protected function checkForbiddenStates(EventInterface $event): bool
     {
         $forbiddenStatesList = $this->listForbiddenStates();
         if (empty($forbiddenStatesList)) {
@@ -201,7 +201,7 @@ class Scenario implements ScenarioInterface
     /**
      * @return string
      */
-    public function getNeededStatedClass(): \string
+    public function getNeededStatedClass(): string
     {
         return $this->neededStatedClassName;
     }
@@ -210,7 +210,7 @@ class Scenario implements ScenarioInterface
      * @param EventInterface $event
      * @return bool
      */
-    protected function checkNeededStatedClass(EventInterface $event): \bool
+    protected function checkNeededStatedClass(EventInterface $event): bool
     {
         $neededStatedClassName = $this->getNeededStatedClass();
         if (empty($neededStatedClassName)) {
@@ -232,7 +232,7 @@ class Scenario implements ScenarioInterface
      * @param EventInterface $event
      * @return bool
      */
-    protected function checkNeededStatedObject(EventInterface $event): \bool
+    protected function checkNeededStatedObject(EventInterface $event): bool
     {
         $neededStatedObject = $this->getNeededStatedObject();
         if (!$neededStatedObject instanceof LifeCyclableInterface) {
@@ -245,7 +245,7 @@ class Scenario implements ScenarioInterface
     /**
      * {@inheritdoc}
      */
-    public function isAllowedToRun(EventInterface $event): \bool
+    public function isAllowedToRun(EventInterface $event): bool
     {
         if (!$this->checkNeededIncomingStates($event)) {
             return false;

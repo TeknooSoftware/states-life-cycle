@@ -105,7 +105,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function when(\string $eventName): ScenarioBuilderInterface
+    public function when(string $eventName): ScenarioBuilderInterface
     {
         $this->eventNamesList[] = $eventName;
 
@@ -115,7 +115,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function towardStatedClass(\string $statedClassName): ScenarioBuilderInterface
+    public function towardStatedClass(string $statedClassName): ScenarioBuilderInterface
     {
         $this->statedClassName = $statedClassName;
         $this->when($this->tokenizer->getStatedClassNameToken($statedClassName));
@@ -137,7 +137,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function ifNotInState(\string $stateName): ScenarioBuilderInterface
+    public function ifNotInState(string $stateName): ScenarioBuilderInterface
     {
         $this->forbiddenStatesList[$stateName] = $stateName;
 
@@ -147,7 +147,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function ifInState(\string $stateName): ScenarioBuilderInterface
+    public function ifInState(string $stateName): ScenarioBuilderInterface
     {
         $this->neededStatesList[$stateName] = $stateName;
 
@@ -157,7 +157,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function onIncomingState(\string $stateName): ScenarioBuilderInterface
+    public function onIncomingState(string $stateName): ScenarioBuilderInterface
     {
         $this->neededIncomingStatesList[$stateName] = $stateName;
 
@@ -167,7 +167,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function onOutgoingState(\string $stateName): ScenarioBuilderInterface
+    public function onOutgoingState(string $stateName): ScenarioBuilderInterface
     {
         $this->neededOutgoingStatesList[$stateName] = $stateName;
 
@@ -185,7 +185,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     }
 
     /**
-     * @return \string[]
+     * @return string[]
      */
     public function getEventNamesList()
     {
@@ -209,7 +209,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     }
 
     /**
-     * @return \string[]
+     * @return string[]
      */
     public function getForbiddenStatesList()
     {
@@ -217,7 +217,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     }
 
     /**
-     * @return \string[]
+     * @return string[]
      */
     public function getNeededStatesList()
     {
@@ -225,7 +225,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     }
 
     /**
-     * @return \string[]
+     * @return string[]
      */
     public function getNeededIncomingStatesList()
     {
@@ -233,7 +233,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
     }
 
     /**
-     * @return \string[]
+     * @return string[]
      */
     public function getNeededOutgoingStatesList()
     {

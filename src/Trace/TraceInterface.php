@@ -46,7 +46,7 @@ interface TraceInterface
      * To know if the strace is empty or not
      * @return bool
      */
-    public function isEmpty(): \bool;
+    public function isEmpty(): bool;
 
     /**
      * Get the first entry in the trace (the oldest event)

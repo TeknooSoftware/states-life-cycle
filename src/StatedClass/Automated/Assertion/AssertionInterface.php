@@ -41,7 +41,7 @@ interface AssertionInterface
      * @param ProxyInterface $proxy
      * @return bool
      */
-    public function isValid(ProxyInterface $proxy): \bool;
+    public function isValid(ProxyInterface $proxy): bool;
 
     /**
      * @return string[]

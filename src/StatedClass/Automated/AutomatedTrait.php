@@ -34,8 +34,8 @@ namespace Teknoo\States\LifeCycle\StatedClass\Automated;
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
  * @method string[] listEnabledStates()
- * @method AutomatedInterface enableState(\string $stateName)
- * @method AutomatedInterface disableState(\string $stateName)
+ * @method AutomatedInterface enableState(string $stateName)
+ * @method AutomatedInterface disableState(string $stateName)
  */
 trait AutomatedTrait
 {

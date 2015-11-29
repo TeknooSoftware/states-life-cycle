@@ -61,7 +61,7 @@ class Trace implements TraceInterface
     /**
      * @return bool
      */
-    public function isEmpty(): \bool
+    public function isEmpty(): bool
     {
         return 0 === $this->stack->count();
     }

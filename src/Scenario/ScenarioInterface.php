@@ -80,7 +80,7 @@ interface ScenarioInterface
      * Get the stated class name listens/attempted by this scenario
      * @return string
      */
-    public function getNeededStatedClass(): \string;
+    public function getNeededStatedClass(): string;
 
     /**
      * Get the stated class instance listens/attempted by this scenario
@@ -93,7 +93,7 @@ interface ScenarioInterface
      * @param EventInterface $event
      * @return bool
      */
-    public function isAllowedToRun(EventInterface $event): \bool;
+    public function isAllowedToRun(EventInterface $event): bool;
 
     /**
      * To call the scenario, check constraints and execute this scenario if it's valid

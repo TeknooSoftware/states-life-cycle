@@ -50,7 +50,7 @@ class Assertion extends AbstractAssertion implements AssertionInterface
      * @param mixed $exceptedValue
      * @return Assertion
      */
-    public function with(\string $property, $exceptedValue): Assertion
+    public function with(string $property, $exceptedValue): Assertion
     {
         $this->propertiesAssertions[$property] = $exceptedValue;
 
@@ -60,7 +60,7 @@ class Assertion extends AbstractAssertion implements AssertionInterface
     /**
      * {@inheritdoc}
      */
-    public function isValid(ProxyInterface $proxy): \bool
+    public function isValid(ProxyInterface $proxy): bool
     {
         $asserted = true;
 

@@ -102,7 +102,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      * @param string $fileName
      * @return string
      */
-    protected function getScenarioContent(\string $fileName): \string
+    protected function getScenarioContent(string $fileName): string
     {
         return $this->filesystem->read($fileName);
     }
@@ -111,7 +111,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      * @param string $yamlContent
      * @return array
      */
-    protected function parseYaml(\string $yamlContent): array
+    protected function parseYaml(string $yamlContent): array
     {
         return $this->yamlParser->parse($yamlContent);
     }
@@ -169,7 +169,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      * @param $object
      * @return ScenarioYamlBuilder
      */
-    public function setParameter(\string $parameterName, $object): ScenarioYamlBuilder
+    public function setParameter(string $parameterName, $object): ScenarioYamlBuilder
     {
         $this->parameters['@'.$parameterName] = $object;
 
@@ -181,7 +181,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      * @param string $fileName
      * @return ScenarioYamlBuilder
      */
-    public function loadScenario(\string $fileName): ScenarioYamlBuilder
+    public function loadScenario(string $fileName): ScenarioYamlBuilder
     {
         $this->yamlScenario = $fileName;
 

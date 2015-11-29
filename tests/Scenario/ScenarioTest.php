@@ -80,7 +80,7 @@ class ScenarioTest extends AbstractScenarioTest
      * @param bool $noPopulateMock
      * @return Scenario
      */
-    public function build(\bool $noPopulateMock=false)
+    public function build(bool $noPopulateMock=false)
     {
         $builder = $this->getScenarioBuilderMock();
         if (false === $noPopulateMock) {

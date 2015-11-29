@@ -51,7 +51,7 @@ class Tokenizer implements TokenizerInterface
      * @param bool $removeProxyName
      * @return string
      */
-    public function getStatedClassNameToken(\string $statedClassName, $removeProxyName=false): \string
+    public function getStatedClassNameToken(string $statedClassName, $removeProxyName=false): string
     {
         $statedClassNamePart = explode('\\', $statedClassName);
         if (true === $removeProxyName) {
@@ -66,7 +66,7 @@ class Tokenizer implements TokenizerInterface
      * @param LifeCyclableInterface $object
      * @return string
      */
-    public function getStatedClassInstanceToken(LifeCyclableInterface $object): \string
+    public function getStatedClassInstanceToken(LifeCyclableInterface $object): string
     {
         $statedClassName = get_class($object);
 

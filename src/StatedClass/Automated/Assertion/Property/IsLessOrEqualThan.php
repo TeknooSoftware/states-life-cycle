@@ -55,7 +55,7 @@ class IsLessOrEqualThan
      * @param mixed &$property
      * @return bool
      */
-    public function __invoke($property): \bool
+    public function __invoke($property): bool
     {
         return $this->exceptedValue >= $property;
     }

@@ -50,7 +50,7 @@ interface ObservedInterface
         LifeCyclableInterface $object,
         ObserverInterface $observer,
         TraceInterface $trace,
-        \string $eventClassName
+        string $eventClassName
     );
 
     /**
@@ -69,7 +69,7 @@ interface ObservedInterface
      * To get the canonical stated class name
      * @return string
      */
-    public function getStatedClassName(): \string;
+    public function getStatedClassName(): string;
 
     /**
      * Called by the observed stated class instance to notify to the observer that its states are changed
