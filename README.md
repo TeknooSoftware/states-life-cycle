@@ -1,7 +1,7 @@
 Teknoo Software - States Life Cyclable extension
 ================================================
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/417986ff-17b4-4772-a3d8-9885d6304786/mini.png)](https://insight.sensiolabs.com/projects/417986ff-17b4-4772-a3d8-9885d6304786) [![Build Status](https://travis-ci.org/Teknoo/states.svg?branch=master)](https://travis-ci.org/Teknoo/states)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/cee11d43-81b1-4974-a388-880a532a2c4f/mini.png)](https://insight.sensiolabs.com/projects/cee11d43-81b1-4974-a388-880a532a2c4f) [![Build Status](https://travis-ci.org/TeknooSoftware/statesBundle.svg?branch=next)](https://travis-ci.org/TeknooSoftware/statesBundle)
 
 Welcome and thank you to having downloaded this extension. 
 It's allow you to add some new behavior to your stated class :
