@@ -199,7 +199,5 @@ class ScenarioYamlBuilder extends ScenarioBuilder
                 $this->getScenarioContent($this->yamlScenario)
             )
         );
-
-        return parent::build($scenario);
     }
 }
