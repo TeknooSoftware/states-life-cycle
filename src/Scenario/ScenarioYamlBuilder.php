@@ -161,6 +161,8 @@ class ScenarioYamlBuilder extends ScenarioBuilder
                 }
             }
         }
+
+        return $this;
     }
 
     /**
@@ -171,7 +173,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      */
     public function setParameter(string $parameterName, $object): ScenarioYamlBuilder
     {
-        $this->parameters['@'.$parameterName] = $object;
+        $this->parameters['$'.$parameterName] = $object;
 
         return $this;
     }
@@ -193,11 +195,12 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      */
     public function build(ScenarioInterface $scenario): ScenarioInterface
     {
-
-        return $this->configureBuilder(
+        $this->configureBuilder(
             $this->parseYaml(
                 $this->getScenarioContent($this->yamlScenario)
             )
         );
+
+        return parent::build($scenario);
     }
 }
