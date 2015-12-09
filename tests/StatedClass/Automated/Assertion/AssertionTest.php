@@ -29,6 +29,7 @@ use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 /**
  * Class AssertionTest.
  *
+ * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion
  * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Assertion
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)

@@ -94,6 +94,23 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \RuntimeException
      */
+    public function testConstructorMissingEvent()
+    {
+        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $this->assertInstanceOf(
+            'Teknoo\States\LifeCycle\Observing\ObservedInterface',
+            $this->build(
+                $instance,
+                $this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'),
+                $this->getMock('Teknoo\States\LifeCycle\Trace\TraceInterface'),
+                'Teknoo\States\LifeCycle\Trace\EntryMissed'
+            )
+        );
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     */
     public function testConstructorBadEvent()
     {
         $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');

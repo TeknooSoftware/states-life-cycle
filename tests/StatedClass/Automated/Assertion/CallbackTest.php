@@ -27,6 +27,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Callback;
 /**
  * Class CallbackTest.
  *
+ * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion
  * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Callback
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)

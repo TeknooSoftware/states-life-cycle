@@ -82,6 +82,15 @@ abstract class AbstractLifeCyclableTest extends \PHPUnit_Framework_TestCase
             $instance,
             $instance->unregisterObserver($observed)
         );
+
+        $this->assertEquals(
+            $instance,
+            $instance->registerObserver($observed)
+        );
+        $this->assertEquals(
+            $instance,
+            $instance->unregisterObserver($observed)
+        );
     }
 
     public function testNotifyObserved()

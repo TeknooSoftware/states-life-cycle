@@ -25,6 +25,7 @@ namespace Teknoo\States\LifeCycle\Observing;
 use Teknoo\States\LifeCycle\Event\EventInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use Teknoo\States\LifeCycle\Trace\Entry;
+use Teknoo\States\LifeCycle\Trace\EntryInterface;
 use Teknoo\States\LifeCycle\Trace\TraceInterface;
 
 /**
@@ -147,7 +148,7 @@ class Observed implements ObservedInterface
 
         if (false === $trace->isEmpty()) {
             $lastEntry = $trace->getLastEntry();
-            if ($lastEntry instanceof Entry) {
+            if ($lastEntry instanceof EntryInterface) {
                 $lastEnabledStates = $lastEntry->getEnabledState();
             }
         }
