@@ -80,7 +80,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      * @param Parser $yamlParser
      * @return self
      */
-    public function setYamlParser($yamlParser): ScenarioYamlBuilder
+    public function setYamlParser(Parser $yamlParser): ScenarioYamlBuilder
     {
         $this->yamlParser = $yamlParser;
 
@@ -91,7 +91,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      * @param Filesystem $filesystem
      * @return self
      */
-    public function setFilesystem($filesystem): ScenarioYamlBuilder
+    public function setFilesystem(Filesystem $filesystem): ScenarioYamlBuilder
     {
         $this->filesystem = $filesystem;
 
