@@ -104,7 +104,8 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      */
     protected function getScenarioContent(string $fileName): string
     {
-        return $this->filesystem->read($fileName);
+        $string = $this->filesystem->read($fileName);
+        return $string;
     }
 
     /**

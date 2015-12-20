@@ -228,6 +228,7 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
             }
         });
 
+        $builder->loadScenario('file/scenario.yaml');
         $this->assertInstanceOf(
             'Teknoo\States\LifeCycle\Scenario\ScenarioInterface',
             $builder->build(
