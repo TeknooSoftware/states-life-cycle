@@ -12,13 +12,13 @@ It's allow you to add some new behavior to your stated class :
  
 Example
 -------
-An example of using this library is available in the folder demo.
+Examples of using this library is available in the folder demo.
 
 Installation
 ------------
 To install this library with composer, run this command :
 
-    composer require teknoo/states:next-dev
+    composer require teknoo/states-life-cycle
 
 Requirements
 ------------
@@ -29,35 +29,21 @@ This library requires :
     * Teknoo Software States
     * Symfony event-dispatcher to dispatch event
     * Symfony yaml to parse yaml scenarii
-    * Knplabs gaufrette to read yaml scenarru
+    * Knplabs gaufrette to read yaml scenarri
 
 Although highly recommended, Composer is not needed, this library can be used with its own psr0 autoloader.
 
 Presentation
 ------------
-Quick How-to to learn how use this library : [Startup](docs/howto/details.md).
+Presentation about this library and its components : [Startup](docs/details.md).
 
 Quick startup
 -------------
-Quick How-to to learn how use this library : [Startup](docs/howto/quick-startup.md).
+Quick How-to to learn how use this library : [Startup](docs/quick-startup.md).
 
 API Documentation
 -----------------
-Generated documentation from the library with PhpDocumentor : [Open](https://cdn.rawgit.com/TeknooSoftware/states/master/docs/api/index.html).
-
-Behavior Documentation
-----------------------
-Documentation to explain how this library works : [Behavior](docs/howto/behavior.md).
-
-Mandatory evolutions in 2.x versions
-------------------------------------
-
-From the version 2.0, this library has been redesigned to 
-* Reuse all composer's autoloader usefull and powerfull features instead internal autoloader.
-* Reduce the number of necessary components to the internal functioning of this library (Dependency Injector, Closure Injector). 
-* Forbid the usage of slows functions like `call_user_func`.
-* Use `Closure::call()` instead of `Closure::bind` to reduce memory ans cpu consumptions.
-* Use Scalar Type Hinting to use PHP Engine's check instead if statements.
+Generated documentation from the library with PhpDocumentor :
 
 Credits
 -------
@@ -71,7 +57,7 @@ Teknoo Software shares the same DNA as Uni Alteri : Provide to our partners and 
 
 License
 -------
-States is licensed under the MIT and GPL3+ Licenses - see the licenses folder for details
+States Life Cycle is licensed under the MIT License - see the licenses folder for details
 
 Contribute :)
 -------------

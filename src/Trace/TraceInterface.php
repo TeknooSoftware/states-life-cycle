@@ -21,6 +21,7 @@
  */
 
 namespace Teknoo\States\LifeCycle\Trace;
+
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 
 /**

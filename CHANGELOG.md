@@ -1,5 +1,16 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
+##[1.0.0-beta1] - 2015-12-31
+###Added
+- Documentation
+- Scenario builder in Yaml
+
+###Fixed
+- Test and coverages
+
+###Removed
+- Dead code in Scenario Builder
+
 ##[1.0.0-alpha1] - 2015-11-23
 - First release of this library 
 
