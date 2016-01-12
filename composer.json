@@ -32,7 +32,7 @@
             "Teknoo\\Tests\\States\\LifeCycle\\": ["tests/"]
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "rc",
     "archive": {
         "exclude": ["demo", "vendor", ".idea"]
     }
