@@ -140,7 +140,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      * @param array $scenario
      * @return ScenarioYamlBuilder
      */
-    protected function configureBuilder(array &$scenario): ScenarioYamlBuilder
+    protected function configureBuilder(array $scenario): ScenarioYamlBuilder
     {
         foreach ($scenario as $scenarioName=>&$options) {
             foreach ($options as $optionName=>$optionValues) {
