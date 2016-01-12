@@ -145,8 +145,8 @@ A trait is provided by this extention to implement these interfaces : `Automated
 When the method `updateStates` of your stated class instances is called, new states are computed like an automated class
 and changes are broadcasted to observers like a lifecyclable class.
 
-Observe a lifecyclable stated class
------------------------------------
+Observe a life cyclable stated class
+------------------------------------
 
 When an observer observing changes about a stated class instance, it send several events via the EventDispatcher.
 These event are broadcasted even if no changes are observed. It broadcast four types of events :
@@ -177,3 +177,7 @@ Perform scenarii with several stated classes
 
 The extension provides also an api to create scenarii to describe interaction between stated class instances and others
 components. Scenarii can be written with `ScenarioBuilder` or `ScenarioYamlBuilder`.
+
+...coming soon...
+
+See demos to learn  more.

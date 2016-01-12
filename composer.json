@@ -1,7 +1,7 @@
 {
     "name": "teknoo/states-life-cycle",
     "type": "library",
-    "description": "Component to extend the behavior of teknoo/states and provide a service to manage lifes cycles of stated class instances and automated their beahvior",
+    "description": "Component to extend the behavior of teknoo/states and provide a service to manage life cycles of stated class instances and automated their behavior",
     "keywords": ["states","class","state pattern","pattern","behavioral software design pattern", "life cycle"],
     "homepage": "http://teknoo.software/states",
     "license": ["MIT"],
@@ -17,7 +17,7 @@
         "source": "https://github.com/TeknooSoftware/states"
     },
     "require":{
-        "php": ">5.6.0",
+        "php": "~7.0",
         "teknoo/states": "~2.0-beta10",
         "symfony/event-dispatcher":"~2.7",
         "symfony/yaml": "~2.7",

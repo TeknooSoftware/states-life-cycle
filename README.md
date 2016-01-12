@@ -31,8 +31,6 @@ This library requires :
     * Symfony yaml to parse yaml scenarii
     * Knplabs gaufrette to read yaml scenarri
 
-Although highly recommended, Composer is not needed, this library can be used with its own psr0 autoloader.
-
 Presentation
 ------------
 Presentation about this library and its components : [Startup](docs/details.md).
@@ -43,7 +41,7 @@ Quick How-to to learn how use this library : [Startup](docs/quick-startup.md).
 
 API Documentation
 -----------------
-Generated documentation from the library with PhpDocumentor :
+Generated documentation from the library with PhpDocumentor : Coming soon
 
 Credits
 -------
