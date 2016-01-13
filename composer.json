@@ -13,8 +13,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/TeknooSoftware/states/issues",
-        "source": "https://github.com/TeknooSoftware/states"
+        "issues": "https://github.com/TeknooSoftware/states-life-cycle/issues",
+        "source": "https://github.com/TeknooSoftware/states-life-cycle"
     },
     "require":{
         "php": "~7.0",
@@ -32,7 +32,7 @@
             "Teknoo\\Tests\\States\\LifeCycle\\": ["tests/"]
         }
     },
-    "minimum-stability": "rc",
+    "minimum-stability": "RC",
     "archive": {
         "exclude": ["demo", "vendor", ".idea"]
     }
