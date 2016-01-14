@@ -178,6 +178,20 @@ Perform scenarii with several stated classes
 The extension provides also an api to create scenarii to describe interaction between stated class instances and others
 components. Scenarii can be written with `ScenarioBuilder` or `ScenarioYamlBuilder`.
 
-...coming soon...
+A scenario can be attached to all instances of a stated class or to a specific stated class instance,
+and its execution can be condition states enabled or not (including incoming and outgoing states).
+The scenario contains also a callable to execute when all conditions are valid.
 
-See demos to learn  more.
+All scenarii must be registered into a manager, linked with the event dispatcher. By default, the generator performs this
+by calling
+
+    $generator = new Generator();
+    $manager = $generator->getManager();
+
+You have two ways to create a scenario :
+
+With the `\Teknoo\States\LifeCycle\Scenario\ScenarioBuilder` class, to create scenarii in PHP. See the demo 4 for more informations
+With the `\Teknoo\States\LifeCycle\Scenario\ScenarioYamlBuilder` class to create scenarii in YAML
+(See the demo file and the folder scenarii in demo) : Callable can use parameter, prefixed by '$' to define object to use.
+
+See demos 4 and 5 to learn  more.
