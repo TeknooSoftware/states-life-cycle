@@ -31,10 +31,6 @@ This library requires :
     * Symfony yaml to parse yaml scenarii
     * Knplabs gaufrette to read yaml scenarri
 
-Presentation
-------------
-Presentation about this library and its components : [Startup](docs/details.md).
-
 Quick startup
 -------------
 Quick How-to to learn how use this library : [Startup](docs/quick-startup.md).
