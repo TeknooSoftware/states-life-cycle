@@ -9,7 +9,7 @@ It's allow you to add some new behavior to your stated class :
 - Lifecycable stated class : to dispatch states updates from a stated class to observer
 - Traceable stated class : to keep evolution of states in the lifecycle of your stated class
 - Scenario : to create easily scenarii in php or yaml between stated class instances and others application's components
- 
+
 Example
 -------
 Examples of using this library is available in the folder demo.
