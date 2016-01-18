@@ -83,7 +83,7 @@ class AssertionTest extends AbstractAssertionTest
 
     public function testIsValidPropertyValueBadParameter()
     {
-        /**
+        /*
          * @var ProxyInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $proxyMock = $this->getMock('Teknoo\States\Proxy\ProxyInterface');
@@ -109,7 +109,7 @@ class AssertionTest extends AbstractAssertionTest
 
     public function testIsValidCallbackValueBadParameter()
     {
-        /**
+        /*
          * @var ProxyInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $proxyMock = $this->getMock('Teknoo\States\Proxy\ProxyInterface');

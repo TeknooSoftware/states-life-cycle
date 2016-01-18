@@ -28,7 +28,7 @@ use Teknoo\States\LifeCycle\Generator;
 use Teknoo\States\Loader\LoaderInterface;
 
 /**
- * @var LoaderInterface $stateLoader
+ * @var LoaderInterface
  */
 $stateLoader = require_once __DIR__.'/../vendor/teknoo/states/src/bootstrap.php';
 $stateLoader->registerNamespace('\\demo', __DIR__);

@@ -29,7 +29,7 @@ use Teknoo\States\Loader\LoaderInterface;
 
 //Initialize the states library
 /**
- * @var LoaderInterface $stateLoader
+ * @var LoaderInterface
  */
 $stateLoader = require_once __DIR__.'/../vendor/teknoo/states/src/bootstrap.php';
 $stateLoader->registerNamespace('\\demo', __DIR__);
@@ -88,7 +88,6 @@ echo PHP_EOL.PHP_EOL.'Instance registered, first event';
 $lifeCyclableAcme->notifyObserved();
 echo PHP_EOL.PHP_EOL.'Instance registered, no change';
 $lifeCyclableAcme->notifyObserved();
-
 
 echo PHP_EOL.PHP_EOL.'Enable State1';
 $lifeCyclableAcme->enableState('State1');
