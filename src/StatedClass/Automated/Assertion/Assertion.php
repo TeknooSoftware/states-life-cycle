@@ -73,7 +73,7 @@ class Assertion extends AbstractAssertion implements AssertionInterface
                 $reflectionProperty->setAccessible(true);
                 $propertyValue = $reflectionProperty->getValue($proxy);
 
-                if (!is_callable($exceptedValue)) {
+                if (!\is_callable($exceptedValue)) {
                     //Not a callable, perform a equal test
                     $asserted &= $exceptedValue == $propertyValue;
                 } else {

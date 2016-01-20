@@ -123,12 +123,12 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      */
     protected function parseParameter(&$optionValues)
     {
-        if (!is_callable($optionValues) && !empty($optionValues)) {
-            if (is_array($optionValues) && '$' === $optionValues[0][0]) {
+        if (!\is_callable($optionValues) && !empty($optionValues)) {
+            if (\is_array($optionValues) && '$' === $optionValues[0][0]) {
                 if (isset($this->parameters[$optionValues[0]])) {
                     $optionValues[0] = $this->parameters[$optionValues[0]];
                 }
-            } elseif (is_string($optionValues) && '$' === $optionValues[0]) {
+            } elseif (\is_string($optionValues) && '$' === $optionValues[0]) {
                 if (isset($this->parameters[$optionValues])) {
                     $optionValues = $this->parameters[$optionValues];
                 }
@@ -151,7 +151,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
                             $this->{$methodName}($optionValue);
                         }
                     } else {
-                        if (!is_callable($optionValues)) {
+                        if (!\is_callable($optionValues)) {
                             $this->parseParameter($optionValues);
                         }
 
