@@ -1,5 +1,11 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
+##[1.0.0-beta5] - 2016-02-02
+###Updated
+- Composer minimum requirement
+- Support Symfony Event Dispatcher 3.0
+- Support Symfony Yaml 3.0
+
 ##[1.0.0-beta4] - 2016-01-20
 ###Updated
 - Clean .gitignore
