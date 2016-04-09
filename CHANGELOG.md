@@ -1,5 +1,12 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
+##[1.0.0-RC1] - 2016-04-09
+###Updated
+- first RC
+
+###Fixed
+- Fix code style with cs-fixer
+
 ##[1.0.0-beta5] - 2016-02-02
 ###Updated
 - Composer minimum requirement

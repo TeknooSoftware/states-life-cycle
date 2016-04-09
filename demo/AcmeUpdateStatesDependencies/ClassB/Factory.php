@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace demo\AcmeUpdateStatesDependencies\ClassB;
 
 use Teknoo\States\Factory\Integrated;

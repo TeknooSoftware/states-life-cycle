@@ -19,13 +19,12 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace demo;
 
 use demo\AutomatedAcme\AutomatedAcme;
 use Teknoo\States\Loader\LoaderInterface;
 
-/**
+/*
  * @var LoaderInterface
  */
 $stateLoader = require_once __DIR__.'/../vendor/teknoo/states/src/bootstrap.php';

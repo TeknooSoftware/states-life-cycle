@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB;
 
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;

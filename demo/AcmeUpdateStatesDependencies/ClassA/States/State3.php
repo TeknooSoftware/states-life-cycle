@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace demo\AcmeUpdateStatesDependencies\ClassA\States;
 
 use Teknoo\States\State\AbstractState;

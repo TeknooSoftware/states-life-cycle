@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedAcme;
 
 use Teknoo\States\Factory\Integrated;

@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace demo;
 
 use demo\AcmeUpdateStatesDependencies\ClassA\ClassA;
@@ -32,7 +31,7 @@ use Teknoo\States\LifeCycle\Scenario\Scenario;
 use Teknoo\States\LifeCycle\Scenario\ScenarioYamlBuilder;
 use Teknoo\States\Loader\LoaderInterface;
 
-/**
+/*
  * @var LoaderInterface
  */
 $stateLoader = require_once __DIR__.'/../vendor/teknoo/states/src/bootstrap.php';

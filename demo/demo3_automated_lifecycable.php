@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace demo;
 
 use demo\AutomatedLifeCyclableAcme\AutomatedLifeCyclableAcme;
@@ -27,7 +26,7 @@ use Teknoo\States\LifeCycle\Event\EventInterface;
 use Teknoo\States\LifeCycle\Generator;
 use Teknoo\States\Loader\LoaderInterface;
 
-/**
+/*
  * @var LoaderInterface
  */
 $stateLoader = require_once __DIR__.'/../vendor/teknoo/states/src/bootstrap.php';

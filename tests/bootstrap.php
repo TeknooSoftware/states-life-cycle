@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\Tests\States\LifeCycle;
 
 require_once __DIR__.'/../vendor/teknoo/states/src/bootstrap.php';
