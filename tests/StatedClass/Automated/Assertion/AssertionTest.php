@@ -85,7 +85,7 @@ class AssertionTest extends AbstractAssertionTest
         /*
          * @var ProxyInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $proxyMock = $this->getMock('Teknoo\States\Proxy\ProxyInterface');
+        $proxyMock = $this->createMock('Teknoo\States\Proxy\ProxyInterface');
 
         $this->assertFalse($this->buildInstance()->with('foo', 'bar')->isValid($proxyMock));
     }
@@ -111,7 +111,7 @@ class AssertionTest extends AbstractAssertionTest
         /*
          * @var ProxyInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $proxyMock = $this->getMock('Teknoo\States\Proxy\ProxyInterface');
+        $proxyMock = $this->createMock('Teknoo\States\Proxy\ProxyInterface');
 
         $this->assertFalse($this->buildInstance()->with('foo', function ($value) {return 'bar' === $value;})->isValid($proxyMock));
     }

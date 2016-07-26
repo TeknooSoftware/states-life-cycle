@@ -46,7 +46,7 @@ abstract class AbstractObservedFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateBadObserver()
     {
-        $this->build()->create(new \stdClass(), $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface'));
+        $this->build()->create(new \stdClass(), $this->createMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface'));
     }
 
     /**
@@ -54,7 +54,7 @@ abstract class AbstractObservedFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateBadInstance()
     {
-        $this->build()->create($this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'), new \stdClass());
+        $this->build()->create($this->createMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'), new \stdClass());
     }
 
     public function testCreate()
@@ -64,8 +64,8 @@ abstract class AbstractObservedFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(
             'Teknoo\States\LifeCycle\Observing\ObservedInterface',
             $factory->create(
-                $this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'),
-                $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface')
+                $this->createMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'),
+                $this->createMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface')
             )
         );
     }

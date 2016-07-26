@@ -50,7 +50,7 @@ class ObserverTest extends AbstractObserverTest
     protected function getObservedFactoryInterfaceMock()
     {
         if (!$this->observedFactory instanceof ObservedFactoryInterface) {
-            $this->observedFactory = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedFactoryInterface');
+            $this->observedFactory = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedFactoryInterface');
         }
 
         return $this->observedFactory;
@@ -69,17 +69,17 @@ class ObserverTest extends AbstractObserverTest
         /***
          * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject $instance
          */
-        $event = $this->getMock('Teknoo\States\LifeCycle\Event\Event', [], [], '', false);
+        $event = $this->createMock('Teknoo\States\LifeCycle\Event\Event', [], [], '', false);
         /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $instance = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $instance->expects($this->any())->method('getLastEvent')->willReturn($event);
         $service = $this->build();
         /*
          * @var TokenizerInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $tokenizer = $this->getMock('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface');
+        $tokenizer = $this->createMock('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface');
         $tokenizer->expects($this->once())
             ->method('getToken')
             ->with($event)
@@ -88,7 +88,7 @@ class ObserverTest extends AbstractObserverTest
         /*
          * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $dispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $this->assertEquals($service, $service->addEventDispatcher($dispatcher));
         $dispatcher->expects($this->exactly(5))
             ->method('dispatch')

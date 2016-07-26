@@ -50,7 +50,7 @@ class ScenarioBuilderTest extends AbstractScenarioBuilderTest
     public function getTokenizerMock()
     {
         if (!$this->tokenizer instanceof Tokenizer) {
-            $this->tokenizer = $this->getMock('Teknoo\States\LifeCycle\Tokenization\Tokenizer');
+            $this->tokenizer = $this->createMock('Teknoo\States\LifeCycle\Tokenization\Tokenizer');
         }
 
         return $this->tokenizer;
@@ -87,7 +87,7 @@ class ScenarioBuilderTest extends AbstractScenarioBuilderTest
         /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $observed = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $acme = new Acme();
         $observed->expects($this->once())->method('getObject')->willReturn($acme);
         $service = $this->build();

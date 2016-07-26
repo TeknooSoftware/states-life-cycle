@@ -54,7 +54,7 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
         /*
          * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $instance = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->setDispatcher($instance));
         $this->assertEquals($instance, $service->getDispatcher());
@@ -73,7 +73,7 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
         /*
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $scenario = $this->getMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario = $this->createMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->registerScenario($scenario));
     }
@@ -91,7 +91,7 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
         /*
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $scenario = $this->getMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario = $this->createMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->unregisterScenario($scenario));
     }

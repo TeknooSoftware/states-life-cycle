@@ -91,7 +91,7 @@ class TokenizerTest extends AbstractTokenizerTest
         /*
          * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->getMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $instance = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
         $instance->expects($this->any())->method('getObject')->willReturn(new Acme());
         $instance->expects($this->any())->method('getEnabledStates')->willReturn(['state1', 'state2', 'state3']);
         $instance->expects($this->any())->method('getIncomingStates')->willReturn(['state1', 'state2']);

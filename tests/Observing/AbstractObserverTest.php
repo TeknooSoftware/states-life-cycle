@@ -55,7 +55,7 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
         /*
          * @var TokenizerInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $tokenizer = $this->getMock('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface');
+        $tokenizer = $this->createMock('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->setTokenizer($tokenizer));
         $this->assertEquals($tokenizer, $service->getTokenizer());
@@ -74,7 +74,7 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
         /*
          * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $dispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->addEventDispatcher($dispatcher));
     }
@@ -92,7 +92,7 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
         /*
          * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $dispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->removeEventDispatcher($dispatcher));
         $this->assertEquals($service, $service->addEventDispatcher($dispatcher));
@@ -108,14 +108,14 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
         /*
          * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $dispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $service->addEventDispatcher($dispatcher)->addEventDispatcher($dispatcher);
         $this->assertEquals(1, count($service->listEventDispatcher()));
 
         /*
          * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $dispatcher2 = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $dispatcher2 = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $service->addEventDispatcher($dispatcher2);
         $this->assertEquals(2, count($service->listEventDispatcher()));
     }
@@ -133,7 +133,7 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
         /*
          * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->createMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $instance->expects($this->once())->method('registerObserver');
         $service = $this->build();
         $this->assertInstanceOf(
@@ -155,7 +155,7 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
         /*
          * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->createMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $instance->expects($this->once())->method('unregisterObserver');
         $service = $this->build();
         $this->assertEquals($service, $service->detachObject($instance));
@@ -175,14 +175,14 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
         /*
          * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->createMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $service->attachObject($instance);
         $service->attachObject($instance);
         $this->assertEquals(1, count($service->listObserved()));
         /*
          * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance2 = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance2 = $this->createMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $service->attachObject($instance2);
         $this->assertEquals(2, count($service->listObserved()));
     }
@@ -192,17 +192,17 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
         /***
          * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject $instance
          */
-        $event = $this->getMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $event = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
         /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $instance = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $instance->expects($this->any())->method('getLastEvent')->willReturn($event);
         $service = $this->build();
         /*
          * @var TokenizerInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $tokenizer = $this->getMock('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface');
+        $tokenizer = $this->createMock('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface');
         $service->setTokenizer($tokenizer);
         $this->assertEquals($service, $service->dispatchNotification($instance));
     }

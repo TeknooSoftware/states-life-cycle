@@ -51,7 +51,7 @@ class LifeCycableTest extends AbstractLifeCyclableTest
         /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $observed = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $observed->expects($this->once())->method('observeUpdate');
 
         $instance = $this->build();

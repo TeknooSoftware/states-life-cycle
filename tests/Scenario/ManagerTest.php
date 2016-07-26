@@ -49,7 +49,7 @@ class ManagerTest extends AbstractManagerTest
     public function getEventDispatcherInterfaceMock()
     {
         if (!$this->dispatcher instanceof EventDispatcherInterface) {
-            $this->dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+            $this->dispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         }
 
         return $this->dispatcher;
@@ -68,7 +68,7 @@ class ManagerTest extends AbstractManagerTest
         /*
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $scenario = $this->getMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario = $this->createMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
         $scenario->expects($this->any())->method('getEventsNamesList')->willReturn(['event1', 'event2', 'event3']);
 
         $this->getEventDispatcherInterfaceMock()
@@ -89,7 +89,7 @@ class ManagerTest extends AbstractManagerTest
         /*
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $scenario = $this->getMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario = $this->createMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
         $scenario->expects($this->any())->method('getEventsNamesList')->willReturn(['event1', 'event2', 'event3']);
         $service = $this->build();
 

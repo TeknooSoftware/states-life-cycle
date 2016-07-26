@@ -82,7 +82,7 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
         /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $observed = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $service = $this->build();
         $this->assertEquals($service, $service->towardObserved($observed));
     }
@@ -160,7 +160,7 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
     public function testBuild()
     {
         $builder = $this->build();
-        $scenario = $this->getMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario = $this->createMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
         $scenario->expects($this->once())->method('configure')->with($builder)->willReturnSelf();
 
         $this->assertInstanceOf(

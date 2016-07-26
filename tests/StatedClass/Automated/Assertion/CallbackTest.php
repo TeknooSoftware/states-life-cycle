@@ -72,9 +72,9 @@ class CallbackTest extends AbstractAssertionTest
 
     public function testIsValid()
     {
-        $proxy = $this->getMock('Teknoo\States\Proxy\ProxyInterface');
+        $proxy = $this->createMock('Teknoo\States\Proxy\ProxyInterface');
         $instance = $this->buildInstance()->call(function ($value) use ($proxy) {return $value === $proxy;});
         $this->assertTrue($instance->isValid($proxy));
-        $this->assertFalse($instance->isValid($this->getMock('Teknoo\States\Proxy\ProxyInterface')));
+        $this->assertFalse($instance->isValid($this->createMock('Teknoo\States\Proxy\ProxyInterface')));
     }
 }

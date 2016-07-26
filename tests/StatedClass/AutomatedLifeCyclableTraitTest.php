@@ -61,7 +61,7 @@ class AutomatedLifeCyclableTraitTest extends AbstractLifeCyclableTest
     public function testUpdateStates()
     {
         $instance = $this->build();
-        $observer = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observer = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $observer->expects($this->exactly(5))->method('observeUpdate')->willReturnSelf();
 
         $instance->registerObserver($observer);

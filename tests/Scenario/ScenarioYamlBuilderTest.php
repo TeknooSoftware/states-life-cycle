@@ -51,7 +51,7 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
     public function getTokenizerMock()
     {
         if (!$this->tokenizer instanceof Tokenizer) {
-            $this->tokenizer = $this->getMock('Teknoo\States\LifeCycle\Tokenization\Tokenizer');
+            $this->tokenizer = $this->createMock('Teknoo\States\LifeCycle\Tokenization\Tokenizer');
         }
 
         return $this->tokenizer;
@@ -88,7 +88,7 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
         /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $observed = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $acme = new Acme();
         $observed->expects($this->once())->method('getObject')->willReturn($acme);
         $service = $this->build();
@@ -137,7 +137,7 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
     public function testSetYamlParser()
     {
         $builder = $this->build();
-        $this->assertEquals($builder, $builder->setYamlParser($this->getMock('Symfony\Component\Yaml\Parser')));
+        $this->assertEquals($builder, $builder->setYamlParser($this->createMock('Symfony\Component\Yaml\Parser')));
     }
 
     /**
@@ -151,7 +151,7 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
     public function testSetFilesystem()
     {
         $builder = $this->build();
-        $this->assertEquals($builder, $builder->setFilesystem($this->getMock('Gaufrette\Filesystem', [], [], '', false)));
+        $this->assertEquals($builder, $builder->setFilesystem($this->createMock('Gaufrette\Filesystem', [], [], '', false)));
     }
 
     /**
@@ -188,7 +188,7 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
         /**
          * @var ScenarioInterface
          */
-        $scenario = $this->getMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario = $this->createMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
         $scenario->expects($this->once())->method('configure')->with($builder)->willReturnSelf();
 
         $yamlContent = 'scenario4:
@@ -199,14 +199,14 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
   run: [\'$instanceB\', \'switchToStateDefault\']
 ';
 
-        $filesystem = $this->getMock('Gaufrette\Filesystem', [], [], '', false);
+        $filesystem = $this->createMock('Gaufrette\Filesystem', [], [], '', false);
         $builder->setFilesystem($filesystem);
         $filesystem->expects($this->once())
             ->method('read')
             ->with('file/scenario.yaml')
             ->willReturn($yamlContent);
 
-        $parser = $this->getMock('Symfony\Component\Yaml\Parser');
+        $parser = $this->createMock('Symfony\Component\Yaml\Parser');
         $builder->setYamlParser($parser);
         $parser->expects($this->once())
             ->method('parse')

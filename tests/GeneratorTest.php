@@ -60,7 +60,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $tokenizer1 = $generator->getTokenizer();
         $this->assertInstanceOf(
             'Teknoo\States\LifeCycle\Generator',
-            $generator->setTokenizer($this->getMock('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface'))
+            $generator->setTokenizer($this->createMock('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface'))
         );
         $tokenizer2 = $generator->getTokenizer();
         $this->assertInstanceOf('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface', $tokenizer1);
@@ -83,7 +83,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $eventDispatcher1 = $generator->getEventDispatcher();
         $this->assertInstanceOf(
             'Teknoo\States\LifeCycle\Generator',
-            $generator->setEventDispatcher($this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface'))
+            $generator->setEventDispatcher($this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface'))
         );
         $eventDispatcher2 = $generator->getEventDispatcher();
         $this->assertInstanceOf('Symfony\Component\EventDispatcher\EventDispatcherInterface', $eventDispatcher1);
@@ -106,7 +106,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $manager1 = $generator->getManager();
         $this->assertInstanceOf(
             'Teknoo\States\LifeCycle\Generator',
-            $generator->setManager($this->getMock('Teknoo\States\LifeCycle\Scenario\ManagerInterface'))
+            $generator->setManager($this->createMock('Teknoo\States\LifeCycle\Scenario\ManagerInterface'))
         );
         $manager2 = $generator->getManager();
         $this->assertInstanceOf('Teknoo\States\LifeCycle\Scenario\ManagerInterface', $manager1);
@@ -129,7 +129,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $observer1 = $generator->getObserver();
         $this->assertInstanceOf(
             'Teknoo\States\LifeCycle\Generator',
-            $generator->setObserver($this->getMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'))
+            $generator->setObserver($this->createMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'))
         );
         $observer2 = $generator->getObserver();
         $this->assertInstanceOf('Teknoo\States\LifeCycle\Observing\ObserverInterface', $observer1);

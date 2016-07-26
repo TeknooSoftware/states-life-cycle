@@ -84,7 +84,7 @@ abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
 
     public function testIsAllowedToRun()
     {
-        $eventMock = $this->getMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
         $this->assertTrue(is_bool($this->build()->isAllowedToRun($eventMock)));
     }
 
@@ -98,7 +98,7 @@ abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
 
     public function testInvoke()
     {
-        $eventMock = $this->getMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
         $this->build()->__invoke($eventMock);
     }
 }

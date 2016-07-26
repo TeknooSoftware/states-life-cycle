@@ -58,7 +58,7 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructorBadIncomingState()
     {
-        $observed = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $this->build($observed, '', []);
     }
 
@@ -67,13 +67,13 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructorBadOutgoingState()
     {
-        $observed = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $this->build($observed, [], '');
     }
 
     public function testConstructor()
     {
-        $observed = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $this->assertInstanceOf(
             'Teknoo\States\LifeCycle\Event\EventInterface',
             $this->build($observed, [], [])
@@ -82,7 +82,7 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
 
     public function testGetObserved()
     {
-        $observed = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $this->assertEquals(
             $observed,
             $this->build($observed, [], [])->getObserved()
@@ -91,8 +91,8 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
 
     public function testGetObject()
     {
-        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
-        $observed = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $instance = $this->createMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $observed->expects($this->once())->method('getObject')->willReturn($instance);
         $this->assertEquals(
             $instance,
@@ -102,9 +102,9 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
 
     public function testGetEnabledStates()
     {
-        $instance = $this->getMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->createMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
         $instance->expects($this->once())->method('listEnabledStates')->willReturn(['foo', 'bar']);
-        $observed = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $observed->expects($this->once())->method('getObject')->willReturn($instance);
         $this->assertEquals(
             ['foo', 'bar'],
@@ -114,7 +114,7 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
 
     public function testGetIncomingStates()
     {
-        $observed = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $this->assertEquals(
             ['bar', 'foo'],
             $this->build($observed, ['bar', 'foo'], [])->getIncomingStates()
@@ -123,7 +123,7 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
 
     public function testGetOutgoingStates()
     {
-        $observed = $this->getMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
         $this->assertEquals(
             ['foo', 'bar'],
             $this->build($observed, [], ['foo', 'bar'])->getOutgoingStates()
