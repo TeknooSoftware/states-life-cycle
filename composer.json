@@ -18,13 +18,13 @@
     },
     "require":{
         "php": "~7.0",
-        "teknoo/states": "~2.0-RC5",
+        "teknoo/states": "~2.0",
         "symfony/event-dispatcher":"~2.7||~3.0",
         "symfony/yaml": "~2.7||~3.0",
         "knplabs/gaufrette": "~0.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "~5.0"
+        "phpunit/phpunit": "~5.4"
     },
     "autoload": {
         "psr-4": {
@@ -32,7 +32,7 @@
             "Teknoo\\Tests\\States\\LifeCycle\\": ["tests/"]
         }
     },
-    "minimum-stability": "RC",
+    "minimum-stability": "stable",
     "archive": {
         "exclude": ["demo", "vendor", ".idea"]
     }
