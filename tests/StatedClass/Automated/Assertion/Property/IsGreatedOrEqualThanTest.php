@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion\Property;
 
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterOrEqualThan;
@@ -29,7 +28,6 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterOr
  *
  * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterOrEqualThan
  *
- *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
@@ -37,7 +35,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterOr
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class IsGreaterOrEqualThanTest extends \PHPUnit_Framework_TestCase
+class IsGreatedOrEqualThanTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @return IsGreaterOrEqualThan

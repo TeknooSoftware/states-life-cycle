@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedAcme;
 
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Assertion;
@@ -46,25 +45,29 @@ class AutomatedAcme extends Integrated implements AutomatedInterface
     use AutomatedTrait;
 
     /**
-     * For AssertionTest
+     * For AssertionTest.
+     *
      * @var mixed
      */
     protected $foo;
 
     /**
-     * For AssertionTest
+     * For AssertionTest.
+     *
      * @var mixed
      */
     protected $foo1;
 
     /**
-     * For AssertionTest
+     * For AssertionTest.
+     *
      * @var mixed
      */
     protected $foo2;
 
     /**
      * @param mixed $foo
+     *
      * @return self
      */
     public function setFoo($foo)
@@ -76,6 +79,7 @@ class AutomatedAcme extends Integrated implements AutomatedInterface
 
     /**
      * @param mixed $foo1
+     *
      * @return self
      */
     public function setFoo1($foo1)
@@ -87,6 +91,7 @@ class AutomatedAcme extends Integrated implements AutomatedInterface
 
     /**
      * @param mixed $foo2
+     *
      * @return self
      */
     public function setFoo2($foo2)
@@ -103,7 +108,7 @@ class AutomatedAcme extends Integrated implements AutomatedInterface
     {
         return [
             (new Assertion(['State1']))->with('foo', 'bar'),
-            (new Assertion(['State2']))->with('foo1', new IsEqual('bar1'))->with('foo2', new IsNull())
+            (new Assertion(['State2']))->with('foo1', new IsEqual('bar1'))->with('foo2', new IsNull()),
         ];
     }
 }

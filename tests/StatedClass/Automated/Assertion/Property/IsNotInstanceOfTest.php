@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion\Property;
 
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotInstanceOf;
@@ -28,7 +27,6 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotInstan
  * Class IsNotInstanceOfTest.
  *
  * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotInstanceOf
- *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -54,6 +52,6 @@ class IsNotInstanceOfTest extends \PHPUnit_Framework_TestCase
 
     public function testInstanceOfProperty()
     {
-        $this->assertFalse($this->buildInstance()(new \DateTime));
+        $this->assertFalse($this->buildInstance()(new \DateTime()));
     }
 }

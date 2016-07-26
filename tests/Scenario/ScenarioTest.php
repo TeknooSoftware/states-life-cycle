@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
@@ -31,7 +30,6 @@ use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
  * Class ScenarioTest.
  *
  * @covers Teknoo\States\LifeCycle\Scenario\Scenario
- *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -78,9 +76,10 @@ class ScenarioTest extends AbstractScenarioTest
 
     /**
      * @param bool $noPopulateMock
+     *
      * @return Scenario
      */
-    public function build(bool $noPopulateMock=false)
+    public function build(bool $noPopulateMock = false)
     {
         $builder = $this->getScenarioBuilderMock();
         if (false === $noPopulateMock) {
@@ -97,6 +96,7 @@ class ScenarioTest extends AbstractScenarioTest
 
         $scenario = new Scenario($builder);
         $scenario->configure($builder);
+
         return $scenario;
     }
 
@@ -364,7 +364,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
         $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getCallable')->willReturn(function() use (&$called) {$called=true;});
+        $builder->expects($this->any())->method('getCallable')->willReturn(function () use (&$called) {$called = true;});
 
         $service = $this->build(true);
         $eventMock = $this->getMock('Teknoo\States\LifeCycle\Event\EventInterface');
@@ -387,7 +387,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
         $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getCallable')->willReturn(function() use (&$called) {$called=true;});
+        $builder->expects($this->any())->method('getCallable')->willReturn(function () use (&$called) {$called = true;});
 
         $service = $this->build(true);
         $eventMock = $this->getMock('Teknoo\States\LifeCycle\Event\EventInterface');

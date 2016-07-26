@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
 use Teknoo\States\LifeCycle\Scenario\ScenarioInterface;
@@ -187,7 +186,7 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
     {
         $builder = $this->build();
         /**
-         * @var ScenarioInterface $scenario
+         * @var ScenarioInterface
          */
         $scenario = $this->getMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
         $scenario->expects($this->once())->method('configure')->with($builder)->willReturnSelf();
@@ -215,15 +214,17 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
             ->willReturn([
                 'scenario4' => [
                     'class' => 'demo\NonExistant\Class',
-                    'incoming' =>  ['State3'],
+                    'incoming' => ['State3'],
                     'outgoing' => ['State2'],
                     'notIn' => ['StateDefault'],
-                    'run' => ['$instanceB', 'switchToStateDefault']
-                ]
+                    'run' => ['$instanceB', 'switchToStateDefault'],
+                ],
             ]);
 
-        $builder->setParameter('instanceB', new class {
-            public function switchToStateDefault() {
+        $builder->setParameter('instanceB', new class()
+        {
+            public function switchToStateDefault()
+            {
                 return true;
             }
         });

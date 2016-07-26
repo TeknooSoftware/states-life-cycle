@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion\Property;
 
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotNull;
@@ -28,7 +27,6 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotNull;
  * Class IsNotNullTest.
  *
  * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotNull
- *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

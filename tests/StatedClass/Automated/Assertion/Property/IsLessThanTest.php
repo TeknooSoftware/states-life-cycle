@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion\Property;
 
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsLessThan;
@@ -28,7 +27,6 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsLessThan;
  * Class IsLessThanTest.
  *
  * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsLessThan
- *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
