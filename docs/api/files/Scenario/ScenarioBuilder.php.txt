@@ -1,0 +1,269 @@
+<?php
+
+/**
+ * States.
+ *
+ * LICENSE
+ *
+ * This source file is subject to the MIT license and the version 3 of the GPL3
+ * license that are bundled with this package in the folder licences
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to contact@uni-alteri.com so we can send you a copy immediately.
+ *
+ *
+ * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
+ *
+ * @link        http://teknoo.software/states Project website
+ *
+ * @license     http://teknoo.software/license/mit         MIT License
+ * @author      Richard Déloge <richarddeloge@gmail.com>
+ */
+namespace Teknoo\States\LifeCycle\Scenario;
+
+use Teknoo\States\LifeCycle\Observing\ObservedInterface;
+use Teknoo\States\LifeCycle\Tokenization\Tokenizer;
+
+/**
+ * Class ScenarioBuilder
+ * Default implementation of scenario builder to allow developper to create scenarii about stated class instances.
+ * A scenario can accept several conditions : each condition must be validated to execute the scenario.
+ *
+ * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
+ *
+ * @link        http://teknoo.software/states Project website
+ *
+ * @license     http://teknoo.software/license/mit         MIT License
+ * @author      Richard Déloge <richarddeloge@gmail.com>
+ */
+class ScenarioBuilder implements ScenarioBuilderInterface
+{
+    /**
+     * Tokenizer to transform stated class instance to event name to register the scenario as listener in the event
+     * dispatcher.
+     *
+     * @var Tokenizer
+     */
+    private $tokenizer;
+
+    /**
+     * List of events about the scenario.
+     *
+     * @var string[]
+     */
+    private $eventNamesList = [];
+
+    /**
+     * Stated class name about this scenario.
+     *
+     * @var string
+     */
+    private $statedClassName;
+
+    /**
+     * Stated class instance about this scenario.
+     *
+     * @var ObservedInterface
+     */
+    private $observed;
+
+    /**
+     * Required stated to execute the scenario.
+     *
+     * @var string[]
+     */
+    private $neededStatesList = [];
+
+    /**
+     * Forbidden states to execute the scenario.
+     *
+     * @var string[]
+     */
+    private $forbiddenStatesList = [];
+
+    /**
+     * Needed incoming states to execute the scenario.
+     *
+     * @var string[]
+     */
+    private $neededIncomingStatesList = [];
+
+    /**
+     * Needed outgoing states to execute the scenario.
+     *
+     * @var string[]
+     */
+    private $neededOutgoingStatesList = [];
+
+    /**
+     * Callable (callback or closure) to execute if the scenario is valid.
+     *
+     * @var callable
+     */
+    private $callable;
+
+    /**
+     * @param Tokenizer $tokenizer
+     */
+    public function __construct(Tokenizer $tokenizer)
+    {
+        $this->tokenizer = $tokenizer;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function when(string $eventName): ScenarioBuilderInterface
+    {
+        $this->eventNamesList[] = $eventName;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function towardStatedClass(string $statedClassName): ScenarioBuilderInterface
+    {
+        $this->statedClassName = $statedClassName;
+        $this->when($this->tokenizer->getStatedClassNameToken($statedClassName));
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function towardObserved(ObservedInterface $observed): ScenarioBuilderInterface
+    {
+        $this->observed = $observed;
+        $this->when($this->tokenizer->getStatedClassInstanceToken($observed->getObject()));
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function ifNotInState(string $stateName): ScenarioBuilderInterface
+    {
+        $this->forbiddenStatesList[$stateName] = $stateName;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function ifInState(string $stateName): ScenarioBuilderInterface
+    {
+        $this->neededStatesList[$stateName] = $stateName;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function onIncomingState(string $stateName): ScenarioBuilderInterface
+    {
+        $this->neededIncomingStatesList[$stateName] = $stateName;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function onOutgoingState(string $stateName): ScenarioBuilderInterface
+    {
+        $this->neededOutgoingStatesList[$stateName] = $stateName;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function run(callable $callable): ScenarioBuilderInterface
+    {
+        $this->callable = $callable;
+
+        return $this;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getEventNamesList()
+    {
+        return array_values($this->eventNamesList);
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatedClassName()
+    {
+        return $this->statedClassName;
+    }
+
+    /**
+     * @return ObservedInterface
+     */
+    public function getObserved()
+    {
+        return $this->observed;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getForbiddenStatesList()
+    {
+        return array_values($this->forbiddenStatesList);
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getNeededStatesList()
+    {
+        return array_values($this->neededStatesList);
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getNeededIncomingStatesList()
+    {
+        return array_values($this->neededIncomingStatesList);
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getNeededOutgoingStatesList()
+    {
+        return array_values($this->neededOutgoingStatesList);
+    }
+
+    /**
+     * @return callable
+     */
+    public function getCallable()
+    {
+        return $this->callable;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function build(ScenarioInterface $scenario): ScenarioInterface
+    {
+        $scenario->configure($this);
+
+        return $scenario;
+    }
+}
+
