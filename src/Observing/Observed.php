@@ -19,19 +19,17 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Observing;
 
 use Teknoo\States\LifeCycle\Event\EventInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
-use Teknoo\States\LifeCycle\Trace\Entry;
 use Teknoo\States\LifeCycle\Trace\EntryInterface;
 use Teknoo\States\LifeCycle\Trace\TraceInterface;
 
 /**
  * Class Observed
  * Default implementation to manage the observation between a stated class install
- * and its observer *
+ * and its observer *.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -43,31 +41,36 @@ use Teknoo\States\LifeCycle\Trace\TraceInterface;
 class Observed implements ObservedInterface
 {
     /**
-     * Observed stated class instance of this observation
+     * Observed stated class instance of this observation.
+     *
      * @var LifeCyclableInterface
      */
     private $object;
 
     /**
-     * Observer in this observation
+     * Observer in this observation.
+     *
      * @var ObserverInterface
      */
     private $observer;
 
     /**
-     * Trace of the stated class instance to store its state evolution
+     * Trace of the stated class instance to store its state evolution.
+     *
      * @var TraceInterface
      */
     private $trace;
 
     /**
-     * The last event corresponding to the currently states of the instance
+     * The last event corresponding to the currently states of the instance.
+     *
      * @var EventInterface
      */
     private $lastEvent;
 
     /**
-     * Class name to use to build new event
+     * Class name to use to build new event.
+     *
      * @var string
      */
     private $eventClassName;
@@ -88,8 +91,10 @@ class Observed implements ObservedInterface
     }
 
     /**
-     * To check if the required event class name
+     * To check if the required event class name.
+     *
      * @param string $eventClassName
+     *
      * @return self
      */
     protected function checkEventClassName(string $eventClassName): Observed
@@ -157,7 +162,8 @@ class Observed implements ObservedInterface
     }
 
     /**
-     * Build event, retrieve current enabled states of the instace and compute difference with last enabled states
+     * Build event, retrieve current enabled states of the instace and compute difference with last enabled states.
+     *
      * @return $this
      */
     protected function buildEvent()

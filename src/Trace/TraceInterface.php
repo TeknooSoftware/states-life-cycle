@@ -19,14 +19,13 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Trace;
 
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 
 /**
  * Interface TraceInterface
- * Interface to build state trace about stated class to keep in memory the story of your object
+ * Interface to build state trace about stated class to keep in memory the story of your object.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -38,33 +37,39 @@ use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 interface TraceInterface
 {
     /**
-     * Get the raw list of event, ordered from the oldest entry to the new entry
+     * Get the raw list of event, ordered from the oldest entry to the new entry.
+     *
      * @return \SplStack|EntryInterface[]
      */
     public function getTrace(): \SplStack;
 
     /**
-     * To know if the strace is empty or not
+     * To know if the strace is empty or not.
+     *
      * @return bool
      */
     public function isEmpty(): bool;
 
     /**
-     * Get the first entry in the trace (the oldest event)
+     * Get the first entry in the trace (the oldest event).
+     *
      * @return EntryInterface
      */
     public function getFirstEntry(): EntryInterface;
 
     /**
-     * Get the last entry in the trace (the newest event)
+     * Get the last entry in the trace (the newest event).
+     *
      * @return EntryInterface
      */
     public function getLastEntry(): EntryInterface;
 
     /**
-     * To register a new event in the trace
+     * To register a new event in the trace.
+     *
      * @param ObservedInterface $observed
-     * @param array $enabledStatesList
+     * @param array             $enabledStatesList
+     *
      * @return TraceInterface
      */
     public function addEntry(ObservedInterface $observed, array $enabledStatesList): TraceInterface;

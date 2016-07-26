@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Observing;
 
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
@@ -27,7 +26,7 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 /**
  * Class ObservedFactoryInterface
  * Interface to create factories to build new observed instance used to manage observation between observed states class
- * and its observer
+ * and its observer.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -39,8 +38,9 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 interface ObservedFactoryInterface
 {
     /**
-     * @param ObserverInterface $observer
+     * @param ObserverInterface     $observer
      * @param LifeCyclableInterface $lifeCyclableInstance
+     *
      * @return ObservedInterface
      */
     public function create(ObserverInterface $observer, LifeCyclableInterface $lifeCyclableInstance): ObservedInterface;

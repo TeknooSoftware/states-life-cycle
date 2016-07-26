@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Scenario;
 
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
@@ -39,64 +38,82 @@ use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 interface ScenarioBuilderInterface
 {
     /**
-     * To execute the scenario when an event is dispatched
+     * To execute the scenario when an event is dispatched.
+     *
      * @param string $eventName
+     *
      * @return ScenarioBuilderInterface
      */
     public function when(string $eventName): ScenarioBuilderInterface;
 
     /**
-     * To execute the scenario when an instance of this stated class is updated
+     * To execute the scenario when an instance of this stated class is updated.
+     *
      * @param string $statedClassName
+     *
      * @return ScenarioBuilderInterface
      */
     public function towardStatedClass(string $statedClassName): ScenarioBuilderInterface;
 
     /**
-     * To execute the scenario when a stated class instance is updated
+     * To execute the scenario when a stated class instance is updated.
+     *
      * @param ObservedInterface $observed
+     *
      * @return ScenarioBuilderInterface
      */
     public function towardObserved(ObservedInterface $observed): ScenarioBuilderInterface;
 
     /**
-     * To execute the scenario only if the stated class instance is not the this defined state
+     * To execute the scenario only if the stated class instance is not the this defined state.
+     *
      * @param string $stateName
+     *
      * @return ScenarioBuilderInterface
      */
     public function ifNotInState(string $stateName): ScenarioBuilderInterface;
 
     /**
-     * To execute the scenario only if the stated class instance is in the this defined state
+     * To execute the scenario only if the stated class instance is in the this defined state.
+     *
      * @param string $stateName
+     *
      * @return ScenarioBuilderInterface
      */
     public function ifInState(string $stateName): ScenarioBuilderInterface;
 
     /**
-     * To execute the scenario only if the stated class instance is incoming in the this defined state
+     * To execute the scenario only if the stated class instance is incoming in the this defined state.
+     *
      * @param string $stateName
+     *
      * @return ScenarioBuilderInterface
      */
     public function onIncomingState(string $stateName): ScenarioBuilderInterface;
 
     /**
-     * To execute the scenario only if the stated class instance is outgoing in the this defined state
+     * To execute the scenario only if the stated class instance is outgoing in the this defined state.
+     *
      * @param string $stateName
+     *
      * @return ScenarioBuilderInterface
      */
     public function onOutgoingState(string $stateName): ScenarioBuilderInterface;
 
     /**
-     * To execute the callable (function, object callback or closure) if the scenario can be executed
+     * To execute the callable (function, object callback or closure) if the scenario can be executed.
+     *
      * @param callable $callable
+     *
      * @return ScenarioBuilderInterface
      */
     public function run(callable $callable): ScenarioBuilderInterface;
 
     /**
-     * To generate the scenario object used to check events and run it
+     * To generate the scenario object used to check events and run it.
+     *
      * @param ScenarioInterface $scenario
+     *
      * @return ScenarioInterface
      */
     public function build(ScenarioInterface $scenario): ScenarioInterface;

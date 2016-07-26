@@ -19,14 +19,13 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Trace;
 
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 
 /**
  * Interface EntryInterface
- * Interface to represent entry in the state trace of stated class to know the story of the obect
+ * Interface to represent entry in the state trace of stated class to know the story of the obect.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -38,43 +37,49 @@ use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 interface EntryInterface
 {
     /**
-     * @param ObservedInterface $observed
-     * @param string[] $enabledStatesList
+     * @param ObservedInterface   $observed
+     * @param string[]            $enabledStatesList
      * @param EntryInterface|null $previous
      */
     public function __construct(
         ObservedInterface $observed,
         array $enabledStatesList,
-        EntryInterface $previous=null
+        EntryInterface $previous = null
     );
 
     /**
-     * Get the observed relation, at the origin of this event
+     * Get the observed relation, at the origin of this event.
+     *
      * @return ObservedInterface
      */
     public function getObserved(): ObservedInterface;
 
     /**
-     * Get all enabled states of the stated class instance when this entry has been generated
+     * Get all enabled states of the stated class instance when this entry has been generated.
+     *
      * @return string[]
      */
     public function getEnabledState(): array;
 
     /**
-     * Get the previous entry from the trace
+     * Get the previous entry from the trace.
+     *
      * @return EntryInterface|null
      */
     public function getPrevious();
 
     /**
-     * To update the next entry from the trace
+     * To update the next entry from the trace.
+     *
      * @param EntryInterface $next
+     *
      * @return EntryInterface
      */
     public function setNext(EntryInterface $next): EntryInterface;
 
     /**
-     * Get the next entry from the trace
+     * Get the next entry from the trace.
+     *
      * @return EntryInterface|null
      */
     public function getNext();

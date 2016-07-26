@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Observing;
 
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
@@ -27,7 +26,7 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 /**
  * Class ObservedFactory
  * Default implementation of the factory to build new observed instance used
- * to manage observation between observed states class and its observer
+ * to manage observation between observed states class and its observer.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -67,6 +66,7 @@ class ObservedFactory implements ObservedFactoryInterface
 
     /**
      * @param string $observedClassName
+     *
      * @return $this
      */
     protected function checkObservedClassName(string $observedClassName)
@@ -88,6 +88,7 @@ class ObservedFactory implements ObservedFactoryInterface
 
     /**
      * @param string $traceClassName
+     *
      * @return $this
      */
     protected function checkTraceClassName(string $traceClassName)
@@ -108,18 +109,20 @@ class ObservedFactory implements ObservedFactoryInterface
     }
 
     /**
-     * @param ObserverInterface $observer
+     * @param ObserverInterface     $observer
      * @param LifeCyclableInterface $lifeCyclableInstance
+     *
      * @return ObservedInterface
      */
     public function create(ObserverInterface $observer, LifeCyclableInterface $lifeCyclableInstance): ObservedInterface
     {
         $traceClassName = $this->traceClassName;
         $observedClassName = $this->observedClassName;
+
         return new $observedClassName(
             $lifeCyclableInstance,
             $observer,
-            new $traceClassName,
+            new $traceClassName(),
             $this->eventClassName
         );
     }

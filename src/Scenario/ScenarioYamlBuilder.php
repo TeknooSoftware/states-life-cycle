@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Scenario;
 
 use Gaufrette\Filesystem;
@@ -29,7 +28,7 @@ use Symfony\Component\Yaml\Parser;
  * Class ScenarioYamlBuilder
  * Another implementation of scenario builder to allow developper to create scenarii from YAML files
  * about stated class instances.
- * A scenario can accept several conditions : each condition must be validated to execute the scenario. *
+ * A scenario can accept several conditions : each condition must be validated to execute the scenario. *.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -41,13 +40,15 @@ use Symfony\Component\Yaml\Parser;
 class ScenarioYamlBuilder extends ScenarioBuilder
 {
     /**
-     * YAML parser to read the scenario
+     * YAML parser to read the scenario.
+     *
      * @var Parser
      */
     private $yamlParser;
 
     /**
-     * To read scenario file
+     * To read scenario file.
+     *
      * @var Filesystem
      */
     private $filesystem;
@@ -63,7 +64,8 @@ class ScenarioYamlBuilder extends ScenarioBuilder
     private $parameters = [];
 
     /**
-     * To list options, in yaml, correspondence with builder's methods
+     * To list options, in yaml, correspondence with builder's methods.
+     *
      * @var array
      */
     protected $yamlOptionsMap = [
@@ -73,11 +75,12 @@ class ScenarioYamlBuilder extends ScenarioBuilder
         'in' => 'ifInState',
         'incoming' => 'onIncomingState',
         'outgoing' => 'onOutgoingState',
-        'run' => 'run'
+        'run' => 'run',
     ];
 
     /**
      * @param Parser $yamlParser
+     *
      * @return self
      */
     public function setYamlParser(Parser $yamlParser): ScenarioYamlBuilder
@@ -89,6 +92,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
 
     /**
      * @param Filesystem $filesystem
+     *
      * @return self
      */
     public function setFilesystem(Filesystem $filesystem): ScenarioYamlBuilder
@@ -100,16 +104,19 @@ class ScenarioYamlBuilder extends ScenarioBuilder
 
     /**
      * @param string $fileName
+     *
      * @return string
      */
     protected function getScenarioContent(string $fileName): string
     {
         $string = $this->filesystem->read($fileName);
+
         return $string;
     }
 
     /**
      * @param string $yamlContent
+     *
      * @return array
      */
     protected function parseYaml(string $yamlContent): array
@@ -118,7 +125,8 @@ class ScenarioYamlBuilder extends ScenarioBuilder
     }
 
     /**
-     * To parse options, detect parameters and replace them by parameter
+     * To parse options, detect parameters and replace them by parameter.
+     *
      * @param $optionValues
      */
     protected function parseParameter(&$optionValues)
@@ -138,16 +146,17 @@ class ScenarioYamlBuilder extends ScenarioBuilder
 
     /**
      * @param array $scenario
+     *
      * @return ScenarioYamlBuilder
      */
     protected function configureBuilder(array $scenario): ScenarioYamlBuilder
     {
-        foreach ($scenario as $scenarioName=>&$options) {
-            foreach ($options as $optionName=>$optionValues) {
+        foreach ($scenario as $scenarioName => &$options) {
+            foreach ($options as $optionName => $optionValues) {
                 if (isset($this->yamlOptionsMap[$optionName])) {
                     $methodName = $this->yamlOptionsMap[$optionName];
                     if ('run' != $methodName) {
-                        foreach ((array)$optionValues as $optionValue) {
+                        foreach ((array) $optionValues as $optionValue) {
                             $this->{$methodName}($optionValue);
                         }
                     } else {
@@ -167,9 +176,11 @@ class ScenarioYamlBuilder extends ScenarioBuilder
     }
 
     /**
-     * To register a parameter to use during yaml parsing
+     * To register a parameter to use during yaml parsing.
+     *
      * @param string $parameterName
      * @param $object
+     *
      * @return ScenarioYamlBuilder
      */
     public function setParameter(string $parameterName, $object): ScenarioYamlBuilder
@@ -180,8 +191,10 @@ class ScenarioYamlBuilder extends ScenarioBuilder
     }
 
     /**
-     * To transform a yaml scenario to native scenario
+     * To transform a yaml scenario to native scenario.
+     *
      * @param string $fileName
+     *
      * @return ScenarioYamlBuilder
      */
     public function loadScenario(string $fileName): ScenarioYamlBuilder

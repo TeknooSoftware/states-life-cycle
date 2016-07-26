@@ -19,13 +19,12 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property;
 
 /**
  * class IsNotInstanceOf
  * Invokable class to use with Teknoo\States\LifeCycle\StatedClass\Automated\Assertion to check if a propery
- * is not an instance of the excepted class name
+ * is not an instance of the excepted class name.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -44,6 +43,7 @@ class IsNotInstanceOf
 
     /**
      * IsNotInstanceOf constructor.
+     *
      * @param string $exceptedClassName
      */
     public function __construct(string $exceptedClassName)
@@ -53,6 +53,7 @@ class IsNotInstanceOf
 
     /**
      * @param mixed &$property
+     *
      * @return bool
      */
     public function __invoke($property): bool

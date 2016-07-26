@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -34,7 +33,7 @@ use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 
 /**
  * Class Generator
- * Class to generate some instance of objects needed to use easily this library *
+ * Class to generate some instance of objects needed to use easily this library *.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -101,6 +100,7 @@ class Generator
 
     /**
      * @param EventDispatcherInterface $eventDispatcher
+     *
      * @return self
      */
     public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): Generator
@@ -124,6 +124,7 @@ class Generator
 
     /**
      * @param ManagerInterface $manager
+     *
      * @return self
      */
     public function setManager(ManagerInterface $manager): Generator
@@ -155,6 +156,7 @@ class Generator
 
     /**
      * @param ObserverInterface $observer
+     *
      * @return self
      */
     public function setObserver(ObserverInterface $observer): Generator

@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\StatedClass\Automated;
 
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface;
@@ -28,7 +27,7 @@ use Teknoo\States\Proxy\ProxyInterface;
 /**
  * Interface AutomatedInterface
  * Interface to implement automated stated class to enable or disable states according to validation rules defined
- * in your class
+ * in your class.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -40,13 +39,15 @@ use Teknoo\States\Proxy\ProxyInterface;
 interface AutomatedInterface extends ProxyInterface
 {
     /**
-     * Method called by the stated class instance itself to perform states changes according its validations rules
+     * Method called by the stated class instance itself to perform states changes according its validations rules.
+     *
      * @return AutomatedInterface
      */
     public function updateStates(): AutomatedInterface;
 
     /**
-     * To get all validations rules needed by instances
+     * To get all validations rules needed by instances.
+     *
      * @return AssertionInterface[]
      */
     public function getStatesAssertions(): array;

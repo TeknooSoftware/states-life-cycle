@@ -19,14 +19,13 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Scenario;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class Manager
- * Interface to manage to store all enabled scenarii and register them into the event dispatcher
+ * Interface to manage to store all enabled scenarii and register them into the event dispatcher.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -38,13 +37,15 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class Manager implements ManagerInterface
 {
     /**
-     * Current enabled scenari
+     * Current enabled scenari.
+     *
      * @var ScenarioInterface[]|\ArrayAccess
      */
     private $scenariiList = [];
 
     /**
-     * Dispatcher used to register scenarii
+     * Dispatcher used to register scenarii.
+     *
      * @var EventDispatcherInterface
      */
     private $dispatcher;
@@ -77,6 +78,7 @@ class Manager implements ManagerInterface
 
     /**
      * @param ScenarioInterface $scenario
+     *
      * @return $this
      */
     protected function addEventsAboutScenario(ScenarioInterface $scenario)
@@ -91,6 +93,7 @@ class Manager implements ManagerInterface
 
     /**
      * @param ScenarioInterface $scenario
+     *
      * @return $this
      */
     protected function removeEventsAboutScenario(ScenarioInterface $scenario)

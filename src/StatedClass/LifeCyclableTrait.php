@@ -19,14 +19,13 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\StatedClass;
 
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 
 /**
  * Class LifeCyclableTrait
- * Trait implementing LifeCyclableInterface to add lifecyclable and tracable behaviors on your stated class
+ * Trait implementing LifeCyclableInterface to add lifecyclable and tracable behaviors on your stated class.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -39,14 +38,17 @@ use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 trait LifeCyclableTrait
 {
     /**
-     * List of all observing relation manager
+     * List of all observing relation manager.
+     *
      * @var ObservedInterface[]
      */
     private $observedList = [];
 
     /**
-     * To register a new observer
+     * To register a new observer.
+     *
      * @param ObservedInterface $observed
+     *
      * @return LifeCyclableInterface
      */
     public function registerObserver(ObservedInterface $observed): LifeCyclableInterface
@@ -57,8 +59,10 @@ trait LifeCyclableTrait
     }
 
     /**
-     * To unregister a previous registered observer
+     * To unregister a previous registered observer.
+     *
      * @param ObservedInterface $observed
+     *
      * @return LifeCyclableInterface
      */
     public function unregisterObserver(ObservedInterface $observed): LifeCyclableInterface
@@ -73,7 +77,8 @@ trait LifeCyclableTrait
     }
 
     /**
-     * To notify to observers that this instance has been changed
+     * To notify to observers that this instance has been changed.
+     *
      * @return LifeCyclableInterface
      */
     public function notifyObserved(): LifeCyclableInterface

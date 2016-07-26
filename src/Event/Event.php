@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Event;
 
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
@@ -28,7 +27,7 @@ use Symfony\Component\EventDispatcher\Event as SymfonyEvent;
 
 /**
  * Class Event
- * Default implementation of events used in lifecycle of stated class instances
+ * Default implementation of events used in lifecycle of stated class instances.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -45,13 +44,15 @@ class Event extends SymfonyEvent implements EventInterface
     private $observed;
 
     /**
-     * List of incoming states of the observed instance when this event has been built
+     * List of incoming states of the observed instance when this event has been built.
+     *
      * @var string[]
      */
     private $incomingStates;
 
     /**
-     * List of outgoing states of the observed instance when this event has been built
+     * List of outgoing states of the observed instance when this event has been built.
+     *
      * @var string[]
      */
     private $outgoingStates;

@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Event;
 
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
@@ -40,38 +39,44 @@ interface EventInterface
 {
     /**
      * @param ObservedInterface $observer
-     * @param array $incomingStates
-     * @param array $outgoingStates
+     * @param array             $incomingStates
+     * @param array             $outgoingStates
+     *
      * @return mixed
      */
     public function __construct(ObservedInterface $observer, array $incomingStates, array $outgoingStates);
 
     /**
-     * To get the object managing the observation about the observed stated class instaces
+     * To get the object managing the observation about the observed stated class instaces.
+     *
      * @return ObservedInterface
      */
     public function getObserved(): ObservedInterface;
 
     /**
-     * Shortcut to get the observed stated class instance
+     * Shortcut to get the observed stated class instance.
+     *
      * @return LifeCyclableInterface
      */
     public function getObject(): LifeCyclableInterface;
 
     /**
-     * To get the list of enabled states of the observed instance when this event has been built
+     * To get the list of enabled states of the observed instance when this event has been built.
+     *
      * @return string[]
      */
     public function getEnabledStates(): array;
 
     /**
-     *To get incoming states of the observed instance when this event has been built
+     *To get incoming states of the observed instance when this event has been built.
+     *
      * @return string[]
      */
     public function getIncomingStates(): array;
 
     /**
-     * To get outgoing states of the observed instance when this event has been built
+     * To get outgoing states of the observed instance when this event has been built.
+     *
      * @return string[]
      */
     public function getOutgoingStates(): array;

@@ -19,14 +19,13 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion;
 
 use Teknoo\States\Proxy\ProxyInterface;
 
 /**
  * Class Callback
- * Assertion implementation to delegated the validation to a callable (a callback or a closure) and return enabled states
+ * Assertion implementation to delegated the validation to a callable (a callback or a closure) and return enabled states.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -38,14 +37,17 @@ use Teknoo\States\Proxy\ProxyInterface;
 class Callback extends AbstractAssertion implements AssertionInterface
 {
     /**
-     * Callable (callback or closure) to execute to determine if this assertio is valid or not
+     * Callable (callback or closure) to execute to determine if this assertio is valid or not.
+     *
      * @var callable
      */
     private $callback;
 
     /**
-     * To register the callable (callback or closure) to execute to determine if this assertio is valid or not
+     * To register the callable (callback or closure) to execute to determine if this assertio is valid or not.
+     *
      * @param callable $callback
+     *
      * @return self
      */
     public function call(callable $callback): Callback
@@ -61,6 +63,7 @@ class Callback extends AbstractAssertion implements AssertionInterface
     public function isValid(ProxyInterface $proxy): bool
     {
         $callback = $this->callback;
+
         return $callback($proxy);
     }
 }

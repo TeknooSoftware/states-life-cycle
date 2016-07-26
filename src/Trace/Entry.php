@@ -19,14 +19,13 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Trace;
 
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 
 /**
  * Class Entry
- * Default implementation to represent entry in the state trace of stated class to know the story of the obect
+ * Default implementation to represent entry in the state trace of stated class to know the story of the obect.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -63,9 +62,8 @@ class Entry implements EntryInterface
     public function __construct(
         ObservedInterface $observed,
         array $enabledStatesList,
-        EntryInterface $previous=null
-    )
-    {
+        EntryInterface $previous = null
+    ) {
         $this->observed = $observed;
         $this->enabledStatesList = $enabledStatesList;
         $this->previous = $previous;

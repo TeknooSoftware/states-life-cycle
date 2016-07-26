@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Scenario;
 
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
@@ -41,55 +40,64 @@ class ScenarioBuilder implements ScenarioBuilderInterface
 {
     /**
      * Tokenizer to transform stated class instance to event name to register the scenario as listener in the event
-     * dispatcher
+     * dispatcher.
+     *
      * @var Tokenizer
      */
     private $tokenizer;
 
     /**
-     * List of events about the scenario
+     * List of events about the scenario.
+     *
      * @var string[]
      */
     private $eventNamesList = [];
 
     /**
-     * Stated class name about this scenario
+     * Stated class name about this scenario.
+     *
      * @var string
      */
     private $statedClassName;
 
     /**
-     * Stated class instance about this scenario
+     * Stated class instance about this scenario.
+     *
      * @var ObservedInterface
      */
     private $observed;
 
     /**
-     * Required stated to execute the scenario
+     * Required stated to execute the scenario.
+     *
      * @var string[]
      */
     private $neededStatesList = [];
 
     /**
-     * Forbidden states to execute the scenario
+     * Forbidden states to execute the scenario.
+     *
      * @var string[]
      */
     private $forbiddenStatesList = [];
 
     /**
-     * Needed incoming states to execute the scenario
+     * Needed incoming states to execute the scenario.
+     *
      * @var string[]
      */
     private $neededIncomingStatesList = [];
 
     /**
-     * Needed outgoing states to execute the scenario
+     * Needed outgoing states to execute the scenario.
+     *
      * @var string[]
      */
     private $neededOutgoingStatesList = [];
 
     /**
-     * Callable (callback or closure) to execute if the scenario is valid
+     * Callable (callback or closure) to execute if the scenario is valid.
+     *
      * @var callable
      */
     private $callable;

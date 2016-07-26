@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\StatedClass;
 
 use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedInterface;
@@ -27,7 +26,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedTrait;
 
 /**
  * Class AutomatedLifeCyclableTrait
- * Trait to use both LifeCyclable and automated behavior in same time
+ * Trait to use both LifeCyclable and automated behavior in same time.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

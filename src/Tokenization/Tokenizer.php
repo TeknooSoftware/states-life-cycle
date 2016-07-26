@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Tokenization;
 
 use Teknoo\States\LifeCycle\Event\EventInterface;
@@ -46,12 +45,14 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 class Tokenizer implements TokenizerInterface
 {
     /**
-     * To get the token from a stated class
+     * To get the token from a stated class.
+     *
      * @param string $statedClassName
-     * @param bool $removeProxyName
+     * @param bool   $removeProxyName
+     *
      * @return string
      */
-    public function getStatedClassNameToken(string $statedClassName, $removeProxyName=false): string
+    public function getStatedClassNameToken(string $statedClassName, $removeProxyName = false): string
     {
         $statedClassNamePart = explode('\\', $statedClassName);
         if (true === $removeProxyName) {
@@ -62,8 +63,10 @@ class Tokenizer implements TokenizerInterface
     }
 
     /**
-     * To get the token from a stated class instance
+     * To get the token from a stated class instance.
+     *
      * @param LifeCyclableInterface $object
+     *
      * @return string
      */
     public function getStatedClassInstanceToken(LifeCyclableInterface $object): string

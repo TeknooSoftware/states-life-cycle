@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Observing;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -29,7 +28,7 @@ use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 /**
  * Class Observer
  * Default implementation to manage several observations of stated class instances and distpatch change to the system
- * via one or several event dispatcher *
+ * via one or several event dispatcher *.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -41,25 +40,29 @@ use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 class Observer implements ObserverInterface
 {
     /**
-     * Tokenizer to generate events name to use to distpach changes
+     * Tokenizer to generate events name to use to distpach changes.
+     *
      * @var TokenizerInterface
      */
     private $tokenizer;
 
     /**
-     * List of dispatchers to use to dispatch an event from an observed's change
+     * List of dispatchers to use to dispatch an event from an observed's change.
+     *
      * @var \ArrayAccess|EventDispatcherInterface[]
      */
     private $dispatchersList;
 
     /**
-     * List of observed stated class instance to dispatch instance's change
+     * List of observed stated class instance to dispatch instance's change.
+     *
      * @var \ArrayAccess|ObservedInterface[]
      */
     private $observedList;
 
     /**
-     * Factory to generate new ObservedFactoryInterface to manage an observation
+     * Factory to generate new ObservedFactoryInterface to manage an observation.
+     *
      * @var ObservedFactoryInterface
      */
     private $observedFactory;
@@ -180,5 +183,4 @@ class Observer implements ObserverInterface
 
         return $this;
     }
-
 }

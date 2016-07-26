@@ -19,12 +19,11 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\StatedClass\Automated;
 
 /**
  * Class AutomatedTrait
- * Trait to implement in proxy of your stated classes to add automated behaviors
+ * Trait to implement in proxy of your stated classes to add automated behaviors.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -40,7 +39,8 @@ namespace Teknoo\States\LifeCycle\StatedClass\Automated;
 trait AutomatedTrait
 {
     /**
-     * Get the list of all new states
+     * Get the list of all new states.
+     *
      * @return string[]
      */
     private function getNewStateList(): array
@@ -60,8 +60,10 @@ trait AutomatedTrait
     }
 
     /**
-     * To enable and disable states according validations rules
+     * To enable and disable states according validations rules.
+     *
      * @param string[] $newStateList
+     *
      * @return AutomatedInterface
      */
     private function switchToNewStates(array $newStateList): AutomatedInterface
@@ -84,7 +86,8 @@ trait AutomatedTrait
     }
 
     /**
-     * Method called by the stated class instance itself to perform states changes according its validations rules
+     * Method called by the stated class instance itself to perform states changes according its validations rules.
+     *
      * @return AutomatedInterface
      */
     public function updateStates(): AutomatedInterface
@@ -97,7 +100,8 @@ trait AutomatedTrait
     }
 
     /**
-     * To get all validations rules needed by instances
+     * To get all validations rules needed by instances.
+     *
      * @return \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface[]
      */
     abstract public function getStatesAssertions(): array;

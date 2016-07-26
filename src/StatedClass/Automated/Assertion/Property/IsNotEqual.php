@@ -19,13 +19,12 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property;
 
 /**
  * class IsNotEqual
  * Invokable class to use with Teknoo\States\LifeCycle\StatedClass\Automated\Assertion to check if a propery is equal
- * to of $this->exceptedValue. (Perform != checks)
+ * to of $this->exceptedValue. (Perform != checks).
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -44,6 +43,7 @@ class IsNotEqual
 
     /**
      * IsNotEqual constructor.
+     *
      * @param mixed $exceptedValue
      */
     public function __construct($exceptedValue)
@@ -53,6 +53,7 @@ class IsNotEqual
 
     /**
      * @param mixed &$property
+     *
      * @return bool
      */
     public function __invoke($property): bool

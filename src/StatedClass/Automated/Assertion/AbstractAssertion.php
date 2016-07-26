@@ -19,12 +19,11 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion;
 
 /**
  * class AbstractAssertion
- * Abstract implementation of AssertionInterface
+ * Abstract implementation of AssertionInterface.
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -36,7 +35,8 @@ namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion;
 abstract class AbstractAssertion implements AssertionInterface
 {
     /**
-     * List of stated to enable if the assertion is valid
+     * List of stated to enable if the assertion is valid.
+     *
      * @var string[]
      */
     private $statesList;

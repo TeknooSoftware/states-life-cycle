@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Scenario;
 
 use Teknoo\States\LifeCycle\Event\EventInterface;
@@ -29,7 +28,7 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 /**
  * Class Scenario
  * Default implementation of scenario class to allow developper to write interaction with a stated class and its instances
- * with others components of the application
+ * with others components of the application.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -116,6 +115,7 @@ class Scenario implements ScenarioInterface
 
     /**
      * @param EventInterface $event
+     *
      * @return bool
      */
     protected function checkNeededIncomingStates(EventInterface $event): bool
@@ -126,6 +126,7 @@ class Scenario implements ScenarioInterface
         }
 
         $incomingStateList = $event->getIncomingStates();
+
         return empty(array_diff($neededIncomingStatesList, $incomingStateList));
     }
 
@@ -139,6 +140,7 @@ class Scenario implements ScenarioInterface
 
     /**
      * @param EventInterface $event
+     *
      * @return bool
      */
     protected function checkNeededOutgoingStates(EventInterface $event): bool
@@ -149,6 +151,7 @@ class Scenario implements ScenarioInterface
         }
 
         $outgoingStatesList = $event->getOutgoingStates();
+
         return empty(array_diff($neededOutgoingStatesList, $outgoingStatesList));
     }
 
@@ -162,6 +165,7 @@ class Scenario implements ScenarioInterface
 
     /**
      * @param EventInterface $event
+     *
      * @return bool
      */
     protected function checkNeededStates(EventInterface $event): bool
@@ -172,6 +176,7 @@ class Scenario implements ScenarioInterface
         }
 
         $enabledStatesList = $event->getObject()->listEnabledStates();
+
         return empty(array_diff($neededStatesList, $enabledStatesList));
     }
 
@@ -185,6 +190,7 @@ class Scenario implements ScenarioInterface
 
     /**
      * @param EventInterface $event
+     *
      * @return bool
      */
     protected function checkForbiddenStates(EventInterface $event): bool
@@ -195,6 +201,7 @@ class Scenario implements ScenarioInterface
         }
 
         $enabledStatesList = $event->getObject()->listEnabledStates();
+
         return empty(array_intersect($forbiddenStatesList, $enabledStatesList));
     }
 
@@ -208,6 +215,7 @@ class Scenario implements ScenarioInterface
 
     /**
      * @param EventInterface $event
+     *
      * @return bool
      */
     protected function checkNeededStatedClass(EventInterface $event): bool
@@ -230,6 +238,7 @@ class Scenario implements ScenarioInterface
 
     /**
      * @param EventInterface $event
+     *
      * @return bool
      */
     protected function checkNeededStatedObject(EventInterface $event): bool

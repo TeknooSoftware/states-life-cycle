@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\States\LifeCycle\Tokenization;
 
 use Teknoo\States\LifeCycle\Event\EventInterface;
@@ -50,8 +49,10 @@ interface TokenizerInterface
      * - a base token from the canonical stated class name
      * - a token by enabled states : "basetoken:<state name>"
      * - a token by incoming states : "basetoken:+<state name>"
-     * - a token by outgoing states : "basetoken:-<state name>"
+     * - a token by outgoing states : "basetoken:-<state name>".
+     *
      * @param EventInterface $event
+     *
      * @return string[]
      */
     public function getToken(EventInterface $event): array;
