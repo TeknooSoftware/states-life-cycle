@@ -1,5 +1,17 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
+##[1.0.0] - 2016-07-26
+###Updated
+- First stable release
+
+###Added
+- Api Doc
+
+###Fixed
+- Remove legacy reference to Uni Alteri in licences
+- Improve documentation and fix documentations
+- Fix code style with cs-fixer
+
 ##[1.0.0-RC1] - 2016-04-09
 ###Updated
 - first RC
