@@ -127,7 +127,7 @@ class Scenario implements ScenarioInterface
 
         $incomingStateList = $event->getIncomingStates();
 
-        return empty(array_diff($neededIncomingStatesList, $incomingStateList));
+        return empty(\array_diff($neededIncomingStatesList, $incomingStateList));
     }
 
     /**
@@ -152,7 +152,7 @@ class Scenario implements ScenarioInterface
 
         $outgoingStatesList = $event->getOutgoingStates();
 
-        return empty(array_diff($neededOutgoingStatesList, $outgoingStatesList));
+        return empty(\array_diff($neededOutgoingStatesList, $outgoingStatesList));
     }
 
     /**
@@ -177,7 +177,7 @@ class Scenario implements ScenarioInterface
 
         $enabledStatesList = $event->getObject()->listEnabledStates();
 
-        return empty(array_diff($neededStatesList, $enabledStatesList));
+        return empty(\array_diff($neededStatesList, $enabledStatesList));
     }
 
     /**
@@ -202,7 +202,7 @@ class Scenario implements ScenarioInterface
 
         $enabledStatesList = $event->getObject()->listEnabledStates();
 
-        return empty(array_intersect($forbiddenStatesList, $enabledStatesList));
+        return empty(\array_intersect($forbiddenStatesList, $enabledStatesList));
     }
 
     /**

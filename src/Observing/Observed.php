@@ -99,11 +99,11 @@ class Observed implements ObservedInterface
      */
     protected function checkEventClassName(string $eventClassName): Observed
     {
-        if (!class_exists($eventClassName)) {
+        if (!\class_exists($eventClassName)) {
             throw new \RuntimeException('Missing event class '.$eventClassName);
         }
 
-        $interfaceImplementingList = class_implements($eventClassName);
+        $interfaceImplementingList = \class_implements($eventClassName);
 
         if (!isset($interfaceImplementingList['Teknoo\States\LifeCycle\Event\EventInterface'])) {
             throw new \RuntimeException('The event class does not implement the EventInterface');
@@ -135,12 +135,12 @@ class Observed implements ObservedInterface
      */
     public function getStatedClassName(): string
     {
-        $classNameParts = explode('\\', get_class($this->object));
-        if (count($classNameParts) > 1) {
-            array_pop($classNameParts);
+        $classNameParts = \explode('\\', \get_class($this->object));
+        if (\count($classNameParts) > 1) {
+            \array_pop($classNameParts);
         }
 
-        return implode('\\', $classNameParts);
+        return \implode('\\', $classNameParts);
     }
 
     /**
@@ -172,9 +172,9 @@ class Observed implements ObservedInterface
         $lastEnabledStates = $this->getLastEnabledStates();
 
         //New state = current states - old states
-        $incomingStates = array_diff($currentEnabledStates, $lastEnabledStates);
+        $incomingStates = \array_diff($currentEnabledStates, $lastEnabledStates);
         //Outgoing state = lst states - current states
-        $outgoingStates = array_diff($lastEnabledStates, $currentEnabledStates);
+        $outgoingStates = \array_diff($lastEnabledStates, $currentEnabledStates);
 
         $eventClassName = $this->eventClassName;
         $this->lastEvent = new $eventClassName($this, $incomingStates, $outgoingStates);

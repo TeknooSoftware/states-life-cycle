@@ -101,7 +101,7 @@ class Observer implements ObserverInterface
      */
     public function addEventDispatcher(EventDispatcherInterface $dispatcher): ObserverInterface
     {
-        $this->dispatchersList[spl_object_hash($dispatcher)] = $dispatcher;
+        $this->dispatchersList[\spl_object_hash($dispatcher)] = $dispatcher;
 
         return $this;
     }
@@ -111,7 +111,7 @@ class Observer implements ObserverInterface
      */
     public function removeEventDispatcher(EventDispatcherInterface $dispatcher): ObserverInterface
     {
-        $dispatcherHash = spl_object_hash($dispatcher);
+        $dispatcherHash = \spl_object_hash($dispatcher);
         if (isset($this->dispatchersList[$dispatcherHash])) {
             //Dispatcher not found, do nothing "silently"
             unset($this->dispatchersList[$dispatcherHash]);
@@ -133,7 +133,7 @@ class Observer implements ObserverInterface
      */
     public function attachObject(LifeCyclableInterface $object): ObservedInterface
     {
-        $objectHash = spl_object_hash($object);
+        $objectHash = \spl_object_hash($object);
         //Create the observed instance to manage the observation
         $observed = $this->observedFactory->create($this, $object);
         $object->registerObserver($observed);
@@ -148,7 +148,7 @@ class Observer implements ObserverInterface
      */
     public function detachObject(LifeCyclableInterface $object): ObserverInterface
     {
-        $objectHash = spl_object_hash($object);
+        $objectHash = \spl_object_hash($object);
         if (isset($this->observedList[$objectHash])) {
             $observed = $this->observedList[$objectHash];
             $object->unregisterObserver($observed);

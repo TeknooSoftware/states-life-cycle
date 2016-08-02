@@ -221,7 +221,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
      */
     public function getForbiddenStatesList()
     {
-        return array_values($this->forbiddenStatesList);
+        return \array_values($this->forbiddenStatesList);
     }
 
     /**
@@ -229,7 +229,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
      */
     public function getNeededStatesList()
     {
-        return array_values($this->neededStatesList);
+        return \array_values($this->neededStatesList);
     }
 
     /**
@@ -237,7 +237,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
      */
     public function getNeededIncomingStatesList()
     {
-        return array_values($this->neededIncomingStatesList);
+        return \array_values($this->neededIncomingStatesList);
     }
 
     /**
@@ -245,7 +245,7 @@ class ScenarioBuilder implements ScenarioBuilderInterface
      */
     public function getNeededOutgoingStatesList()
     {
-        return array_values($this->neededOutgoingStatesList);
+        return \array_values($this->neededOutgoingStatesList);
     }
 
     /**

@@ -54,12 +54,12 @@ class Tokenizer implements TokenizerInterface
      */
     public function getStatedClassNameToken(string $statedClassName, $removeProxyName = false): string
     {
-        $statedClassNamePart = explode('\\', $statedClassName);
+        $statedClassNamePart = \explode('\\', $statedClassName);
         if (true === $removeProxyName) {
-            array_pop($statedClassNamePart);
+            \array_pop($statedClassNamePart);
         }
 
-        return strtolower(implode('_', $statedClassNamePart));
+        return \strtolower(\implode('_', $statedClassNamePart));
     }
 
     /**
@@ -71,7 +71,7 @@ class Tokenizer implements TokenizerInterface
      */
     public function getStatedClassInstanceToken(LifeCyclableInterface $object): string
     {
-        $statedClassName = get_class($object);
+        $statedClassName = \get_class($object);
 
         return $this->getStatedClassNameToken($statedClassName, true);
     }
@@ -87,15 +87,15 @@ class Tokenizer implements TokenizerInterface
         $tokenList = [$statedClassName];
 
         foreach ($event->getEnabledStates() as $stateName) {
-            $tokenList[] = $statedClassName.':'.strtolower($stateName);
+            $tokenList[] = $statedClassName.':'.\strtolower($stateName);
         }
 
         foreach ($event->getIncomingStates() as $stateName) {
-            $tokenList[] = $statedClassName.':+'.strtolower($stateName);
+            $tokenList[] = $statedClassName.':+'.\strtolower($stateName);
         }
 
         foreach ($event->getOutgoingStates() as $stateName) {
-            $tokenList[] = $statedClassName.':-'.strtolower($stateName);
+            $tokenList[] = $statedClassName.':-'.\strtolower($stateName);
         }
 
         return $tokenList;

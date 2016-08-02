@@ -49,14 +49,14 @@ trait AutomatedTrait
 
         foreach ($this->getStatesAssertions() as $stateAssertion) {
             if ($stateAssertion->isValid($this)) {
-                $statesList = array_merge(
+                $statesList = \array_merge(
                     $statesList,
-                    array_flip($stateAssertion->getStatesList())
+                    \array_flip($stateAssertion->getStatesList())
                 );
             }
         }
 
-        return array_keys($statesList);
+        return \array_keys($statesList);
     }
 
     /**
@@ -70,13 +70,13 @@ trait AutomatedTrait
     {
         $lastEnabledStates = $this->listEnabledStates();
 
-        $incomingStates = array_diff($newStateList, $lastEnabledStates);
+        $incomingStates = \array_diff($newStateList, $lastEnabledStates);
         foreach ($incomingStates as $stateName) {
             //enable missing states
             $this->enableState($stateName);
         }
 
-        $outgoingStates = array_diff($lastEnabledStates, $newStateList);
+        $outgoingStates = \array_diff($lastEnabledStates, $newStateList);
         foreach ($outgoingStates as $stateName) {
             //disable older states
             $this->disableState($stateName);

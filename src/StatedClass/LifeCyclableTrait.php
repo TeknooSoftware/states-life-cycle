@@ -53,7 +53,7 @@ trait LifeCyclableTrait
      */
     public function registerObserver(ObservedInterface $observed): LifeCyclableInterface
     {
-        $this->observedList[spl_object_hash($observed)] = $observed;
+        $this->observedList[\spl_object_hash($observed)] = $observed;
 
         return $this;
     }
@@ -67,7 +67,7 @@ trait LifeCyclableTrait
      */
     public function unregisterObserver(ObservedInterface $observed): LifeCyclableInterface
     {
-        $observedHash = spl_object_hash($observed);
+        $observedHash = \spl_object_hash($observed);
 
         if (isset($this->observedList[$observedHash])) {
             unset($this->observedList[$observedHash]);

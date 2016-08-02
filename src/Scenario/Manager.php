@@ -111,7 +111,7 @@ class Manager implements ManagerInterface
      */
     public function registerScenario(ScenarioInterface $scenario): ManagerInterface
     {
-        $scenarioHash = spl_object_hash($scenario);
+        $scenarioHash = \spl_object_hash($scenario);
 
         if (!isset($this->scenariiList[$scenarioHash])) {
             $this->scenariiList[$scenarioHash] = $scenario;
@@ -126,7 +126,7 @@ class Manager implements ManagerInterface
      */
     public function unregisterScenario(ScenarioInterface $scenario): ManagerInterface
     {
-        $scenarioHash = spl_object_hash($scenario);
+        $scenarioHash = \spl_object_hash($scenario);
 
         if (isset($this->scenariiList[$scenarioHash])) {
             $this->removeEventsAboutScenario($scenario);
