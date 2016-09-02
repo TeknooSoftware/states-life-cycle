@@ -1,5 +1,9 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
+##[1.0.2] - 2016-09-02
+###Fixed
+- Fix bug with States 2.1 with canonical states name (use state's class name with namespace).
+
 ##[1.0.1] - 2016-08-04
 ###Fixed
 - Improve optimization on call to native function and optimized

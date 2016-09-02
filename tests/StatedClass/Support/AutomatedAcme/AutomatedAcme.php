@@ -28,6 +28,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNull;
 use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedInterface;
 use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedTrait;
 use Teknoo\States\Proxy\Integrated;
+use Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedAcme\States\State2;
 
 /**
  * Class AutomatedAcme.
@@ -108,7 +109,7 @@ class AutomatedAcme extends Integrated implements AutomatedInterface
     {
         return [
             (new Assertion(['State1']))->with('foo', 'bar'),
-            (new Assertion(['State2']))->with('foo1', new IsEqual('bar1'))->with('foo2', new IsNull()),
+            (new Assertion([State2::class]))->with('foo1', new IsEqual('bar1'))->with('foo2', new IsNull()),
         ];
     }
 }

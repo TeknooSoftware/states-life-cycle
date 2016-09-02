@@ -20,6 +20,7 @@
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 namespace Teknoo\States\LifeCycle\StatedClass\Automated;
+use Teknoo\States\Proxy\ProxyInterface;
 
 /**
  * Class AutomatedTrait
@@ -32,9 +33,8 @@ namespace Teknoo\States\LifeCycle\StatedClass\Automated;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @method string[] listEnabledStates()
- * @method AutomatedInterface enableState(string $stateName)
- * @method AutomatedInterface disableState(string $stateName)
+ * @mixin AutomatedInterface
+ * @mixin ProxyInterface
  */
 trait AutomatedTrait
 {
@@ -60,6 +60,20 @@ trait AutomatedTrait
     }
 
     /**
+     * To remove canonical states name in the list to avoid error
+     * @param array $newStateList
+     * @return AutomatedInterface
+     */
+    private function filterStatesNames(array &$newStateList): AutomatedInterface
+    {
+        foreach ($newStateList as &$stateName) {
+            $this->validateName($stateName);
+        }
+
+        return $this;
+    }
+
+    /**
      * To enable and disable states according validations rules.
      *
      * @param string[] $newStateList
@@ -68,18 +82,20 @@ trait AutomatedTrait
      */
     private function switchToNewStates(array $newStateList): AutomatedInterface
     {
-        $lastEnabledStates = $this->listEnabledStates();
+        $this->filterStatesNames($newStateList);
 
-        $incomingStates = \array_diff($newStateList, $lastEnabledStates);
-        foreach ($incomingStates as $stateName) {
-            //enable missing states
-            $this->enableState($stateName);
-        }
+        $lastEnabledStates = $this->listEnabledStates();
 
         $outgoingStates = \array_diff($lastEnabledStates, $newStateList);
         foreach ($outgoingStates as $stateName) {
             //disable older states
             $this->disableState($stateName);
+        }
+
+        $incomingStates = \array_diff($newStateList, $lastEnabledStates);
+        foreach ($incomingStates as $stateName) {
+            //enable missing states
+            $this->enableState($stateName);
         }
 
         return $this;

@@ -18,7 +18,7 @@
     },
     "require":{
         "php": "~7.0",
-        "teknoo/states": "~2.0",
+        "teknoo/states": "~2.1",
         "symfony/event-dispatcher":"~2.7||~3.0",
         "symfony/yaml": "~2.7||~3.0",
         "knplabs/gaufrette": "~0.1"
