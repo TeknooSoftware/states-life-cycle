@@ -20,7 +20,6 @@
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 namespace Teknoo\States\LifeCycle\StatedClass\Automated;
-use Teknoo\States\Proxy\ProxyInterface;
 
 /**
  * Class AutomatedTrait
@@ -34,7 +33,7 @@ use Teknoo\States\Proxy\ProxyInterface;
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
  * @mixin AutomatedInterface
- * @mixin ProxyInterface
+ * @mixin \Teknoo\States\Proxy\ProxyInterface
  */
 trait AutomatedTrait
 {
