@@ -18,7 +18,7 @@
     },
     "require":{
         "php": "~7.0",
-        "teknoo/states": "~2.1",
+        "teknoo/states": "~3.0.0-alpha1",
         "symfony/event-dispatcher":"~2.7||~3.0",
         "symfony/yaml": "~2.7||~3.0",
         "knplabs/gaufrette": "~0.1"
@@ -30,6 +30,11 @@
         "psr-4": {
             "Teknoo\\States\\LifeCycle\\": ["src/"],
             "Teknoo\\Tests\\States\\LifeCycle\\": ["tests/"]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "demo\\": ["demo/"]
         }
     },
     "minimum-stability": "stable",

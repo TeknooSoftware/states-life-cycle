@@ -7,7 +7,6 @@
         processIsolation="false"
         stopOnFailure="false"
         syntaxCheck="true"
-        bootstrap="tests/bootstrap.php"
         colors="true">
     <testsuites>
         <testsuite name="Teknoo Software/States Life Cycle Test Suite">
