@@ -22,11 +22,13 @@
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated;
 
 use Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedAcme\AutomatedAcme;
+use Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedAcme\States\State1;
+use Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedAcme\States\State2;
 
 /**
  * Class AutomatedTest.
  *
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedTrait
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedTrait
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -53,25 +55,25 @@ class AutomatedTest extends AbstractAutomatedTest
         $instance->setFoo('bar');
         $this->assertEquals([], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals(['State1'], $instance->listEnabledStates());
+        $this->assertEquals([State1::class], $instance->listEnabledStates());
 
         $instance->setFoo1('bar1')->setFoo2(123);
-        $this->assertEquals(['State1'], $instance->listEnabledStates());
+        $this->assertEquals([State1::class], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals(['State1'], $instance->listEnabledStates());
+        $this->assertEquals([State1::class], $instance->listEnabledStates());
 
         $instance->setFoo1('bar1')->setFoo2(null);
-        $this->assertEquals(['State1'], $instance->listEnabledStates());
+        $this->assertEquals([State1::class], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals(['State1', 'State2'], $instance->listEnabledStates());
+        $this->assertEquals([State1::class, State2::class], $instance->listEnabledStates());
 
         $instance->setFoo('');
-        $this->assertEquals(['State1', 'State2'], $instance->listEnabledStates());
+        $this->assertEquals([State1::class, State2::class], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals(['State2'], $instance->listEnabledStates());
+        $this->assertEquals([State2::class], $instance->listEnabledStates());
 
         $instance->setFoo1('');
-        $this->assertEquals(['State2'], $instance->listEnabledStates());
+        $this->assertEquals([State2::class], $instance->listEnabledStates());
         $instance->updateStates();
         $this->assertEquals([], $instance->listEnabledStates());
     }

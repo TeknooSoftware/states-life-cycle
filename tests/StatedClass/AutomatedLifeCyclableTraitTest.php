@@ -21,12 +21,16 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\StatedClass;
 
+use Teknoo\States\LifeCycle\Observing\ObservedInterface;
+use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface;
 use Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedLifeCyclableAcme\AutomatedLifeCyclableAcme;
+use Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedLifeCyclableAcme\States\State1;
+use Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedLifeCyclableAcme\States\State2;
 
 /**
  * Class AutomatedLifeCyclableTraitTest.
  *
- * @covers Teknoo\States\LifeCycle\StatedClass\AutomatedLifeCyclableTrait
+ * @covers \Teknoo\States\LifeCycle\StatedClass\AutomatedLifeCyclableTrait
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -52,7 +56,7 @@ class AutomatedLifeCyclableTraitTest extends AbstractLifeCyclableTest
 
         foreach ($instance->getStatesAssertions() as $assertion) {
             $this->assertInstanceOf(
-                'Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface',
+                AssertionInterface::class,
                 $assertion
             );
         }
@@ -61,7 +65,7 @@ class AutomatedLifeCyclableTraitTest extends AbstractLifeCyclableTest
     public function testUpdateStates()
     {
         $instance = $this->build();
-        $observer = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observer = $this->createMock(ObservedInterface::class);
         $observer->expects($this->exactly(5))->method('observeUpdate')->willReturnSelf();
 
         $instance->registerObserver($observer);
@@ -71,25 +75,25 @@ class AutomatedLifeCyclableTraitTest extends AbstractLifeCyclableTest
         $instance->setFoo('bar');
         $this->assertEquals([], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals(['State1'], $instance->listEnabledStates());
+        $this->assertEquals([State1::class], $instance->listEnabledStates());
 
         $instance->setFoo1('bar1')->setFoo2(123);
-        $this->assertEquals(['State1'], $instance->listEnabledStates());
+        $this->assertEquals([State1::class], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals(['State1'], $instance->listEnabledStates());
+        $this->assertEquals([State1::class], $instance->listEnabledStates());
 
         $instance->setFoo1('bar1')->setFoo2(null);
-        $this->assertEquals(['State1'], $instance->listEnabledStates());
+        $this->assertEquals([State1::class], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals(['State1', 'State2'], $instance->listEnabledStates());
+        $this->assertEquals([State1::class, State2::class], $instance->listEnabledStates());
 
         $instance->setFoo('');
-        $this->assertEquals(['State1', 'State2'], $instance->listEnabledStates());
+        $this->assertEquals([State1::class, State2::class], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals(['State2'], $instance->listEnabledStates());
+        $this->assertEquals([State2::class], $instance->listEnabledStates());
 
         $instance->setFoo1('');
-        $this->assertEquals(['State2'], $instance->listEnabledStates());
+        $this->assertEquals([State2::class], $instance->listEnabledStates());
         $instance->updateStates();
         $this->assertEquals([], $instance->listEnabledStates());
     }

@@ -24,6 +24,9 @@ namespace Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\Clas
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableTrait;
 use Teknoo\States\Proxy;
+use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\States\State2;
+use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\States\State3;
+use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\States\StateDefault;
 
 /**
  * Proxy ClassA
@@ -37,7 +40,19 @@ use Teknoo\States\Proxy;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class ClassA extends Proxy\Integrated implements LifeCyclableInterface
+class ClassA extends Proxy\Standard  implements LifeCyclableInterface
 {
     use LifeCyclableTrait;
+
+    /**
+     * @return array
+     */
+    public static function statesListDeclaration(): array
+    {
+        return [
+            State2::class,
+            State3::class,
+            StateDefault::class
+        ];
+    }
 }

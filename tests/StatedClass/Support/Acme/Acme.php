@@ -23,7 +23,9 @@ namespace Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme;
 
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableTrait;
-use Teknoo\States\Proxy\Integrated;
+use Teknoo\States\Proxy\Standard;
+use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\States\State1;
+use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\States\State2;
 
 /**
  * Class Acme.
@@ -36,7 +38,7 @@ use Teknoo\States\Proxy\Integrated;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class Acme extends Integrated implements LifeCyclableInterface
+class Acme extends Standard  implements LifeCyclableInterface
 {
     use LifeCyclableTrait;
 
@@ -60,6 +62,17 @@ class Acme extends Integrated implements LifeCyclableInterface
      * @var mixed
      */
     protected $foo2;
+
+    /**
+     * @return array
+     */
+    public static function statesListDeclaration(): array
+    {
+        return [
+            State1::class,
+            State2::class
+        ];
+    }
 
     /**
      * @param mixed $foo

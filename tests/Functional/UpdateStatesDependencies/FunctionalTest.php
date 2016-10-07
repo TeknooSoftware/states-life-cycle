@@ -29,7 +29,13 @@ use Teknoo\States\LifeCycle\Scenario\Scenario;
 use Teknoo\States\LifeCycle\Scenario\ScenarioBuilder;
 use Teknoo\States\LifeCycle\Tokenization\Tokenizer;
 use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\ClassA;
+use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\States\State2;
+use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\States\State3;
+use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\States\StateDefault;
 use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\ClassB;
+use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\States\State2 as State2B;
+use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\States\State3 as State3B;
+use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\States\StateDefault as StateDefaultB;
 
 /**
  * Class FunctionalTest.
@@ -170,7 +176,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     {
         $scenarioBuilder = $this->createNewScenarioBuilder()
             ->towardStatedClass('Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA')
-            ->onIncomingState('State2')
+            ->onIncomingState(State2:: class)
             ->run(function () {
                 $this->getInstanceB()->switchToState2();
             });
@@ -187,8 +193,8 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     {
         $scenarioBuilder = $this->createNewScenarioBuilder()
             ->towardStatedClass('Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA')
-            ->onIncomingState('State3')
-            ->ifInState('State2')
+            ->onIncomingState(State3::class)
+            ->ifInState(State2::class)
             ->run(function () {
                 $this->getInstanceB()->switchToState1();
             });
@@ -205,9 +211,9 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     {
         $scenarioBuilder = $this->createNewScenarioBuilder()
             ->towardStatedClass('Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA')
-            ->onIncomingState('State3')
-            ->onOutgoingState('State2')
-            ->ifNotInState('StateDefault')
+            ->onIncomingState(State3::class)
+            ->onOutgoingState(State2::class)
+            ->ifNotInState(StateDefault::class)
             ->run(function () {
                 $this->getInstanceB()->switchToState3();
             });
@@ -224,9 +230,9 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     {
         $scenarioBuilder = $this->createNewScenarioBuilder()
             ->towardStatedClass('Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassE')
-            ->onIncomingState('State3')
-            ->onOutgoingState('State2')
-            ->ifNotInState('StateDefault')
+            ->onIncomingState(State3::class)
+            ->onOutgoingState(State2::class)
+            ->ifNotInState(StateDefault::class)
             ->run(function () {
                 $this->getInstanceB()->switchToState1();
             });
@@ -245,23 +251,23 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $observer->attachObject($instanceA);
         $observer->attachObject($instanceB);
 
-        $this->assertEquals(['StateDefault'], $instanceA->listEnabledStates());
-        $this->assertEquals(['StateDefault'], $instanceB->listEnabledStates());
+        $this->assertEquals([StateDefault::class], $instanceA->listEnabledStates());
+        $this->assertEquals([StateDefaultB::class], $instanceB->listEnabledStates());
 
         $instanceA->switchToState2();
 
-        $this->assertEquals(['State2'], $instanceA->listEnabledStates());
-        $this->assertEquals(['StateDefault'], $instanceB->listEnabledStates());
+        $this->assertEquals([State2::class], $instanceA->listEnabledStates());
+        $this->assertEquals([StateDefaultB::class], $instanceB->listEnabledStates());
 
         $instanceA->enableState3();
 
-        $this->assertEquals(['State2', 'State3'], $instanceA->listEnabledStates());
-        $this->assertEquals(['StateDefault'], $instanceB->listEnabledStates());
+        $this->assertEquals([State2::class, State3::class], $instanceA->listEnabledStates());
+        $this->assertEquals([StateDefaultB::class], $instanceB->listEnabledStates());
 
         $instanceA->switchToState3();
 
-        $this->assertEquals(['State3'], $instanceA->listEnabledStates());
-        $this->assertEquals(['StateDefault'], $instanceB->listEnabledStates());
+        $this->assertEquals([State3::class], $instanceA->listEnabledStates());
+        $this->assertEquals([StateDefaultB::class], $instanceB->listEnabledStates());
     }
 
     public function testCaseWithRegisteredScenario()
@@ -278,24 +284,24 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $this->prepareScenarioC();
         $this->prepareScenarioD();
 
-        $this->assertEquals(['StateDefault'], $instanceA->listEnabledStates());
-        $this->assertEquals(['StateDefault'], $instanceB->listEnabledStates());
+        $this->assertEquals([StateDefault::class], $instanceA->listEnabledStates());
+        $this->assertEquals([StateDefaultB::class], $instanceB->listEnabledStates());
 
         $instanceA->switchToState2();
 
-        $this->assertEquals(['State2'], $instanceA->listEnabledStates());
-        $this->assertEquals(['State2'], $instanceB->listEnabledStates());
+        $this->assertEquals([State2::class], $instanceA->listEnabledStates());
+        $this->assertEquals([State2B::class], $instanceB->listEnabledStates());
 
         $instanceA->enableState3();
 
-        $this->assertEquals(['State2', 'State3'], $instanceA->listEnabledStates());
-        $this->assertEquals(['StateDefault'], $instanceB->listEnabledStates());
+        $this->assertEquals([State2::class, State3::class], $instanceA->listEnabledStates());
+        $this->assertEquals([StateDefaultB::class], $instanceB->listEnabledStates());
 
         $instanceA->switchToState1()->switchToState2();
         $instanceA->switchToState3();
 
-        $this->assertEquals(['State3'], $instanceA->listEnabledStates());
-        $this->assertEquals(['State3'], $instanceB->listEnabledStates());
+        $this->assertEquals([State3::class], $instanceA->listEnabledStates());
+        $this->assertEquals([State3B::class], $instanceB->listEnabledStates());
     }
 
     public function testCaseWithRegisteredScenarioAndDetach()
@@ -312,25 +318,25 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $this->prepareScenarioC();
         $this->prepareScenarioD();
 
-        $this->assertEquals(['StateDefault'], $instanceA->listEnabledStates());
-        $this->assertEquals(['StateDefault'], $instanceB->listEnabledStates());
+        $this->assertEquals([StateDefault::class], $instanceA->listEnabledStates());
+        $this->assertEquals([StateDefaultB::class], $instanceB->listEnabledStates());
 
         $instanceA->switchToState2();
 
-        $this->assertEquals(['State2'], $instanceA->listEnabledStates());
-        $this->assertEquals(['State2'], $instanceB->listEnabledStates());
+        $this->assertEquals([State2::class], $instanceA->listEnabledStates());
+        $this->assertEquals([State2B::class], $instanceB->listEnabledStates());
 
         $observer->detachObject($instanceA);
         $instanceA->enableState3();
 
-        $this->assertEquals(['State2', 'State3'], $instanceA->listEnabledStates());
-        $this->assertEquals(['State2'], $instanceB->listEnabledStates());
+        $this->assertEquals([State2::class, State3::class], $instanceA->listEnabledStates());
+        $this->assertEquals([State2B::class], $instanceB->listEnabledStates());
 
         $instanceA->switchToState1()->switchToState2();
         $instanceA->switchToState3();
 
-        $this->assertEquals(['State3'], $instanceA->listEnabledStates());
-        $this->assertEquals(['State2'], $instanceB->listEnabledStates());
+        $this->assertEquals([State3::class], $instanceA->listEnabledStates());
+        $this->assertEquals([State2B::class], $instanceB->listEnabledStates());
     }
 
     public function testCaseWithRegisteredScenarioAndDetachObserved()
@@ -347,24 +353,24 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $this->prepareScenarioC();
         $this->prepareScenarioD();
 
-        $this->assertEquals(['StateDefault'], $instanceA->listEnabledStates());
-        $this->assertEquals(['StateDefault'], $instanceB->listEnabledStates());
+        $this->assertEquals([StateDefault::class], $instanceA->listEnabledStates());
+        $this->assertEquals([StateDefaultB::class], $instanceB->listEnabledStates());
 
         $instanceA->switchToState2();
 
-        $this->assertEquals(['State2'], $instanceA->listEnabledStates());
-        $this->assertEquals(['State2'], $instanceB->listEnabledStates());
+        $this->assertEquals([State2::class], $instanceA->listEnabledStates());
+        $this->assertEquals([State2B::class], $instanceB->listEnabledStates());
 
         $observer->detachObject($instanceB);
         $instanceA->enableState3();
 
-        $this->assertEquals(['State2', 'State3'], $instanceA->listEnabledStates());
-        $this->assertEquals(['StateDefault'], $instanceB->listEnabledStates());
+        $this->assertEquals([State2::class, State3::class], $instanceA->listEnabledStates());
+        $this->assertEquals([StateDefaultB::class], $instanceB->listEnabledStates());
 
         $instanceA->switchToState1()->switchToState2();
         $instanceA->switchToState3();
 
-        $this->assertEquals(['State3'], $instanceA->listEnabledStates());
-        $this->assertEquals(['State3'], $instanceB->listEnabledStates());
+        $this->assertEquals([State3::class], $instanceA->listEnabledStates());
+        $this->assertEquals([State3B::class], $instanceB->listEnabledStates());
     }
 }

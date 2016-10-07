@@ -35,39 +35,46 @@ use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\Cla
  *
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
+ * @mixin ClassA
  */
 class State2 extends AbstractState
 {
-    /**
-     * @return ClassA
-     */
     public function enableState3()
     {
-        $this->enableState('State3')
-            ->notifyObserved();
+        /**
+         * @return ClassA
+         */
+        return function () {
+            $this->enableState(State3::class)
+                ->notifyObserved();
 
-        return $this;
+            return $this;
+        };
     }
 
-    /**
-     * @return ClassA
-     */
     public function switchToState1()
     {
-        $this->switchState('StateDefault')
-            ->notifyObserved();
+        /**
+         * @return ClassA
+         */
+        return function () {
+            $this->switchState(StateDefault::class)
+                ->notifyObserved();
 
-        return $this;
+            return $this;
+        };
     }
 
-    /**
-     * @return ClassA
-     */
     public function switchToState3()
     {
-        $this->switchState('State3')
-            ->notifyObserved();
+        /**
+         * @return ClassA
+         */
+        return function () {
+            $this->switchState(State3::class)
+                ->notifyObserved();
 
-        return $this;
+            return $this;
+        };
     }
 }
