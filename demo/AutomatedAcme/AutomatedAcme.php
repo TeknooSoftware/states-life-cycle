@@ -22,13 +22,15 @@
 
 namespace demo\AutomatedAcme;
 
+use demo\AutomatedAcme\States\State1;
+use demo\AutomatedAcme\States\State2;
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Assertion;
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface;
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsEqual;
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNull;
 use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedInterface;
 use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedTrait;
-use Teknoo\States\Proxy\Integrated;
+use Teknoo\States\Proxy\Standard;
 
 /**
  * Class AutomatedAcme.
@@ -41,7 +43,7 @@ use Teknoo\States\Proxy\Integrated;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class AutomatedAcme extends Integrated implements AutomatedInterface
+class AutomatedAcme extends Standard implements AutomatedInterface
 {
     use AutomatedTrait;
 
@@ -102,8 +104,19 @@ class AutomatedAcme extends Integrated implements AutomatedInterface
     public function getStatesAssertions(): array
     {
         return [
-            (new Assertion(['State1']))->with('foo', 'bar'),
-            (new Assertion(['State2']))->with('foo1', new IsEqual('bar1'))->with('foo2', new IsNull())
+            (new Assertion([State1::class]))->with('foo', 'bar'),
+            (new Assertion([State2::class]))->with('foo1', new IsEqual('bar1'))->with('foo2', new IsNull())
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function statesListDeclaration(): array
+    {
+        return [
+            State1::class,
+            State2::class
         ];
     }
 }

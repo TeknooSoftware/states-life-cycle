@@ -35,28 +35,33 @@ use demo\AcmeUpdateStatesDependencies\ClassB\ClassB;
  *
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
+ * @mixin ClassB
  */
 class State2 extends AbstractState
 {
-    /**
-     * @return ClassB
-     */
     public function switchToStateDefault()
     {
-        $this->switchState('StateDefault')
-            ->notifyObserved();
+        /**
+         * @return ClassB
+         */
+        return function () {
+            $this->switchState(StateDefault::class)
+                ->notifyObserved();
 
-        return $this;
+            return $this;
+        };
     }
 
-    /**
-     * @return ClassB
-     */
     public function switchToState3()
     {
-        $this->switchState('State3')
-            ->notifyObserved();
+        /**
+         * @return ClassB
+         */
+        return function () {
+            $this->switchState(State3::class)
+                ->notifyObserved();
 
-        return $this;
+            return $this;
+        };
     }
 }

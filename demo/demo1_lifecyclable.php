@@ -21,17 +21,13 @@
  */
 namespace demo;
 
+include dirname(__DIR__).'/vendor/autoload.php';
+
 use demo\LifeCyclableAcme\LifeCyclableAcme;
+use demo\LifeCyclableAcme\States\State1;
+use demo\LifeCyclableAcme\States\State2;
 use Teknoo\States\LifeCycle\Event\EventInterface;
 use Teknoo\States\LifeCycle\Generator;
-use Teknoo\States\Loader\LoaderInterface;
-
-//Initialize the states library
-/*
- * @var LoaderInterface
- */
-$stateLoader = require_once __DIR__.'/../vendor/teknoo/states/src/bootstrap.php';
-$stateLoader->registerNamespace('\\demo', __DIR__);
 
 //Use the helper generator to get needed instance of observer and event dispatcher, it's not a mandatory tool
 $generator = new Generator();
@@ -89,13 +85,13 @@ echo PHP_EOL.PHP_EOL.'Instance registered, no change';
 $lifeCyclableAcme->notifyObserved();
 
 echo PHP_EOL.PHP_EOL.'Enable State1';
-$lifeCyclableAcme->enableState('State1');
+$lifeCyclableAcme->enableState(State1::class);
 $lifeCyclableAcme->notifyObserved();
 
 echo PHP_EOL.PHP_EOL.'Enable State2';
-$lifeCyclableAcme->enableState('State2');
+$lifeCyclableAcme->enableState(State2::class);
 $lifeCyclableAcme->notifyObserved();
 
 echo PHP_EOL.PHP_EOL.'Disable State1';
-$lifeCyclableAcme->disableState('State1');
+$lifeCyclableAcme->disableState(State1::class);
 $lifeCyclableAcme->notifyObserved();

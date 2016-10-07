@@ -21,9 +21,11 @@
  */
 namespace demo\LifeCyclableAcme;
 
+use demo\LifeCyclableAcme\States\State1;
+use demo\LifeCyclableAcme\States\State2;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableTrait;
-use Teknoo\States\Proxy\Integrated;
+use Teknoo\States\Proxy\Standard;
 
 /**
  * Class LifeCyclableAcme.
@@ -36,7 +38,18 @@ use Teknoo\States\Proxy\Integrated;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class LifeCyclableAcme extends Integrated implements LifeCyclableInterface
+class LifeCyclableAcme extends Standard implements LifeCyclableInterface
 {
     use LifeCyclableTrait;
+
+    /**
+     * @return array
+     */
+    public static function statesListDeclaration(): array
+    {
+        return [
+            State1::class,
+            State2::class
+        ];
+    }
 }

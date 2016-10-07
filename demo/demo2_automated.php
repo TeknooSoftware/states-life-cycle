@@ -22,13 +22,8 @@
 namespace demo;
 
 use demo\AutomatedAcme\AutomatedAcme;
-use Teknoo\States\Loader\LoaderInterface;
 
-/*
- * @var LoaderInterface
- */
-$stateLoader = require_once __DIR__.'/../vendor/teknoo/states/src/bootstrap.php';
-$stateLoader->registerNamespace('\\demo', __DIR__);
+include dirname(__DIR__).'/vendor/autoload.php';
 
 echo PHP_EOL.' Create new automated instance';
 $automatedAcme = new AutomatedAcme();
@@ -36,35 +31,35 @@ $automatedAcme = new AutomatedAcme();
 echo PHP_EOL.'No enabled states :';
 echo PHP_EOL.'Enabled states : '.implode(', ', $automatedAcme->listEnabledStates());
 
-echo PHP_EOL.'Set foo property at bar, not call updateStates, states must stay unchanger';
+echo PHP_EOL.'Set foo property at bar, not call updateStates, states must stay unchanged';
 $automatedAcme->setFoo('bar');
 echo PHP_EOL.'Enabled states : '.implode(', ', $automatedAcme->listEnabledStates());
 echo PHP_EOL.'Call updateStates, change states, enable state 1';
 $automatedAcme->updateStates();
 echo PHP_EOL.'Enabled states : '.implode(', ', $automatedAcme->listEnabledStates());
 
-echo PHP_EOL.'Set foo1 property at bar1, not call updateStates, states must stay unchanger';
+echo PHP_EOL.'Set foo1 property at bar1, not call updateStates, states must stay unchanged';
 $automatedAcme->setFoo1('bar1')->setFoo2(123);
 echo PHP_EOL.'Enabled states : '.implode(', ', $automatedAcme->listEnabledStates());
 echo PHP_EOL.'Call updateStates, change states, state1 must stay enabled';
 $automatedAcme->updateStates();
 echo PHP_EOL.'Enabled states : '.implode(', ', $automatedAcme->listEnabledStates());
 
-echo PHP_EOL.'Set foo1 property at bar1 and foo2 to null, not call updateStates, states must stay unchanger';
+echo PHP_EOL.'Set foo1 property at bar1 and foo2 to null, not call updateStates, states must stay unchanged';
 $automatedAcme->setFoo1('bar1')->setFoo2(null);
 echo PHP_EOL.'Enabled states : '.implode(', ', $automatedAcme->listEnabledStates());
 $automatedAcme->updateStates();
 echo PHP_EOL.'Call updateStates, change states, state1 must stay enabled, state 2 must be enabled';
 echo PHP_EOL.'Enabled states : '.implode(', ', $automatedAcme->listEnabledStates());
 
-echo PHP_EOL.'Set foo property at empty, not call updateStates, states must stay unchanger';
+echo PHP_EOL.'Set foo property at empty, not call updateStates, states must stay unchanged';
 $automatedAcme->setFoo('');
 echo PHP_EOL.'Enabled states : '.implode(', ', $automatedAcme->listEnabledStates());
 $automatedAcme->updateStates();
 echo PHP_EOL.'Call updateStates, change states, state1 must be disabled';
 echo PHP_EOL.'Enabled states : '.implode(', ', $automatedAcme->listEnabledStates());
 
-echo PHP_EOL.'Set foo1 property at empty, not call updateStates, states must stay unchanger';
+echo PHP_EOL.'Set foo1 property at empty, not call updateStates, states must stay unchanged';
 $automatedAcme->setFoo1('');
 echo PHP_EOL.'Enabled states : '.implode(', ', $automatedAcme->listEnabledStates());
 $automatedAcme->updateStates();

@@ -26,13 +26,8 @@ use demo\AcmeUpdateStatesDependencies\ClassB\ClassB;
 use Teknoo\States\LifeCycle\Generator;
 use Teknoo\States\LifeCycle\Scenario\Scenario;
 use Teknoo\States\LifeCycle\Scenario\ScenarioBuilder;
-use Teknoo\States\Loader\LoaderInterface;
 
-/*
- * @var LoaderInterface
- */
-$stateLoader = require_once __DIR__.'/../vendor/teknoo/states/src/bootstrap.php';
-$stateLoader->registerNamespace('\\demo', __DIR__);
+include dirname(__DIR__).'/vendor/autoload.php';
 
 //Use the helper generator to get needed instance of observer and event dispatcher, it's not a mandatory tool
 $generator = new Generator();
