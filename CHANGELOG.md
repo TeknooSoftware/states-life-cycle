@@ -1,5 +1,12 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
+##[2.0.0-alpha1] - 2016-10-07
+###Updated
+- Version to support States 3+
+- Update tests to be compliant with States 3+
+- Update demo to be compliant with States 3+
+- Fix Tokenizer to manage Full qualified state name
+
 ##[1.0.3] - 2016-09-02
 ###Fixed
 - code style fix for insight of sensiolabs bugs
