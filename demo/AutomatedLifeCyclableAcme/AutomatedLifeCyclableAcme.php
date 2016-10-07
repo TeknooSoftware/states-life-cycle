@@ -31,7 +31,6 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNull;
 use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedInterface;
 use Teknoo\States\LifeCycle\StatedClass\AutomatedLifeCyclableTrait;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
-use Teknoo\States\Proxy\Integrated;
 use Teknoo\States\Proxy\Standard;
 
 /**

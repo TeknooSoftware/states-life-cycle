@@ -31,7 +31,7 @@ Shorts Examples
     /**
      * File Person.php
      */
-    class Person extends \Teknoo\States\Proxy\Integrated implements AutomatedInterface, LifeCyclableInterface
+    class Person extends \Teknoo\States\Proxy\Standard implements AutomatedInterface, LifeCyclableInterface
     {
         private $nationality;
         
@@ -63,8 +63,8 @@ Shorts Examples
         public function getStatesAssertions(): array
         {
             return [
-                (new Assertion(['French']))->with('nationality', new IsEqual('Fr')),
-                (new Assertion(['English']))->with('nationality', new IsNotEqual('Fr'))
+                (new Assertion([French::class]))->with('nationality', new IsEqual('Fr')),
+                (new Assertion([English::class]))->with('nationality', new IsNotEqual('Fr'))
             ];
         }
     }
@@ -88,7 +88,7 @@ Shorts Examples
     /**
      * File Travel.php
      */
-    class Travel extends \Teknoo\States\Proxy\Integrated 
+    class Travel extends \Teknoo\States\Proxy\Standard 
     {
         // ..
     }
@@ -157,9 +157,9 @@ To install this library with composer, run this command :
 
 This library requires :
 
-    * PHP 7+ (For PHP5.4 to 5.6, please to use the first major version, States 1.0+)
+    * PHP 7+
     * Composer
-    * Teknoo Software States
+    * Teknoo Software States 3+
     * Symfony event-dispatcher to dispatch event
     * Symfony yaml to parse yaml scenarii
     * Knplabs gaufrette to read yaml scenarri
