@@ -67,7 +67,7 @@ interface ObservedInterface
     public function getObserver(): ObserverInterface;
 
     /**
-     * To get the canonical stated class name.
+     * To get the full qualified stated class name.
      *
      * @return string
      */

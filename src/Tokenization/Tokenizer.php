@@ -88,21 +88,21 @@ class Tokenizer implements TokenizerInterface
 
         foreach ($event->getEnabledStates() as $stateName) {
             //Extract short class name and check if this state is not already loaded
-            $shortStateName = \ltrim(\substr($stateName, \strrpos($stateName, '\\')),'\\');
+            $shortStateName = \ltrim(\substr($stateName, \strrpos($stateName, '\\')), '\\');
 
             $tokenList[] = $statedClassName.':'.\strtolower($shortStateName);
         }
 
         foreach ($event->getIncomingStates() as $stateName) {
             //Extract short class name and check if this state is not already loaded
-            $shortStateName = \ltrim(\substr($stateName, \strrpos($stateName, '\\')),'\\');
+            $shortStateName = \ltrim(\substr($stateName, \strrpos($stateName, '\\')), '\\');
 
             $tokenList[] = $statedClassName.':+'.\strtolower($shortStateName);
         }
 
         foreach ($event->getOutgoingStates() as $stateName) {
             //Extract short class name and check if this state is not already loaded
-            $shortStateName = \ltrim(\substr($stateName, \strrpos($stateName, '\\')),'\\');
+            $shortStateName = \ltrim(\substr($stateName, \strrpos($stateName, '\\')), '\\');
 
             $tokenList[] = $statedClassName.':-'.\strtolower($shortStateName);
         }

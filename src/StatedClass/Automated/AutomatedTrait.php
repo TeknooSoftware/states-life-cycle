@@ -59,8 +59,10 @@ trait AutomatedTrait
     }
 
     /**
-     * To remove canonical states name in the list to avoid error
+     * To remove canonical states name in the list to avoid error.
+     *
      * @param array $newStateList
+     *
      * @return AutomatedInterface
      */
     private function filterStatesNames(array &$newStateList): AutomatedInterface

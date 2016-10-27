@@ -1,5 +1,11 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
+##[2.0.0-alpha2] - 2016-10-27
+###Updated
+- Require States 3.0.0-alpha3 at least.
+- Code style fix
+- Update doc
+
 ##[2.0.0-alpha1] - 2016-10-07
 ###Updated
 - Version to support States 3+
