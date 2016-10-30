@@ -22,12 +22,16 @@
 namespace Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Teknoo\States\LifeCycle\Event\EventInterface;
+use Teknoo\States\LifeCycle\Observing\EventDispatcherBridgeInterface;
+use Teknoo\States\LifeCycle\Observing\Observed;
 use Teknoo\States\LifeCycle\Observing\ObservedFactory;
 use Teknoo\States\LifeCycle\Observing\Observer;
 use Teknoo\States\LifeCycle\Scenario\Manager;
 use Teknoo\States\LifeCycle\Scenario\Scenario;
 use Teknoo\States\LifeCycle\Scenario\ScenarioBuilder;
 use Teknoo\States\LifeCycle\Tokenization\Tokenizer;
+use Teknoo\States\LifeCycle\Trace\Trace;
 use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\ClassA;
 use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\States\State2;
 use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\States\State3;
@@ -36,6 +40,7 @@ use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\Cla
 use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\States\State2 as State2B;
 use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\States\State3 as State3B;
 use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\States\StateDefault as StateDefaultB;
+use Teknoo\Tests\States\LifeCycle\Support\Event;
 
 /**
  * Class FunctionalTest.
@@ -52,7 +57,7 @@ use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\Sta
 class FunctionalTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var EventDispatcher
+     * @var EventDispatcherBridgeInterface
      */
     protected $dispatcher;
 
@@ -94,12 +99,63 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return EventDispatcher
+     * @return EventDispatcherBridgeInterface
      */
     protected function getEventDispatcher()
     {
-        if (!$this->dispatcher instanceof EventDispatcher) {
-            $this->dispatcher = new EventDispatcher();
+        if (!$this->dispatcher instanceof EventDispatcherBridgeInterface) {
+            $this->dispatcher = new class(new EventDispatcher()) implements EventDispatcherBridgeInterface {
+                /**
+                 * @var EventDispatcher
+                 */
+                private $eventDispatcher;
+
+                /**
+                 *  constructor.
+                 * @param EventDispatcher $eventDispatcher
+                 */
+                public function __construct(EventDispatcher $eventDispatcher)
+                {
+                    $this->eventDispatcher = $eventDispatcher;
+                }
+
+                /**
+                 * @param string $eventName
+                 * @param EventInterface|null $event
+                 * @return EventDispatcherBridgeInterface
+                 */
+                public function dispatch($eventName, EventInterface $event = null): EventDispatcherBridgeInterface
+                {
+                    $this->eventDispatcher->dispatch($eventName, $event);
+
+                    return $this;
+                }
+
+                /**
+                 * @param string $eventName
+                 * @param callable $listener
+                 * @param int $priority
+                 * @return EventDispatcherBridgeInterface
+                 */
+                public function addListener($eventName, $listener, $priority = 0): EventDispatcherBridgeInterface
+                {
+                    $this->eventDispatcher->addListener($eventName, $listener, $priority);
+
+                    return $this;
+                }
+
+                /**
+                 * @param string $eventName
+                 * @param callable $listener
+                 * @return EventDispatcherBridgeInterface
+                 */
+                public function removeListener($eventName, $listener): EventDispatcherBridgeInterface
+                {
+                    $this->eventDispatcher->removeListener($eventName, $listener);
+
+                    return $this;
+                }
+            };
         }
 
         return $this->dispatcher;
@@ -124,9 +180,9 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     {
         if (!$this->observer instanceof Observer) {
             $observerFactory = new ObservedFactory(
-                'Teknoo\States\LifeCycle\Observing\Observed',
-                'Teknoo\States\LifeCycle\Event\Event',
-                'Teknoo\States\LifeCycle\Trace\Trace'
+                Observed::class,
+                Event::class,
+                Trace::class
             );
 
             $this->observer = new Observer($observerFactory);

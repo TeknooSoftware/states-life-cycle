@@ -21,12 +21,13 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated;
 
+use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface;
 use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedInterface;
 
 /**
  * Class AbstractAutomatedTest.
  *
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedTrait
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedTrait
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -49,7 +50,7 @@ abstract class AbstractAutomatedTest extends \PHPUnit_Framework_TestCase
 
         foreach ($instance->getStatesAssertions() as $assertion) {
             $this->assertInstanceOf(
-                'Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface',
+                AssertionInterface::class,
                 $assertion
             );
         }

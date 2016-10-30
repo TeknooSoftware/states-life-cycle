@@ -26,7 +26,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotInstan
 /**
  * Class IsNotInstanceOfTest.
  *
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotInstanceOf
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotInstanceOf
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

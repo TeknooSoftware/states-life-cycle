@@ -26,7 +26,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion;
 /**
  * Class AbstractAssertionTest.
  *
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

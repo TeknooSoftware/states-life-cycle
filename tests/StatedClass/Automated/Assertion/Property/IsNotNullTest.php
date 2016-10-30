@@ -26,7 +26,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotNull;
 /**
  * Class IsNotNullTest.
  *
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotNull
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotNull
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

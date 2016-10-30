@@ -21,6 +21,7 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\StatedClass;
 
+use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableTrait;
 use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 
@@ -48,10 +49,10 @@ class LifeCycableTest extends AbstractLifeCyclableTest
 
     public function testNotifyObservedFilled()
     {
-        /*
+        /**
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock(ObservedInterface::class);
         $observed->expects($this->once())->method('observeUpdate');
 
         $instance = $this->build();

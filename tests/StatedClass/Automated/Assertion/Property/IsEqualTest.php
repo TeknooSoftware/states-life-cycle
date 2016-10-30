@@ -26,7 +26,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsEqual;
 /**
  * Class IsEqualTest.
  *
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsEqual
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsEqual
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

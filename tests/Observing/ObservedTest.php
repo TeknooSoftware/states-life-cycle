@@ -23,12 +23,16 @@ namespace Teknoo\Tests\States\LifeCycle\Observing;
 
 use Teknoo\States\LifeCycle\Observing\Observed;
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
+use Teknoo\States\LifeCycle\Observing\ObserverInterface;
+use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
+use Teknoo\States\LifeCycle\Trace\TraceInterface;
 use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
+use Teknoo\Tests\States\LifeCycle\Support\Event;
 
 /**
  * Class ObservedTest.
  *
- * @covers Teknoo\States\LifeCycle\Observing\Observed
+ * @covers \Teknoo\States\LifeCycle\Observing\Observed
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -58,22 +62,22 @@ class ObservedTest extends AbstractObservedTest
             'Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme',
             $this->build(
                 new Acme(),
-                $this->createMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'),
-                $this->createMock('Teknoo\States\LifeCycle\Trace\TraceInterface'),
-                'Teknoo\States\LifeCycle\Event\Event'
+                $this->createMock(ObserverInterface::class),
+                $this->createMock(TraceInterface::class),
+                Event::class
             )->getStatedClassName()
         );
     }
 
     public function testObserveUpdateFirstEvent()
     {
-        $instance = $this->createMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->createMock(LifeCyclableInterface::class);
         $instance->expects($this->any())->method('listEnabledStates')->willReturn(['state1', 'state3']);
         $instance->expects($this->any())->method('listAvailableStates')->willReturn(['state1', 'state2', 'state3']);
 
-        $observer = $this->createMock('Teknoo\States\LifeCycle\Observing\ObserverInterface');
+        $observer = $this->createMock(ObserverInterface::class);
 
-        $trace = $this->createMock('Teknoo\States\LifeCycle\Trace\TraceInterface');
+        $trace = $this->createMock(TraceInterface::class);
         $trace->expects($this->once())->method('addEntry')
             ->with(
                 $this->callback(function ($arg) {return $arg instanceof ObservedInterface; }),
@@ -84,7 +88,7 @@ class ObservedTest extends AbstractObservedTest
             $instance,
             $observer,
             $trace,
-            'Teknoo\States\LifeCycle\Event\Event'
+            Event::class
         );
 
         $observer->expects($this->once())->method('dispatchNotification')->with($observed)->willReturnSelf();
@@ -94,18 +98,18 @@ class ObservedTest extends AbstractObservedTest
 
     public function testObserveUpdateNewEvent()
     {
-        $instance = $this->createMock('Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface');
+        $instance = $this->createMock(LifeCyclableInterface::class);
         $instance->expects($this->any())->method('listEnabledStates')->willReturnOnConsecutiveCalls(['state1', 'state3'], ['state1', 'state3'], ['state1'], ['state1'], ['state2'], ['state2']);
         $instance->expects($this->any())->method('listAvailableStates')->willReturn(['state1', 'state2', 'state3']);
 
-        $observer = $this->createMock('Teknoo\States\LifeCycle\Observing\ObserverInterface');
+        $observer = $this->createMock(ObserverInterface::class);
 
-        $trace = $this->createMock('Teknoo\States\LifeCycle\Trace\TraceInterface');
+        $trace = $this->createMock(TraceInterface::class);
         $observed = $this->build(
             $instance,
             $observer,
             $trace,
-            'Teknoo\States\LifeCycle\Event\Event'
+            Event::class
         );
 
         $trace->expects($this->exactly(3))->method('addEntry')

@@ -26,7 +26,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsInstanceO
 /**
  * Class IsInstanceOfTest.
  *
- * @coversTeknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsInstanceOf
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsInstanceOf
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

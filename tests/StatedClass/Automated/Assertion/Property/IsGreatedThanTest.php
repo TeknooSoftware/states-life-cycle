@@ -26,7 +26,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterTh
 /**
  * Class IsGreaterThanTest.
  *
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterThan
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterThan
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

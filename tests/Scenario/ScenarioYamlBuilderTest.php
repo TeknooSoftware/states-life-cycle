@@ -21,6 +21,9 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
+use Gaufrette\Filesystem;
+use Symfony\Component\Yaml\Parser;
+use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 use Teknoo\States\LifeCycle\Scenario\ScenarioInterface;
 use Teknoo\States\LifeCycle\Scenario\ScenarioYamlBuilder;
 use Teknoo\States\LifeCycle\Tokenization\Tokenizer;
@@ -29,7 +32,7 @@ use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 /**
  * Class ScenarioYamlBuilderTest.
  *
- * @covers Teknoo\States\LifeCycle\Scenario\ScenarioYamlBuilder
+ * @covers \Teknoo\States\LifeCycle\Scenario\ScenarioYamlBuilder
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -51,7 +54,7 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
     public function getTokenizerMock()
     {
         if (!$this->tokenizer instanceof Tokenizer) {
-            $this->tokenizer = $this->createMock('Teknoo\States\LifeCycle\Tokenization\Tokenizer');
+            $this->tokenizer = $this->createMock(Tokenizer::class);
         }
 
         return $this->tokenizer;
@@ -85,10 +88,10 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
 
     public function testTowardObservedValue()
     {
-        /*
+        /**
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock(ObservedInterface::class);
         $acme = new Acme();
         $observed->expects($this->once())->method('getObject')->willReturn($acme);
         $service = $this->build();
@@ -151,7 +154,7 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
     public function testSetFilesystem()
     {
         $builder = $this->build();
-        $this->assertEquals($builder, $builder->setFilesystem($this->createMock('Gaufrette\Filesystem', [], [], '', false)));
+        $this->assertEquals($builder, $builder->setFilesystem($this->createMock(Filesystem::class, [], [], '', false)));
     }
 
     /**
@@ -188,7 +191,7 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
         /**
          * @var ScenarioInterface
          */
-        $scenario = $this->createMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario = $this->createMock(ScenarioInterface::class);
         $scenario->expects($this->once())->method('configure')->with($builder)->willReturnSelf();
 
         $yamlContent = 'scenario4:
@@ -199,14 +202,14 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
   run: [\'$instanceB\', \'switchToStateDefault\']
 ';
 
-        $filesystem = $this->createMock('Gaufrette\Filesystem', [], [], '', false);
+        $filesystem = $this->createMock(Filesystem::class, [], [], '', false);
         $builder->setFilesystem($filesystem);
         $filesystem->expects($this->once())
             ->method('read')
             ->with('file/scenario.yaml')
             ->willReturn($yamlContent);
 
-        $parser = $this->createMock('Symfony\Component\Yaml\Parser');
+        $parser = $this->createMock(Parser::class);
         $builder->setYamlParser($parser);
         $parser->expects($this->once())
             ->method('parse')
@@ -231,7 +234,7 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
 
         $builder->loadScenario('file/scenario.yaml');
         $this->assertInstanceOf(
-            'Teknoo\States\LifeCycle\Scenario\ScenarioInterface',
+            ScenarioInterface::class,
             $builder->build(
                 $scenario
             )

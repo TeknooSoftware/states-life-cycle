@@ -28,8 +28,8 @@ use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 /**
  * Class AssertionTest.
  *
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Assertion
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Assertion
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -51,7 +51,7 @@ class AssertionTest extends AbstractAssertionTest
     public function testWithClosure()
     {
         $this->assertInstanceOf(
-            'Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Assertion',
+            Assertion::class,
             $this->buildInstance()->with('fooBar', function () {})
         );
     }
@@ -59,7 +59,7 @@ class AssertionTest extends AbstractAssertionTest
     public function testWithValue()
     {
         $this->assertInstanceOf(
-            'Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Assertion',
+            Assertion::class,
             $this->buildInstance()->with('fooBar', 42)
         );
     }
@@ -82,10 +82,10 @@ class AssertionTest extends AbstractAssertionTest
 
     public function testIsValidPropertyValueBadParameter()
     {
-        /*
+        /**
          * @var ProxyInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $proxyMock = $this->createMock('Teknoo\States\Proxy\ProxyInterface');
+        $proxyMock = $this->createMock(ProxyInterface::class);
 
         $this->assertFalse($this->buildInstance()->with('foo', 'bar')->isValid($proxyMock));
     }
@@ -108,10 +108,10 @@ class AssertionTest extends AbstractAssertionTest
 
     public function testIsValidCallbackValueBadParameter()
     {
-        /*
+        /**
          * @var ProxyInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $proxyMock = $this->createMock('Teknoo\States\Proxy\ProxyInterface');
+        $proxyMock = $this->createMock(ProxyInterface::class);
 
         $this->assertFalse($this->buildInstance()->with('foo', function ($value) {return 'bar' === $value;})->isValid($proxyMock));
     }

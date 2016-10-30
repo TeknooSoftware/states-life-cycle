@@ -26,7 +26,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterOr
 /**
  * Class IsGreaterOrEqualThanTest.
  *
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterOrEqualThan
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterOrEqualThan
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

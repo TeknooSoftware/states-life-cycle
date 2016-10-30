@@ -19,29 +19,13 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-namespace Teknoo\Tests\States\LifeCycle\Trace;
+namespace Teknoo\Tests\States\LifeCycle\Support;
 
-use Teknoo\States\LifeCycle\Trace\Trace;
+use Teknoo\States\LifeCycle\Event\EventInterface;
+use \Symfony\Component\EventDispatcher\Event as SymfonyEvent;
+use Teknoo\States\LifeCycle\Event\EventTrait;
 
-/**
- * Class TraceTest.
- *
- * @covers \Teknoo\States\LifeCycle\Trace\Trace
- *
- * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
- *
- * @link        http://teknoo.software/states Project website
- *
- * @license     http://teknoo.software/license/mit         MIT License
- * @author      Richard Déloge <richarddeloge@gmail.com>
- */
-class TraceTest extends AbstractTraceTest
+class Event extends SymfonyEvent implements EventInterface
 {
-    /**
-     * @return Trace
-     */
-    public function build()
-    {
-        return new Trace();
-    }
+    use EventTrait;
 }

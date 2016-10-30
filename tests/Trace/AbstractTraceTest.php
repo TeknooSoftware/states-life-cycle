@@ -21,6 +21,8 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\Trace;
 
+use Teknoo\States\LifeCycle\Observing\ObservedInterface;
+use Teknoo\States\LifeCycle\Trace\EntryInterface;
 use Teknoo\States\LifeCycle\Trace\TraceInterface;
 
 /**
@@ -72,25 +74,25 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
 
     public function testGetFirstEntry()
     {
-        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock(ObservedInterface::class);
         $this->assertInstanceOf(
-            'Teknoo\States\LifeCycle\Trace\EntryInterface',
+            EntryInterface::class,
             $this->build()->addEntry($observed, [])->getFirstEntry()
         );
     }
 
     public function testGetLastEntry()
     {
-        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock(ObservedInterface::class);
         $this->assertInstanceOf(
-            'Teknoo\States\LifeCycle\Trace\EntryInterface',
+            EntryInterface::class,
             $this->build()->addEntry($observed, [])->getLastEntry()
         );
     }
 
     public function testAddEntry()
     {
-        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock(ObservedInterface::class);
         $service = $this->build();
         $this->assertEquals(
             $service,
@@ -100,7 +102,7 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
 
     public function testIsEmpty()
     {
-        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock(ObservedInterface::class);
         $service = $this->build();
         $this->assertTrue($service->isEmpty());
         $service->addEntry($observed, []);
@@ -112,7 +114,7 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
         $trace = $this->build();
         $this->assertTrue($trace->isEmpty());
 
-        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock(ObservedInterface::class);
         $trace->addEntry($observed, ['state1', 'state3']);
 
         $this->assertFalse($trace->isEmpty());

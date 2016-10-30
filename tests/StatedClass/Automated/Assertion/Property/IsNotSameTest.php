@@ -26,7 +26,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotSame;
 /**
  * Class IsNotSameTest.
  *
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotSame
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotSame
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

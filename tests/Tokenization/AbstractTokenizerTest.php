@@ -21,6 +21,7 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\Tokenization;
 
+use Teknoo\States\LifeCycle\Event\EventInterface;
 use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 
@@ -55,7 +56,7 @@ abstract class AbstractTokenizerTest extends \PHPUnit_Framework_TestCase
         /*
          * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $instance = $this->createMock(EventInterface::class);
         $instance->expects($this->any())->method('getObject')->willReturn(new Acme());
         $this->assertTrue(is_array($this->build()->getToken($instance)));
     }

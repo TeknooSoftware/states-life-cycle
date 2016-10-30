@@ -19,14 +19,18 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-namespace Teknoo\Tests\States\LifeCycle\Trace;
+namespace Teknoo\Tests\States\LifeCycle;
 
 use Teknoo\States\LifeCycle\Generator;
+use Teknoo\States\LifeCycle\Observing\EventDispatcherBridgeInterface;
+use Teknoo\States\LifeCycle\Observing\ObserverInterface;
+use Teknoo\States\LifeCycle\Scenario\ManagerInterface;
+use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 
 /**
  * Class GeneratorTest.
  *
- * @covers Teknoo\States\LifeCycle\Generator
+ * @covers \Teknoo\States\LifeCycle\Generator
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -50,7 +54,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $generator = $this->buildGenerator();
         $tokenizer1 = $generator->getTokenizer();
         $tokenizer2 = $generator->getTokenizer();
-        $this->assertInstanceOf('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface', $tokenizer1);
+        $this->assertInstanceOf(TokenizerInterface::class, $tokenizer1);
         $this->assertSame($tokenizer1, $tokenizer2);
     }
 
@@ -59,81 +63,95 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $generator = $this->buildGenerator();
         $tokenizer1 = $generator->getTokenizer();
         $this->assertInstanceOf(
-            'Teknoo\States\LifeCycle\Generator',
-            $generator->setTokenizer($this->createMock('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface'))
+            Generator::class,
+            $generator->setTokenizer($this->createMock(TokenizerInterface::class))
         );
         $tokenizer2 = $generator->getTokenizer();
-        $this->assertInstanceOf('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface', $tokenizer1);
-        $this->assertInstanceOf('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface', $tokenizer2);
+        $this->assertInstanceOf(TokenizerInterface::class, $tokenizer1);
+        $this->assertInstanceOf(TokenizerInterface::class, $tokenizer2);
         $this->assertNotSame($tokenizer1, $tokenizer2);
     }
 
+    /**
+     * @expectedException \RuntimeException
+     */
     public function testGetEventDispatcher()
     {
         $generator = $this->buildGenerator();
-        $eventDispatcher1 = $generator->getEventDispatcher();
-        $eventDispatcher2 = $generator->getEventDispatcher();
-        $this->assertInstanceOf('Symfony\Component\EventDispatcher\EventDispatcherInterface', $eventDispatcher1);
-        $this->assertSame($eventDispatcher1, $eventDispatcher2);
+        $generator->getEventDispatcher();
     }
 
     public function testSetEventDispatcher()
     {
         $generator = $this->buildGenerator();
-        $eventDispatcher1 = $generator->getEventDispatcher();
         $this->assertInstanceOf(
-            'Teknoo\States\LifeCycle\Generator',
-            $generator->setEventDispatcher($this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface'))
+            Generator::class,
+            $generator->setEventDispatcher($this->createMock(EventDispatcherBridgeInterface::class))
         );
-        $eventDispatcher2 = $generator->getEventDispatcher();
-        $this->assertInstanceOf('Symfony\Component\EventDispatcher\EventDispatcherInterface', $eventDispatcher1);
-        $this->assertInstanceOf('Symfony\Component\EventDispatcher\EventDispatcherInterface', $eventDispatcher2);
-        $this->assertNotSame($eventDispatcher1, $eventDispatcher2);
+        $eventDispatcher = $generator->getEventDispatcher();
+        $this->assertInstanceOf(EventDispatcherBridgeInterface::class, $eventDispatcher);
     }
 
     public function testGetManager()
     {
         $generator = $this->buildGenerator();
+        $this->assertInstanceOf(
+            Generator::class,
+            $generator->setEventDispatcher($this->createMock(EventDispatcherBridgeInterface::class))
+        );
+
         $manager1 = $generator->getManager();
         $manager2 = $generator->getManager();
-        $this->assertInstanceOf('Teknoo\States\LifeCycle\Scenario\ManagerInterface', $manager1);
+        $this->assertInstanceOf(ManagerInterface::class, $manager1);
         $this->assertSame($manager1, $manager2);
     }
 
     public function testSetManager()
     {
         $generator = $this->buildGenerator();
+        $this->assertInstanceOf(
+            Generator::class,
+            $generator->setEventDispatcher($this->createMock(EventDispatcherBridgeInterface::class))
+        );
         $manager1 = $generator->getManager();
         $this->assertInstanceOf(
-            'Teknoo\States\LifeCycle\Generator',
-            $generator->setManager($this->createMock('Teknoo\States\LifeCycle\Scenario\ManagerInterface'))
+            Generator::class,
+            $generator->setManager($this->createMock(ManagerInterface::class))
         );
         $manager2 = $generator->getManager();
-        $this->assertInstanceOf('Teknoo\States\LifeCycle\Scenario\ManagerInterface', $manager1);
-        $this->assertInstanceOf('Teknoo\States\LifeCycle\Scenario\ManagerInterface', $manager2);
+        $this->assertInstanceOf(ManagerInterface::class, $manager1);
+        $this->assertInstanceOf(ManagerInterface::class, $manager2);
         $this->assertNotSame($manager1, $manager2);
     }
 
     public function testGetObserver()
     {
         $generator = $this->buildGenerator();
+        $this->assertInstanceOf(
+            Generator::class,
+            $generator->setEventDispatcher($this->createMock(EventDispatcherBridgeInterface::class))
+        );
         $observer1 = $generator->getObserver();
         $observer2 = $generator->getObserver();
-        $this->assertInstanceOf('Teknoo\States\LifeCycle\Observing\ObserverInterface', $observer1);
+        $this->assertInstanceOf(ObserverInterface::class, $observer1);
         $this->assertSame($observer1, $observer2);
     }
 
     public function testSetObserver()
     {
         $generator = $this->buildGenerator();
+        $this->assertInstanceOf(
+            Generator::class,
+            $generator->setEventDispatcher($this->createMock(EventDispatcherBridgeInterface::class))
+        );
         $observer1 = $generator->getObserver();
         $this->assertInstanceOf(
-            'Teknoo\States\LifeCycle\Generator',
-            $generator->setObserver($this->createMock('Teknoo\States\LifeCycle\Observing\ObserverInterface'))
+            Generator::class,
+            $generator->setObserver($this->createMock(ObserverInterface::class))
         );
         $observer2 = $generator->getObserver();
-        $this->assertInstanceOf('Teknoo\States\LifeCycle\Observing\ObserverInterface', $observer1);
-        $this->assertInstanceOf('Teknoo\States\LifeCycle\Observing\ObserverInterface', $observer2);
+        $this->assertInstanceOf(ObserverInterface::class, $observer1);
+        $this->assertInstanceOf(ObserverInterface::class, $observer2);
         $this->assertNotSame($observer1, $observer2);
     }
 }

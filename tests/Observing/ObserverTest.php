@@ -22,8 +22,12 @@
 namespace Teknoo\Tests\States\LifeCycle\Observing;
 
 use Teknoo\States\LifeCycle\Event\EventInterface;
+use Teknoo\States\LifeCycle\Observing\EventDispatcherBridgeInterface;
 use Teknoo\States\LifeCycle\Observing\ObservedFactoryInterface;
+use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 use Teknoo\States\LifeCycle\Observing\Observer;
+use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
+use Teknoo\Tests\States\LifeCycle\Support\Event;
 
 /**
  * Class ObserverTest.
@@ -50,7 +54,7 @@ class ObserverTest extends AbstractObserverTest
     protected function getObservedFactoryInterfaceMock()
     {
         if (!$this->observedFactory instanceof ObservedFactoryInterface) {
-            $this->observedFactory = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedFactoryInterface');
+            $this->observedFactory = $this->createMock(ObservedFactoryInterface::class);
         }
 
         return $this->observedFactory;
@@ -69,26 +73,26 @@ class ObserverTest extends AbstractObserverTest
         /***
          * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject $instance
          */
-        $event = $this->createMock('Teknoo\States\LifeCycle\Event\Event', [], [], '', false);
-        /*
+        $event = $this->createMock(Event::class, [], [], '', false);
+        /**
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $instance = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $instance = $this->createMock(ObservedInterface::class);
         $instance->expects($this->any())->method('getLastEvent')->willReturn($event);
         $service = $this->build();
-        /*
+        /**
          * @var TokenizerInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $tokenizer = $this->createMock('Teknoo\States\LifeCycle\Tokenization\TokenizerInterface');
+        $tokenizer = $this->createMock(TokenizerInterface::class);
         $tokenizer->expects($this->once())
             ->method('getToken')
             ->with($event)
             ->willReturn(['event_name1', 'event_name1:state1', 'event_name1:state2', 'event_name1:+state1', 'event_name1:-state3']);
 
-        /*
-         * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
+        /**
+         * @var EventDispatcherBridgeInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $dispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $dispatcher = $this->createMock(EventDispatcherBridgeInterface::class);
         $this->assertEquals($service, $service->addEventDispatcher($dispatcher));
         $dispatcher->expects($this->exactly(5))
             ->method('dispatch')

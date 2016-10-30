@@ -21,13 +21,14 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Teknoo\States\LifeCycle\Observing\EventDispatcherBridgeInterface;
 use Teknoo\States\LifeCycle\Scenario\Manager;
+use Teknoo\States\LifeCycle\Scenario\ScenarioInterface;
 
 /**
  * Class ManagerTest.
  *
- * @covers Teknoo\States\LifeCycle\Scenario\Manager
+ * @covers \Teknoo\States\LifeCycle\Scenario\Manager
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -39,17 +40,17 @@ use Teknoo\States\LifeCycle\Scenario\Manager;
 class ManagerTest extends AbstractManagerTest
 {
     /**
-     * @var EventDispatcherInterface
+     * @var EventDispatcherBridgeInterface
      */
     protected $dispatcher;
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|EventDispatcherInterface
+     * @return \PHPUnit_Framework_MockObject_MockObject|EventDispatcherBridgeInterface
      */
-    public function getEventDispatcherInterfaceMock()
+    public function getEventDispatcherBridgeInterfaceMock()
     {
-        if (!$this->dispatcher instanceof EventDispatcherInterface) {
-            $this->dispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        if (!$this->dispatcher instanceof EventDispatcherBridgeInterface) {
+            $this->dispatcher = $this->createMock(EventDispatcherBridgeInterface::class);
         }
 
         return $this->dispatcher;
@@ -60,7 +61,7 @@ class ManagerTest extends AbstractManagerTest
      */
     public function build()
     {
-        return new Manager($this->getEventDispatcherInterfaceMock());
+        return new Manager($this->getEventDispatcherBridgeInterfaceMock());
     }
 
     public function testRegisterScenarioMultiple()
@@ -68,10 +69,10 @@ class ManagerTest extends AbstractManagerTest
         /*
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $scenario = $this->createMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario = $this->createMock(ScenarioInterface::class);
         $scenario->expects($this->any())->method('getEventsNamesList')->willReturn(['event1', 'event2', 'event3']);
 
-        $this->getEventDispatcherInterfaceMock()
+        $this->getEventDispatcherBridgeInterfaceMock()
             ->expects($this->exactly(3))
             ->method('addListener')
             ->withConsecutive(
@@ -89,11 +90,11 @@ class ManagerTest extends AbstractManagerTest
         /*
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $scenario = $this->createMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario = $this->createMock(ScenarioInterface::class);
         $scenario->expects($this->any())->method('getEventsNamesList')->willReturn(['event1', 'event2', 'event3']);
         $service = $this->build();
 
-        $this->getEventDispatcherInterfaceMock()
+        $this->getEventDispatcherBridgeInterfaceMock()
             ->expects($this->exactly(3))
             ->method('removeListener')
             ->withConsecutive(

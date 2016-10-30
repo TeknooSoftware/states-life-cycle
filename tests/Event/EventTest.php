@@ -21,12 +21,13 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\Event;
 
-use Teknoo\States\LifeCycle\Event\Event;
+use Teknoo\States\LifeCycle\Event\EventInterface;
+use Teknoo\States\LifeCycle\Event\EventTrait;
 
 /**
  * Class EventTest.
  *
- * @covers Teknoo\States\LifeCycle\Event\Event
+ * @covers \Teknoo\States\LifeCycle\Event\EventTrait
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -42,10 +43,12 @@ class EventTest extends AbstractEventTest
      * @param $incomingState
      * @param $outGoingState
      *
-     * @return Event
+     * @return EventTrait
      */
     public function build($observed, $incomingState, $outGoingState)
     {
-        return new Event($observed, $incomingState, $outGoingState);
+        return new class ($observed, $incomingState, $outGoingState) implements EventInterface {
+            use EventTrait;
+        };
     }
 }

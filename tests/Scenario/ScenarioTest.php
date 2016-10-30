@@ -21,6 +21,7 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
+use Teknoo\States\LifeCycle\Event\EventInterface;
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 use Teknoo\States\LifeCycle\Scenario\Scenario;
 use Teknoo\States\LifeCycle\Scenario\ScenarioBuilder;
@@ -29,7 +30,7 @@ use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 /**
  * Class ScenarioTest.
  *
- * @covers Teknoo\States\LifeCycle\Scenario\Scenario
+ * @covers \Teknoo\States\LifeCycle\Scenario\Scenario
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -56,7 +57,7 @@ class ScenarioTest extends AbstractScenarioTest
     protected function getScenarioBuilderMock()
     {
         if (!$this->scenarioBuilder instanceof ScenarioBuilder) {
-            $this->scenarioBuilder = $this->createMock('Teknoo\States\LifeCycle\Scenario\ScenarioBuilder', [], [], '', false);
+            $this->scenarioBuilder = $this->createMock(ScenarioBuilder::class, [], [], '', false);
         }
 
         return $this->scenarioBuilder;
@@ -68,7 +69,7 @@ class ScenarioTest extends AbstractScenarioTest
     protected function getObservedInterfaceMock()
     {
         if (!$this->observed instanceof ObservedInterface) {
-            $this->observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+            $this->observed = $this->createMock(ObservedInterface::class);
         }
 
         return $this->observed;
@@ -144,7 +145,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn(['state1', 'state2']);
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $eventMock->expects($this->once())->method('getIncomingStates')->willReturn(['state1', 'state2', 'state3']);
         $this->assertTrue($service->isAllowedToRun($eventMock));
     }
@@ -160,7 +161,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn(['state1', 'state2', 'state3']);
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $eventMock->expects($this->once())->method('getIncomingStates')->willReturn(['state1', 'state2']);
         $this->assertFalse($service->isAllowedToRun($eventMock));
     }
@@ -176,7 +177,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $eventMock->expects($this->once())->method('getOutgoingStates')->willReturn(['state1', 'state2', 'state3']);
         $this->assertTrue($service->isAllowedToRun($eventMock));
     }
@@ -192,7 +193,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $eventMock->expects($this->once())->method('getOutgoingStates')->willReturn(['state1', 'state2']);
         $this->assertFalse($service->isAllowedToRun($eventMock));
     }
@@ -208,7 +209,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $acme = $this->createMock('Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme');
         $acme->expects($this->any())->method('listEnabledStates')->willReturn(['state1', 'state2', 'state3']);
         $eventMock->expects($this->once())->method('getObject')->willReturn($acme);
@@ -226,7 +227,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $acme = $this->createMock('Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme');
         $acme->expects($this->any())->method('listEnabledStates')->willReturn(['state3', 'state1']);
         $eventMock->expects($this->once())->method('getObject')->willReturn($acme);
@@ -244,7 +245,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $acme = $this->createMock('Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme');
         $acme->expects($this->any())->method('listEnabledStates')->willReturn(['state3', 'state4']);
         $eventMock->expects($this->once())->method('getObject')->willReturn($acme);
@@ -262,7 +263,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $acme = $this->createMock('Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme');
         $acme->expects($this->any())->method('listEnabledStates')->willReturn(['state3', 'state4']);
         $eventMock->expects($this->once())->method('getObject')->willReturn($acme);
@@ -280,7 +281,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $observed = $this->getObservedInterfaceMock();
         $observed->expects($this->once())->method('getStatedClassName')->willReturn('fooBar');
         $eventMock->expects($this->once())->method('getObserved')->willReturn($observed);
@@ -298,7 +299,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $observed = $this->getObservedInterfaceMock();
         $observed->expects($this->once())->method('getStatedClassName')->willReturn('fooBar2');
         $eventMock->expects($this->once())->method('getObserved')->willReturn($observed);
@@ -318,7 +319,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $eventMock->expects($this->once())->method('getObject')->willReturn($Acme);
         $this->assertTrue($service->isAllowedToRun($eventMock));
     }
@@ -334,7 +335,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $eventMock->expects($this->once())->method('getObject')->willReturn(new Acme());
         $this->assertFalse($service->isAllowedToRun($eventMock));
     }
@@ -350,7 +351,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $this->assertTrue($service->isAllowedToRun($eventMock));
     }
 
@@ -367,7 +368,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getCallable')->willReturn(function () use (&$called) {$called = true;});
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $observed = $this->getObservedInterfaceMock();
         $observed->expects($this->once())->method('getStatedClassName')->willReturn('fooBar');
         $eventMock->expects($this->once())->method('getObserved')->willReturn($observed);
@@ -390,7 +391,7 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects($this->any())->method('getCallable')->willReturn(function () use (&$called) {$called = true;});
 
         $service = $this->build(true);
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $observed = $this->getObservedInterfaceMock();
         $observed->expects($this->once())->method('getStatedClassName')->willReturn('fooBar2');
         $eventMock->expects($this->once())->method('getObserved')->willReturn($observed);

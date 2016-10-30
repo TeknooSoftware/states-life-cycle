@@ -21,6 +21,8 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
+use Teknoo\States\LifeCycle\Event\EventInterface;
+use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 use Teknoo\States\LifeCycle\Scenario\ScenarioInterface;
 
 /**
@@ -69,7 +71,7 @@ abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
     public function testGetNeededStatedObject()
     {
         $this->assertInstanceOf(
-            'Teknoo\States\LifeCycle\Observing\ObservedInterface',
+            ObservedInterface::class,
             $this->build()->getNeededStatedObject()
         );
     }
@@ -84,7 +86,7 @@ abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
 
     public function testIsAllowedToRun()
     {
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $this->assertTrue(is_bool($this->build()->isAllowedToRun($eventMock)));
     }
 
@@ -98,7 +100,7 @@ abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
 
     public function testInvoke()
     {
-        $eventMock = $this->createMock('Teknoo\States\LifeCycle\Event\EventInterface');
+        $eventMock = $this->createMock(EventInterface::class);
         $this->build()->__invoke($eventMock);
     }
 }

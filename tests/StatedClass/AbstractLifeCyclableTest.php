@@ -21,6 +21,7 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\StatedClass;
 
+use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**
@@ -54,7 +55,7 @@ abstract class AbstractLifeCyclableTest extends \PHPUnit_Framework_TestCase
         /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock(ObservedInterface::class);
         $instance = $this->build();
         $this->assertEquals(
             $instance,
@@ -75,7 +76,7 @@ abstract class AbstractLifeCyclableTest extends \PHPUnit_Framework_TestCase
         /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock(ObservedInterface::class);
         $instance = $this->build();
         $this->assertEquals(
             $instance,

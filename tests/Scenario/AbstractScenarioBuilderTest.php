@@ -21,7 +21,9 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
+use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 use Teknoo\States\LifeCycle\Scenario\ScenarioBuilderInterface;
+use Teknoo\States\LifeCycle\Scenario\ScenarioInterface;
 
 /**
  * Class AbstractScenarioBuilderTest.
@@ -82,7 +84,7 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
         /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock(ObservedInterface::class);
         $service = $this->build();
         $this->assertEquals($service, $service->towardObserved($observed));
     }
@@ -160,11 +162,11 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
     public function testBuild()
     {
         $builder = $this->build();
-        $scenario = $this->createMock('Teknoo\States\LifeCycle\Scenario\ScenarioInterface');
+        $scenario = $this->createMock(ScenarioInterface::class);
         $scenario->expects($this->once())->method('configure')->with($builder)->willReturnSelf();
 
         $this->assertInstanceOf(
-            'Teknoo\States\LifeCycle\Scenario\ScenarioInterface',
+            ScenarioInterface::class,
             $builder->build(
                 $scenario
             )

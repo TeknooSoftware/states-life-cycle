@@ -26,7 +26,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsLessOrEqu
 /**
  * Class IsLessOrEqualThanTest.
  *
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsLessOrEqualThan
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsLessOrEqualThan
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *

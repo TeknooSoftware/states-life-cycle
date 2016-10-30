@@ -22,12 +22,13 @@
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion;
 
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Callback;
+use Teknoo\States\Proxy\ProxyInterface;
 
 /**
  * Class CallbackTest.
  *
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion
- * @covers Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Callback
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion
+ * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Callback
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -49,7 +50,7 @@ class CallbackTest extends AbstractAssertionTest
     public function testCallClosure()
     {
         $this->assertInstanceOf(
-            'Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Callback',
+            Callback::class,
             $this->buildInstance()->call(function () {})
         );
     }
@@ -57,7 +58,7 @@ class CallbackTest extends AbstractAssertionTest
     public function testCallCalback()
     {
         $this->assertInstanceOf(
-            'Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Callback',
+            Callback::class,
             $this->buildInstance()->call('time')
         );
     }
@@ -72,9 +73,9 @@ class CallbackTest extends AbstractAssertionTest
 
     public function testIsValid()
     {
-        $proxy = $this->createMock('Teknoo\States\Proxy\ProxyInterface');
+        $proxy = $this->createMock(ProxyInterface::class);
         $instance = $this->buildInstance()->call(function ($value) use ($proxy) {return $value === $proxy;});
         $this->assertTrue($instance->isValid($proxy));
-        $this->assertFalse($instance->isValid($this->createMock('Teknoo\States\Proxy\ProxyInterface')));
+        $this->assertFalse($instance->isValid($this->createMock(ProxyInterface::class)));
     }
 }

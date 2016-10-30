@@ -21,7 +21,10 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\Observing;
 
+use Teknoo\States\LifeCycle\Observing\Observed;
 use Teknoo\States\LifeCycle\Observing\ObservedFactory;
+use Teknoo\States\LifeCycle\Trace\Trace;
+use Teknoo\Tests\States\LifeCycle\Support\Event;
 
 /**
  * Class ObservedFactoryTest.
@@ -42,9 +45,9 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
     public function build()
     {
         return new ObservedFactory(
-            'Teknoo\States\LifeCycle\Observing\Observed',
-            'Teknoo\States\LifeCycle\Event\Event',
-            'Teknoo\States\LifeCycle\Trace\Trace'
+            Observed::class,
+            Event::class,
+            Trace::class
         );
     }
 
@@ -55,8 +58,8 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
     {
         new ObservedFactory(
             new \stdClass(),
-            'Teknoo\States\LifeCycle\Event\Event',
-            'Teknoo\States\LifeCycle\Trace\Trace'
+            Event::class,
+            Trace::class
         );
     }
 
@@ -66,9 +69,9 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
     public function testConstructInvalidEventClass()
     {
         new ObservedFactory(
-            'Teknoo\States\LifeCycle\Observing\Observed',
+            Observed::class,
             new \stdClass(),
-            'Teknoo\States\LifeCycle\Trace\Trace'
+            Trace::class
         );
     }
 
@@ -78,8 +81,8 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
     public function testConstructInvalidTraceClass()
     {
         new ObservedFactory(
-            'Teknoo\States\LifeCycle\Observing\Observed',
-            'Teknoo\States\LifeCycle\Event\Event',
+            Observed::class,
+            Event::class,
             new \stdClass()
         );
     }
@@ -91,8 +94,8 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
     {
         new ObservedFactory(
             'NonExist',
-            'Teknoo\States\LifeCycle\Event\Event',
-            'Teknoo\States\LifeCycle\Trace\Trace'
+            Event::class,
+            Trace::class
         );
     }
 
@@ -102,8 +105,8 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
     public function testConstructMissingTraceClass()
     {
         new ObservedFactory(
-            'Teknoo\States\LifeCycle\Observing\Observed',
-            'Teknoo\States\LifeCycle\Event\Event',
+            Observed::class,
+            Event::class,
             'NonExist'
         );
     }
@@ -115,8 +118,8 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
     {
         new ObservedFactory(
             '\DateTime',
-            'Teknoo\States\LifeCycle\Event\Event',
-            'Teknoo\States\LifeCycle\Trace\Trace'
+            Event::class,
+            Trace::class
         );
     }
 
@@ -126,8 +129,8 @@ class ObservedFactoryTest extends AbstractObservedFactoryTest
     public function testConstructBadTraceClass()
     {
         new ObservedFactory(
-            'Teknoo\States\LifeCycle\Observing\Observed',
-            'Teknoo\States\LifeCycle\Event\Event',
+            Observed::class,
+            Event::class,
             '\DateTime'
         );
     }

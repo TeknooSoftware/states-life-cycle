@@ -21,6 +21,7 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
+use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 use Teknoo\States\LifeCycle\Scenario\ScenarioBuilder;
 use Teknoo\States\LifeCycle\Tokenization\Tokenizer;
 use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
@@ -28,7 +29,7 @@ use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
 /**
  * Class ScenarioBuilderTest.
  *
- * @covers Teknoo\States\LifeCycle\Scenario\ScenarioBuilder
+ * @covers \Teknoo\States\LifeCycle\Scenario\ScenarioBuilder
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
@@ -50,7 +51,7 @@ class ScenarioBuilderTest extends AbstractScenarioBuilderTest
     public function getTokenizerMock()
     {
         if (!$this->tokenizer instanceof Tokenizer) {
-            $this->tokenizer = $this->createMock('Teknoo\States\LifeCycle\Tokenization\Tokenizer');
+            $this->tokenizer = $this->createMock(Tokenizer::class);
         }
 
         return $this->tokenizer;
@@ -87,7 +88,7 @@ class ScenarioBuilderTest extends AbstractScenarioBuilderTest
         /*
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
-        $observed = $this->createMock('Teknoo\States\LifeCycle\Observing\ObservedInterface');
+        $observed = $this->createMock(ObservedInterface::class);
         $acme = new Acme();
         $observed->expects($this->once())->method('getObject')->willReturn($acme);
         $service = $this->build();
