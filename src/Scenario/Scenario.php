@@ -118,7 +118,7 @@ class Scenario implements ScenarioInterface
      *
      * @return bool
      */
-    protected function checkNeededIncomingStates(EventInterface $event): bool
+    private function checkNeededIncomingStates(EventInterface $event): bool
     {
         $neededIncomingStatesList = $this->listNeededIncomingStates();
         if (empty($neededIncomingStatesList)) {
@@ -143,7 +143,7 @@ class Scenario implements ScenarioInterface
      *
      * @return bool
      */
-    protected function checkNeededOutgoingStates(EventInterface $event): bool
+    private function checkNeededOutgoingStates(EventInterface $event): bool
     {
         $neededOutgoingStatesList = $this->listNeededOutgoingStates();
         if (empty($neededOutgoingStatesList)) {
@@ -168,7 +168,7 @@ class Scenario implements ScenarioInterface
      *
      * @return bool
      */
-    protected function checkNeededStates(EventInterface $event): bool
+    private function checkNeededStates(EventInterface $event): bool
     {
         $neededStatesList = $this->listNeededStates();
         if (empty($neededStatesList)) {
@@ -193,7 +193,7 @@ class Scenario implements ScenarioInterface
      *
      * @return bool
      */
-    protected function checkForbiddenStates(EventInterface $event): bool
+    private function checkForbiddenStates(EventInterface $event): bool
     {
         $forbiddenStatesList = $this->listForbiddenStates();
         if (empty($forbiddenStatesList)) {
@@ -218,7 +218,7 @@ class Scenario implements ScenarioInterface
      *
      * @return bool
      */
-    protected function checkNeededStatedClass(EventInterface $event): bool
+    private function checkNeededStatedClass(EventInterface $event): bool
     {
         $neededStatedClassName = $this->getNeededStatedClass();
         if (empty($neededStatedClassName)) {
@@ -241,7 +241,7 @@ class Scenario implements ScenarioInterface
      *
      * @return bool
      */
-    protected function checkNeededStatedObject(EventInterface $event): bool
+    private function checkNeededStatedObject(EventInterface $event): bool
     {
         $neededStatedObject = $this->getNeededStatedObject();
         if (!$neededStatedObject instanceof LifeCyclableInterface) {

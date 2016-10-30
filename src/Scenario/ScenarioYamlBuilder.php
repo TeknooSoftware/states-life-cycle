@@ -68,7 +68,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      *
      * @var array
      */
-    protected $yamlOptionsMap = [
+    private $yamlOptionsMap = [
         'when' => 'when',
         'class' => 'towardStatedClass',
         'notIn' => 'ifNotInState',
@@ -107,7 +107,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      *
      * @return string
      */
-    protected function getScenarioContent(string $fileName): string
+    private function getScenarioContent(string $fileName): string
     {
         $string = $this->filesystem->read($fileName);
 
@@ -119,7 +119,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      *
      * @return array
      */
-    protected function parseYaml(string $yamlContent): array
+    private function parseYaml(string $yamlContent): array
     {
         return $this->yamlParser->parse($yamlContent);
     }
@@ -129,7 +129,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      *
      * @param $optionValues
      */
-    protected function parseParameter(&$optionValues)
+    private function parseParameter(&$optionValues)
     {
         if (!\is_callable($optionValues) && !empty($optionValues)) {
             if (\is_array($optionValues) && '$' === $optionValues[0][0]) {
@@ -149,7 +149,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      *
      * @return ScenarioYamlBuilder
      */
-    protected function configureBuilder(array $scenario): ScenarioYamlBuilder
+    private function configureBuilder(array $scenario): ScenarioYamlBuilder
     {
         foreach ($scenario as $scenarioName => &$options) {
             foreach ($options as $optionName => $optionValues) {

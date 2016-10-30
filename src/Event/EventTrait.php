@@ -23,12 +23,12 @@ namespace Teknoo\States\LifeCycle\Event;
 
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
-use Symfony\Component\EventDispatcher\Event as SymfonyEvent;
 
 /**
  * Class Event
  * Default implementation of events used in lifecycle of stated class instances.
  *
+ * @see EventInterface
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
@@ -36,7 +36,7 @@ use Symfony\Component\EventDispatcher\Event as SymfonyEvent;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class Event extends SymfonyEvent implements EventInterface
+Trait EventTrait
 {
     /**
      * @var ObservedInterface

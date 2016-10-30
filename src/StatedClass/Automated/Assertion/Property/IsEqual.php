@@ -39,7 +39,7 @@ class IsEqual
     /**
      * @var mixed
      */
-    protected $exceptedValue;
+    private $exceptedValue;
 
     /**
      * IsEqual constructor.

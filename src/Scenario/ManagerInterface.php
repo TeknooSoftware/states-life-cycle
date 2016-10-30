@@ -20,8 +20,7 @@
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 namespace Teknoo\States\LifeCycle\Scenario;
-
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Teknoo\States\LifeCycle\Observing\EventDispatcherBridgeInterface;
 
 /**
  * Interface ManagerInterface
@@ -39,18 +38,18 @@ interface ManagerInterface
     /**
      * To get the dispatcher used to register scenarii.
      *
-     * @return EventDispatcherInterface
+     * @return EventDispatcherBridgeInterface
      */
     public function getDispatcher();
 
     /**
      * To register the dispatcher to use to register scenarii.
      *
-     * @param EventDispatcherInterface $dispatcher
+     * @param EventDispatcherBridgeInterface $dispatcher
      *
      * @return ManagerInterface
      */
-    public function setDispatcher(EventDispatcherInterface $dispatcher): ManagerInterface;
+    public function setDispatcher(EventDispatcherBridgeInterface $dispatcher): ManagerInterface;
 
     /**
      * To register a scenario into the dispatched.

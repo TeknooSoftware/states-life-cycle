@@ -34,6 +34,7 @@ use Teknoo\States\LifeCycle\Observing\ObservedInterface;
  *
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
+ * @mixin LifeCyclableInterface
  */
 trait LifeCyclableTrait
 {

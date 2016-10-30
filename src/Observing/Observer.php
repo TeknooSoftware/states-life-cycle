@@ -21,7 +21,6 @@
  */
 namespace Teknoo\States\LifeCycle\Observing;
 
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 
@@ -49,16 +48,16 @@ class Observer implements ObserverInterface
     /**
      * List of dispatchers to use to dispatch an event from an observed's change.
      *
-     * @var \ArrayAccess|EventDispatcherInterface[]
+     * @var \ArrayAccess|EventDispatcherBridgeInterface[]
      */
-    private $dispatchersList;
+    private $dispatchersList = [];
 
     /**
      * List of observed stated class instance to dispatch instance's change.
      *
      * @var \ArrayAccess|ObservedInterface[]
      */
-    private $observedList;
+    private $observedList = [];
 
     /**
      * Factory to generate new ObservedFactoryInterface to manage an observation.
@@ -73,8 +72,6 @@ class Observer implements ObserverInterface
     public function __construct(ObservedFactoryInterface $observedFactory)
     {
         //Initialize collections
-        $this->dispatchersList = new \ArrayObject();
-        $this->observedList = new \ArrayObject();
         $this->observedFactory = $observedFactory;
     }
 
@@ -99,7 +96,7 @@ class Observer implements ObserverInterface
     /**
      * {@inheritdoc}
      */
-    public function addEventDispatcher(EventDispatcherInterface $dispatcher): ObserverInterface
+    public function addEventDispatcher(EventDispatcherBridgeInterface $dispatcher): ObserverInterface
     {
         $this->dispatchersList[\spl_object_hash($dispatcher)] = $dispatcher;
 
@@ -109,7 +106,7 @@ class Observer implements ObserverInterface
     /**
      * {@inheritdoc}
      */
-    public function removeEventDispatcher(EventDispatcherInterface $dispatcher): ObserverInterface
+    public function removeEventDispatcher(EventDispatcherBridgeInterface $dispatcher): ObserverInterface
     {
         $dispatcherHash = \spl_object_hash($dispatcher);
         if (isset($this->dispatchersList[$dispatcherHash])) {
@@ -125,7 +122,7 @@ class Observer implements ObserverInterface
      */
     public function listEventDispatcher(): array
     {
-        return $this->dispatchersList->getArrayCopy();
+        return $this->dispatchersList;
     }
 
     /**
@@ -163,7 +160,7 @@ class Observer implements ObserverInterface
      */
     public function listObserved(): array
     {
-        return $this->observedList->getArrayCopy();
+        return $this->observedList;
     }
 
     /**

@@ -97,7 +97,7 @@ class Observed implements ObservedInterface
      *
      * @return self
      */
-    protected function checkEventClassName(string $eventClassName): Observed
+    private function checkEventClassName(string $eventClassName): Observed
     {
         if (!\class_exists($eventClassName)) {
             throw new \RuntimeException('Missing event class '.$eventClassName);
@@ -146,7 +146,7 @@ class Observed implements ObservedInterface
     /**
      * @return string[]
      */
-    protected function getLastEnabledStates()
+    private function getLastEnabledStates()
     {
         $lastEnabledStates = [];
         $trace = $this->getStateTrace();
@@ -166,7 +166,7 @@ class Observed implements ObservedInterface
      *
      * @return $this
      */
-    protected function buildEvent()
+    private function buildEvent()
     {
         $currentEnabledStates = $this->getObject()->listEnabledStates();
         $lastEnabledStates = $this->getLastEnabledStates();
@@ -185,7 +185,7 @@ class Observed implements ObservedInterface
     /**
      * @return $this
      */
-    protected function updateTrace()
+    private function updateTrace()
     {
         $trace = $this->getStateTrace();
 

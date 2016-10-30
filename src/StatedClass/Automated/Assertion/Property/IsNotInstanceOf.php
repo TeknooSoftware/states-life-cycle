@@ -39,7 +39,7 @@ class IsNotInstanceOf
     /**
      * @var string
      */
-    protected $exceptedClassName;
+    private $exceptedClassName;
 
     /**
      * IsNotInstanceOf constructor.

@@ -43,12 +43,13 @@ class Callback extends AbstractAssertion implements AssertionInterface
      */
     private $callback;
 
+
     /**
      * To register the callable (callback or closure) to execute to determine if this assertio is valid or not.
      *
      * @param callable $callback
      *
-     * @return self
+     * @return Callback|self
      */
     public function call(callable $callback): Callback
     {

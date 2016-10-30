@@ -39,7 +39,7 @@ class IsSame
     /**
      * @var mixed
      */
-    protected $exceptedValue;
+    private $exceptedValue;
 
     /**
      * IsSame constructor.

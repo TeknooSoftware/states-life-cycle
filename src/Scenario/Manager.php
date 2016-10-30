@@ -20,8 +20,7 @@
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 namespace Teknoo\States\LifeCycle\Scenario;
-
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Teknoo\States\LifeCycle\Observing\EventDispatcherBridgeInterface;
 
 /**
  * Class Manager
@@ -46,14 +45,14 @@ class Manager implements ManagerInterface
     /**
      * Dispatcher used to register scenarii.
      *
-     * @var EventDispatcherInterface
+     * @var EventDispatcherBridgeInterface
      */
     private $dispatcher;
 
     /**
-     * @param EventDispatcherInterface $dispatcher
+     * @param EventDispatcherBridgeInterface $dispatcher
      */
-    public function __construct(EventDispatcherInterface $dispatcher)
+    public function __construct(EventDispatcherBridgeInterface $dispatcher)
     {
         $this->setDispatcher($dispatcher);
     }
@@ -69,7 +68,7 @@ class Manager implements ManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function setDispatcher(EventDispatcherInterface $dispatcher): ManagerInterface
+    public function setDispatcher(EventDispatcherBridgeInterface $dispatcher): ManagerInterface
     {
         $this->dispatcher = $dispatcher;
 
@@ -81,7 +80,7 @@ class Manager implements ManagerInterface
      *
      * @return $this
      */
-    protected function addEventsAboutScenario(ScenarioInterface $scenario)
+    private function addEventsAboutScenario(ScenarioInterface $scenario)
     {
         $dispatcher = $this->getDispatcher();
         foreach ($scenario->getEventsNamesList() as $eventName) {
@@ -96,7 +95,7 @@ class Manager implements ManagerInterface
      *
      * @return $this
      */
-    protected function removeEventsAboutScenario(ScenarioInterface $scenario)
+    private function removeEventsAboutScenario(ScenarioInterface $scenario)
     {
         $dispatcher = $this->getDispatcher();
         foreach ($scenario->getEventsNamesList() as $eventName) {

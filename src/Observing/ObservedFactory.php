@@ -69,7 +69,7 @@ class ObservedFactory implements ObservedFactoryInterface
      *
      * @return $this
      */
-    protected function checkObservedClassName(string $observedClassName)
+    private function checkObservedClassName(string $observedClassName)
     {
         if (!\class_exists($observedClassName)) {
             throw new \RuntimeException('Missing observed class '.$observedClassName);
@@ -91,7 +91,7 @@ class ObservedFactory implements ObservedFactoryInterface
      *
      * @return $this
      */
-    protected function checkTraceClassName(string $traceClassName)
+    private function checkTraceClassName(string $traceClassName)
     {
         if (!\class_exists($traceClassName)) {
             throw new \RuntimeException('Missing trace class '.$traceClassName);

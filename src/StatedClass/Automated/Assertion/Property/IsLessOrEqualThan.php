@@ -39,7 +39,7 @@ class IsLessOrEqualThan
     /**
      * @var mixed
      */
-    protected $exceptedValue;
+    private $exceptedValue;
 
     /**
      * IsLessOrEqualThan constructor.

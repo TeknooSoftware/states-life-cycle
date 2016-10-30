@@ -21,8 +21,8 @@
  */
 namespace Teknoo\States\LifeCycle;
 
-use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Teknoo\States\LifeCycle\Observing\EventDispatcherBridgeInterface;
+use Teknoo\States\LifeCycle\Observing\Observed;
 use Teknoo\States\LifeCycle\Observing\ObservedFactory;
 use Teknoo\States\LifeCycle\Observing\Observer;
 use Teknoo\States\LifeCycle\Observing\ObserverInterface;
@@ -30,6 +30,7 @@ use Teknoo\States\LifeCycle\Scenario\Manager;
 use Teknoo\States\LifeCycle\Scenario\ManagerInterface;
 use Teknoo\States\LifeCycle\Tokenization\Tokenizer;
 use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
+use Teknoo\States\LifeCycle\Trace\Trace;
 
 /**
  * Class Generator
@@ -45,9 +46,9 @@ use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 class Generator
 {
     /**
-     * @var EventDispatcherInterface
+     * @var EventDispatcherBridgeInterface
      */
-    private $eventDispatcher;
+    private $eventDispatcherBridge;
 
     /**
      * @var ManagerInterface
@@ -78,6 +79,7 @@ class Generator
 
     /**
      * @param TokenizerInterface $tokenizer
+     * @return self
      */
     public function setTokenizer($tokenizer): Generator
     {
@@ -87,25 +89,25 @@ class Generator
     }
 
     /**
-     * @return EventDispatcherInterface
+     * @return EventDispatcherBridgeInterface
      */
-    public function getEventDispatcher(): EventDispatcherInterface
+    public function getEventDispatcher(): EventDispatcherBridgeInterface
     {
-        if (!$this->eventDispatcher instanceof EventDispatcherInterface) {
-            $this->eventDispatcher = new EventDispatcher();
+        if (!$this->eventDispatcherBridge instanceof EventDispatcherBridgeInterface) {
+            throw new \RuntimeException('Error missing Event Dispatcher');
         }
 
-        return $this->eventDispatcher;
+        return $this->eventDispatcherBridge;
     }
 
     /**
-     * @param EventDispatcherInterface $eventDispatcher
+     * @param EventDispatcherBridgeInterface $eventDispatcherBridge
      *
      * @return self
      */
-    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): Generator
+    public function setEventDispatcher(EventDispatcherBridgeInterface $eventDispatcherBridge): Generator
     {
-        $this->eventDispatcher = $eventDispatcher;
+        $this->eventDispatcherBridge = $eventDispatcherBridge;
 
         return $this;
     }
@@ -141,9 +143,9 @@ class Generator
     {
         if (!$this->observer instanceof ObserverInterface) {
             $observedFactory = new ObservedFactory(
-                'Teknoo\States\LifeCycle\Observing\Observed',
+                Observed::class,
                 'Teknoo\States\LifeCycle\Event\Event',
-                'Teknoo\States\LifeCycle\Trace\Trace'
+                Trace::class
             );
 
             $this->observer = new Observer($observedFactory);
