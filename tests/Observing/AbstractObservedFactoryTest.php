@@ -64,7 +64,7 @@ abstract class AbstractObservedFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $factory = $this->build();
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ObservedInterface::class,
             $factory->create(
                 $this->createMock(ObserverInterface::class),

@@ -47,11 +47,11 @@ class IsNotInstanceOfTest extends \PHPUnit_Framework_TestCase
 
     public function testNotInstanceProperty()
     {
-        $this->assertTrue($this->buildInstance()(new \stdClass()));
+        self::assertTrue($this->buildInstance()(new \stdClass()));
     }
 
     public function testInstanceOfProperty()
     {
-        $this->assertFalse($this->buildInstance()(new \DateTime()));
+        self::assertFalse($this->buildInstance()(new \DateTime()));
     }
 }

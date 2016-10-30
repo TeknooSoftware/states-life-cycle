@@ -46,10 +46,10 @@ abstract class AbstractAutomatedTest extends \PHPUnit_Framework_TestCase
     public function testGetStatesAssertions()
     {
         $instance = $this->buildInstance();
-        $this->assertTrue(is_array($instance->getStatesAssertions()));
+        self::assertTrue(is_array($instance->getStatesAssertions()));
 
         foreach ($instance->getStatesAssertions() as $assertion) {
-            $this->assertInstanceOf(
+            self::assertInstanceOf(
                 AssertionInterface::class,
                 $assertion
             );

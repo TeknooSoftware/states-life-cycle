@@ -44,7 +44,7 @@ abstract class AbstractAssertionTest extends \PHPUnit_Framework_TestCase
 
     public function testGetStatesList()
     {
-        $this->assertEquals(['state1', 'state2'], $this->buildInstance()->getStatesList());
+        self::assertEquals(['state1', 'state2'], $this->buildInstance()->getStatesList());
     }
 
     /**

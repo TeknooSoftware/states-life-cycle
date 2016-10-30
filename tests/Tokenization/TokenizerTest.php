@@ -57,7 +57,7 @@ class TokenizerTest extends AbstractTokenizerTest
 
     public function testGetStatedClassNameToken()
     {
-        $this->assertEquals(
+        self::assertEquals(
             'teknoo_tests_states_lifecycle_statedclass_support_acme',
             $this->build()->getStatedClassNameToken('Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme')
         );
@@ -65,7 +65,7 @@ class TokenizerTest extends AbstractTokenizerTest
 
     public function testGetStatedClassNameTokenFull()
     {
-        $this->assertEquals(
+        self::assertEquals(
             'teknoo_tests_states_lifecycle_statedclass_support_acme',
             $this->build()->getStatedClassNameToken('Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme', true)
         );
@@ -81,7 +81,7 @@ class TokenizerTest extends AbstractTokenizerTest
 
     public function testGetStatedClassInstanceToken()
     {
-        $this->assertEquals(
+        self::assertEquals(
             'teknoo_tests_states_lifecycle_statedclass_support_acme',
             $this->build()->getStatedClassInstanceToken(new Acme())
         );
@@ -93,12 +93,12 @@ class TokenizerTest extends AbstractTokenizerTest
          * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $instance = $this->createMock(EventInterface::class);
-        $instance->expects($this->any())->method('getObject')->willReturn(new Acme());
-        $instance->expects($this->any())->method('getEnabledStates')->willReturn(['state1', 'state2', 'state3']);
-        $instance->expects($this->any())->method('getIncomingStates')->willReturn(['state1', 'state2']);
-        $instance->expects($this->any())->method('getOutgoingStates')->willReturn(['state4']);
+        $instance->expects(self::any())->method('getObject')->willReturn(new Acme());
+        $instance->expects(self::any())->method('getEnabledStates')->willReturn(['state1', 'state2', 'state3']);
+        $instance->expects(self::any())->method('getIncomingStates')->willReturn(['state1', 'state2']);
+        $instance->expects(self::any())->method('getOutgoingStates')->willReturn(['state4']);
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'teknoo_tests_states_lifecycle_statedclass_support_acme',
                 'teknoo_tests_states_lifecycle_statedclass_support_acme:state1',

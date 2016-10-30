@@ -54,7 +54,7 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
     public function testWhen()
     {
         $service = $this->build();
-        $this->assertEquals($service, $service->when('eventName'));
+        self::assertEquals($service, $service->when('eventName'));
     }
 
     /**
@@ -68,7 +68,7 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
     public function testTowardStatedClass()
     {
         $service = $this->build();
-        $this->assertEquals($service, $service->towardStatedClass('my\Stated\CustomClass'));
+        self::assertEquals($service, $service->towardStatedClass('my\Stated\CustomClass'));
     }
 
     /**
@@ -86,7 +86,7 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
          */
         $observed = $this->createMock(ObservedInterface::class);
         $service = $this->build();
-        $this->assertEquals($service, $service->towardObserved($observed));
+        self::assertEquals($service, $service->towardObserved($observed));
     }
 
     /**
@@ -100,7 +100,7 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
     public function testIfInState()
     {
         $service = $this->build();
-        $this->assertEquals($service, $service->ifInState('stateName'));
+        self::assertEquals($service, $service->ifInState('stateName'));
     }
 
     /**
@@ -114,7 +114,7 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
     public function testIfNotInState()
     {
         $service = $this->build();
-        $this->assertEquals($service, $service->ifNotInState('stateName'));
+        self::assertEquals($service, $service->ifNotInState('stateName'));
     }
 
     /**
@@ -128,7 +128,7 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
     public function testOnIncomingState()
     {
         $service = $this->build();
-        $this->assertEquals($service, $service->onIncomingState('stateName'));
+        self::assertEquals($service, $service->onIncomingState('stateName'));
     }
 
     /**
@@ -142,7 +142,7 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
     public function testOnOutgoingState()
     {
         $service = $this->build();
-        $this->assertEquals($service, $service->onOutgoingState('stateName'));
+        self::assertEquals($service, $service->onOutgoingState('stateName'));
     }
 
     /**
@@ -156,16 +156,16 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
     public function testRun()
     {
         $service = $this->build();
-        $this->assertEquals($service, $service->run(function () {}));
+        self::assertEquals($service, $service->run(function () {}));
     }
 
     public function testBuild()
     {
         $builder = $this->build();
         $scenario = $this->createMock(ScenarioInterface::class);
-        $scenario->expects($this->once())->method('configure')->with($builder)->willReturnSelf();
+        $scenario->expects(self::once())->method('configure')->with($builder)->willReturnSelf();
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ScenarioInterface::class,
             $builder->build(
                 $scenario

@@ -47,11 +47,11 @@ class IsNotNullTest extends \PHPUnit_Framework_TestCase
 
     public function testNotNullProperty()
     {
-        $this->assertTrue($this->buildInstance()(''));
+        self::assertTrue($this->buildInstance()(''));
     }
 
     public function testNullProperty()
     {
-        $this->assertFalse($this->buildInstance()(null));
+        self::assertFalse($this->buildInstance()(null));
     }
 }

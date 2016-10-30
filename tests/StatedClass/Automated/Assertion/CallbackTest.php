@@ -49,7 +49,7 @@ class CallbackTest extends AbstractAssertionTest
 
     public function testCallClosure()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Callback::class,
             $this->buildInstance()->call(function () {})
         );
@@ -57,7 +57,7 @@ class CallbackTest extends AbstractAssertionTest
 
     public function testCallCalback()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Callback::class,
             $this->buildInstance()->call('time')
         );
@@ -75,7 +75,7 @@ class CallbackTest extends AbstractAssertionTest
     {
         $proxy = $this->createMock(ProxyInterface::class);
         $instance = $this->buildInstance()->call(function ($value) use ($proxy) {return $value === $proxy;});
-        $this->assertTrue($instance->isValid($proxy));
-        $this->assertFalse($instance->isValid($this->createMock(ProxyInterface::class)));
+        self::assertTrue($instance->isValid($proxy));
+        self::assertFalse($instance->isValid($this->createMock(ProxyInterface::class)));
     }
 }

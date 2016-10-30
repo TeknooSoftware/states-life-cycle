@@ -211,7 +211,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $this->getEventDispatcher()->addListener(
             'teknoo_tests_states_lifecycle_functional_listenevents_classa',
             function (EventInterface $event) use (&$counter, $instanceA) {
-                $this->assertEquals($instanceA, $event->getObject());
+                self::assertEquals($instanceA, $event->getObject());
                 ++$counter;
             }
         );
@@ -220,7 +220,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $instanceA->enableState3();
         $instanceA->switchToState3();
 
-        $this->assertEquals(3, $counter);
+        self::assertEquals(3, $counter);
     }
 
     public function testListeningEventState()
@@ -234,7 +234,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $this->getEventDispatcher()->addListener(
             'teknoo_tests_states_lifecycle_functional_listenevents_classa:state2',
             function (EventInterface $event) use (&$counter, $instanceA) {
-                $this->assertEquals($instanceA, $event->getObject());
+                self::assertEquals($instanceA, $event->getObject());
                 ++$counter;
             }
         );
@@ -243,7 +243,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $instanceA->enableState3();
         $instanceA->switchToState3();
 
-        $this->assertEquals(2, $counter);
+        self::assertEquals(2, $counter);
     }
 
     public function testListeningEventIncoming()
@@ -257,7 +257,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $this->getEventDispatcher()->addListener(
             'teknoo_tests_states_lifecycle_functional_listenevents_classa:+state3',
             function (EventInterface $event) use (&$counter, $instanceA) {
-                $this->assertEquals($instanceA, $event->getObject());
+                self::assertEquals($instanceA, $event->getObject());
                 ++$counter;
             }
         );
@@ -266,7 +266,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $instanceA->enableState3();
         $instanceA->switchToState3();
 
-        $this->assertEquals(1, $counter);
+        self::assertEquals(1, $counter);
     }
 
     public function testListeningEventOutgoing()
@@ -280,7 +280,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $this->getEventDispatcher()->addListener(
             'teknoo_tests_states_lifecycle_functional_listenevents_classa:-state2',
             function (EventInterface $event) use (&$counter, $instanceA) {
-                $this->assertEquals($instanceA, $event->getObject());
+                self::assertEquals($instanceA, $event->getObject());
                 ++$counter;
             }
         );
@@ -289,6 +289,6 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $instanceA->enableState3();
         $instanceA->switchToState3();
 
-        $this->assertEquals(1, $counter);
+        self::assertEquals(1, $counter);
     }
 }

@@ -76,7 +76,7 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
     public function testConstructor()
     {
         $observed = $this->createMock(ObservedInterface::class);
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             EventInterface::class,
             $this->build($observed, [], [])
         );
@@ -85,7 +85,7 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
     public function testGetObserved()
     {
         $observed = $this->createMock(ObservedInterface::class);
-        $this->assertEquals(
+        self::assertEquals(
             $observed,
             $this->build($observed, [], [])->getObserved()
         );
@@ -95,8 +95,8 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
     {
         $instance = $this->createMock(LifeCyclableInterface::class);
         $observed = $this->createMock(ObservedInterface::class);
-        $observed->expects($this->once())->method('getObject')->willReturn($instance);
-        $this->assertEquals(
+        $observed->expects(self::once())->method('getObject')->willReturn($instance);
+        self::assertEquals(
             $instance,
             $this->build($observed, [], [])->getObject()
         );
@@ -105,10 +105,10 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
     public function testGetEnabledStates()
     {
         $instance = $this->createMock(LifeCyclableInterface::class);
-        $instance->expects($this->once())->method('listEnabledStates')->willReturn(['foo', 'bar']);
+        $instance->expects(self::once())->method('listEnabledStates')->willReturn(['foo', 'bar']);
         $observed = $this->createMock(ObservedInterface::class);
-        $observed->expects($this->once())->method('getObject')->willReturn($instance);
-        $this->assertEquals(
+        $observed->expects(self::once())->method('getObject')->willReturn($instance);
+        self::assertEquals(
             ['foo', 'bar'],
             $this->build($observed, [], [])->getEnabledStates()
         );
@@ -117,7 +117,7 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
     public function testGetIncomingStates()
     {
         $observed = $this->createMock(ObservedInterface::class);
-        $this->assertEquals(
+        self::assertEquals(
             ['bar', 'foo'],
             $this->build($observed, ['bar', 'foo'], [])->getIncomingStates()
         );
@@ -126,7 +126,7 @@ abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
     public function testGetOutgoingStates()
     {
         $observed = $this->createMock(ObservedInterface::class);
-        $this->assertEquals(
+        self::assertEquals(
             ['foo', 'bar'],
             $this->build($observed, [], ['foo', 'bar'])->getOutgoingStates()
         );

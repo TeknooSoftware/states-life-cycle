@@ -47,11 +47,11 @@ class IsEqualTest extends \PHPUnit_Framework_TestCase
 
     public function testEqualProperty()
     {
-        $this->assertTrue($this->buildInstance()('fooBar'));
+        self::assertTrue($this->buildInstance()('fooBar'));
     }
 
     public function testNotEqualProperty()
     {
-        $this->assertFalse($this->buildInstance()('barFoo'));
+        self::assertFalse($this->buildInstance()('barFoo'));
     }
 }

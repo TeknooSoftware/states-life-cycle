@@ -69,7 +69,7 @@ abstract class AbstractEntryTest extends \PHPUnit_Framework_TestCase
 
     public function testGetObserved()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ObservedInterface::class,
             $this->build($this->createMock(ObservedInterface::class), [])->getObserved()
         );
@@ -77,21 +77,21 @@ abstract class AbstractEntryTest extends \PHPUnit_Framework_TestCase
 
     public function testGetEnabledState()
     {
-        $this->assertTrue(
+        self::assertTrue(
             is_array($this->build($this->createMock(ObservedInterface::class), [])->getEnabledState())
         );
     }
 
     public function testGetPreviousNull()
     {
-        $this->assertNull(
+        self::assertNull(
             $this->build($this->createMock(ObservedInterface::class), [])->getPrevious()
         );
     }
 
     public function testGetNextNull()
     {
-        $this->assertNull(
+        self::assertNull(
             $this->build($this->createMock(ObservedInterface::class), [])->getNext()
         );
     }
@@ -99,7 +99,7 @@ abstract class AbstractEntryTest extends \PHPUnit_Framework_TestCase
     public function testGetPrevious()
     {
         $previous = $this->createMock(EntryInterface::class);
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             EntryInterface::class,
             $this->build($this->createMock(ObservedInterface::class), [], $previous)->getPrevious()
         );
@@ -109,7 +109,7 @@ abstract class AbstractEntryTest extends \PHPUnit_Framework_TestCase
     {
         $next = $this->createMock(EntryInterface::class);
         $service = $this->build($this->createMock(ObservedInterface::class), []);
-        $this->assertEquals(
+        self::assertEquals(
             $service,
             $service->setNext($next)
         );
@@ -118,7 +118,7 @@ abstract class AbstractEntryTest extends \PHPUnit_Framework_TestCase
     public function testGetNext()
     {
         $next = $this->createMock(EntryInterface::class);
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             EntryInterface::class,
             $this->build($this->createMock(ObservedInterface::class), [])->setNext($next)->getNext()
         );

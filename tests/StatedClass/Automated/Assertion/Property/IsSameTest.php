@@ -47,11 +47,11 @@ class IsSameTest extends \PHPUnit_Framework_TestCase
 
     public function testSameProperty()
     {
-        $this->assertTrue($this->buildInstance()(10));
+        self::assertTrue($this->buildInstance()(10));
     }
 
     public function testNotSameProperty()
     {
-        $this->assertFalse($this->buildInstance()('10'));
+        self::assertFalse($this->buildInstance()('10'));
     }
 }

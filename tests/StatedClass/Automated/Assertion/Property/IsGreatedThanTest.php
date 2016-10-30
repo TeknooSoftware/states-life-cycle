@@ -47,16 +47,16 @@ class IsGreatedThanTest extends \PHPUnit_Framework_TestCase
 
     public function testGreatProperty()
     {
-        $this->assertTrue($this->buildInstance()(11));
+        self::assertTrue($this->buildInstance()(11));
     }
 
     public function testEqualProperty()
     {
-        $this->assertFalse($this->buildInstance()(10));
+        self::assertFalse($this->buildInstance()(10));
     }
 
     public function testLessProperty()
     {
-        $this->assertFalse($this->buildInstance()(9));
+        self::assertFalse($this->buildInstance()(9));
     }
 }

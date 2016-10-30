@@ -57,7 +57,7 @@ abstract class AbstractLifeCyclableTest extends \PHPUnit_Framework_TestCase
          */
         $observed = $this->createMock(ObservedInterface::class);
         $instance = $this->build();
-        $this->assertEquals(
+        self::assertEquals(
             $instance,
             $instance->registerObserver($observed)
         );
@@ -78,16 +78,16 @@ abstract class AbstractLifeCyclableTest extends \PHPUnit_Framework_TestCase
          */
         $observed = $this->createMock(ObservedInterface::class);
         $instance = $this->build();
-        $this->assertEquals(
+        self::assertEquals(
             $instance,
             $instance->unregisterObserver($observed)
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             $instance,
             $instance->registerObserver($observed)
         );
-        $this->assertEquals(
+        self::assertEquals(
             $instance,
             $instance->unregisterObserver($observed)
         );
@@ -96,7 +96,7 @@ abstract class AbstractLifeCyclableTest extends \PHPUnit_Framework_TestCase
     public function testNotifyObserved()
     {
         $instance = $this->build();
-        $this->assertEquals(
+        self::assertEquals(
             $instance,
             $instance->notifyObserved()
         );

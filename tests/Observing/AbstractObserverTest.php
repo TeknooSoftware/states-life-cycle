@@ -61,8 +61,8 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
          */
         $tokenizer = $this->createMock(TokenizerInterface::class);
         $service = $this->build();
-        $this->assertEquals($service, $service->setTokenizer($tokenizer));
-        $this->assertEquals($tokenizer, $service->getTokenizer());
+        self::assertEquals($service, $service->setTokenizer($tokenizer));
+        self::assertEquals($tokenizer, $service->getTokenizer());
     }
 
     /**
@@ -80,7 +80,7 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
          */
         $dispatcher = $this->createMock(EventDispatcherBridgeInterface::class);
         $service = $this->build();
-        $this->assertEquals($service, $service->addEventDispatcher($dispatcher));
+        self::assertEquals($service, $service->addEventDispatcher($dispatcher));
     }
 
     /**
@@ -98,30 +98,30 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
          */
         $dispatcher = $this->createMock(EventDispatcherBridgeInterface::class);
         $service = $this->build();
-        $this->assertEquals($service, $service->removeEventDispatcher($dispatcher));
-        $this->assertEquals($service, $service->addEventDispatcher($dispatcher));
-        $this->assertEquals($service, $service->removeEventDispatcher($dispatcher));
+        self::assertEquals($service, $service->removeEventDispatcher($dispatcher));
+        self::assertEquals($service, $service->addEventDispatcher($dispatcher));
+        self::assertEquals($service, $service->removeEventDispatcher($dispatcher));
     }
 
     public function testListEventDispatcher()
     {
         $service = $this->build();
-        $this->assertTrue(is_array($service->listEventDispatcher()));
-        $this->assertEmpty($service->listEventDispatcher());
+        self::assertTrue(is_array($service->listEventDispatcher()));
+        self::assertEmpty($service->listEventDispatcher());
 
         /*
          * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $dispatcher = $this->createMock(EventDispatcherBridgeInterface::class);
         $service->addEventDispatcher($dispatcher)->addEventDispatcher($dispatcher);
-        $this->assertEquals(1, count($service->listEventDispatcher()));
+        self::assertEquals(1, count($service->listEventDispatcher()));
 
         /*
          * @var EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $dispatcher2 = $this->createMock(EventDispatcherBridgeInterface::class);
         $service->addEventDispatcher($dispatcher2);
-        $this->assertEquals(2, count($service->listEventDispatcher()));
+        self::assertEquals(2, count($service->listEventDispatcher()));
     }
 
     /**
@@ -138,9 +138,9 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
          * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $instance = $this->createMock(LifeCyclableInterface::class);
-        $instance->expects($this->once())->method('registerObserver');
+        $instance->expects(self::once())->method('registerObserver');
         $service = $this->build();
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ObservedInterface::class,
             $service->attachObject($instance)
         );
@@ -160,21 +160,21 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
          * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $instance = $this->createMock(LifeCyclableInterface::class);
-        $instance->expects($this->once())->method('unregisterObserver');
+        $instance->expects(self::once())->method('unregisterObserver');
         $service = $this->build();
-        $this->assertEquals($service, $service->detachObject($instance));
-        $this->assertInstanceOf(
+        self::assertEquals($service, $service->detachObject($instance));
+        self::assertInstanceOf(
             ObservedInterface::class,
             $service->attachObject($instance)
         );
-        $this->assertEquals($service, $service->detachObject($instance));
+        self::assertEquals($service, $service->detachObject($instance));
     }
 
     public function testListObserved()
     {
         $service = $this->build();
-        $this->assertTrue(is_array($service->listObserved()));
-        $this->assertEmpty($service->listObserved());
+        self::assertTrue(is_array($service->listObserved()));
+        self::assertEmpty($service->listObserved());
 
         /*
          * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject
@@ -182,13 +182,13 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
         $instance = $this->createMock(LifeCyclableInterface::class);
         $service->attachObject($instance);
         $service->attachObject($instance);
-        $this->assertEquals(1, count($service->listObserved()));
+        self::assertEquals(1, count($service->listObserved()));
         /*
          * @var LifeCyclableInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $instance2 = $this->createMock(LifeCyclableInterface::class);
         $service->attachObject($instance2);
-        $this->assertEquals(2, count($service->listObserved()));
+        self::assertEquals(2, count($service->listObserved()));
     }
 
     public function testDispatchNotification()
@@ -201,13 +201,13 @@ abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $instance = $this->createMock(ObservedInterface::class);
-        $instance->expects($this->any())->method('getLastEvent')->willReturn($event);
+        $instance->expects(self::any())->method('getLastEvent')->willReturn($event);
         $service = $this->build();
         /*
          * @var TokenizerInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $tokenizer = $this->createMock(TokenizerInterface::class);
         $service->setTokenizer($tokenizer);
-        $this->assertEquals($service, $service->dispatchNotification($instance));
+        self::assertEquals($service, $service->dispatchNotification($instance));
     }
 }

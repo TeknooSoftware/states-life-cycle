@@ -52,10 +52,10 @@ class AutomatedLifeCyclableTraitTest extends AbstractLifeCyclableTest
     public function testGetStatesAssertions()
     {
         $instance = $this->build();
-        $this->assertTrue(is_array($instance->getStatesAssertions()));
+        self::assertTrue(is_array($instance->getStatesAssertions()));
 
         foreach ($instance->getStatesAssertions() as $assertion) {
-            $this->assertInstanceOf(
+            self::assertInstanceOf(
                 AssertionInterface::class,
                 $assertion
             );
@@ -66,35 +66,35 @@ class AutomatedLifeCyclableTraitTest extends AbstractLifeCyclableTest
     {
         $instance = $this->build();
         $observer = $this->createMock(ObservedInterface::class);
-        $observer->expects($this->exactly(5))->method('observeUpdate')->willReturnSelf();
+        $observer->expects(self::exactly(5))->method('observeUpdate')->willReturnSelf();
 
         $instance->registerObserver($observer);
 
-        $this->assertEquals([], $instance->listEnabledStates());
+        self::assertEquals([], $instance->listEnabledStates());
 
         $instance->setFoo('bar');
-        $this->assertEquals([], $instance->listEnabledStates());
+        self::assertEquals([], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals([State1::class], $instance->listEnabledStates());
+        self::assertEquals([State1::class], $instance->listEnabledStates());
 
         $instance->setFoo1('bar1')->setFoo2(123);
-        $this->assertEquals([State1::class], $instance->listEnabledStates());
+        self::assertEquals([State1::class], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals([State1::class], $instance->listEnabledStates());
+        self::assertEquals([State1::class], $instance->listEnabledStates());
 
         $instance->setFoo1('bar1')->setFoo2(null);
-        $this->assertEquals([State1::class], $instance->listEnabledStates());
+        self::assertEquals([State1::class], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals([State1::class, State2::class], $instance->listEnabledStates());
+        self::assertEquals([State1::class, State2::class], $instance->listEnabledStates());
 
         $instance->setFoo('');
-        $this->assertEquals([State1::class, State2::class], $instance->listEnabledStates());
+        self::assertEquals([State1::class, State2::class], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals([State2::class], $instance->listEnabledStates());
+        self::assertEquals([State2::class], $instance->listEnabledStates());
 
         $instance->setFoo1('');
-        $this->assertEquals([State2::class], $instance->listEnabledStates());
+        self::assertEquals([State2::class], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals([], $instance->listEnabledStates());
+        self::assertEquals([], $instance->listEnabledStates());
     }
 }

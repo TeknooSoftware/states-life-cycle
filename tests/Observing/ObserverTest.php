@@ -78,13 +78,13 @@ class ObserverTest extends AbstractObserverTest
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $instance = $this->createMock(ObservedInterface::class);
-        $instance->expects($this->any())->method('getLastEvent')->willReturn($event);
+        $instance->expects(self::any())->method('getLastEvent')->willReturn($event);
         $service = $this->build();
         /**
          * @var TokenizerInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $tokenizer = $this->createMock(TokenizerInterface::class);
-        $tokenizer->expects($this->once())
+        $tokenizer->expects(self::once())
             ->method('getToken')
             ->with($event)
             ->willReturn(['event_name1', 'event_name1:state1', 'event_name1:state2', 'event_name1:+state1', 'event_name1:-state3']);
@@ -93,8 +93,8 @@ class ObserverTest extends AbstractObserverTest
          * @var EventDispatcherBridgeInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $dispatcher = $this->createMock(EventDispatcherBridgeInterface::class);
-        $this->assertEquals($service, $service->addEventDispatcher($dispatcher));
-        $dispatcher->expects($this->exactly(5))
+        self::assertEquals($service, $service->addEventDispatcher($dispatcher));
+        $dispatcher->expects(self::exactly(5))
             ->method('dispatch')
             ->withConsecutive(
                 ['event_name1', $event],
@@ -104,6 +104,6 @@ class ObserverTest extends AbstractObserverTest
                 ['event_name1:-state3', $event]);
 
         $service->setTokenizer($tokenizer);
-        $this->assertEquals($service, $service->dispatchNotification($instance));
+        self::assertEquals($service, $service->dispatchNotification($instance));
     }
 }

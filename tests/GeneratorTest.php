@@ -54,22 +54,22 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $generator = $this->buildGenerator();
         $tokenizer1 = $generator->getTokenizer();
         $tokenizer2 = $generator->getTokenizer();
-        $this->assertInstanceOf(TokenizerInterface::class, $tokenizer1);
-        $this->assertSame($tokenizer1, $tokenizer2);
+        self::assertInstanceOf(TokenizerInterface::class, $tokenizer1);
+        self::assertSame($tokenizer1, $tokenizer2);
     }
 
     public function testSetTokenizer()
     {
         $generator = $this->buildGenerator();
         $tokenizer1 = $generator->getTokenizer();
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Generator::class,
             $generator->setTokenizer($this->createMock(TokenizerInterface::class))
         );
         $tokenizer2 = $generator->getTokenizer();
-        $this->assertInstanceOf(TokenizerInterface::class, $tokenizer1);
-        $this->assertInstanceOf(TokenizerInterface::class, $tokenizer2);
-        $this->assertNotSame($tokenizer1, $tokenizer2);
+        self::assertInstanceOf(TokenizerInterface::class, $tokenizer1);
+        self::assertInstanceOf(TokenizerInterface::class, $tokenizer2);
+        self::assertNotSame($tokenizer1, $tokenizer2);
     }
 
     /**
@@ -84,74 +84,74 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
     public function testSetEventDispatcher()
     {
         $generator = $this->buildGenerator();
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Generator::class,
             $generator->setEventDispatcher($this->createMock(EventDispatcherBridgeInterface::class))
         );
         $eventDispatcher = $generator->getEventDispatcher();
-        $this->assertInstanceOf(EventDispatcherBridgeInterface::class, $eventDispatcher);
+        self::assertInstanceOf(EventDispatcherBridgeInterface::class, $eventDispatcher);
     }
 
     public function testGetManager()
     {
         $generator = $this->buildGenerator();
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Generator::class,
             $generator->setEventDispatcher($this->createMock(EventDispatcherBridgeInterface::class))
         );
 
         $manager1 = $generator->getManager();
         $manager2 = $generator->getManager();
-        $this->assertInstanceOf(ManagerInterface::class, $manager1);
-        $this->assertSame($manager1, $manager2);
+        self::assertInstanceOf(ManagerInterface::class, $manager1);
+        self::assertSame($manager1, $manager2);
     }
 
     public function testSetManager()
     {
         $generator = $this->buildGenerator();
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Generator::class,
             $generator->setEventDispatcher($this->createMock(EventDispatcherBridgeInterface::class))
         );
         $manager1 = $generator->getManager();
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Generator::class,
             $generator->setManager($this->createMock(ManagerInterface::class))
         );
         $manager2 = $generator->getManager();
-        $this->assertInstanceOf(ManagerInterface::class, $manager1);
-        $this->assertInstanceOf(ManagerInterface::class, $manager2);
-        $this->assertNotSame($manager1, $manager2);
+        self::assertInstanceOf(ManagerInterface::class, $manager1);
+        self::assertInstanceOf(ManagerInterface::class, $manager2);
+        self::assertNotSame($manager1, $manager2);
     }
 
     public function testGetObserver()
     {
         $generator = $this->buildGenerator();
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Generator::class,
             $generator->setEventDispatcher($this->createMock(EventDispatcherBridgeInterface::class))
         );
         $observer1 = $generator->getObserver();
         $observer2 = $generator->getObserver();
-        $this->assertInstanceOf(ObserverInterface::class, $observer1);
-        $this->assertSame($observer1, $observer2);
+        self::assertInstanceOf(ObserverInterface::class, $observer1);
+        self::assertSame($observer1, $observer2);
     }
 
     public function testSetObserver()
     {
         $generator = $this->buildGenerator();
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Generator::class,
             $generator->setEventDispatcher($this->createMock(EventDispatcherBridgeInterface::class))
         );
         $observer1 = $generator->getObserver();
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Generator::class,
             $generator->setObserver($this->createMock(ObserverInterface::class))
         );
         $observer2 = $generator->getObserver();
-        $this->assertInstanceOf(ObserverInterface::class, $observer1);
-        $this->assertInstanceOf(ObserverInterface::class, $observer2);
-        $this->assertNotSame($observer1, $observer2);
+        self::assertInstanceOf(ObserverInterface::class, $observer1);
+        self::assertInstanceOf(ObserverInterface::class, $observer2);
+        self::assertNotSame($observer1, $observer2);
     }
 }

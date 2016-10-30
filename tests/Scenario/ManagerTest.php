@@ -70,10 +70,10 @@ class ManagerTest extends AbstractManagerTest
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $scenario = $this->createMock(ScenarioInterface::class);
-        $scenario->expects($this->any())->method('getEventsNamesList')->willReturn(['event1', 'event2', 'event3']);
+        $scenario->expects(self::any())->method('getEventsNamesList')->willReturn(['event1', 'event2', 'event3']);
 
         $this->getEventDispatcherBridgeInterfaceMock()
-            ->expects($this->exactly(3))
+            ->expects(self::exactly(3))
             ->method('addListener')
             ->withConsecutive(
                 ['event1', $scenario],
@@ -82,7 +82,7 @@ class ManagerTest extends AbstractManagerTest
             );
 
         $service = $this->build();
-        $this->assertEquals($service, $service->registerScenario($scenario)->registerScenario($scenario));
+        self::assertEquals($service, $service->registerScenario($scenario)->registerScenario($scenario));
     }
 
     public function testUnregisterScenarioMultiple()
@@ -91,11 +91,11 @@ class ManagerTest extends AbstractManagerTest
          * @var ScenarioInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $scenario = $this->createMock(ScenarioInterface::class);
-        $scenario->expects($this->any())->method('getEventsNamesList')->willReturn(['event1', 'event2', 'event3']);
+        $scenario->expects(self::any())->method('getEventsNamesList')->willReturn(['event1', 'event2', 'event3']);
         $service = $this->build();
 
         $this->getEventDispatcherBridgeInterfaceMock()
-            ->expects($this->exactly(3))
+            ->expects(self::exactly(3))
             ->method('removeListener')
             ->withConsecutive(
                 ['event1', $scenario],
@@ -104,6 +104,6 @@ class ManagerTest extends AbstractManagerTest
             );
 
         $service->registerScenario($scenario);
-        $this->assertEquals($service, $service->unregisterScenario($scenario)->unregisterScenario($scenario));
+        self::assertEquals($service, $service->unregisterScenario($scenario)->unregisterScenario($scenario));
     }
 }

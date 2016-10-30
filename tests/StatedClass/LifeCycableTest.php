@@ -53,12 +53,12 @@ class LifeCycableTest extends AbstractLifeCyclableTest
          * @var ObservedInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $observed = $this->createMock(ObservedInterface::class);
-        $observed->expects($this->once())->method('observeUpdate');
+        $observed->expects(self::once())->method('observeUpdate');
 
         $instance = $this->build();
         $instance->registerObserver($observed);
 
-        $this->assertEquals(
+        self::assertEquals(
             $instance,
             $instance->notifyObserved()
         );

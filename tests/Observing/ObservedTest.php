@@ -58,7 +58,7 @@ class ObservedTest extends AbstractObservedTest
 
     public function testGetStatedClassName()
     {
-        $this->assertEquals(
+        self::assertEquals(
             'Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme',
             $this->build(
                 new Acme(),
@@ -72,13 +72,13 @@ class ObservedTest extends AbstractObservedTest
     public function testObserveUpdateFirstEvent()
     {
         $instance = $this->createMock(LifeCyclableInterface::class);
-        $instance->expects($this->any())->method('listEnabledStates')->willReturn(['state1', 'state3']);
-        $instance->expects($this->any())->method('listAvailableStates')->willReturn(['state1', 'state2', 'state3']);
+        $instance->expects(self::any())->method('listEnabledStates')->willReturn(['state1', 'state3']);
+        $instance->expects(self::any())->method('listAvailableStates')->willReturn(['state1', 'state2', 'state3']);
 
         $observer = $this->createMock(ObserverInterface::class);
 
         $trace = $this->createMock(TraceInterface::class);
-        $trace->expects($this->once())->method('addEntry')
+        $trace->expects(self::once())->method('addEntry')
             ->with(
                 $this->callback(function ($arg) {return $arg instanceof ObservedInterface; }),
                 ['state1', 'state3']
@@ -91,7 +91,7 @@ class ObservedTest extends AbstractObservedTest
             Event::class
         );
 
-        $observer->expects($this->once())->method('dispatchNotification')->with($observed)->willReturnSelf();
+        $observer->expects(self::once())->method('dispatchNotification')->with($observed)->willReturnSelf();
 
         $observed->observeUpdate();
     }
@@ -99,8 +99,8 @@ class ObservedTest extends AbstractObservedTest
     public function testObserveUpdateNewEvent()
     {
         $instance = $this->createMock(LifeCyclableInterface::class);
-        $instance->expects($this->any())->method('listEnabledStates')->willReturnOnConsecutiveCalls(['state1', 'state3'], ['state1', 'state3'], ['state1'], ['state1'], ['state2'], ['state2']);
-        $instance->expects($this->any())->method('listAvailableStates')->willReturn(['state1', 'state2', 'state3']);
+        $instance->expects(self::any())->method('listEnabledStates')->willReturnOnConsecutiveCalls(['state1', 'state3'], ['state1', 'state3'], ['state1'], ['state1'], ['state2'], ['state2']);
+        $instance->expects(self::any())->method('listAvailableStates')->willReturn(['state1', 'state2', 'state3']);
 
         $observer = $this->createMock(ObserverInterface::class);
 
@@ -112,14 +112,14 @@ class ObservedTest extends AbstractObservedTest
             Event::class
         );
 
-        $trace->expects($this->exactly(3))->method('addEntry')
+        $trace->expects(self::exactly(3))->method('addEntry')
             ->withConsecutive(
                 [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }), ['state1', 'state3']],
                 [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }), ['state1']],
                 [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }), ['state2']]
             );
 
-        $observer->expects($this->exactly(3))->method('dispatchNotification')->with($observed)->willReturnSelf();
+        $observer->expects(self::exactly(3))->method('dispatchNotification')->with($observed)->willReturnSelf();
 
         $observed->observeUpdate();
         $observed->observeUpdate();

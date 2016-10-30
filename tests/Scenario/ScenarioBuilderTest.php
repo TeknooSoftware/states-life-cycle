@@ -70,17 +70,17 @@ class ScenarioBuilderTest extends AbstractScenarioBuilderTest
     public function testWhenValue()
     {
         $service = $this->build();
-        $this->assertEquals($service, $service->when('eventName'));
-        $this->assertEquals(['eventName'], $service->getEventNamesList());
+        self::assertEquals($service, $service->when('eventName'));
+        self::assertEquals(['eventName'], $service->getEventNamesList());
     }
 
     public function testTowardStatedClassValue()
     {
         $service = $this->build();
-        $this->getTokenizerMock()->expects($this->once())->method('getStatedClassNameToken')->with('my\Stated\CustomClass')->willReturn('my_stated_customclass');
-        $this->assertEquals($service, $service->towardStatedClass('my\Stated\CustomClass'));
-        $this->assertEquals(['my_stated_customclass'], $service->getEventNamesList());
-        $this->assertEquals('my\Stated\CustomClass', $service->getStatedClassName());
+        $this->getTokenizerMock()->expects(self::once())->method('getStatedClassNameToken')->with('my\Stated\CustomClass')->willReturn('my_stated_customclass');
+        self::assertEquals($service, $service->towardStatedClass('my\Stated\CustomClass'));
+        self::assertEquals(['my_stated_customclass'], $service->getEventNamesList());
+        self::assertEquals('my\Stated\CustomClass', $service->getStatedClassName());
     }
 
     public function testTowardObservedValue()
@@ -90,47 +90,47 @@ class ScenarioBuilderTest extends AbstractScenarioBuilderTest
          */
         $observed = $this->createMock(ObservedInterface::class);
         $acme = new Acme();
-        $observed->expects($this->once())->method('getObject')->willReturn($acme);
+        $observed->expects(self::once())->method('getObject')->willReturn($acme);
         $service = $this->build();
-        $this->getTokenizerMock()->expects($this->once())->method('getStatedClassInstanceToken')->with($acme)->willReturn('my_stated_customclass');
-        $this->assertEquals($service, $service->towardObserved($observed));
-        $this->assertEquals(['my_stated_customclass'], $service->getEventNamesList());
-        $this->assertEquals($observed, $service->getObserved());
+        $this->getTokenizerMock()->expects(self::once())->method('getStatedClassInstanceToken')->with($acme)->willReturn('my_stated_customclass');
+        self::assertEquals($service, $service->towardObserved($observed));
+        self::assertEquals(['my_stated_customclass'], $service->getEventNamesList());
+        self::assertEquals($observed, $service->getObserved());
     }
 
     public function testIfInStateValueValue()
     {
         $service = $this->build();
-        $this->assertEquals($service, $service->ifInState('stateName'));
-        $this->assertEquals(['stateName'], $service->getNeededStatesList());
+        self::assertEquals($service, $service->ifInState('stateName'));
+        self::assertEquals(['stateName'], $service->getNeededStatesList());
     }
 
     public function testIfNotInStateValueValue()
     {
         $service = $this->build();
-        $this->assertEquals($service, $service->ifNotInState('stateName'));
-        $this->assertEquals(['stateName'], $service->getForbiddenStatesList());
+        self::assertEquals($service, $service->ifNotInState('stateName'));
+        self::assertEquals(['stateName'], $service->getForbiddenStatesList());
     }
 
     public function testOnIncomingStateValue()
     {
         $service = $this->build();
-        $this->assertEquals($service, $service->onIncomingState('stateName'));
-        $this->assertEquals(['stateName'], $service->getNeededIncomingStatesList());
+        self::assertEquals($service, $service->onIncomingState('stateName'));
+        self::assertEquals(['stateName'], $service->getNeededIncomingStatesList());
     }
 
     public function testOnOutgoingStateValue()
     {
         $service = $this->build();
-        $this->assertEquals($service, $service->onOutgoingState('stateName'));
-        $this->assertEquals(['stateName'], $service->getNeededOutgoingStatesList());
+        self::assertEquals($service, $service->onOutgoingState('stateName'));
+        self::assertEquals(['stateName'], $service->getNeededOutgoingStatesList());
     }
 
     public function testRunValue()
     {
         $service = $this->build();
         $callable = function () {};
-        $this->assertEquals($service, $service->run($callable));
-        $this->assertEquals($callable, $service->getCallable());
+        self::assertEquals($service, $service->run($callable));
+        self::assertEquals($callable, $service->getCallable());
     }
 }

@@ -58,8 +58,8 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
          */
         $instance = $this->createMock(EventDispatcherBridgeInterface::class);
         $service = $this->build();
-        $this->assertEquals($service, $service->setDispatcher($instance));
-        $this->assertEquals($instance, $service->getDispatcher());
+        self::assertEquals($service, $service->setDispatcher($instance));
+        self::assertEquals($instance, $service->getDispatcher());
     }
 
     /**
@@ -77,7 +77,7 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
          */
         $scenario = $this->createMock(ScenarioInterface::class);
         $service = $this->build();
-        $this->assertEquals($service, $service->registerScenario($scenario));
+        self::assertEquals($service, $service->registerScenario($scenario));
     }
 
     /**
@@ -95,11 +95,11 @@ abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
          */
         $scenario = $this->createMock(ScenarioInterface::class);
         $service = $this->build();
-        $this->assertEquals($service, $service->unregisterScenario($scenario));
+        self::assertEquals($service, $service->unregisterScenario($scenario));
     }
 
     public function testListScenarii()
     {
-        $this->assertTrue(is_array($this->build()->listScenarii()));
+        self::assertTrue(is_array($this->build()->listScenarii()));
     }
 }

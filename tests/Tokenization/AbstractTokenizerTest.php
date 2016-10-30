@@ -57,7 +57,7 @@ abstract class AbstractTokenizerTest extends \PHPUnit_Framework_TestCase
          * @var EventInterface|\PHPUnit_Framework_MockObject_MockObject
          */
         $instance = $this->createMock(EventInterface::class);
-        $instance->expects($this->any())->method('getObject')->willReturn(new Acme());
-        $this->assertTrue(is_array($this->build()->getToken($instance)));
+        $instance->expects(self::any())->method('getObject')->willReturn(new Acme());
+        self::assertTrue(is_array($this->build()->getToken($instance)));
     }
 }

@@ -50,7 +50,7 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
 
     public function testGetTrace()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             '\SplStack',
             $this->build()->getTrace()
         );
@@ -75,7 +75,7 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
     public function testGetFirstEntry()
     {
         $observed = $this->createMock(ObservedInterface::class);
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             EntryInterface::class,
             $this->build()->addEntry($observed, [])->getFirstEntry()
         );
@@ -84,7 +84,7 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
     public function testGetLastEntry()
     {
         $observed = $this->createMock(ObservedInterface::class);
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             EntryInterface::class,
             $this->build()->addEntry($observed, [])->getLastEntry()
         );
@@ -94,7 +94,7 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
     {
         $observed = $this->createMock(ObservedInterface::class);
         $service = $this->build();
-        $this->assertEquals(
+        self::assertEquals(
             $service,
             $service->addEntry($observed, [])
         );
@@ -104,59 +104,59 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
     {
         $observed = $this->createMock(ObservedInterface::class);
         $service = $this->build();
-        $this->assertTrue($service->isEmpty());
+        self::assertTrue($service->isEmpty());
         $service->addEntry($observed, []);
-        $this->assertFalse($service->isEmpty());
+        self::assertFalse($service->isEmpty());
     }
 
     public function testAddEntries()
     {
         $trace = $this->build();
-        $this->assertTrue($trace->isEmpty());
+        self::assertTrue($trace->isEmpty());
 
         $observed = $this->createMock(ObservedInterface::class);
         $trace->addEntry($observed, ['state1', 'state3']);
 
-        $this->assertFalse($trace->isEmpty());
+        self::assertFalse($trace->isEmpty());
 
         $entry = $trace->getFirstEntry();
-        $this->assertEquals($observed, $entry->getObserved());
-        $this->assertEquals(['state1', 'state3'], $entry->getEnabledState());
-        $this->assertNull($entry->getNext());
-        $this->assertNull($entry->getPrevious());
+        self::assertEquals($observed, $entry->getObserved());
+        self::assertEquals(['state1', 'state3'], $entry->getEnabledState());
+        self::assertNull($entry->getNext());
+        self::assertNull($entry->getPrevious());
 
         $trace->addEntry($observed, ['state1']);
 
         $entry = $trace->getFirstEntry();
-        $this->assertEquals($observed, $entry->getObserved());
-        $this->assertEquals(['state1', 'state3'], $entry->getEnabledState());
-        $this->assertNotEmpty($entry->getNext());
-        $this->assertNull($entry->getPrevious());
+        self::assertEquals($observed, $entry->getObserved());
+        self::assertEquals(['state1', 'state3'], $entry->getEnabledState());
+        self::assertNotEmpty($entry->getNext());
+        self::assertNull($entry->getPrevious());
 
         $nextEntry = $entry->getNext();
-        $this->assertEquals($observed, $nextEntry->getObserved());
-        $this->assertEquals(['state1'], $nextEntry->getEnabledState());
-        $this->assertEquals($entry, $nextEntry->getPrevious());
-        $this->assertNull($nextEntry->getNext());
+        self::assertEquals($observed, $nextEntry->getObserved());
+        self::assertEquals(['state1'], $nextEntry->getEnabledState());
+        self::assertEquals($entry, $nextEntry->getPrevious());
+        self::assertNull($nextEntry->getNext());
 
         $trace->addEntry($observed, ['state2']);
 
         $entry = $trace->getFirstEntry();
-        $this->assertEquals($observed, $entry->getObserved());
-        $this->assertEquals(['state1', 'state3'], $entry->getEnabledState());
-        $this->assertNotEmpty($entry->getNext());
-        $this->assertNull($entry->getPrevious());
+        self::assertEquals($observed, $entry->getObserved());
+        self::assertEquals(['state1', 'state3'], $entry->getEnabledState());
+        self::assertNotEmpty($entry->getNext());
+        self::assertNull($entry->getPrevious());
 
         $nextEntry = $entry->getNext();
-        $this->assertEquals($observed, $nextEntry->getObserved());
-        $this->assertEquals(['state1'], $nextEntry->getEnabledState());
-        $this->assertEquals($entry, $nextEntry->getPrevious());
-        $this->assertNotNull($nextEntry->getNext());
+        self::assertEquals($observed, $nextEntry->getObserved());
+        self::assertEquals(['state1'], $nextEntry->getEnabledState());
+        self::assertEquals($entry, $nextEntry->getPrevious());
+        self::assertNotNull($nextEntry->getNext());
 
         $nextEntry2 = $nextEntry->getNext();
-        $this->assertEquals($observed, $nextEntry2->getObserved());
-        $this->assertEquals(['state2'], $nextEntry2->getEnabledState());
-        $this->assertEquals($nextEntry, $nextEntry2->getPrevious());
-        $this->assertNull($nextEntry2->getNext());
+        self::assertEquals($observed, $nextEntry2->getObserved());
+        self::assertEquals(['state2'], $nextEntry2->getEnabledState());
+        self::assertEquals($nextEntry, $nextEntry2->getPrevious());
+        self::assertNull($nextEntry2->getNext());
     }
 }

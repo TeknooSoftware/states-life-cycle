@@ -50,7 +50,7 @@ class AssertionTest extends AbstractAssertionTest
 
     public function testWithClosure()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Assertion::class,
             $this->buildInstance()->with('fooBar', function () {})
         );
@@ -58,7 +58,7 @@ class AssertionTest extends AbstractAssertionTest
 
     public function testWithValue()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Assertion::class,
             $this->buildInstance()->with('fooBar', 42)
         );
@@ -77,7 +77,7 @@ class AssertionTest extends AbstractAssertionTest
         $proxyMock = new Acme();
         $proxyMock->setFoo('error');
 
-        $this->assertFalse($this->buildInstance()->with('foo', 'bar')->isValid($proxyMock));
+        self::assertFalse($this->buildInstance()->with('foo', 'bar')->isValid($proxyMock));
     }
 
     public function testIsValidPropertyValueBadParameter()
@@ -87,7 +87,7 @@ class AssertionTest extends AbstractAssertionTest
          */
         $proxyMock = $this->createMock(ProxyInterface::class);
 
-        $this->assertFalse($this->buildInstance()->with('foo', 'bar')->isValid($proxyMock));
+        self::assertFalse($this->buildInstance()->with('foo', 'bar')->isValid($proxyMock));
     }
 
     public function testIsValidPropertyValue()
@@ -95,7 +95,7 @@ class AssertionTest extends AbstractAssertionTest
         $proxyMock = new Acme();
         $proxyMock->setFoo('bar');
 
-        $this->assertTrue($this->buildInstance()->with('foo', 'bar')->isValid($proxyMock));
+        self::assertTrue($this->buildInstance()->with('foo', 'bar')->isValid($proxyMock));
     }
 
     public function testIsValidCallbackValueBadValue()
@@ -103,7 +103,7 @@ class AssertionTest extends AbstractAssertionTest
         $proxyMock = new Acme();
         $proxyMock->setFoo('error');
 
-        $this->assertFalse($this->buildInstance()->with('foo', function ($value) {return 'bar' === $value;})->isValid($proxyMock));
+        self::assertFalse($this->buildInstance()->with('foo', function ($value) {return 'bar' === $value;})->isValid($proxyMock));
     }
 
     public function testIsValidCallbackValueBadParameter()
@@ -113,7 +113,7 @@ class AssertionTest extends AbstractAssertionTest
          */
         $proxyMock = $this->createMock(ProxyInterface::class);
 
-        $this->assertFalse($this->buildInstance()->with('foo', function ($value) {return 'bar' === $value;})->isValid($proxyMock));
+        self::assertFalse($this->buildInstance()->with('foo', function ($value) {return 'bar' === $value;})->isValid($proxyMock));
     }
 
     public function testIsValidCallbackValue()
@@ -121,7 +121,7 @@ class AssertionTest extends AbstractAssertionTest
         $proxyMock = new Acme();
         $proxyMock->setFoo('bar');
 
-        $this->assertTrue($this->buildInstance()->with('foo', function ($value) {return 'bar' === $value;})->isValid($proxyMock));
+        self::assertTrue($this->buildInstance()->with('foo', function ($value) {return 'bar' === $value;})->isValid($proxyMock));
     }
 
     public function testIsValidSeveralGood()
@@ -133,7 +133,7 @@ class AssertionTest extends AbstractAssertionTest
         $proxyMock = new Acme();
         $proxyMock->setFoo1('bar1')->setFoo2('bar2');
 
-        $this->assertTrue($assertion->isValid($proxyMock));
+        self::assertTrue($assertion->isValid($proxyMock));
     }
 
     public function testIsValidSeveralGoodOneError()
@@ -145,6 +145,6 @@ class AssertionTest extends AbstractAssertionTest
         $proxyMock = new Acme();
         $proxyMock->setFoo1('bar1')->setFoo2('bar');
 
-        $this->assertFalse($assertion->isValid($proxyMock));
+        self::assertFalse($assertion->isValid($proxyMock));
     }
 }

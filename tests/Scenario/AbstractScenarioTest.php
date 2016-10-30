@@ -45,32 +45,32 @@ abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
 
     public function testGetEventsNamesList()
     {
-        $this->assertTrue(is_array($this->build()->getEventsNamesList()));
+        self::assertTrue(is_array($this->build()->getEventsNamesList()));
     }
 
     public function testListNeededIncomingStates()
     {
-        $this->assertTrue(is_array($this->build()->listNeededIncomingStates()));
+        self::assertTrue(is_array($this->build()->listNeededIncomingStates()));
     }
 
     public function testListNeededOutgoingStates()
     {
-        $this->assertTrue(is_array($this->build()->listNeededOutgoingStates()));
+        self::assertTrue(is_array($this->build()->listNeededOutgoingStates()));
     }
 
     public function testListNeededStates()
     {
-        $this->assertTrue(is_array($this->build()->listNeededStates()));
+        self::assertTrue(is_array($this->build()->listNeededStates()));
     }
 
     public function testGetNeededStatedClass()
     {
-        $this->assertTrue(is_string($this->build()->getNeededStatedClass()));
+        self::assertTrue(is_string($this->build()->getNeededStatedClass()));
     }
 
     public function testGetNeededStatedObject()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ObservedInterface::class,
             $this->build()->getNeededStatedObject()
         );
@@ -87,7 +87,7 @@ abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
     public function testIsAllowedToRun()
     {
         $eventMock = $this->createMock(EventInterface::class);
-        $this->assertTrue(is_bool($this->build()->isAllowedToRun($eventMock)));
+        self::assertTrue(is_bool($this->build()->isAllowedToRun($eventMock)));
     }
 
     /**

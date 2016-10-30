@@ -50,31 +50,31 @@ class AutomatedTest extends AbstractAutomatedTest
     public function testUpdateStates()
     {
         $instance = $this->buildInstance();
-        $this->assertEquals([], $instance->listEnabledStates());
+        self::assertEquals([], $instance->listEnabledStates());
 
         $instance->setFoo('bar');
-        $this->assertEquals([], $instance->listEnabledStates());
+        self::assertEquals([], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals([State1::class], $instance->listEnabledStates());
+        self::assertEquals([State1::class], $instance->listEnabledStates());
 
         $instance->setFoo1('bar1')->setFoo2(123);
-        $this->assertEquals([State1::class], $instance->listEnabledStates());
+        self::assertEquals([State1::class], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals([State1::class], $instance->listEnabledStates());
+        self::assertEquals([State1::class], $instance->listEnabledStates());
 
         $instance->setFoo1('bar1')->setFoo2(null);
-        $this->assertEquals([State1::class], $instance->listEnabledStates());
+        self::assertEquals([State1::class], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals([State1::class, State2::class], $instance->listEnabledStates());
+        self::assertEquals([State1::class, State2::class], $instance->listEnabledStates());
 
         $instance->setFoo('');
-        $this->assertEquals([State1::class, State2::class], $instance->listEnabledStates());
+        self::assertEquals([State1::class, State2::class], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals([State2::class], $instance->listEnabledStates());
+        self::assertEquals([State2::class], $instance->listEnabledStates());
 
         $instance->setFoo1('');
-        $this->assertEquals([State2::class], $instance->listEnabledStates());
+        self::assertEquals([State2::class], $instance->listEnabledStates());
         $instance->updateStates();
-        $this->assertEquals([], $instance->listEnabledStates());
+        self::assertEquals([], $instance->listEnabledStates());
     }
 }

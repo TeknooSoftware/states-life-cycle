@@ -84,14 +84,14 @@ class ScenarioTest extends AbstractScenarioTest
     {
         $builder = $this->getScenarioBuilderMock();
         if (false === $noPopulateMock) {
-            $builder->expects($this->any())->method('getEventNamesList')->willReturn(['event1', 'event2']);
-            $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn(['foo', 'bar']);
-            $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn(['outstate']);
-            $builder->expects($this->any())->method('getNeededStatesList')->willReturn(['foo', 'bar', 'state']);
-            $builder->expects($this->any())->method('getStatedClassName')->willReturn('fooBarName');
+            $builder->expects(self::any())->method('getEventNamesList')->willReturn(['event1', 'event2']);
+            $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn(['foo', 'bar']);
+            $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn(['outstate']);
+            $builder->expects(self::any())->method('getNeededStatesList')->willReturn(['foo', 'bar', 'state']);
+            $builder->expects(self::any())->method('getStatedClassName')->willReturn('fooBarName');
             $observed = $this->getObservedInterfaceMock();
-            $builder->expects($this->any())->method('getObserved')->willReturn($observed);
-            $builder->expects($this->any())->method('getCallable')->willReturn(function () {
+            $builder->expects(self::any())->method('getObserved')->willReturn($observed);
+            $builder->expects(self::any())->method('getCallable')->willReturn(function () {
             });
         }
 
@@ -103,32 +103,32 @@ class ScenarioTest extends AbstractScenarioTest
 
     public function testGetEventsNamesListValue()
     {
-        $this->assertEquals(['event1', 'event2'], $this->build()->getEventsNamesList());
+        self::assertEquals(['event1', 'event2'], $this->build()->getEventsNamesList());
     }
 
     public function testListNeededIncomingStatesValue()
     {
-        $this->assertEquals(['foo', 'bar'], $this->build()->listNeededIncomingStates());
+        self::assertEquals(['foo', 'bar'], $this->build()->listNeededIncomingStates());
     }
 
     public function testListNeededOutgoingStatesValue()
     {
-        $this->assertEquals(['outstate'], $this->build()->listNeededOutgoingStates());
+        self::assertEquals(['outstate'], $this->build()->listNeededOutgoingStates());
     }
 
     public function testListNeededStatesValue()
     {
-        $this->assertEquals(['foo', 'bar', 'state'], $this->build()->listNeededStates());
+        self::assertEquals(['foo', 'bar', 'state'], $this->build()->listNeededStates());
     }
 
     public function testGetNeededStatedClassValue()
     {
-        $this->assertEquals('fooBarName', $this->build()->getNeededStatedClass());
+        self::assertEquals('fooBarName', $this->build()->getNeededStatedClass());
     }
 
     public function testGetNeededStatedObjectValue()
     {
-        $this->assertEquals(
+        self::assertEquals(
             $this->getObservedInterfaceMock(),
             $this->build()->getNeededStatedObject()
         );
@@ -137,173 +137,173 @@ class ScenarioTest extends AbstractScenarioTest
     public function testIsAllowedToRunCheckNeededIncomingStatesTrue()
     {
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn(null);
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn(['state1', 'state2']);
+        $builder->expects(self::any())->method('getObserved')->willReturn(null);
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn(['state1', 'state2']);
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
-        $eventMock->expects($this->once())->method('getIncomingStates')->willReturn(['state1', 'state2', 'state3']);
-        $this->assertTrue($service->isAllowedToRun($eventMock));
+        $eventMock->expects(self::once())->method('getIncomingStates')->willReturn(['state1', 'state2', 'state3']);
+        self::assertTrue($service->isAllowedToRun($eventMock));
     }
 
     public function testIsAllowedToRunCheckNeededIncomingStatesFalse()
     {
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn(null);
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn(['state1', 'state2', 'state3']);
+        $builder->expects(self::any())->method('getObserved')->willReturn(null);
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn(['state1', 'state2', 'state3']);
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
-        $eventMock->expects($this->once())->method('getIncomingStates')->willReturn(['state1', 'state2']);
-        $this->assertFalse($service->isAllowedToRun($eventMock));
+        $eventMock->expects(self::once())->method('getIncomingStates')->willReturn(['state1', 'state2']);
+        self::assertFalse($service->isAllowedToRun($eventMock));
     }
 
     public function testIsAllowedToRunCheckNeededOutgoingStatesTrue()
     {
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn(null);
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn(['state1', 'state2']);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getObserved')->willReturn(null);
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn(['state1', 'state2']);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
-        $eventMock->expects($this->once())->method('getOutgoingStates')->willReturn(['state1', 'state2', 'state3']);
-        $this->assertTrue($service->isAllowedToRun($eventMock));
+        $eventMock->expects(self::once())->method('getOutgoingStates')->willReturn(['state1', 'state2', 'state3']);
+        self::assertTrue($service->isAllowedToRun($eventMock));
     }
 
     public function testIsAllowedToRunCheckNeededOutgoingStatesFalse()
     {
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn(null);
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn(['state1', 'state2', 'state3']);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getObserved')->willReturn(null);
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn(['state1', 'state2', 'state3']);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
-        $eventMock->expects($this->once())->method('getOutgoingStates')->willReturn(['state1', 'state2']);
-        $this->assertFalse($service->isAllowedToRun($eventMock));
+        $eventMock->expects(self::once())->method('getOutgoingStates')->willReturn(['state1', 'state2']);
+        self::assertFalse($service->isAllowedToRun($eventMock));
     }
 
     public function testIsAllowedToRunCheckNeededStatesTrue()
     {
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn(null);
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn(['state1', 'state2']);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getObserved')->willReturn(null);
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn(['state1', 'state2']);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
         $acme = $this->createMock('Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme');
-        $acme->expects($this->any())->method('listEnabledStates')->willReturn(['state1', 'state2', 'state3']);
-        $eventMock->expects($this->once())->method('getObject')->willReturn($acme);
-        $this->assertTrue($service->isAllowedToRun($eventMock));
+        $acme->expects(self::any())->method('listEnabledStates')->willReturn(['state1', 'state2', 'state3']);
+        $eventMock->expects(self::once())->method('getObject')->willReturn($acme);
+        self::assertTrue($service->isAllowedToRun($eventMock));
     }
 
     public function testIsAllowedToRunCheckNeededStatesFalse()
     {
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn(null);
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn(['state1', 'state2']);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getObserved')->willReturn(null);
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn(['state1', 'state2']);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
         $acme = $this->createMock('Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme');
-        $acme->expects($this->any())->method('listEnabledStates')->willReturn(['state3', 'state1']);
-        $eventMock->expects($this->once())->method('getObject')->willReturn($acme);
-        $this->assertFalse($service->isAllowedToRun($eventMock));
+        $acme->expects(self::any())->method('listEnabledStates')->willReturn(['state3', 'state1']);
+        $eventMock->expects(self::once())->method('getObject')->willReturn($acme);
+        self::assertFalse($service->isAllowedToRun($eventMock));
     }
 
     public function testIsAllowedToRunCheckForbiddenStatesTrue()
     {
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn(null);
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn(['state1', 'state2']);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getObserved')->willReturn(null);
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn(['state1', 'state2']);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
         $acme = $this->createMock('Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme');
-        $acme->expects($this->any())->method('listEnabledStates')->willReturn(['state3', 'state4']);
-        $eventMock->expects($this->once())->method('getObject')->willReturn($acme);
-        $this->assertTrue($service->isAllowedToRun($eventMock));
+        $acme->expects(self::any())->method('listEnabledStates')->willReturn(['state3', 'state4']);
+        $eventMock->expects(self::once())->method('getObject')->willReturn($acme);
+        self::assertTrue($service->isAllowedToRun($eventMock));
     }
 
     public function testIsAllowedToRunCheckForbiddenStatesFalse()
     {
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn(null);
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn(['state1', 'state3']);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getObserved')->willReturn(null);
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn(['state1', 'state3']);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
         $acme = $this->createMock('Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme');
-        $acme->expects($this->any())->method('listEnabledStates')->willReturn(['state3', 'state4']);
-        $eventMock->expects($this->once())->method('getObject')->willReturn($acme);
-        $this->assertFalse($service->isAllowedToRun($eventMock));
+        $acme->expects(self::any())->method('listEnabledStates')->willReturn(['state3', 'state4']);
+        $eventMock->expects(self::once())->method('getObject')->willReturn($acme);
+        self::assertFalse($service->isAllowedToRun($eventMock));
     }
 
     public function testIsAllowedToRunCheckNeededStatedClassTrue()
     {
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn(null);
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('fooBar');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getObserved')->willReturn(null);
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('fooBar');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
         $observed = $this->getObservedInterfaceMock();
-        $observed->expects($this->once())->method('getStatedClassName')->willReturn('fooBar');
-        $eventMock->expects($this->once())->method('getObserved')->willReturn($observed);
-        $this->assertTrue($service->isAllowedToRun($eventMock));
+        $observed->expects(self::once())->method('getStatedClassName')->willReturn('fooBar');
+        $eventMock->expects(self::once())->method('getObserved')->willReturn($observed);
+        self::assertTrue($service->isAllowedToRun($eventMock));
     }
 
     public function testIsAllowedToRunCheckNeededStatedClassFalse()
     {
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn(null);
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('fooBar');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getObserved')->willReturn(null);
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('fooBar');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
         $observed = $this->getObservedInterfaceMock();
-        $observed->expects($this->once())->method('getStatedClassName')->willReturn('fooBar2');
-        $eventMock->expects($this->once())->method('getObserved')->willReturn($observed);
-        $this->assertFalse($service->isAllowedToRun($eventMock));
+        $observed->expects(self::once())->method('getStatedClassName')->willReturn('fooBar2');
+        $eventMock->expects(self::once())->method('getObserved')->willReturn($observed);
+        self::assertFalse($service->isAllowedToRun($eventMock));
     }
 
     public function testIsAllowedToRunCheckNeededStatedObjectTrue()
@@ -311,93 +311,93 @@ class ScenarioTest extends AbstractScenarioTest
         $Acme = new Acme();
 
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn($Acme);
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getObserved')->willReturn($Acme);
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
-        $eventMock->expects($this->once())->method('getObject')->willReturn($Acme);
-        $this->assertTrue($service->isAllowedToRun($eventMock));
+        $eventMock->expects(self::once())->method('getObject')->willReturn($Acme);
+        self::assertTrue($service->isAllowedToRun($eventMock));
     }
 
     public function testIsAllowedToRunCheckNeededStatedObjectFalse()
     {
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn(new Acme());
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getObserved')->willReturn(new Acme());
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
-        $eventMock->expects($this->once())->method('getObject')->willReturn(new Acme());
-        $this->assertFalse($service->isAllowedToRun($eventMock));
+        $eventMock->expects(self::once())->method('getObject')->willReturn(new Acme());
+        self::assertFalse($service->isAllowedToRun($eventMock));
     }
 
     public function testIsAllowedToRunmpty()
     {
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn(null);
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getObserved')->willReturn(null);
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
-        $this->assertTrue($service->isAllowedToRun($eventMock));
+        self::assertTrue($service->isAllowedToRun($eventMock));
     }
 
     public function testInvokeTrue()
     {
         $called = false;
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn(null);
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('fooBar');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getCallable')->willReturn(function () use (&$called) {$called = true;});
+        $builder->expects(self::any())->method('getObserved')->willReturn(null);
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('fooBar');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getCallable')->willReturn(function () use (&$called) {$called = true;});
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
         $observed = $this->getObservedInterfaceMock();
-        $observed->expects($this->once())->method('getStatedClassName')->willReturn('fooBar');
-        $eventMock->expects($this->once())->method('getObserved')->willReturn($observed);
+        $observed->expects(self::once())->method('getStatedClassName')->willReturn('fooBar');
+        $eventMock->expects(self::once())->method('getObserved')->willReturn($observed);
 
         $called = false;
         $service($eventMock);
-        $this->assertTrue($called);
+        self::assertTrue($called);
     }
 
     public function testInvokeFalse()
     {
         $called = false;
         $builder = $this->getScenarioBuilderMock();
-        $builder->expects($this->any())->method('getObserved')->willReturn(null);
-        $builder->expects($this->any())->method('getStatedClassName')->willReturn('fooBar');
-        $builder->expects($this->any())->method('getForbiddenStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededOutgoingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getNeededIncomingStatesList')->willReturn([]);
-        $builder->expects($this->any())->method('getCallable')->willReturn(function () use (&$called) {$called = true;});
+        $builder->expects(self::any())->method('getObserved')->willReturn(null);
+        $builder->expects(self::any())->method('getStatedClassName')->willReturn('fooBar');
+        $builder->expects(self::any())->method('getForbiddenStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
+        $builder->expects(self::any())->method('getCallable')->willReturn(function () use (&$called) {$called = true;});
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
         $observed = $this->getObservedInterfaceMock();
-        $observed->expects($this->once())->method('getStatedClassName')->willReturn('fooBar2');
-        $eventMock->expects($this->once())->method('getObserved')->willReturn($observed);
+        $observed->expects(self::once())->method('getStatedClassName')->willReturn('fooBar2');
+        $eventMock->expects(self::once())->method('getObserved')->willReturn($observed);
 
         $called = false;
         $service($eventMock);
-        $this->assertFalse($called);
+        self::assertFalse($called);
     }
 }

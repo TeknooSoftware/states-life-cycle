@@ -84,7 +84,7 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
     public function testConstructorBadTrace()
     {
         $instance = $this->createMock(LifeCyclableInterface::class);
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ObservedInterface::class,
             $this->build(
                 $instance,
@@ -101,7 +101,7 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
     public function testConstructorMissingEvent()
     {
         $instance = $this->createMock(LifeCyclableInterface::class);
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ObservedInterface::class,
             $this->build(
                 $instance,
@@ -118,7 +118,7 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
     public function testConstructorBadEvent()
     {
         $instance = $this->createMock(LifeCyclableInterface::class);
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ObservedInterface::class,
             $this->build(
                 $instance,
@@ -132,7 +132,7 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
     public function testConstructor()
     {
         $instance = $this->createMock(LifeCyclableInterface::class);
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ObservedInterface::class,
             $this->build(
                 $instance,
@@ -146,7 +146,7 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
     public function testGetObject()
     {
         $instance = $this->createMock(LifeCyclableInterface::class);
-        $this->assertEquals(
+        self::assertEquals(
             $instance,
             $this->build(
                 $instance,
@@ -161,7 +161,7 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
     {
         $instance = $this->createMock(LifeCyclableInterface::class);
         $observer = $this->createMock(ObserverInterface::class);
-        $this->assertEquals(
+        self::assertEquals(
             $observer,
             $this->build(
                 $instance,
@@ -175,7 +175,7 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
     public function testGetStatedClassName()
     {
         $instance = $this->createMock('Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme');
-        $this->assertEquals(
+        self::assertEquals(
             'Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme',
             $this->build(
                 $instance,
@@ -189,9 +189,9 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
     public function testObserveUpdate()
     {
         $instance = $this->createMock(LifeCyclableInterface::class);
-        $instance->expects($this->any())->method('listEnabledStates')->willReturn([]);
-        $instance->expects($this->any())->method('listAvailableStates')->willReturn([]);
-        $this->assertInstanceOf(
+        $instance->expects(self::any())->method('listEnabledStates')->willReturn([]);
+        $instance->expects(self::any())->method('listAvailableStates')->willReturn([]);
+        self::assertInstanceOf(
             ObservedInterface::class,
             $this->build(
                 $instance,
@@ -205,7 +205,7 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
     public function testGetStateTrace()
     {
         $instance = $this->createMock(LifeCyclableInterface::class);
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             TraceInterface::class,
             $this->build(
                 $instance,
@@ -233,8 +233,8 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
     public function testGetLastEvent()
     {
         $instance = $this->createMock(LifeCyclableInterface::class);
-        $instance->expects($this->any())->method('listEnabledStates')->willReturn([]);
-        $instance->expects($this->any())->method('listAvailableStates')->willReturn([]);
+        $instance->expects(self::any())->method('listEnabledStates')->willReturn([]);
+        $instance->expects(self::any())->method('listAvailableStates')->willReturn([]);
         $observed = $this->build(
             $instance,
             $this->createMock(ObserverInterface::class),
@@ -242,7 +242,7 @@ abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
             Event::class
         );
         $observed->observeUpdate();
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             EventInterface::class,
             $observed->getLastEvent()
         );
