@@ -22,6 +22,7 @@
 namespace demo;
 
 use demo\AutomatedLifeCyclableAcme\AutomatedLifeCyclableAcme;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Teknoo\States\LifeCycle\Event\EventInterface;
 use Teknoo\States\LifeCycle\Generator;
 
@@ -29,6 +30,8 @@ include dirname(__DIR__).'/vendor/autoload.php';
 
 //Use the helper generator to get needed instance of observer and event dispatcher, it's not a mandatory tool
 $generator = new Generator();
+$generator->setEventClassName(Event::class);
+$generator->setEventDispatcher(new EventDispatcherBridge(new EventDispatcher()));
 $eventDistpatcher = $generator->getEventDispatcher();
 
 $eventDistpatcher->addListener('demo_automatedlifecyclableacme', function (EventInterface $event) {

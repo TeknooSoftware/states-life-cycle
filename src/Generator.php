@@ -66,6 +66,11 @@ class Generator
     private $tokenizer;
 
     /**
+     * @var string
+     */
+    private $eventClassName;
+
+    /**
      * @return TokenizerInterface|Tokenizer
      */
     public function getTokenizer(): TokenizerInterface
@@ -144,7 +149,7 @@ class Generator
         if (!$this->observer instanceof ObserverInterface) {
             $observedFactory = new ObservedFactory(
                 Observed::class,
-                'Teknoo\States\LifeCycle\Event\Event',
+                $this->getEventClassName(),
                 Trace::class
             );
 
@@ -164,6 +169,25 @@ class Generator
     public function setObserver(ObserverInterface $observer): Generator
     {
         $this->observer = $observer;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEventClassName(): string
+    {
+        return $this->eventClassName;
+    }
+
+    /**
+     * @param string $eventClassName
+     * @return self
+     */
+    public function setEventClassName(string $eventClassName)
+    {
+        $this->eventClassName = $eventClassName;
 
         return $this;
     }

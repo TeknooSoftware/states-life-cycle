@@ -26,11 +26,14 @@ include dirname(__DIR__).'/vendor/autoload.php';
 use demo\LifeCyclableAcme\LifeCyclableAcme;
 use demo\LifeCyclableAcme\States\State1;
 use demo\LifeCyclableAcme\States\State2;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Teknoo\States\LifeCycle\Event\EventInterface;
 use Teknoo\States\LifeCycle\Generator;
 
 //Use the helper generator to get needed instance of observer and event dispatcher, it's not a mandatory tool
 $generator = new Generator();
+$generator->setEventClassName(Event::class);
+$generator->setEventDispatcher(new EventDispatcherBridge(new EventDispatcher()));
 $eventDistpatcher = $generator->getEventDispatcher();
 
 $eventDistpatcher->addListener('demo_lifecyclableacme', function (EventInterface $event) {

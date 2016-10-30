@@ -25,6 +25,7 @@ use demo\AcmeUpdateStatesDependencies\ClassA\ClassA;
 use demo\AcmeUpdateStatesDependencies\ClassB\ClassB;
 use Gaufrette\Adapter\Local;
 use Gaufrette\Filesystem;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Yaml\Parser;
 use Teknoo\States\LifeCycle\Generator;
 use Teknoo\States\LifeCycle\Scenario\Scenario;
@@ -34,6 +35,8 @@ include dirname(__DIR__).'/vendor/autoload.php';
 
 //Use the helper generator to get needed instance of observer and event dispatcher, it's not a mandatory tool
 $generator = new Generator();
+$generator->setEventClassName(Event::class);
+$generator->setEventDispatcher(new EventDispatcherBridge(new EventDispatcher()));
 
 //Create the scenario builder
 $instanceA = new ClassA();

@@ -19,7 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-namespace Teknoo\Tests\States\LifeCycle\Support;
+namespace demo;
 
 use Teknoo\States\LifeCycle\Event\EventInterface;
 use Symfony\Component\EventDispatcher\Event as SymfonyEvent;

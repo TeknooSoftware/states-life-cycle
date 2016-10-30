@@ -26,6 +26,7 @@ use Teknoo\States\LifeCycle\Observing\EventDispatcherBridgeInterface;
 use Teknoo\States\LifeCycle\Observing\ObserverInterface;
 use Teknoo\States\LifeCycle\Scenario\ManagerInterface;
 use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
+use Teknoo\Tests\States\LifeCycle\Support\Event;
 
 /**
  * Class GeneratorTest.
@@ -127,6 +128,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
     public function testGetObserver()
     {
         $generator = $this->buildGenerator();
+        $generator->setEventClassName(Event::class);
         self::assertInstanceOf(
             Generator::class,
             $generator->setEventDispatcher($this->createMock(EventDispatcherBridgeInterface::class))
@@ -140,6 +142,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
     public function testSetObserver()
     {
         $generator = $this->buildGenerator();
+        $generator->setEventClassName(Event::class);
         self::assertInstanceOf(
             Generator::class,
             $generator->setEventDispatcher($this->createMock(EventDispatcherBridgeInterface::class))
