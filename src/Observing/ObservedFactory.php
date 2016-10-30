@@ -40,17 +40,17 @@ class ObservedFactory implements ObservedFactoryInterface
     /**
      * @var string
      */
-    protected $observedClassName = '';
+    private $observedClassName = '';
 
     /**
      * @var string
      */
-    protected $eventClassName = '';
+    private $eventClassName = '';
 
     /**
      * @var string
      */
-    protected $traceClassName = '';
+    private $traceClassName = '';
 
     /**
      * @param string $observedClassName
