@@ -48,25 +48,29 @@ class AutomatedAcme extends Standard implements AutomatedInterface
     use AutomatedTrait;
 
     /**
-     * For AssertionTest
+     * For AssertionTest.
+     *
      * @var mixed
      */
     protected $foo;
 
     /**
-     * For AssertionTest
+     * For AssertionTest.
+     *
      * @var mixed
      */
     protected $foo1;
 
     /**
-     * For AssertionTest
+     * For AssertionTest.
+     *
      * @var mixed
      */
     protected $foo2;
 
     /**
      * @param mixed $foo
+     *
      * @return self
      */
     public function setFoo($foo)
@@ -78,6 +82,7 @@ class AutomatedAcme extends Standard implements AutomatedInterface
 
     /**
      * @param mixed $foo1
+     *
      * @return self
      */
     public function setFoo1($foo1)
@@ -89,6 +94,7 @@ class AutomatedAcme extends Standard implements AutomatedInterface
 
     /**
      * @param mixed $foo2
+     *
      * @return self
      */
     public function setFoo2($foo2)
@@ -105,7 +111,7 @@ class AutomatedAcme extends Standard implements AutomatedInterface
     {
         return [
             (new Assertion([State1::class]))->with('foo', 'bar'),
-            (new Assertion([State2::class]))->with('foo1', new IsEqual('bar1'))->with('foo2', new IsNull())
+            (new Assertion([State2::class]))->with('foo1', new IsEqual('bar1'))->with('foo2', new IsNull()),
         ];
     }
 
@@ -116,7 +122,7 @@ class AutomatedAcme extends Standard implements AutomatedInterface
     {
         return [
             State1::class,
-            State2::class
+            State2::class,
         ];
     }
 }

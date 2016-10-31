@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
 use Teknoo\States\LifeCycle\Event\EventInterface;
@@ -365,7 +366,9 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
         $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
         $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
-        $builder->expects(self::any())->method('getCallable')->willReturn(function () use (&$called) {$called = true;});
+        $builder->expects(self::any())->method('getCallable')->willReturn(function () use (&$called) {
+            $called = true;
+        });
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);
@@ -388,7 +391,9 @@ class ScenarioTest extends AbstractScenarioTest
         $builder->expects(self::any())->method('getNeededStatesList')->willReturn([]);
         $builder->expects(self::any())->method('getNeededOutgoingStatesList')->willReturn([]);
         $builder->expects(self::any())->method('getNeededIncomingStatesList')->willReturn([]);
-        $builder->expects(self::any())->method('getCallable')->willReturn(function () use (&$called) {$called = true;});
+        $builder->expects(self::any())->method('getCallable')->willReturn(function () use (&$called) {
+            $called = true;
+        });
 
         $service = $this->build(true);
         $eventMock = $this->createMock(EventInterface::class);

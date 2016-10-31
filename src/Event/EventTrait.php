@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\States\LifeCycle\Event;
 
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
@@ -29,6 +30,7 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
  * Default implementation of events used in lifecycle of stated class instances.
  *
  * @see EventInterface
+ *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
@@ -36,7 +38,7 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-Trait EventTrait
+trait EventTrait
 {
     /**
      * @var ObservedInterface

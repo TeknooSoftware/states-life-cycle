@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\States\LifeCycle\Event;
 
 interface EventDispatcherBridgeInterface
@@ -26,11 +27,11 @@ interface EventDispatcherBridgeInterface
     /**
      * Dispatches an event to all registered listeners.
      *
-     * @param string $eventName The name of the event to dispatch. The name of
-     *                          the event is the name of the method that is
-     *                          invoked on listeners.
-     * @param EventInterface  $event    The event to pass to the event handlers/listeners
-     *                          If not supplied, an empty Event instance is created.
+     * @param string         $eventName The name of the event to dispatch. The name of
+     *                                  the event is the name of the method that is
+     *                                  invoked on listeners
+     * @param EventInterface $event     The event to pass to the event handlers/listeners
+     *                                  If not supplied, an empty Event instance is created
      *
      * @return EventDispatcherBridgeInterface
      */

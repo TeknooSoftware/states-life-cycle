@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion\Property;
 
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterOrEqualThan;

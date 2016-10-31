@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion;
 
 use Teknoo\States\Proxy\ProxyInterface;
@@ -42,7 +43,6 @@ class Callback extends AbstractAssertion implements AssertionInterface
      * @var callable
      */
     private $callback;
-
 
     /**
      * To register the callable (callback or closure) to execute to determine if this assertio is valid or not.

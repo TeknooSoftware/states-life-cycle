@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Tests\States\LifeCycle\Functional\ListenEvents\ClassA\States;
 
 use Teknoo\States\State\AbstractState;
@@ -41,7 +42,7 @@ class StateDefault extends AbstractState
 {
     public function switchToState2()
     {
-        /**
+        /*
          * @return ClassA
          */
         return function () {

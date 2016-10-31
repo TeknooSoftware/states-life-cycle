@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedAcme;
 
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Assertion;
@@ -42,7 +43,7 @@ use Teknoo\Tests\States\LifeCycle\StatedClass\Support\AutomatedAcme\States\State
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class AutomatedAcme extends Standard  implements AutomatedInterface
+class AutomatedAcme extends Standard implements AutomatedInterface
 {
     use AutomatedTrait;
 
@@ -74,7 +75,7 @@ class AutomatedAcme extends Standard  implements AutomatedInterface
     {
         return [
             State1::class,
-            State2::class
+            State2::class,
         ];
     }
 

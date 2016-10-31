@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme;
 
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
@@ -38,7 +39,7 @@ use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\States\State2;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class Acme extends Standard  implements LifeCyclableInterface
+class Acme extends Standard implements LifeCyclableInterface
 {
     use LifeCyclableTrait;
 
@@ -70,7 +71,7 @@ class Acme extends Standard  implements LifeCyclableInterface
     {
         return [
             State1::class,
-            State2::class
+            State2::class,
         ];
     }
 

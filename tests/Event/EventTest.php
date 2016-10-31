@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Tests\States\LifeCycle\Event;
 
 use Teknoo\States\LifeCycle\Event\EventInterface;
@@ -47,7 +48,7 @@ class EventTest extends AbstractEventTest
      */
     public function build($observed, $incomingState, $outGoingState)
     {
-        return new class ($observed, $incomingState, $outGoingState) implements EventInterface {
+        return new class($observed, $incomingState, $outGoingState) implements EventInterface {
             use EventTrait;
         };
     }

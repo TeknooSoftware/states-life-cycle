@@ -19,13 +19,15 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace demo;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Teknoo\States\LifeCycle\Event\EventInterface;
 use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
 
-class EventDispatcherBridge implements EventDispatcherBridgeInterface  {
+class EventDispatcherBridge implements EventDispatcherBridgeInterface
+{
     /**
      * @var EventDispatcher
      */
@@ -33,6 +35,7 @@ class EventDispatcherBridge implements EventDispatcherBridgeInterface  {
 
     /**
      *  constructor.
+     *
      * @param EventDispatcher $eventDispatcher
      */
     public function __construct(EventDispatcher $eventDispatcher)
@@ -41,8 +44,9 @@ class EventDispatcherBridge implements EventDispatcherBridgeInterface  {
     }
 
     /**
-     * @param string $eventName
+     * @param string              $eventName
      * @param EventInterface|null $event
+     *
      * @return EventDispatcherBridgeInterface
      */
     public function dispatch($eventName, EventInterface $event = null): EventDispatcherBridgeInterface
@@ -53,9 +57,10 @@ class EventDispatcherBridge implements EventDispatcherBridgeInterface  {
     }
 
     /**
-     * @param string $eventName
+     * @param string   $eventName
      * @param callable $listener
-     * @param int $priority
+     * @param int      $priority
+     *
      * @return EventDispatcherBridgeInterface
      */
     public function addListener($eventName, $listener, $priority = 0): EventDispatcherBridgeInterface
@@ -66,8 +71,9 @@ class EventDispatcherBridge implements EventDispatcherBridgeInterface  {
     }
 
     /**
-     * @param string $eventName
+     * @param string   $eventName
      * @param callable $listener
+     *
      * @return EventDispatcherBridgeInterface
      */
     public function removeListener($eventName, $listener): EventDispatcherBridgeInterface
@@ -76,4 +82,4 @@ class EventDispatcherBridge implements EventDispatcherBridgeInterface  {
 
         return $this;
     }
-};
+}

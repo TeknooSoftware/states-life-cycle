@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Tests\States\LifeCycle\StatedClass\Automated\Assertion;
 
 use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Callback;
@@ -51,7 +52,8 @@ class CallbackTest extends AbstractAssertionTest
     {
         self::assertInstanceOf(
             Callback::class,
-            $this->buildInstance()->call(function () {})
+            $this->buildInstance()->call(function () {
+            })
         );
     }
 
@@ -74,7 +76,9 @@ class CallbackTest extends AbstractAssertionTest
     public function testIsValid()
     {
         $proxy = $this->createMock(ProxyInterface::class);
-        $instance = $this->buildInstance()->call(function ($value) use ($proxy) {return $value === $proxy;});
+        $instance = $this->buildInstance()->call(function ($value) use ($proxy) {
+            return $value === $proxy;
+        });
         self::assertTrue($instance->isValid($proxy));
         self::assertFalse($instance->isValid($this->createMock(ProxyInterface::class)));
     }

@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassA\States;
 
 use Teknoo\States\State\AbstractState;
@@ -41,7 +42,7 @@ class State2 extends AbstractState
 {
     public function enableState3()
     {
-        /**
+        /*
          * @return ClassA
          */
         return function () {
@@ -54,7 +55,7 @@ class State2 extends AbstractState
 
     public function switchToState1()
     {
-        /**
+        /*
          * @return ClassA
          */
         return function () {
@@ -67,7 +68,7 @@ class State2 extends AbstractState
 
     public function switchToState3()
     {
-        /**
+        /*
          * @return ClassA
          */
         return function () {

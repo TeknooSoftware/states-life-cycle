@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
@@ -129,7 +130,8 @@ class ScenarioBuilderTest extends AbstractScenarioBuilderTest
     public function testRunValue()
     {
         $service = $this->build();
-        $callable = function () {};
+        $callable = function () {
+        };
         self::assertEquals($service, $service->run($callable));
         self::assertEquals($callable, $service->getCallable());
     }

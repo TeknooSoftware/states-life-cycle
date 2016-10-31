@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace demo\AcmeUpdateStatesDependencies\ClassB;
 
 use demo\AcmeUpdateStatesDependencies\ClassB\States\State2;
@@ -40,7 +41,7 @@ use Teknoo\States\Proxy;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class ClassB extends Proxy\Standard  implements LifeCyclableInterface
+class ClassB extends Proxy\Standard implements LifeCyclableInterface
 {
     use LifeCyclableTrait;
 
@@ -52,7 +53,7 @@ class ClassB extends Proxy\Standard  implements LifeCyclableInterface
         return [
             StateDefault::class,
             State2::class,
-            State3::class
+            State3::class,
         ];
     }
 }

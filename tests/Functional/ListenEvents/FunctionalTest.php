@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Tests\States\LifeCycle\Functional\ListenEvents;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -99,6 +100,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
 
                 /**
                  *  constructor.
+                 *
                  * @param EventDispatcher $eventDispatcher
                  */
                 public function __construct(EventDispatcher $eventDispatcher)
@@ -107,8 +109,9 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
                 }
 
                 /**
-                 * @param string $eventName
+                 * @param string              $eventName
                  * @param EventInterface|null $event
+                 *
                  * @return EventDispatcherBridgeInterface
                  */
                 public function dispatch($eventName, EventInterface $event = null): EventDispatcherBridgeInterface
@@ -119,9 +122,10 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
                 }
 
                 /**
-                 * @param string $eventName
+                 * @param string   $eventName
                  * @param callable $listener
-                 * @param int $priority
+                 * @param int      $priority
+                 *
                  * @return EventDispatcherBridgeInterface
                  */
                 public function addListener($eventName, $listener, $priority = 0): EventDispatcherBridgeInterface
@@ -132,8 +136,9 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
                 }
 
                 /**
-                 * @param string $eventName
+                 * @param string   $eventName
                  * @param callable $listener
+                 *
                  * @return EventDispatcherBridgeInterface
                  */
                 public function removeListener($eventName, $listener): EventDispatcherBridgeInterface

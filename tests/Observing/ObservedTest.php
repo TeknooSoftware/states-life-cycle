@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Tests\States\LifeCycle\Observing;
 
 use Teknoo\States\LifeCycle\Observing\Observed;
@@ -80,7 +81,9 @@ class ObservedTest extends AbstractObservedTest
         $trace = $this->createMock(TraceInterface::class);
         $trace->expects(self::once())->method('addEntry')
             ->with(
-                $this->callback(function ($arg) {return $arg instanceof ObservedInterface; }),
+                $this->callback(function ($arg) {
+                    return $arg instanceof ObservedInterface;
+                }),
                 ['state1', 'state3']
             );
 
@@ -114,9 +117,15 @@ class ObservedTest extends AbstractObservedTest
 
         $trace->expects(self::exactly(3))->method('addEntry')
             ->withConsecutive(
-                [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }), ['state1', 'state3']],
-                [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }), ['state1']],
-                [$this->callback(function ($arg) {return $arg instanceof ObservedInterface; }), ['state2']]
+                [$this->callback(function ($arg) {
+                    return $arg instanceof ObservedInterface;
+                }), ['state1', 'state3']],
+                [$this->callback(function ($arg) {
+                    return $arg instanceof ObservedInterface;
+                }), ['state1']],
+                [$this->callback(function ($arg) {
+                    return $arg instanceof ObservedInterface;
+                }), ['state2']]
             );
 
         $observer->expects(self::exactly(3))->method('dispatchNotification')->with($observed)->willReturnSelf();

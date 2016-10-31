@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\States\LifeCycle;
 
 use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
@@ -84,6 +85,7 @@ class Generator
 
     /**
      * @param TokenizerInterface $tokenizer
+     *
      * @return self
      */
     public function setTokenizer($tokenizer): Generator
@@ -183,6 +185,7 @@ class Generator
 
     /**
      * @param string $eventClassName
+     *
      * @return self
      */
     public function setEventClassName(string $eventClassName)

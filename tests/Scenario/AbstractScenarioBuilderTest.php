@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
@@ -156,7 +157,8 @@ abstract class AbstractScenarioBuilderTest extends \PHPUnit_Framework_TestCase
     public function testRun()
     {
         $service = $this->build();
-        self::assertEquals($service, $service->run(function () {}));
+        self::assertEquals($service, $service->run(function () {
+        }));
     }
 
     public function testBuild()

@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace demo\LifeCyclableAcme;
 
 use demo\LifeCyclableAcme\States\State1;
@@ -49,7 +50,7 @@ class LifeCyclableAcme extends Standard implements LifeCyclableInterface
     {
         return [
             State1::class,
-            State2::class
+            State2::class,
         ];
     }
 }

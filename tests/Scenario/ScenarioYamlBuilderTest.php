@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
 use Gaufrette\Filesystem;
@@ -224,8 +225,7 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
                 ],
             ]);
 
-        $builder->setParameter('instanceB', new class()
-        {
+        $builder->setParameter('instanceB', new class() {
             public function switchToStateDefault()
             {
                 return true;

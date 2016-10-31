@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB;
 
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
@@ -40,7 +41,7 @@ use Teknoo\Tests\States\LifeCycle\Functional\UpdateStatesDependencies\ClassB\Sta
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class ClassB extends Proxy\Standard  implements LifeCyclableInterface
+class ClassB extends Proxy\Standard implements LifeCyclableInterface
 {
     use LifeCyclableTrait;
 
@@ -52,7 +53,7 @@ class ClassB extends Proxy\Standard  implements LifeCyclableInterface
         return [
             State2::class,
             State3::class,
-            StateDefault::class
+            StateDefault::class,
         ];
     }
 }
