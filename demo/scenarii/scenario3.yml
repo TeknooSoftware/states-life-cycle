@@ -1,6 +1,6 @@
 scenario3:
   class: 'demo\AcmeUpdateStatesDependencies\ClassA'
-  incoming: ['State3']
-  outgoing: ['State2']
-  notIn: ['StateDefault']
+  incoming: ['demo\AcmeUpdateStatesDependencies\ClassA\States\State23']
+  outgoing: ['demo\AcmeUpdateStatesDependencies\ClassA\States\State2']
+  notIn: ['demo\AcmeUpdateStatesDependencies\ClassA\States\StateDefault']
   run: ['$instanceB', 'switchToState3']

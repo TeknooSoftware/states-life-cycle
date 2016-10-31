@@ -1,4 +1,4 @@
 scenario1:
   class: 'demo\AcmeUpdateStatesDependencies\ClassA'
-  incoming: ['State2']
+  incoming: ['demo\AcmeUpdateStatesDependencies\ClassA\States\State2']
   run: ['$instanceB', 'switchToState2']

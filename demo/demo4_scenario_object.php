@@ -23,6 +23,9 @@
 namespace demo;
 
 use demo\AcmeUpdateStatesDependencies\ClassA\ClassA;
+use demo\AcmeUpdateStatesDependencies\ClassA\States\State2;
+use demo\AcmeUpdateStatesDependencies\ClassA\States\State3;
+use demo\AcmeUpdateStatesDependencies\ClassA\States\StateDefault;
 use demo\AcmeUpdateStatesDependencies\ClassB\ClassB;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Teknoo\States\LifeCycle\Generator;
@@ -46,7 +49,7 @@ $generator->getManager()
     ->registerScenario(
         (new ScenarioBuilder($generator->getTokenizer()))
         ->towardStatedClass('demo\AcmeUpdateStatesDependencies\ClassA')
-        ->onIncomingState('State2')
+        ->onIncomingState(State2::class)
         ->run(function () use ($instanceB) {
             $instanceB->switchToState2();
         })
@@ -58,8 +61,8 @@ $generator->getManager()
     ->registerScenario(
         (new ScenarioBuilder($generator->getTokenizer()))
         ->towardStatedClass('demo\AcmeUpdateStatesDependencies\ClassA')
-        ->onIncomingState('State3')
-        ->ifInState('State2')
+        ->onIncomingState(State3::class)
+        ->ifInState(State2::class)
         ->run(function () use ($instanceB) {
             $instanceB->switchToStateDefault();
         })
@@ -71,9 +74,9 @@ $generator->getManager()
     ->registerScenario(
         (new ScenarioBuilder($generator->getTokenizer()))
         ->towardStatedClass('demo\AcmeUpdateStatesDependencies\ClassA')
-        ->onIncomingState('State3')
-        ->onOutgoingState('State2')
-        ->ifNotInState('StateDefault')
+        ->onIncomingState(State3::class)
+        ->onOutgoingState(State2::class)
+        ->ifNotInState(StateDefault::class)
         ->run(function () use ($instanceB) {
             $instanceB->switchToState3();
         })

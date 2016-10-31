@@ -1,5 +1,5 @@
 scenario2:
   class: 'demo\AcmeUpdateStatesDependencies\ClassA'
-  incoming: ['State3']
-  in: ['State2']
+  incoming: ['demo\AcmeUpdateStatesDependencies\ClassA\States\State3']
+  in: ['demo\AcmeUpdateStatesDependencies\ClassA\States\State2']
   run: ['$instanceB', 'switchToStateDefault']
