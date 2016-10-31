@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\States\LifeCycle\StatedClass;
 
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
@@ -34,6 +35,7 @@ use Teknoo\States\LifeCycle\Observing\ObservedInterface;
  *
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
+ * @mixin LifeCyclableInterface
  */
 trait LifeCyclableTrait
 {
@@ -53,7 +55,7 @@ trait LifeCyclableTrait
      */
     public function registerObserver(ObservedInterface $observed): LifeCyclableInterface
     {
-        $this->observedList[spl_object_hash($observed)] = $observed;
+        $this->observedList[\spl_object_hash($observed)] = $observed;
 
         return $this;
     }
@@ -67,7 +69,7 @@ trait LifeCyclableTrait
      */
     public function unregisterObserver(ObservedInterface $observed): LifeCyclableInterface
     {
-        $observedHash = spl_object_hash($observed);
+        $observedHash = \spl_object_hash($observed);
 
         if (isset($this->observedList[$observedHash])) {
             unset($this->observedList[$observedHash]);

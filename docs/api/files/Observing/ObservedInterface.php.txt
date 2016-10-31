@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\States\LifeCycle\Observing;
 
 use Teknoo\States\LifeCycle\Event\EventInterface;
@@ -67,7 +68,7 @@ interface ObservedInterface
     public function getObserver(): ObserverInterface;
 
     /**
-     * To get the canonical stated class name.
+     * To get the full qualified stated class name.
      *
      * @return string
      */

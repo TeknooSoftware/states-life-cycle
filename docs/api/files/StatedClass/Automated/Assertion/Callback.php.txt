@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion;
 
 use Teknoo\States\Proxy\ProxyInterface;
@@ -48,7 +49,7 @@ class Callback extends AbstractAssertion implements AssertionInterface
      *
      * @param callable $callback
      *
-     * @return self
+     * @return Callback|self
      */
     public function call(callable $callback): Callback
     {

@@ -19,10 +19,11 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\States\LifeCycle;
 
-use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
+use Teknoo\States\LifeCycle\Observing\Observed;
 use Teknoo\States\LifeCycle\Observing\ObservedFactory;
 use Teknoo\States\LifeCycle\Observing\Observer;
 use Teknoo\States\LifeCycle\Observing\ObserverInterface;
@@ -30,6 +31,7 @@ use Teknoo\States\LifeCycle\Scenario\Manager;
 use Teknoo\States\LifeCycle\Scenario\ManagerInterface;
 use Teknoo\States\LifeCycle\Tokenization\Tokenizer;
 use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
+use Teknoo\States\LifeCycle\Trace\Trace;
 
 /**
  * Class Generator
@@ -45,9 +47,9 @@ use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 class Generator
 {
     /**
-     * @var EventDispatcherInterface
+     * @var EventDispatcherBridgeInterface
      */
-    private $eventDispatcher;
+    private $eventDispatcherBridge;
 
     /**
      * @var ManagerInterface
@@ -65,6 +67,11 @@ class Generator
     private $tokenizer;
 
     /**
+     * @var string
+     */
+    private $eventClassName;
+
+    /**
      * @return TokenizerInterface|Tokenizer
      */
     public function getTokenizer(): TokenizerInterface
@@ -78,6 +85,8 @@ class Generator
 
     /**
      * @param TokenizerInterface $tokenizer
+     *
+     * @return self
      */
     public function setTokenizer($tokenizer): Generator
     {
@@ -87,25 +96,25 @@ class Generator
     }
 
     /**
-     * @return EventDispatcherInterface
+     * @return EventDispatcherBridgeInterface
      */
-    public function getEventDispatcher(): EventDispatcherInterface
+    public function getEventDispatcher(): EventDispatcherBridgeInterface
     {
-        if (!$this->eventDispatcher instanceof EventDispatcherInterface) {
-            $this->eventDispatcher = new EventDispatcher();
+        if (!$this->eventDispatcherBridge instanceof EventDispatcherBridgeInterface) {
+            throw new \RuntimeException('Error missing Event Dispatcher');
         }
 
-        return $this->eventDispatcher;
+        return $this->eventDispatcherBridge;
     }
 
     /**
-     * @param EventDispatcherInterface $eventDispatcher
+     * @param EventDispatcherBridgeInterface $eventDispatcherBridge
      *
      * @return self
      */
-    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): Generator
+    public function setEventDispatcher(EventDispatcherBridgeInterface $eventDispatcherBridge): Generator
     {
-        $this->eventDispatcher = $eventDispatcher;
+        $this->eventDispatcherBridge = $eventDispatcherBridge;
 
         return $this;
     }
@@ -141,9 +150,9 @@ class Generator
     {
         if (!$this->observer instanceof ObserverInterface) {
             $observedFactory = new ObservedFactory(
-                'Teknoo\States\LifeCycle\Observing\Observed',
-                'Teknoo\States\LifeCycle\Event\Event',
-                'Teknoo\States\LifeCycle\Trace\Trace'
+                Observed::class,
+                $this->getEventClassName(),
+                Trace::class
             );
 
             $this->observer = new Observer($observedFactory);
@@ -162,6 +171,26 @@ class Generator
     public function setObserver(ObserverInterface $observer): Generator
     {
         $this->observer = $observer;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEventClassName(): string
+    {
+        return $this->eventClassName;
+    }
+
+    /**
+     * @param string $eventClassName
+     *
+     * @return self
+     */
+    public function setEventClassName(string $eventClassName)
+    {
+        $this->eventClassName = $eventClassName;
 
         return $this;
     }

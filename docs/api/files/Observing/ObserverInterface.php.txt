@@ -19,9 +19,10 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\States\LifeCycle\Observing;
 
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 
@@ -58,25 +59,25 @@ interface ObserverInterface
     /**
      * To register a dispatcher to use to dispatch an event from an observed's change.
      *
-     * @param EventDispatcherInterface $dispatcher
+     * @param EventDispatcherBridgeInterface $dispatcher
      *
      * @return ObserverInterface
      */
-    public function addEventDispatcher(EventDispatcherInterface $dispatcher): ObserverInterface;
+    public function addEventDispatcher(EventDispatcherBridgeInterface $dispatcher): ObserverInterface;
 
     /**
      * To unregister a dispatcher to use to dispatch an event from an observed's change.
      *
-     * @param EventDispatcherInterface $dispatcher
+     * @param EventDispatcherBridgeInterface $dispatcher
      *
      * @return ObserverInterface
      */
-    public function removeEventDispatcher(EventDispatcherInterface $dispatcher): ObserverInterface;
+    public function removeEventDispatcher(EventDispatcherBridgeInterface $dispatcher): ObserverInterface;
 
     /**
      * To list all dispatchers to use to dispatch an event from an observed's change.
      *
-     * @return EventDispatcherInterface[]
+     * @return EventDispatcherBridgeInterface[]
      */
     public function listEventDispatcher(): array;
 

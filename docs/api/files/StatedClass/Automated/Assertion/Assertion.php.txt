@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion;
 
 use Teknoo\States\Proxy\ProxyInterface;
@@ -68,7 +69,7 @@ class Assertion extends AbstractAssertion implements AssertionInterface
         $reflectionObject = new \ReflectionObject($proxy);
         //Browse properties assertion
         foreach ($this->propertiesAssertions as $property => $exceptedValue) {
-            if (null !== $exceptedValue && property_exists($proxy, $property)) {
+            if (null !== $exceptedValue && \property_exists($proxy, $property)) {
                 //If the property exists, get it's value via the Reflection api (properties are often not accessible for public)
                 $reflectionProperty = $reflectionObject->getProperty($property);
                 $reflectionProperty->setAccessible(true);

@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\States\LifeCycle\Scenario;
 
 use Teknoo\States\LifeCycle\Event\EventInterface;
@@ -118,7 +119,7 @@ class Scenario implements ScenarioInterface
      *
      * @return bool
      */
-    protected function checkNeededIncomingStates(EventInterface $event): bool
+    private function checkNeededIncomingStates(EventInterface $event): bool
     {
         $neededIncomingStatesList = $this->listNeededIncomingStates();
         if (empty($neededIncomingStatesList)) {
@@ -127,7 +128,7 @@ class Scenario implements ScenarioInterface
 
         $incomingStateList = $event->getIncomingStates();
 
-        return empty(array_diff($neededIncomingStatesList, $incomingStateList));
+        return empty(\array_diff($neededIncomingStatesList, $incomingStateList));
     }
 
     /**
@@ -143,7 +144,7 @@ class Scenario implements ScenarioInterface
      *
      * @return bool
      */
-    protected function checkNeededOutgoingStates(EventInterface $event): bool
+    private function checkNeededOutgoingStates(EventInterface $event): bool
     {
         $neededOutgoingStatesList = $this->listNeededOutgoingStates();
         if (empty($neededOutgoingStatesList)) {
@@ -152,7 +153,7 @@ class Scenario implements ScenarioInterface
 
         $outgoingStatesList = $event->getOutgoingStates();
 
-        return empty(array_diff($neededOutgoingStatesList, $outgoingStatesList));
+        return empty(\array_diff($neededOutgoingStatesList, $outgoingStatesList));
     }
 
     /**
@@ -168,7 +169,7 @@ class Scenario implements ScenarioInterface
      *
      * @return bool
      */
-    protected function checkNeededStates(EventInterface $event): bool
+    private function checkNeededStates(EventInterface $event): bool
     {
         $neededStatesList = $this->listNeededStates();
         if (empty($neededStatesList)) {
@@ -177,7 +178,7 @@ class Scenario implements ScenarioInterface
 
         $enabledStatesList = $event->getObject()->listEnabledStates();
 
-        return empty(array_diff($neededStatesList, $enabledStatesList));
+        return empty(\array_diff($neededStatesList, $enabledStatesList));
     }
 
     /**
@@ -193,7 +194,7 @@ class Scenario implements ScenarioInterface
      *
      * @return bool
      */
-    protected function checkForbiddenStates(EventInterface $event): bool
+    private function checkForbiddenStates(EventInterface $event): bool
     {
         $forbiddenStatesList = $this->listForbiddenStates();
         if (empty($forbiddenStatesList)) {
@@ -202,7 +203,7 @@ class Scenario implements ScenarioInterface
 
         $enabledStatesList = $event->getObject()->listEnabledStates();
 
-        return empty(array_intersect($forbiddenStatesList, $enabledStatesList));
+        return empty(\array_intersect($forbiddenStatesList, $enabledStatesList));
     }
 
     /**
@@ -218,7 +219,7 @@ class Scenario implements ScenarioInterface
      *
      * @return bool
      */
-    protected function checkNeededStatedClass(EventInterface $event): bool
+    private function checkNeededStatedClass(EventInterface $event): bool
     {
         $neededStatedClassName = $this->getNeededStatedClass();
         if (empty($neededStatedClassName)) {
@@ -241,7 +242,7 @@ class Scenario implements ScenarioInterface
      *
      * @return bool
      */
-    protected function checkNeededStatedObject(EventInterface $event): bool
+    private function checkNeededStatedObject(EventInterface $event): bool
     {
         $neededStatedObject = $this->getNeededStatedObject();
         if (!$neededStatedObject instanceof LifeCyclableInterface) {

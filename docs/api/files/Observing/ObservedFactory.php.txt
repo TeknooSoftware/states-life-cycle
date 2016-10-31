@@ -19,6 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\States\LifeCycle\Observing;
 
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
@@ -40,17 +41,17 @@ class ObservedFactory implements ObservedFactoryInterface
     /**
      * @var string
      */
-    protected $observedClassName = '';
+    private $observedClassName = '';
 
     /**
      * @var string
      */
-    protected $eventClassName = '';
+    private $eventClassName = '';
 
     /**
      * @var string
      */
-    protected $traceClassName = '';
+    private $traceClassName = '';
 
     /**
      * @param string $observedClassName
@@ -69,13 +70,13 @@ class ObservedFactory implements ObservedFactoryInterface
      *
      * @return $this
      */
-    protected function checkObservedClassName(string $observedClassName)
+    private function checkObservedClassName(string $observedClassName)
     {
-        if (!class_exists($observedClassName)) {
+        if (!\class_exists($observedClassName)) {
             throw new \RuntimeException('Missing observed class '.$observedClassName);
         }
 
-        $interfaceImplementingList = class_implements($observedClassName);
+        $interfaceImplementingList = \class_implements($observedClassName);
 
         if (!isset($interfaceImplementingList['Teknoo\States\LifeCycle\Observing\ObservedInterface'])) {
             throw new \RuntimeException('The observed class does not implement the ObservedFactoryInterface');
@@ -91,13 +92,13 @@ class ObservedFactory implements ObservedFactoryInterface
      *
      * @return $this
      */
-    protected function checkTraceClassName(string $traceClassName)
+    private function checkTraceClassName(string $traceClassName)
     {
-        if (!class_exists($traceClassName)) {
+        if (!\class_exists($traceClassName)) {
             throw new \RuntimeException('Missing trace class '.$traceClassName);
         }
 
-        $interfaceImplementingList = class_implements($traceClassName);
+        $interfaceImplementingList = \class_implements($traceClassName);
 
         if (!isset($interfaceImplementingList['Teknoo\States\LifeCycle\Trace\TraceInterface'])) {
             throw new \RuntimeException('The trace class does not implement the ObservedFactoryInterface');
