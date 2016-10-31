@@ -185,7 +185,7 @@ class Observed implements ObservedInterface
     /**
      * @return $this
      */
-    private function updateTrace()
+    protected function updateTrace()
     {
         $trace = $this->getStateTrace();
 
