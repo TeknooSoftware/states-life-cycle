@@ -1,5 +1,23 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
+##[2.0.0-alpha4] - 2016-10-31
+###Added
+- Event dispatcher interface to allow developer to use theirs owns dispatcher
+    instead of symfony/event-dispatcher.
+- Event trait to allow developer to implement theirs own event instance    
+
+###Removed
+- Hard coupling with symfony/event-dispatcher.
+- Event class, replace by a trait to allow developer to implement theirs own event instance
+
+###Updated
+- Migrate Symfony Event to Require-dev because to uncouple this library with Symfony/event-dispatcher.
+
+###Fixed
+- Code style
+- Scenarii in demo
+- Deprecated units tests
+
 ##[2.0.0-alpha3] - 2016-10-27
 ###Updated
 - Require States 3.0.0-alpha3 at least.
