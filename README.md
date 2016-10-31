@@ -154,15 +154,34 @@ Installation & Requirements
 To install this library with composer, run this command :
 
     composer require teknoo/states-life-cycle
+    
+You must install a event dispatcher, like symfony/event-dispatcher.    
+    
+Next, you must create your own Event class, implementing `Teknoo\States\LifeCycle\Event\EventInterface`.
+  
+    namespace Acme;
+   
+    use Symfony\Component\EventDispatcher\Event as SymfonyEvent;
+   
+    class Event extends SymfonyEvent implements Teknoo\States\LifeCycle\Event\EventInterface
+    {
+        use Teknoo\States\LifeCycle\Event\EventTrait;
+    }
+
+Next, you must configure the generator, with the event dispatcher bridge defined in `demo/EventDispatcherBridge.php` :
+    
+    $generator = new Generator();
+    $generator->setEventClassName(Acme\Event::class);
+    $generator->setEventDispatcher(new EventDispatcherBridge(new EventDispatcher()));
+    
 
 This library requires :
 
     * PHP 7+
     * Composer
     * Teknoo Software States 3+
-    * Symfony event-dispatcher to dispatch event
     * Symfony yaml to parse yaml scenarii
-    * Knplabs gaufrette to read yaml scenarri
+    * Knplabs gaufrette to read yaml scenarii
 
 How to create an observed stated class and Scenarri
 ---------------------------------------------------
