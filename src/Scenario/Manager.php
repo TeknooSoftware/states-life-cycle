@@ -20,7 +20,7 @@
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 namespace Teknoo\States\LifeCycle\Scenario;
-use Teknoo\States\LifeCycle\Observing\EventDispatcherBridgeInterface;
+use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
 
 /**
  * Class Manager
@@ -38,7 +38,7 @@ class Manager implements ManagerInterface
     /**
      * Current enabled scenari.
      *
-     * @var ScenarioInterface[]|\ArrayAccess
+     * @var ScenarioInterface[]
      */
     private $scenariiList = [];
 

@@ -21,6 +21,7 @@
  */
 namespace Teknoo\States\LifeCycle\Observing;
 
+use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 
@@ -48,14 +49,14 @@ class Observer implements ObserverInterface
     /**
      * List of dispatchers to use to dispatch an event from an observed's change.
      *
-     * @var \ArrayAccess|EventDispatcherBridgeInterface[]
+     * @var EventDispatcherBridgeInterface[]
      */
     private $dispatchersList = [];
 
     /**
      * List of observed stated class instance to dispatch instance's change.
      *
-     * @var \ArrayAccess|ObservedInterface[]
+     * @var ObservedInterface[]
      */
     private $observedList = [];
 

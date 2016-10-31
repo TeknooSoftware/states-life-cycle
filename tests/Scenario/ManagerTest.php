@@ -21,7 +21,7 @@
  */
 namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
-use Teknoo\States\LifeCycle\Observing\EventDispatcherBridgeInterface;
+use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
 use Teknoo\States\LifeCycle\Scenario\Manager;
 use Teknoo\States\LifeCycle\Scenario\ScenarioInterface;
 

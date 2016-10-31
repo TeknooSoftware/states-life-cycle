@@ -19,9 +19,7 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-namespace Teknoo\States\LifeCycle\Observing;
-
-use Teknoo\States\LifeCycle\Event\EventInterface;
+namespace Teknoo\States\LifeCycle\Event;
 
 interface EventDispatcherBridgeInterface
 {

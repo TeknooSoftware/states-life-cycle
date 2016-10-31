@@ -23,7 +23,7 @@ namespace demo;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Teknoo\States\LifeCycle\Event\EventInterface;
-use Teknoo\States\LifeCycle\Observing\EventDispatcherBridgeInterface;
+use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
 
 class EventDispatcherBridge implements EventDispatcherBridgeInterface  {
     /**

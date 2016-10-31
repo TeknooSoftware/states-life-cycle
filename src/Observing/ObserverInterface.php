@@ -21,6 +21,7 @@
  */
 namespace Teknoo\States\LifeCycle\Observing;
 
+use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 

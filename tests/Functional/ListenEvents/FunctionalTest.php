@@ -23,7 +23,7 @@ namespace Teknoo\Tests\States\LifeCycle\Functional\ListenEvents;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Teknoo\States\LifeCycle\Event\EventInterface;
-use Teknoo\States\LifeCycle\Observing\EventDispatcherBridgeInterface;
+use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
 use Teknoo\States\LifeCycle\Observing\Observed;
 use Teknoo\States\LifeCycle\Observing\ObservedFactory;
 use Teknoo\States\LifeCycle\Observing\Observer;

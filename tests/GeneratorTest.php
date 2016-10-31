@@ -22,7 +22,7 @@
 namespace Teknoo\Tests\States\LifeCycle;
 
 use Teknoo\States\LifeCycle\Generator;
-use Teknoo\States\LifeCycle\Observing\EventDispatcherBridgeInterface;
+use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
 use Teknoo\States\LifeCycle\Observing\ObserverInterface;
 use Teknoo\States\LifeCycle\Scenario\ManagerInterface;
 use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
