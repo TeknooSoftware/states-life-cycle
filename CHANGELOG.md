@@ -1,5 +1,9 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
+###[2.0.0-beta1] - 2016-12-21
+###Release
+- First beta
+
 ##[2.0.0-alpha4] - 2016-10-31
 ###Added
 - Event dispatcher interface to allow developer to use theirs owns dispatcher
