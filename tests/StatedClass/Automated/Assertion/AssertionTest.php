@@ -12,7 +12,7 @@
  * to richarddeloge@gmail.com so we can send you a copy immediately.
  *
  *
- * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
+ * @copyright   Copyright (c) 2009-2017 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
  *
@@ -32,7 +32,7 @@ use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
  * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion
  * @covers \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Assertion
  *
- * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
+ * @copyright   Copyright (c) 2009-2017 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
  *
