@@ -1,5 +1,9 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
+###[2.0.0] - 2017-01-06
+###Release
+- First release
+
 ###[2.0.0-beta1] - 2016-12-21
 ###Release
 - First beta
