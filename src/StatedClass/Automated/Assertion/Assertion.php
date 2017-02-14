@@ -70,7 +70,8 @@ class Assertion extends AbstractAssertion implements AssertionInterface
         //Browse properties assertion
         foreach ($this->propertiesAssertions as $property => $exceptedValue) {
             if (null !== $exceptedValue && \property_exists($proxy, $property)) {
-                //If the property exists, get it's value via the Reflection api (properties are often not accessible for public)
+                //If the property exists, get it's value via the Reflection api
+                // (properties are often not accessible for public)
                 $reflectionProperty = $reflectionObject->getProperty($property);
                 $reflectionProperty->setAccessible(true);
                 $propertyValue = $reflectionProperty->getValue($proxy);

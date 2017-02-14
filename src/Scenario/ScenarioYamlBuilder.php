@@ -152,7 +152,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      */
     private function configureBuilder(array $scenario): ScenarioYamlBuilder
     {
-        foreach ($scenario as $scenarioName => &$options) {
+        foreach ($scenario as &$options) {
             foreach ($options as $optionName => $optionValues) {
                 if (isset($this->yamlOptionsMap[$optionName])) {
                     $methodName = $this->yamlOptionsMap[$optionName];

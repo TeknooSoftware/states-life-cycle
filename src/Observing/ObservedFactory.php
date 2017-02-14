@@ -76,9 +76,9 @@ class ObservedFactory implements ObservedFactoryInterface
             throw new \RuntimeException('Missing observed class '.$observedClassName);
         }
 
-        $interfaceImplementingList = \class_implements($observedClassName);
+        $interfacesList = \class_implements($observedClassName);
 
-        if (!isset($interfaceImplementingList['Teknoo\States\LifeCycle\Observing\ObservedInterface'])) {
+        if (!isset($interfacesList['Teknoo\States\LifeCycle\Observing\ObservedInterface'])) {
             throw new \RuntimeException('The observed class does not implement the ObservedFactoryInterface');
         }
 
@@ -98,9 +98,9 @@ class ObservedFactory implements ObservedFactoryInterface
             throw new \RuntimeException('Missing trace class '.$traceClassName);
         }
 
-        $interfaceImplementingList = \class_implements($traceClassName);
+        $interfacesList = \class_implements($traceClassName);
 
-        if (!isset($interfaceImplementingList['Teknoo\States\LifeCycle\Trace\TraceInterface'])) {
+        if (!isset($interfacesList['Teknoo\States\LifeCycle\Trace\TraceInterface'])) {
             throw new \RuntimeException('The trace class does not implement the ObservedFactoryInterface');
         }
 

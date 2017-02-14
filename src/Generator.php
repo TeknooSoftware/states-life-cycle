@@ -108,13 +108,13 @@ class Generator
     }
 
     /**
-     * @param EventDispatcherBridgeInterface $eventDispatcherBridge
+     * @param EventDispatcherBridgeInterface $bridge
      *
      * @return self
      */
-    public function setEventDispatcher(EventDispatcherBridgeInterface $eventDispatcherBridge): Generator
+    public function setEventDispatcher(EventDispatcherBridgeInterface $bridge): Generator
     {
-        $this->eventDispatcherBridge = $eventDispatcherBridge;
+        $this->eventDispatcherBridge = $bridge;
 
         return $this;
     }

@@ -26,7 +26,8 @@ use Teknoo\States\Proxy\ProxyInterface;
 
 /**
  * Class Callback
- * Assertion implementation to delegated the validation to a callable (a callback or a closure) and return enabled states.
+ * Assertion implementation to delegated the validation to a callable (a callback or a closure) and
+ * return enabled states.
  *
  * @copyright   Copyright (c) 2009-2017 Richard Déloge (richarddeloge@gmail.com)
  *

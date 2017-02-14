@@ -24,7 +24,8 @@ namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property;
 
 /**
  * class IsGreaterOrEqualThan
- * Invokable class to use with Teknoo\States\LifeCycle\StatedClass\Automated\Assertion to check if a propery is great or equal
+ * Invokable class to use with Teknoo\States\LifeCycle\StatedClass\Automated\Assertion to check if a property
+ * is great or equal
  * to of $this->exceptedValue. (Perform <= checks).
  *
  *

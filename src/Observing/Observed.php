@@ -104,9 +104,9 @@ class Observed implements ObservedInterface
             throw new \RuntimeException('Missing event class '.$eventClassName);
         }
 
-        $interfaceImplementingList = \class_implements($eventClassName);
+        $interfacesList = \class_implements($eventClassName);
 
-        if (!isset($interfaceImplementingList['Teknoo\States\LifeCycle\Event\EventInterface'])) {
+        if (!isset($interfacesList['Teknoo\States\LifeCycle\Event\EventInterface'])) {
             throw new \RuntimeException('The event class does not implement the EventInterface');
         }
 

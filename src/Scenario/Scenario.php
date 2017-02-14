@@ -28,8 +28,8 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
 /**
  * Class Scenario
- * Default implementation of scenario class to allow developper to write interaction with a stated class and its instances
- * with others components of the application.
+ * Default implementation of scenario class to allow developper to write interaction with a stated class
+ * and its instances with others components of the application.
  *
  *
  * @copyright   Copyright (c) 2009-2017 Richard Déloge (richarddeloge@gmail.com)
@@ -121,14 +121,14 @@ class Scenario implements ScenarioInterface
      */
     private function checkNeededIncomingStates(EventInterface $event): bool
     {
-        $neededIncomingStatesList = $this->listNeededIncomingStates();
-        if (empty($neededIncomingStatesList)) {
+        $neededIncomingStates = $this->listNeededIncomingStates();
+        if (empty($neededIncomingStates)) {
             return true;
         }
 
         $incomingStateList = $event->getIncomingStates();
 
-        return empty(\array_diff($neededIncomingStatesList, $incomingStateList));
+        return empty(\array_diff($neededIncomingStates, $incomingStateList));
     }
 
     /**
@@ -146,14 +146,14 @@ class Scenario implements ScenarioInterface
      */
     private function checkNeededOutgoingStates(EventInterface $event): bool
     {
-        $neededOutgoingStatesList = $this->listNeededOutgoingStates();
-        if (empty($neededOutgoingStatesList)) {
+        $neededOutgoingStates = $this->listNeededOutgoingStates();
+        if (empty($neededOutgoingStates)) {
             return true;
         }
 
         $outgoingStatesList = $event->getOutgoingStates();
 
-        return empty(\array_diff($neededOutgoingStatesList, $outgoingStatesList));
+        return empty(\array_diff($neededOutgoingStates, $outgoingStatesList));
     }
 
     /**
@@ -221,12 +221,12 @@ class Scenario implements ScenarioInterface
      */
     private function checkNeededStatedClass(EventInterface $event): bool
     {
-        $neededStatedClassName = $this->getNeededStatedClass();
-        if (empty($neededStatedClassName)) {
+        $neededStatedClass = $this->getNeededStatedClass();
+        if (empty($neededStatedClass)) {
             return true;
         }
 
-        return $neededStatedClassName === $event->getObserved()->getStatedClassName();
+        return $neededStatedClass === $event->getObserved()->getStatedClassName();
     }
 
     /**

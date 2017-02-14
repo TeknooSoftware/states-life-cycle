@@ -24,7 +24,8 @@ namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property;
 
 /**
  * class IsNotNull
- * Invokable class to use with Teknoo\States\LifeCycle\StatedClass\Automated\Assertion to check if a propery is not null.
+ * Invokable class to use with Teknoo\States\LifeCycle\StatedClass\Automated\Assertion to check if
+ * a property is not null.
  *
  * @copyright   Copyright (c) 2009-2017 Richard Déloge (richarddeloge@gmail.com)
  *
