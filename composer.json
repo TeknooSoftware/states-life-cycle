@@ -21,7 +21,8 @@
         "teknoo/states": "~3.1.0-beta",
         "symfony/yaml": "~2.7||~3.0",
         "knplabs/gaufrette": "~0.4",
-        "psr/container-implementation": "^1.0.0"
+        "psr/container-implementation": "^1.0.0",
+        "php-di/php-di": "^5.4"
     },
     "require-dev": {
         "phpunit/phpunit": "~5.4",
