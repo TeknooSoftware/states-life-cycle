@@ -1,6 +1,16 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
-###[2.0.1] - 2017-02-15
+##[3.0.0-beta1] - 2017-06-30
+###Add
+- Migrate events dispatchers using Symfony from the package `statesBundle` to this package to
+ limit number of packages to require / uses. (Since 3.0, the
+ `StatesBundle` support PSR 11 Container Interopt, this feature is now
+ directly provided by this package.
+
+###Remove
+- Remove Generator to use the internal DI Container following PSR 11.
+
+##[2.0.1] - 2017-02-15
 ###Fix
 - Code style fix
 - License file follow Github specs
@@ -8,7 +18,7 @@
 - Update Travis to use this tool
 - Fix QA Errors
 
-###[2.0.0] - 2017-01-06
+##[2.0.0] - 2017-01-06
 ###Release
 - First release
 
