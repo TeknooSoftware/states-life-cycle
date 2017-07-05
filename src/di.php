@@ -90,7 +90,7 @@ return [
     ObserverInterface::class => get(Observer::class),
 
     //Scenario builder generator
-    ScenarioBuilder::class => function(Tokenizer $tokenizer) {
+    ScenarioBuilder::class => function (Tokenizer $tokenizer) {
         return function () use ($tokenizer) {
             return new ScenarioBuilder($tokenizer);
         };

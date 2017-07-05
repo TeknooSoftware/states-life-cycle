@@ -1,6 +1,6 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
-##[3.0.0-beta1] - 2017-06-30
+##[3.0.0-beta1] - 2017-07-06
 ###Add
 - Migrate events dispatchers using Symfony from the package `statesBundle` to this package to
  limit number of packages to require / uses. (Since 3.0, the
