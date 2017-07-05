@@ -18,7 +18,7 @@
     },
     "require":{
         "php": "~7.0",
-        "teknoo/states": "~3.1.0-beta",
+        "teknoo/states": "~3.1.0-beta1",
         "symfony/yaml": "~2.7||~3.0",
         "knplabs/gaufrette": "~0.4",
         "psr/container-implementation": "^1.0.0",
