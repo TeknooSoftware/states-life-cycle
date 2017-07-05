@@ -25,6 +25,6 @@ namespace Teknoo\States\LifeCycle;
 use DI\ContainerBuilder;
 
 $containerDefinition = new ContainerBuilder();
-$containerDefinition->addDefinitions('di.php');
+$containerDefinition->addDefinitions(__DIR__.'/di.php');
 
 return $containerDefinition->build();
