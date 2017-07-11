@@ -22,7 +22,6 @@
 
 namespace Teknoo\Tests\States\LifeCycle\Scenario;
 
-use Gaufrette\Filesystem;
 use Symfony\Component\Yaml\Parser;
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 use Teknoo\States\LifeCycle\Scenario\ScenarioInterface;
@@ -147,20 +146,6 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
     /**
      * @expectedException \TypeError
      */
-    public function testSetFilesystemBadFilesystem()
-    {
-        $this->build()->setFilesystem(null);
-    }
-
-    public function testSetFilesystem()
-    {
-        $builder = $this->build();
-        self::assertEquals($builder, $builder->setFilesystem($this->createMock(Filesystem::class, [], [], '', false)));
-    }
-
-    /**
-     * @expectedException \TypeError
-     */
     public function testLoadScenarioBadArg()
     {
         $this->build()->loadScenario(null);
@@ -203,12 +188,6 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
   run: [\'$instanceB\', \'switchToStateDefault\']
 ';
 
-        $filesystem = $this->createMock(Filesystem::class, [], [], '', false);
-        $builder->setFilesystem($filesystem);
-        $filesystem->expects(self::once())
-            ->method('read')
-            ->with('file/scenario.yaml')
-            ->willReturn($yamlContent);
 
         $parser = $this->createMock(Parser::class);
         $builder->setYamlParser($parser);
@@ -232,7 +211,7 @@ class ScenarioYamlBuilderTest extends AbstractScenarioBuilderTest
             }
         });
 
-        $builder->loadScenario('file/scenario.yaml');
+        $builder->loadScenario($yamlContent);
         self::assertInstanceOf(
             ScenarioInterface::class,
             $builder->build(

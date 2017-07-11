@@ -117,7 +117,6 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     public function testGetScenarioYamlBuilder()
     {
         $container = $this->buildContainer();
-        $container->set(Adapter::class, new Adapter\Local(__DIR__));
         $scenarioYamlBuilder1 = $container->get(ScenarioBuilderInterface::class);
         $scenarioYamlBuilder2 = $container->get(ScenarioYamlBuilder::class);
         self::assertInstanceOf(ScenarioBuilderInterface::class, $scenarioYamlBuilder1());

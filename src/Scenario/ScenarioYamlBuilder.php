@@ -22,7 +22,6 @@
 
 namespace Teknoo\States\LifeCycle\Scenario;
 
-use Gaufrette\Filesystem;
 use Symfony\Component\Yaml\Parser;
 
 /**
@@ -46,13 +45,6 @@ class ScenarioYamlBuilder extends ScenarioBuilder
      * @var Parser
      */
     private $yamlParser;
-
-    /**
-     * To read scenario file.
-     *
-     * @var Filesystem
-     */
-    private $filesystem;
 
     /**
      * @var string
@@ -89,30 +81,6 @@ class ScenarioYamlBuilder extends ScenarioBuilder
         $this->yamlParser = $yamlParser;
 
         return $this;
-    }
-
-    /**
-     * @param Filesystem $filesystem
-     *
-     * @return self
-     */
-    public function setFilesystem(Filesystem $filesystem): ScenarioYamlBuilder
-    {
-        $this->filesystem = $filesystem;
-
-        return $this;
-    }
-
-    /**
-     * @param string $fileName
-     *
-     * @return string
-     */
-    private function getScenarioContent(string $fileName): string
-    {
-        $string = $this->filesystem->read($fileName);
-
-        return $string;
     }
 
     /**
@@ -194,13 +162,13 @@ class ScenarioYamlBuilder extends ScenarioBuilder
     /**
      * To transform a yaml scenario to native scenario.
      *
-     * @param string $fileName
+     * @param string $scenario
      *
      * @return ScenarioYamlBuilder
      */
-    public function loadScenario(string $fileName): ScenarioYamlBuilder
+    public function loadScenario(string $scenario): ScenarioYamlBuilder
     {
-        $this->yamlScenario = $fileName;
+        $this->yamlScenario = $scenario;
 
         return $this;
     }
@@ -212,7 +180,7 @@ class ScenarioYamlBuilder extends ScenarioBuilder
     {
         $this->configureBuilder(
             $this->parseYaml(
-                $this->getScenarioContent($this->yamlScenario)
+                $this->yamlScenario
             )
         );
 

@@ -23,7 +23,6 @@
 namespace Teknoo\States\LifeCycle;
 
 use function DI\get;
-use Gaufrette\Filesystem;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Yaml\Parser;
 use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
@@ -98,11 +97,10 @@ return [
     ScenarioBuilderInterface::class => get(ScenarioBuilder::class),
 
     //Scenario yaml builder generator
-    ScenarioYamlBuilder::class => function (Tokenizer $tokenizer, Parser $parser, Filesystem $filesystem) {
-        return function () use ($tokenizer, $parser, $filesystem) {
+    ScenarioYamlBuilder::class => function (Tokenizer $tokenizer, Parser $parser) {
+        return function () use ($tokenizer, $parser) {
             return (new ScenarioYamlBuilder($tokenizer))
-                ->setYamlParser($parser)
-                ->setFilesystem($filesystem);
+                ->setYamlParser($parser);
         };
     },
 
