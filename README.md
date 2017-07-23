@@ -55,8 +55,8 @@ Shorts Examples
         {
             // ...
         }
-        
-       
+
+
         /**
          * @return AssertionInterface[]
          */
@@ -68,7 +68,7 @@ Shorts Examples
             ];
         }
     }
-    
+
     /**
      * File Travel/States/Schengen.php
      */
@@ -95,12 +95,12 @@ Shorts Examples
     
     //Scenario
     //Use the helper generator to get needed instance of observer and event dispatcher, it's not a mandatory tool
-    $generator = new Generator();
+    $di = include 'src/generator.php';
 
     //Scenario to enable Schengen state to travel of French man
-    $generator->getManager()
+    $di->get(ManagerInterface::class)
         ->registerScenario(
-            (new ScenarioBuilder($generator->getTokenizer()))
+            (new ScenarioBuilder($di->get(TokenizerInterface::class)))
             ->towardStatedClass('demo\Person')
             ->onIncomingState('French')
             ->run(function (EventInterface $event) {
@@ -111,9 +111,9 @@ Shorts Examples
     );
     
     //Scenario to enable UK state to travel of English man
-    $generator->getManager()
+    $di->get(ManagerInterface::class)
         ->registerScenario(
-            (new ScenarioBuilder($generator->getTokenizer()))
+            (new ScenarioBuilder($di->get(TokenizerInterface::class)))
             ->towardStatedClass('demo\Person')
             ->onIncomingState('English')
             ->run(function (EventInterface $event) {
@@ -155,31 +155,25 @@ To install this library with composer, run this command :
 
     composer require teknoo/states-life-cycle
     
-You must install a event dispatcher, like symfony/event-dispatcher.    
+You must install a event dispatcher, like symfony/event-dispatcher.
+
+    composer require symfony/event-dispatcher
     
-Next, you must create your own Event class, implementing `Teknoo\States\LifeCycle\Event\EventInterface`.
-  
-    namespace Acme;
-   
-    use Symfony\Component\EventDispatcher\Event as SymfonyEvent;
-   
-    class Event extends SymfonyEvent implements Teknoo\States\LifeCycle\Event\EventInterface
-    {
-        use Teknoo\States\LifeCycle\Event\EventTrait;
-    }
+The library provide a native support of `Symfony Event Dispatcher`. If you use another
+event dispatcher, you must write you own `EventDispatcherBridgeInterface`.
 
 Next, you must configure the generator, with the event dispatcher bridge defined in `demo/EventDispatcherBridge.php` :
     
-    $generator = new Generator();
-    $generator->setEventClassName(Acme\Event::class);
-    $generator->setEventDispatcher(new EventDispatcherBridge(new EventDispatcher()));
-    
+    $di = include 'src/generator.php';
+
+A PHP-DI configuration is available into `src/di.php`.
 
 This library requires :
 
     * PHP 7+
-    * Composer
-    * Teknoo Software States 3+
+    * Teknoo Software States 3.1+
+    * PHP-DI
+    * Symfony event dispatcher (not required)
     * Symfony yaml to parse yaml scenarii (not required)
 
 How to create an observed stated class and Scenarri
