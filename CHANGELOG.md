@@ -5,7 +5,6 @@
 - Remove dependency to Gaufrette. ScenarioYamlBuilder needs to pass
 directly the scenario yaml value and not it's file.
 
-
 ###Fix
 - Demo
 
