@@ -166,7 +166,8 @@ Next, you must configure the generator, with the event dispatcher bridge defined
     
     $di = include 'src/generator.php';
 
-A PHP-DI configuration is available into `src/di.php`.
+A PHP-DI configuration is available into `src/di.php`. You can use PHP-DI
+with Symfony with [PHP-DI Symfony Bridge](http://php-di.org/doc/frameworks/symfony2.html).
 
 This library requires :
 
