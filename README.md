@@ -180,8 +180,7 @@ This library requires :
     * PHP 7+
     * Composer
     * Teknoo Software States 3+
-    * Symfony yaml to parse yaml scenarii
-    * Knplabs gaufrette to read yaml scenarii
+    * Symfony yaml to parse yaml scenarii (not required)
 
 How to create an observed stated class and Scenarri
 ---------------------------------------------------
