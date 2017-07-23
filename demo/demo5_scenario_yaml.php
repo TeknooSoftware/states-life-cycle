@@ -29,66 +29,60 @@ use Gaufrette\Filesystem;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Yaml\Parser;
 use Teknoo\States\LifeCycle\Generator;
+use Teknoo\States\LifeCycle\Observing\ObserverInterface;
+use Teknoo\States\LifeCycle\Scenario\ManagerInterface;
 use Teknoo\States\LifeCycle\Scenario\Scenario;
 use Teknoo\States\LifeCycle\Scenario\ScenarioYamlBuilder;
+use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 
 include dirname(__DIR__).'/vendor/autoload.php';
 
 //Use the helper generator to get needed instance of observer and event dispatcher, it's not a mandatory tool
-$generator = new Generator();
-$generator->setEventClassName(Event::class);
-$generator->setEventDispatcher(new EventDispatcherBridge(new EventDispatcher()));
+$di = include __DIR__.'/../src/generator.php';
 
 //Create the scenario builder
 $instanceA = new ClassA();
 $instanceB = new ClassB();
-$generator->getObserver()->attachObject($instanceA);
-
-$adapter = new Local(__DIR__.'\scenarii');
-$filesystem = new Filesystem($adapter);
+$di->get(ObserverInterface::class)->attachObject($instanceA);
 
 $parser = new Parser();
 
 //First scenario
-$generator->getManager()
+$di->get(ManagerInterface::class)
     ->registerScenario(
-        (new ScenarioYamlBuilder($generator->getTokenizer()))
+        (new ScenarioYamlBuilder($di->get(TokenizerInterface::class)))
             ->setYamlParser($parser)
-            ->setFilesystem($filesystem)
-            ->loadScenario('scenario1.yml')
+            ->loadScenario(\file_get_contents(__DIR__.'/scenarii/scenario1.yml'))
             ->setParameter('instanceB', $instanceB)
             ->build(new Scenario())
 );
 
 //Second scenario
-$generator->getManager()
+$di->get(ManagerInterface::class)
     ->registerScenario(
-        (new ScenarioYamlBuilder($generator->getTokenizer()))
+        (new ScenarioYamlBuilder($di->get(TokenizerInterface::class)))
             ->setYamlParser($parser)
-            ->setFilesystem($filesystem)
-            ->loadScenario('scenario2.yml')
+            ->loadScenario(\file_get_contents(__DIR__.'/scenarii/scenario2.yml'))
             ->setParameter('instanceB', $instanceB)
             ->build(new Scenario())
 );
 
 //Third scenario
-$generator->getManager()
+$di->get(ManagerInterface::class)
     ->registerScenario(
-        (new ScenarioYamlBuilder($generator->getTokenizer()))
+        (new ScenarioYamlBuilder($di->get(TokenizerInterface::class)))
             ->setYamlParser($parser)
-            ->setFilesystem($filesystem)
-            ->loadScenario('scenario3.yml')
+            ->loadScenario(\file_get_contents(__DIR__.'/scenarii/scenario3.yml'))
             ->setParameter('instanceB', $instanceB)
             ->build(new Scenario())
 );
 
 //Fourth scenario
-$generator->getManager()
+$di->get(ManagerInterface::class)
     ->registerScenario(
-        (new ScenarioYamlBuilder($generator->getTokenizer()))
+        (new ScenarioYamlBuilder($di->get(TokenizerInterface::class)))
             ->setYamlParser($parser)
-            ->setFilesystem($filesystem)
-            ->loadScenario('scenario4.yml')
+            ->loadScenario(\file_get_contents(__DIR__.'/scenarii/scenario4.yml'))
             ->setParameter('instanceB', $instanceB)
             ->build(new Scenario())
 );

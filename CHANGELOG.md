@@ -1,5 +1,14 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
+##[3.0.0-beta2] - 2017-07-11
+###Remove
+- Remove dependency to Gaufrette. ScenarioYamlBuilder needs to pass
+directly the scenario yaml value and not it's file.
+
+
+###Fix
+- Demo
+
 ##[3.0.0-beta1] - 2017-07-06
 ###Add
 - Migrate events dispatchers using Symfony from the package `statesBundle` to this package to

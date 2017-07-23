@@ -27,27 +27,27 @@ use demo\AcmeUpdateStatesDependencies\ClassA\States\State2;
 use demo\AcmeUpdateStatesDependencies\ClassA\States\State3;
 use demo\AcmeUpdateStatesDependencies\ClassA\States\StateDefault;
 use demo\AcmeUpdateStatesDependencies\ClassB\ClassB;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Teknoo\States\LifeCycle\Generator;
+use Teknoo\States\LifeCycle\Observing\ObserverInterface;
+use Teknoo\States\LifeCycle\Scenario\ManagerInterface;
 use Teknoo\States\LifeCycle\Scenario\Scenario;
 use Teknoo\States\LifeCycle\Scenario\ScenarioBuilder;
+use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
 
 include dirname(__DIR__).'/vendor/autoload.php';
 
 //Use the helper generator to get needed instance of observer and event dispatcher, it's not a mandatory tool
-$generator = new Generator();
-$generator->setEventClassName(Event::class);
-$generator->setEventDispatcher(new EventDispatcherBridge(new EventDispatcher()));
+$di = include __DIR__.'/../src/generator.php';
 
 //Create the scenario builder
 $instanceA = new ClassA();
 $instanceB = new ClassB();
-$generator->getObserver()->attachObject($instanceA);
+$di->get(ObserverInterface::class)->attachObject($instanceA);
 
 //First scenario
-$generator->getManager()
+$di->get(ManagerInterface::class)
     ->registerScenario(
-        (new ScenarioBuilder($generator->getTokenizer()))
+        (new ScenarioBuilder($di->get(TokenizerInterface::class)))
         ->towardStatedClass('demo\AcmeUpdateStatesDependencies\ClassA')
         ->onIncomingState(State2::class)
         ->run(function () use ($instanceB) {
@@ -57,9 +57,9 @@ $generator->getManager()
 );
 
 //Second scenario
-$generator->getManager()
+$di->get(ManagerInterface::class)
     ->registerScenario(
-        (new ScenarioBuilder($generator->getTokenizer()))
+        (new ScenarioBuilder($di->get(TokenizerInterface::class)))
         ->towardStatedClass('demo\AcmeUpdateStatesDependencies\ClassA')
         ->onIncomingState(State3::class)
         ->ifInState(State2::class)
@@ -70,9 +70,9 @@ $generator->getManager()
 );
 
 //Third scenario
-$generator->getManager()
+$di->get(ManagerInterface::class)
     ->registerScenario(
-        (new ScenarioBuilder($generator->getTokenizer()))
+        (new ScenarioBuilder($di->get(TokenizerInterface::class)))
         ->towardStatedClass('demo\AcmeUpdateStatesDependencies\ClassA')
         ->onIncomingState(State3::class)
         ->onOutgoingState(State2::class)
@@ -84,9 +84,9 @@ $generator->getManager()
 );
 
 //Fourth scenario
-$generator->getManager()
+$di->get(ManagerInterface::class)
     ->registerScenario(
-        (new ScenarioBuilder($generator->getTokenizer()))
+        (new ScenarioBuilder($di->get(TokenizerInterface::class)))
         ->towardStatedClass('demo\NonExistant\Class')
         ->onIncomingState('State3')
         ->onOutgoingState('State2')

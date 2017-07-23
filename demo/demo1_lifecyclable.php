@@ -30,12 +30,11 @@ use demo\LifeCyclableAcme\States\State2;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Teknoo\States\LifeCycle\Event\EventInterface;
 use Teknoo\States\LifeCycle\Generator;
+use Teknoo\States\LifeCycle\Observing\ObserverInterface;
 
 //Use the helper generator to get needed instance of observer and event dispatcher, it's not a mandatory tool
-$generator = new Generator();
-$generator->setEventClassName(Event::class);
-$generator->setEventDispatcher(new EventDispatcherBridge(new EventDispatcher()));
-$eventDistpatcher = $generator->getEventDispatcher();
+$di = include __DIR__.'/../src/generator.php';
+$eventDistpatcher = $di->get(EventDispatcher::class);
 
 $eventDistpatcher->addListener('demo_lifecyclableacme', function (EventInterface $event) {
     echo PHP_EOL.PHP_EOL.'Listen event "demo_lifecyclableacme"';
@@ -80,7 +79,7 @@ $lifeCyclableAcme = new LifeCyclableAcme();
 echo PHP_EOL.PHP_EOL.'Instance not registered, no event';
 $lifeCyclableAcme->notifyObserved();
 
-$observer = $generator->getObserver();
+$observer = $di->get(ObserverInterface::class);
 $observer->attachObject($lifeCyclableAcme);
 
 echo PHP_EOL.PHP_EOL.'Instance registered, first event';

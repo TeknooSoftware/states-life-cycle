@@ -26,14 +26,13 @@ use demo\AutomatedLifeCyclableAcme\AutomatedLifeCyclableAcme;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Teknoo\States\LifeCycle\Event\EventInterface;
 use Teknoo\States\LifeCycle\Generator;
+use Teknoo\States\LifeCycle\Observing\ObserverInterface;
 
 include dirname(__DIR__).'/vendor/autoload.php';
 
 //Use the helper generator to get needed instance of observer and event dispatcher, it's not a mandatory tool
-$generator = new Generator();
-$generator->setEventClassName(Event::class);
-$generator->setEventDispatcher(new EventDispatcherBridge(new EventDispatcher()));
-$eventDistpatcher = $generator->getEventDispatcher();
+$di = include __DIR__.'/../src/generator.php';
+$eventDistpatcher = $di->get(EventDispatcher::class);
 
 $eventDistpatcher->addListener('demo_automatedlifecyclableacme', function (EventInterface $event) {
     echo PHP_EOL.PHP_EOL.'Listen event "demo_automatedlifecyclableacme"';
@@ -60,7 +59,7 @@ $eventDistpatcher->addListener('demo_automatedlifecyclableacme:state2', function
 
 echo PHP_EOL.'Create new automated and lifecyclable instance and attach it to the observer';
 $automatedLifeCyclable = new AutomatedLifeCyclableAcme();
-$generator->getObserver()->attachObject($automatedLifeCyclable);
+$di->get(ObserverInterface::class)->attachObject($automatedLifeCyclable);
 
 echo PHP_EOL.'No enabled states :';
 echo PHP_EOL.'Enabled states : '.implode(', ', $automatedLifeCyclable->listEnabledStates());
