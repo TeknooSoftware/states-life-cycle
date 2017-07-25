@@ -36,7 +36,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AbstractAssertion;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-abstract class AbstractAssertionTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractAssertionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return AbstractAssertion

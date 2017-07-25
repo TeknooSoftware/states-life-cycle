@@ -36,7 +36,7 @@ use Teknoo\States\LifeCycle\Trace\EntryInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-abstract class AbstractEntryTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractEntryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param $observedInterface
@@ -65,7 +65,10 @@ abstract class AbstractEntryTest extends \PHPUnit_Framework_TestCase
 
     public function testConstruct()
     {
-        $this->build($this->createMock(ObservedInterface::class), []);
+        self::assertInstanceOf(
+            EntryInterface::class,
+            $this->build($this->createMock(ObservedInterface::class), [])
+        );
     }
 
     public function testGetObserved()

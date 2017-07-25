@@ -36,7 +36,7 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-abstract class AbstractLifeCyclableTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractLifeCyclableTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return LifeCyclableInterface

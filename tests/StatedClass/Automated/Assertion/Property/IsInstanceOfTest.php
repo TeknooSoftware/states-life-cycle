@@ -36,7 +36,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsInstanceO
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class IsInstanceOfTest extends \PHPUnit_Framework_TestCase
+class IsInstanceOfTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return IsInstanceOf

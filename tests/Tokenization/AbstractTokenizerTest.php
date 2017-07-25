@@ -37,7 +37,7 @@ use Teknoo\Tests\States\LifeCycle\StatedClass\Support\Acme\Acme;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-abstract class AbstractTokenizerTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractTokenizerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return TokenizerInterface

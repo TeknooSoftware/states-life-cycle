@@ -37,7 +37,7 @@ use Teknoo\States\LifeCycle\Scenario\ScenarioInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-abstract class AbstractManagerTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractManagerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return ManagerInterface

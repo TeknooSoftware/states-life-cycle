@@ -40,7 +40,7 @@ use Teknoo\Tests\States\LifeCycle\Support\Event;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-abstract class AbstractObservedTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractObservedTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param mixed $instance

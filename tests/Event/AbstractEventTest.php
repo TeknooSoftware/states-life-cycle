@@ -37,7 +37,7 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-abstract class AbstractEventTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractEventTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param $observed

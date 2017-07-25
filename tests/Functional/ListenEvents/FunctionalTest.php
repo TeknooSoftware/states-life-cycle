@@ -47,7 +47,7 @@ use Teknoo\Tests\States\LifeCycle\Support\Event;
  * @author      Richard Déloge <richarddeloge@gmail.com>
  * @coversNothing
  */
-class FunctionalTest extends \PHPUnit_Framework_TestCase
+class FunctionalTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var EventDispatcherBridgeInterface

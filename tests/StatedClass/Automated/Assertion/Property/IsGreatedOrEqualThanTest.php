@@ -36,7 +36,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsGreaterOr
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class IsGreatedOrEqualThanTest extends \PHPUnit_Framework_TestCase
+class IsGreatedOrEqualThanTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return IsGreaterOrEqualThan

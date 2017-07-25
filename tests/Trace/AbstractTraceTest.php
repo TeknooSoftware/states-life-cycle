@@ -37,7 +37,7 @@ use Teknoo\States\LifeCycle\Trace\TraceInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractTraceTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return TraceInterface
@@ -46,7 +46,7 @@ abstract class AbstractTraceTest extends \PHPUnit_Framework_TestCase
 
     public function testConstruct()
     {
-        $this->build();
+        self::assertInstanceOf(TraceInterface::class, $this->build());
     }
 
     public function testGetTrace()

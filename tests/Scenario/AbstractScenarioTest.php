@@ -37,7 +37,7 @@ use Teknoo\States\LifeCycle\Scenario\ScenarioInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractScenarioTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return ScenarioInterface
@@ -102,6 +102,6 @@ abstract class AbstractScenarioTest extends \PHPUnit_Framework_TestCase
     public function testInvoke()
     {
         $eventMock = $this->createMock(EventInterface::class);
-        $this->build()->__invoke($eventMock);
+        self::assertEmpty($this->build()->__invoke($eventMock));
     }
 }

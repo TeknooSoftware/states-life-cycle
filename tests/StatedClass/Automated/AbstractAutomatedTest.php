@@ -37,7 +37,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\AutomatedInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-abstract class AbstractAutomatedTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractAutomatedTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return AutomatedInterface

@@ -36,7 +36,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsNotEqual;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class IsNotEqualTest extends \PHPUnit_Framework_TestCase
+class IsNotEqualTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return IsNotEqual

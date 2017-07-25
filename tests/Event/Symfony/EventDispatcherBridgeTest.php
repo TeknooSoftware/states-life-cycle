@@ -31,7 +31,7 @@ use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
  * Test EventDispatcherBridgeTest
  * @covers \Teknoo\States\LifeCycle\Event\Symfony\EventDispatcherBridge
  */
-class EventDispatcherBridgeTest extends \PHPUnit_Framework_TestCase
+class EventDispatcherBridgeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var EventDispatcherInterface

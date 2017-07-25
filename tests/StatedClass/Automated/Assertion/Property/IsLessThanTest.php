@@ -36,7 +36,7 @@ use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property\IsLessThan;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class IsLessThanTest extends \PHPUnit_Framework_TestCase
+class IsLessThanTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return IsLessThan

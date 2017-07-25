@@ -40,7 +40,7 @@ use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-abstract class AbstractObserverTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractObserverTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return ObserverInterface

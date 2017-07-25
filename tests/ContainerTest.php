@@ -50,7 +50,7 @@ use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class ContainerTest extends \PHPUnit_Framework_TestCase
+class ContainerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return Container

@@ -38,7 +38,7 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-abstract class AbstractObservedFactoryTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractObservedFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return ObservedFactoryInterface
