@@ -120,11 +120,6 @@ class ObservedFactory implements ObservedFactoryInterface
         $traceClassName = $this->traceClassName;
         $observedClassName = $this->observedClassName;
 
-        return new $observedClassName(
-            $lifeCyclableInstance,
-            $observer,
-            new $traceClassName(),
-            $this->eventClassName
-        );
+        return new $observedClassName($lifeCyclableInstance, $observer, new $traceClassName(), $this->eventClassName);
     }
 }

@@ -190,10 +190,7 @@ class Observed implements ObservedInterface
     {
         $trace = $this->getStateTrace();
 
-        $trace->addEntry(
-            $this,
-            $this->getObject()->listEnabledStates()
-        );
+        $trace->addEntry($this, $this->getObject()->listEnabledStates());
 
         return $this;
     }
