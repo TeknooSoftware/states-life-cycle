@@ -102,7 +102,8 @@ class ObserverTest extends AbstractObserverTest
                 ['event_name1:state1', $event],
                 ['event_name1:state2', $event],
                 ['event_name1:+state1', $event],
-                ['event_name1:-state3', $event]);
+                ['event_name1:-state3', $event]
+            );
 
         $service->setTokenizer($tokenizer);
         self::assertEquals($service, $service->dispatchNotification($instance));

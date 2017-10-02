@@ -1,5 +1,9 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
+##[3.0.0-beta4] - 2017-10-02
+###Updated
+- Update requirements
+
 ##[3.0.0-beta3] - 2017-07-25
 ###Updated
 - Update dev libraries used for this project and use now PHPUnit 6.2 for tests.

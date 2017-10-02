@@ -79,7 +79,6 @@ return [
         EventDispatcherBridgeInterface $bridge,
         TokenizerInterface $tokenizer
     ): ObserverInterface {
-
         $observer = new Observer($factory);
         $observer->addEventDispatcher($bridge);
         $observer->setTokenizer($tokenizer);
