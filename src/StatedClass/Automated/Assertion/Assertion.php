@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * States.
  *
@@ -93,6 +95,6 @@ class Assertion extends AbstractAssertion implements AssertionInterface
             }
         }
 
-        return $asserted;
+        return !empty($asserted);
     }
 }
