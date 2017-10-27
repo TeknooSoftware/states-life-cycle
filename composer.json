@@ -32,9 +32,6 @@
         "symfony/yaml": "~2.7||~3.0",
         "symfony/event-dispatcher":"~2.7||~3.0"
     },
-    "suggest": {
-        "symfony/yaml": "To able to use Scenario in Yaml format"
-    },
     "autoload": {
         "psr-4": {
             "Teknoo\\States\\LifeCycle\\": ["src/"],
