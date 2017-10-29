@@ -51,7 +51,7 @@ class EventDispatcherBridge implements EventDispatcherBridgeInterface
     /**
      * {@inheritdoc}
      */
-    public function dispatch($eventName, EventInterface $event = null): EventDispatcherBridgeInterface
+    public function dispatch(string $eventName, EventInterface $event = null): EventDispatcherBridgeInterface
     {
         $this->eventDispatcher->dispatch($eventName, $event);
 
@@ -61,7 +61,7 @@ class EventDispatcherBridge implements EventDispatcherBridgeInterface
     /**
      * {@inheritdoc}
      */
-    public function addListener($eventName, $listener, $priority = 0): EventDispatcherBridgeInterface
+    public function addListener(string $eventName, callable $listener, int $priority = 0): EventDispatcherBridgeInterface
     {
         $this->eventDispatcher->addListener($eventName, $listener, $priority);
 
@@ -71,7 +71,7 @@ class EventDispatcherBridge implements EventDispatcherBridgeInterface
     /**
      * {@inheritdoc}
      */
-    public function removeListener($eventName, $listener): EventDispatcherBridgeInterface
+    public function removeListener(string $eventName, callable $listener): EventDispatcherBridgeInterface
     {
         $this->eventDispatcher->removeListener($eventName, $listener);
 

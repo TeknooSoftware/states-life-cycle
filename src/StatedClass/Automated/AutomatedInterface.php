@@ -22,7 +22,6 @@
 
 namespace Teknoo\States\LifeCycle\StatedClass\Automated;
 
-use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface;
 use Teknoo\States\Proxy\ProxyInterface;
 
 /**
@@ -45,11 +44,4 @@ interface AutomatedInterface extends ProxyInterface
      * @return AutomatedInterface
      */
     public function updateStates(): AutomatedInterface;
-
-    /**
-     * To get all validations rules needed by instances.
-     *
-     * @return AssertionInterface[]
-     */
-    public function getStatesAssertions(): array;
 }

@@ -22,6 +22,7 @@
 
 namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion;
 
+use Teknoo\Immutable\ImmutableInterface;
 use Teknoo\States\Proxy\ProxyInterface;
 
 /**
@@ -35,17 +36,12 @@ use Teknoo\States\Proxy\ProxyInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-interface AssertionInterface
+interface AssertionInterface extends ImmutableInterface
 {
     /**
      * @param ProxyInterface $proxy
      *
-     * @return bool
+     * @return AssertionInterface
      */
-    public function isValid(ProxyInterface $proxy): bool;
-
-    /**
-     * @return string[]
-     */
-    public function getStatesList(): array;
+    public function check(ProxyInterface $proxy): AssertionInterface;
 }

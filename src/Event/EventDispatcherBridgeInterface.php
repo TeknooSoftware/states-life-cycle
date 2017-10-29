@@ -35,7 +35,7 @@ interface EventDispatcherBridgeInterface
      *
      * @return EventDispatcherBridgeInterface
      */
-    public function dispatch($eventName, EventInterface $event = null): EventDispatcherBridgeInterface;
+    public function dispatch(string $eventName, EventInterface $event = null): EventDispatcherBridgeInterface;
 
     /**
      * Adds an event listener that listens on the specified events.
@@ -47,7 +47,7 @@ interface EventDispatcherBridgeInterface
      *
      * @return EventDispatcherBridgeInterface
      */
-    public function addListener($eventName, $listener, $priority = 0): EventDispatcherBridgeInterface;
+    public function addListener(string $eventName, callable $listener, int $priority = 0): EventDispatcherBridgeInterface;
 
     /**
      * Removes an event listener from the specified events.
@@ -57,5 +57,5 @@ interface EventDispatcherBridgeInterface
      *
      * @return EventDispatcherBridgeInterface
      */
-    public function removeListener($eventName, $listener): EventDispatcherBridgeInterface;
+    public function removeListener(string $eventName, callable $listener): EventDispatcherBridgeInterface;
 }

@@ -24,6 +24,9 @@ declare(strict_types=1);
 
 namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property;
 
+use Teknoo\Immutable\ImmutableInterface;
+use Teknoo\Immutable\ImmutableTrait;
+
 /**
  * class IsEqual
  * Invokable class to use with Teknoo\States\LifeCycle\StatedClass\Automated\Assertion to check if a propery is equal
@@ -37,8 +40,10 @@ namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class IsEqual
+class IsEqual implements ImmutableInterface
 {
+    use ImmutableTrait;
+
     /**
      * @var mixed
      */
@@ -51,6 +56,8 @@ class IsEqual
      */
     public function __construct($exceptedValue)
     {
+        $this->uniqueConstructorCheck();
+
         $this->exceptedValue = $exceptedValue;
     }
 

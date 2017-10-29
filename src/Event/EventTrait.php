@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace Teknoo\States\LifeCycle\Event;
 
+use Teknoo\Immutable\ImmutableTrait;
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
@@ -42,6 +43,8 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
  */
 trait EventTrait
 {
+    use ImmutableTrait;
+
     /**
      * @var ObservedInterface
      */
@@ -66,6 +69,8 @@ trait EventTrait
      */
     public function __construct(ObservedInterface $observer, array $incomingStates, array $outgoingStates)
     {
+        $this->uniqueConstructorCheck();
+
         $this->observed = $observer;
         $this->incomingStates = $incomingStates;
         $this->outgoingStates = $outgoingStates;

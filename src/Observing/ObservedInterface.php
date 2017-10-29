@@ -25,6 +25,7 @@ namespace Teknoo\States\LifeCycle\Observing;
 use Teknoo\States\LifeCycle\Event\EventInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 use Teknoo\States\LifeCycle\Trace\TraceInterface;
+use Teknoo\States\Proxy\ProxyInterface;
 
 /**
  * Interface ObservedInterface
@@ -77,9 +78,11 @@ interface ObservedInterface
     /**
      * Called by the observed stated class instance to notify to the observer that its states are changed.
      *
+     * @param ProxyInterface $proxy
+     *
      * @return ObservedInterface
      */
-    public function observeUpdate(): ObservedInterface;
+    public function observeUpdate(ProxyInterface $proxy): ObservedInterface;
 
     /**
      * To get the states trace of the observed object, to allow browse in and know previous states

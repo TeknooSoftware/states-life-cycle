@@ -24,6 +24,9 @@ declare(strict_types=1);
 
 namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion;
 
+use Teknoo\Immutable\ImmutableTrait;
+use Teknoo\States\Proxy\ProxyInterface;
+
 /**
  * class AbstractAssertion
  * Abstract implementation of AssertionInterface.
@@ -37,6 +40,8 @@ namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion;
  */
 abstract class AbstractAssertion implements AssertionInterface
 {
+    use ImmutableTrait;
+
     /**
      * List of stated to enable if the assertion is valid.
      *
@@ -49,14 +54,28 @@ abstract class AbstractAssertion implements AssertionInterface
      */
     public function __construct($statesList)
     {
+        $this->uniqueConstructorCheck();
+
         $this->statesList = (array) $statesList;
     }
 
     /**
+     * @param ProxyInterface $proxy
+     * @return bool
+     */
+    abstract protected function isValid(ProxyInterface $proxy): bool;
+
+    /**
      * {@inheritdoc}
      */
-    public function getStatesList(): array
+    public function check(ProxyInterface $proxy): AssertionInterface
     {
-        return $this->statesList;
+        if ($this->isValid($proxy)) {
+            foreach ($this->statesList as $state) {
+                $proxy->enableState($state);
+            }
+        }
+
+        return $this;
     }
 }

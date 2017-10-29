@@ -24,6 +24,8 @@ declare(strict_types=1);
 
 namespace Teknoo\States\LifeCycle\StatedClass\Automated;
 
+use Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface;
+
 /**
  * Class AutomatedTrait
  * Trait to implement in proxy of your stated classes to add automated behaviors.
@@ -41,68 +43,24 @@ namespace Teknoo\States\LifeCycle\StatedClass\Automated;
 trait AutomatedTrait
 {
     /**
-     * Get the list of all new states.
+     * To get all validations rules needed by instances.
      *
-     * @return string[]
+     * @return AssertionInterface[]
      */
-    private function getNewStateList(): array
-    {
-        $statesList = [];
+    abstract protected function getStatesAssertions(): array;
 
-        foreach ($this->getStatesAssertions() as $stateAssertion) {
-            if ($stateAssertion->isValid($this)) {
-                $statesList = \array_merge(
-                    $statesList,
-                    \array_flip($stateAssertion->getStatesList())
-                );
+    /**
+     * @return \Generator|AssertionInterface[]
+     */
+    private function iterateAssertions()
+    {
+        foreach ($this->getStatesAssertions() as $assertion) {
+            if (!$assertion instanceof AssertionInterface) {
+                throw new \RuntimeException('Error, all assertions must implements AssertionInterface');
             }
+
+            yield $assertion;
         }
-
-        return \array_keys($statesList);
-    }
-
-    /**
-     * To remove canonical states name in the list to avoid error.
-     *
-     * @param array $newStateList
-     *
-     * @return AutomatedInterface
-     */
-    private function filterStatesNames(array &$newStateList): AutomatedInterface
-    {
-        foreach ($newStateList as &$stateName) {
-            $this->validateName($stateName);
-        }
-
-        return $this;
-    }
-
-    /**
-     * To enable and disable states according validations rules.
-     *
-     * @param string[] $newStateList
-     *
-     * @return AutomatedInterface
-     */
-    private function switchToNewStates(array $newStateList): AutomatedInterface
-    {
-        $this->filterStatesNames($newStateList);
-
-        $lastEnabledStates = $this->listEnabledStates();
-
-        $outgoingStates = \array_diff($lastEnabledStates, $newStateList);
-        foreach ($outgoingStates as $stateName) {
-            //disable older states
-            $this->disableState($stateName);
-        }
-
-        $incomingStates = \array_diff($newStateList, $lastEnabledStates);
-        foreach ($incomingStates as $stateName) {
-            //enable missing states
-            $this->enableState($stateName);
-        }
-
-        return $this;
     }
 
     /**
@@ -112,17 +70,11 @@ trait AutomatedTrait
      */
     public function updateStates(): AutomatedInterface
     {
-        $this->switchToNewStates(
-            $this->getNewStateList()
-        );
+        $this->disableAllStates();
+        foreach ($this->iterateAssertions() as $assertion) {
+            $assertion->check($this);
+        }
 
         return $this;
     }
-
-    /**
-     * To get all validations rules needed by instances.
-     *
-     * @return \Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\AssertionInterface[]
-     */
-    abstract public function getStatesAssertions(): array;
 }

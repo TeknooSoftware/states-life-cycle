@@ -64,7 +64,7 @@ class Assertion extends AbstractAssertion implements AssertionInterface
     /**
      * {@inheritdoc}
      */
-    public function isValid(ProxyInterface $proxy): bool
+    protected function isValid(ProxyInterface $proxy): bool
     {
         $asserted = true;
 

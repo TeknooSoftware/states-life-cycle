@@ -51,7 +51,7 @@ trait AutomatedLifeCyclableTrait
     public function updateStates(): AutomatedInterface
     {
         $this->automatedUpdateStates();
-        $this->notifyObserved();
+        $this->notifyObservers();
 
         return $this;
     }

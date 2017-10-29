@@ -50,13 +50,6 @@ interface ObserverInterface
     public function setTokenizer(TokenizerInterface $tokenizer): ObserverInterface;
 
     /**
-     * To get the tokenizer to generate events name to use to distpach changes.
-     *
-     * @return TokenizerInterface
-     */
-    public function getTokenizer(): TokenizerInterface;
-
-    /**
      * To register a dispatcher to use to dispatch an event from an observed's change.
      *
      * @param EventDispatcherBridgeInterface $dispatcher
@@ -75,13 +68,6 @@ interface ObserverInterface
     public function removeEventDispatcher(EventDispatcherBridgeInterface $dispatcher): ObserverInterface;
 
     /**
-     * To list all dispatchers to use to dispatch an event from an observed's change.
-     *
-     * @return EventDispatcherBridgeInterface[]
-     */
-    public function listEventDispatcher(): array;
-
-    /**
      * To observe a new stated class instance to dispatch instance's change.
      *
      * @param LifeCyclableInterface $object
@@ -98,13 +84,6 @@ interface ObserverInterface
      * @return ObserverInterface
      */
     public function detachObject(LifeCyclableInterface $object): ObserverInterface;
-
-    /**
-     * To list all observed stated class instance attached to this observer.
-     *
-     * @return ObservedInterface[]
-     */
-    public function listObserved(): array;
 
     /**
      * To extract change from a stated class instance and broadcast change to the system.

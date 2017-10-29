@@ -22,6 +22,7 @@
 
 namespace Teknoo\States\LifeCycle\Event;
 
+use Teknoo\Immutable\ImmutableInterface;
 use Teknoo\States\LifeCycle\Observing\ObservedInterface;
 use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
 
@@ -36,7 +37,7 @@ use Teknoo\States\LifeCycle\StatedClass\LifeCyclableInterface;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-interface EventInterface
+interface EventInterface extends ImmutableInterface
 {
     /**
      * @param ObservedInterface $observer

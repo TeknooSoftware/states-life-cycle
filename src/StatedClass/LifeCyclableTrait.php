@@ -85,10 +85,10 @@ trait LifeCyclableTrait
      *
      * @return LifeCyclableInterface
      */
-    public function notifyObserved(): LifeCyclableInterface
+    public function notifyObservers(): LifeCyclableInterface
     {
         foreach ($this->observedList as $observed) {
-            $observed->observeUpdate();
+            $observed->observeUpdate($this);
         }
 
         return $this;

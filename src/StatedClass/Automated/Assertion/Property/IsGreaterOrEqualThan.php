@@ -23,6 +23,8 @@ declare(strict_types=1);
  */
 
 namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property;
+use Teknoo\Immutable\ImmutableInterface;
+use Teknoo\Immutable\ImmutableTrait;
 
 /**
  * class IsGreaterOrEqualThan
@@ -38,8 +40,10 @@ namespace Teknoo\States\LifeCycle\StatedClass\Automated\Assertion\Property;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class IsGreaterOrEqualThan
+class IsGreaterOrEqualThan implements ImmutableInterface
 {
+    use ImmutableTrait;
+
     /**
      * @var mixed
      */
@@ -52,6 +56,8 @@ class IsGreaterOrEqualThan
      */
     public function __construct($exceptedValue)
     {
+        $this->uniqueConstructorCheck();
+
         $this->exceptedValue = $exceptedValue;
     }
 

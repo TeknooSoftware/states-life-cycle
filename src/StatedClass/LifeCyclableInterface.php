@@ -61,5 +61,5 @@ interface LifeCyclableInterface extends ProxyInterface
      *
      * @return LifeCyclableInterface
      */
-    public function notifyObserved(): LifeCyclableInterface;
+    public function notifyObservers(): LifeCyclableInterface;
 }
