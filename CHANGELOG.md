@@ -1,5 +1,10 @@
 #Teknoo Software - States Life Cyclable extension - Change Log
 
+##[3.0.0-beta5] - 2017-10-02
+###Updated
+- Needs PHP 7.1+
+- Needs Teknoo States 3.2+
+
 ##[3.0.0-beta4] - 2017-10-02
 ###Updated
 - Update requirements

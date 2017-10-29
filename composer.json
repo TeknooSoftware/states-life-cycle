@@ -17,8 +17,9 @@
         "source": "https://github.com/TeknooSoftware/states-life-cycle"
     },
     "require":{
-        "php": "~7.0",
-        "teknoo/states": "~3.1.0-beta3",
+        "php": "~7.1",
+        "teknoo/states": "~3.2.0-beta1",
+        "teknoo/immutable": "^0.0.3",
         "psr/container-implementation": "^1.0.0",
         "php-di/php-di": "^5.4"
     },
